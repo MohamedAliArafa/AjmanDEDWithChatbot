@@ -1,0 +1,35 @@
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:id="@+id/check_application_status_btn"
+    android:layout_width="70dp"
+    android:layout_height="wrap_content"
+    android:layout_gravity="top"
+    android:layout_margin="5dp">
+
+    <ImageView
+        android:id="@+id/service_image"
+        android:layout_width="50dp"
+        android:layout_height="50dp"
+        android:layout_centerHorizontal="true"
+        android:background="@drawable/bg_shape_light_red" />
+
+    <ImageView
+        android:id="@+id/service_icon"
+        android:layout_width="20dp"
+        android:layout_height="20dp"
+        android:layout_centerHorizontal="true"
+        android:layout_marginStart="15dp"
+        android:layout_marginTop="15dp"
+        android:src="@drawable/icon4" />
+
+    <TextView
+        android:id="@+id/service_name_tv"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_below="@+id/service_image"
+        android:layout_centerHorizontal="true"
+        android:gravity="center"
+        android:paddingTop="2dp"
+        android:text="@string/check_application_status"
+        android:textColor="@color/bg_light_royal"
+        android:textSize="12sp" />
+</RelativeLayout>

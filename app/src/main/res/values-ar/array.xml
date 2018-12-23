@@ -1,0 +1,69 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+
+    <string-array name="film_genre">
+        <item>الإجراءات الاقتصادية</item>
+        <item>خدمات التفتيش</item>
+        <item>المعاملات</item>
+        <item>التقارير</item>
+        <item>الاستعلامات</item>
+        <item>الرقابة الادارية وحماية المستهلك</item>
+    </string-array>
+
+    <string-array name="e_services">
+        <item>حجز اسم تجارى</item>
+        <item>إصدار موافقة مبدئية</item>
+        <item>إصدار رخصة جديدة</item>
+        <item>تجديد رخصة</item>
+        <item>إصدار تصريح جديد</item>
+        <item>إصدار شهادة جديدة</item>
+        <item>إلغاء رخصة إقتصادية</item>
+        <item>ربط رخصة من خارج الإمارة</item>
+        <item>طباعة رخص إقتصادية</item>
+        <item>تأكيد موائمة الأنشطة الإقتصادية</item>
+    </string-array>
+
+    <string-array name="inspection">
+        <item>شكوى غش تجارى</item>
+        <item>تسديد مخالفات صاحب علاقة</item>
+        <item>طلب تفتيش استباقى</item>
+        <item>تثبيت لائحة أسعار</item>
+        <item>استعلام عن المخالفات</item>
+        <item>استعلام عن حالة التفتيش</item>
+    </string-array>
+
+    <string-array name="transactions">
+        <item>استكمال المعاملات</item>
+        <item>معاملات قيد التدقيق</item>
+        <item>المعاملات المرفوضة</item>
+        <item>المعاملات المكتملة</item>
+        <item>جميع المعاملات</item>
+        <item>عمليات الدفع</item>
+    </string-array>
+
+    <string-array name="reports">
+        <item>كشف الرخص</item>
+        <item>تقرير التصاريح السارية</item>
+        <item>تقرير التصاريح المنتهية</item>
+    </string-array>
+
+    <string-array name="inquiries">
+        <item>الاستعلام عن حالة معاملة</item>
+        <item>الاستعلام عن الأسماء التجارية</item>
+        <item>الاستعلام عن بيانات رخصة</item>
+        <item>الاستعلام عن موائمة انشطة الايزك</item>
+        <item>الاستعلام عن الموفقات الخارجية</item>
+        <item>الإستعلام عن إشتراطات تصريح</item>
+        <item>تقدير تكلفة إصدار رخصة</item>
+        <item>تقدير تكلفة تجديد رخصة</item>
+        <item>تقدير تكلفة إصدار تصريح</item>
+        <item>أنشطة ISIC</item>
+    </string-array>
+
+    <string-array name="Administrative_Control">
+        <item>الاشتراطات الخاصة لمزاولة الانشطة الاقتصادية</item>
+        <item>القوانين والتشريعات</item>
+        <item>الاشتراطات الخاصة بلوحات الأسماء التجارية</item>
+    </string-array>
+
+</resources>

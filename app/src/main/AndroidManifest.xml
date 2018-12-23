@@ -1,0 +1,110 @@
+<?xml version="1.0" encoding="utf-8"?>
+<manifest xmlns:android="http://schemas.android.com/apk/res/android"
+    package="com.ajman.ded.ae">
+
+    <uses-permission android:name="android.permission.SYSTEM_ALERT_WINDOW" />
+    <uses-permission android:name="android.permission.VIBRATE" />
+    <uses-permission android:name="android.permission.INTERNET" />
+    <uses-permission android:name="android.permission.ACCESS_NETWORK_STATE" />
+    <uses-permission android:name="android.permission.RECEIVE_SMS" />
+    <uses-permission android:name="android.permission.READ_SMS" />
+    <uses-permission android:name="android.permission.READ_EXTERNAL_STORAGE" />
+    <!--
+         The ACCESS_COARSE/FINE_LOCATION permissions are not required to use
+         Google Maps Android API v2, but you must specify either coarse or fine
+         location permissions for the 'MyLocation' functionality.
+    -->
+    <uses-permission android:name="android.permission.ACCESS_FINE_LOCATION" />
+
+    <application
+        android:name=".MyApplication"
+        android:supportsRtl="true"
+        android:allowBackup="true"
+        android:icon="@mipmap/ic_launcher"
+        android:label="@string/app_name"
+        android:roundIcon="@mipmap/ic_launcher_round"
+        android:theme="@style/AppTheme">
+        <activity
+            android:name=".screens.home.HomeActivity"
+            android:label="@string/app_name"
+            android:screenOrientation="portrait"
+            android:theme="@style/AppTheme.NoActionBar" />
+        <activity
+            android:name=".screens.accountSettings.AccountActivity"
+            android:label="@string/account_settings"
+            android:screenOrientation="portrait"
+            android:windowSoftInputMode="adjustResize" />
+        <activity android:name=".FaqActivity" />
+
+        <meta-data
+            android:name="com.google.android.gms.version"
+            android:value="@integer/google_play_services_version" />
+        <meta-data
+            android:name="com.google.android.geo.API_KEY"
+            android:value="@string/google_maps_key" />
+
+        <activity
+            android:name=".MapsActivity"
+            android:label="@string/title_activity_maps" />
+        <activity android:name=".WelcomeActivity" />
+        <activity android:name=".LoginMenuActivity" />
+        <activity
+            android:name=".screens.login.LoginActivity"
+            android:windowSoftInputMode="adjustResize" />
+        <activity
+            android:name=".WebViewActivity"
+            android:largeHeap="true"
+            android:parentActivityName=".screens.home.HomeActivity" />
+        <activity
+            android:name=".screens.dashboard.DashBoardActivity"
+            android:parentActivityName=".screens.home.HomeActivity">
+            <meta-data
+                android:name="androidx.PARENT_ACTIVITY"
+                android:value="com.ajman.ded.ae.screens.home.HomeActivity" />
+        </activity>
+        <activity
+            android:name=".screens.main.MainActivity"
+            android:label="@string/app_name">
+            <intent-filter>
+                <action android:name="android.intent.action.MAIN" />
+
+                <category android:name="android.intent.category.LAUNCHER" />
+                <category android:name="android.intent.category.DEFAULT" />
+            </intent-filter>
+        </activity>
+        <activity android:name=".screens.barcode.BarcodeActivity" />
+        <activity
+            android:name=".screens.registeration.RegisterActivity"
+            android:windowSoftInputMode="adjustResize" />
+        <activity android:name=".screens.search.SearchActivity" />
+        <activity android:name=".StatusActivity" />
+        <activity android:name=".CustomTabs" />
+
+        <receiver android:name=".utility.otpSms.SmsReceiver">
+            <intent-filter>
+                <action android:name="android.provider.Telephony.SMS_RECEIVED" />
+            </intent-filter>
+        </receiver>
+
+        <service
+            android:name="com.novoda.merlin.service.MerlinService"
+            android:exported="false" />
+
+        <meta-data
+            android:name="io.fabric.ApiKey"
+            android:value="04da2ecb4654f439a43db0211b634ca63dfb1a6c" />
+
+        <activity android:name=".screens.InvestorGuide" />
+        <activity android:name=".screens.IntroActivity" />
+        <activity android:name=".LoginMenu" />
+        <activity android:name=".screens.news.NewsActivity" />
+
+        <service
+            android:name=".utility.pdfViewer.service.CopyAssetService"
+            android:exported="false" />
+
+        <activity android:name=".screens.news.NewsDetailActivity" />
+        <activity android:name=".ServiceCentersActivity"></activity>
+    </application>
+
+</manifest>

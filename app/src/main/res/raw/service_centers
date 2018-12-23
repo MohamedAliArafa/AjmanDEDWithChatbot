@@ -1,0 +1,42 @@
+[
+  {
+    "name": "Head Quarter",
+    "nameAr": "المركز الرئيسى",
+    "address": "Al Rashidiya 2 - Ajman - Sheikh Rashid Bin Abdulaziz Road",
+    "addressAr": "عجمان - الراشدية2 – شارع الشيخ راشد بن عبد العزيز",
+    "latitude": 25.3970238,
+    "longitude": 55.4517429,
+    "link": "https://www.google.ae/maps/place/25%C2%B023'49.3%22N+55%C2%B027'06.3%22E/@25.3970238,55.4518797,21z/data=!4m5!3m4!1s0x0:0x0!8m2!3d25.3970238!4d55.4517429?hl=en",
+    "linkAr": "https://www.google.ae/maps/place/25%C2%B023'49.3%22N+55%C2%B027'06.3%22E/@25.3970238,55.4518797,21z/data=!4m5!3m4!1s0x0:0x0!8m2!3d25.3970238!4d55.4517429?hl=ar"
+  },
+  {
+    "name": "Al-hamidiyeh Customer services center",
+    "nameAr": "مركز الحميدية لخدمة المتعاملين",
+    "address": "Al-hamidiyeh - Ajman - Sheikh Zaid Road",
+    "addressAr": "عجمان – منطقة الحميدية – شارع الشيخ زايد",
+    "latitude": 25.3986137,
+    "longitude": 55.5168672,
+    "link": "https://www.google.ae/maps/place/25%C2%B023'55.0%22N+55%C2%B031'00.7%22E/@25.3986137,55.5190559,17z/data=!3m1!4b1!4m5!3m4!1s0x0:0x0!8m2!3d25.3986137!4d55.5168672?hl=en",
+    "linkAr": "https://www.google.ae/maps/place/25%C2%B023'55.0%22N+55%C2%B031'00.7%22E/@25.3986137,55.5190559,17z/data=!3m1!4b1!4m5!3m4!1s0x0:0x0!8m2!3d25.3986137!4d55.5168672?hl=ar"
+  },
+  {
+    "name": "customer services center",
+    "nameAr": "مركز خدمة المتعاملين",
+    "address": "Manama – Ajman",
+    "addressAr": "عجمان – المنامة",
+    "latitude": 25.327103,
+    "longitude": 56.00589725,
+    "link": "https://www.google.ae/maps/place/Department+of+Economic+Development+-+Ajman+%2F+Masfot/@24.8188092,56.0721104,16.82z/data=!4m5!3m4!1s0x0:0x67a1cdeff23572b4!8m2!3d24.8208555!4d56.0727435?hl=en",
+    "linkAr": "https://www.google.ae/maps/place/Department+of+Economic+Development+-+Ajman+%2F+Masfot/@24.8188092,56.0721104,16.82z/data=!4m5!3m4!1s0x0:0x67a1cdeff23572b4!8m2!3d24.8208555!4d56.0727435?hl=ar"
+  },
+  {
+    "name": "Sanad customer services center",
+    "nameAr": "مركز سند لخدمة المتعاملين",
+    "address": "Masfoot - Ajman",
+    "addressAr": "عجمان – مصفوت",
+    "latitude": 24.8136172,
+    "longitude": 56.0868661,
+    "link": "https://www.google.ae/maps/place/25%C2%B019'37.6%22N+56%C2%B000'21.2%22E/@25.327103,56.0053498,19z/data=!3m1!4b1!4m5!3m4!1s0x0:0x0!8m2!3d25.327103!4d56.005897?hl=en",
+    "linkAr": "https://www.google.ae/maps/place/25%C2%B019'37.6%22N+56%C2%B000'21.2%22E/@25.327103,56.0053498,19z/data=!3m1!4b1!4m5!3m4!1s0x0:0x0!8m2!3d25.327103!4d56.005897?hl=ar"
+  }
+]

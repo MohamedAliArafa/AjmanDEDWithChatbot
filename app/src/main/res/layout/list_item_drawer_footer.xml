@@ -1,0 +1,233 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="wrap_content"
+    android:orientation="vertical"
+    android:padding="10dp">
+
+    <!--<TextView-->
+    <!--android:layout_width="match_parent"-->
+    <!--android:layout_height="50dp"-->
+    <!--android:layout_marginBottom="1dp"-->
+    <!--android:background="@color/gray"-->
+    <!--android:gravity="start|center"-->
+    <!--android:padding="10dp"-->
+    <!--android:text="@string/consumer_guide"-->
+    <!--android:textColor="@android:color/white" />-->
+
+    <TextView
+        android:id="@+id/services_text"
+        android:layout_width="match_parent"
+        android:layout_height="50dp"
+        android:layout_marginBottom="1dp"
+        android:background="@color/gray"
+        android:gravity="start|center"
+        android:padding="10dp"
+        android:text="@string/service_centers"
+        android:textColor="@android:color/white" />
+
+    <TextView
+        android:id="@+id/suggestions_text"
+        android:layout_width="match_parent"
+        android:layout_height="50dp"
+        android:layout_marginBottom="1dp"
+        android:background="@color/gray"
+        android:gravity="start|center"
+        android:padding="10dp"
+        android:text="@string/suggestions"
+        android:textColor="@android:color/white" />
+
+    <TextView
+        android:id="@+id/complains_text"
+        android:layout_width="match_parent"
+        android:layout_height="50dp"
+        android:layout_marginBottom="1dp"
+        android:background="@color/gray"
+        android:gravity="start|center"
+        android:padding="10dp"
+        android:text="@string/complaints"
+        android:textColor="@android:color/white" />
+
+
+    <TextView
+        android:id="@+id/guide_text"
+        android:layout_width="match_parent"
+        android:layout_height="50dp"
+        android:layout_marginBottom="1dp"
+        android:background="@color/gray"
+        android:gravity="start|center"
+        android:padding="10dp"
+        android:text="@string/investor_guide"
+        android:textColor="@android:color/white" />
+
+
+    <TextView
+        android:id="@+id/job_text"
+        android:layout_width="match_parent"
+        android:layout_height="50dp"
+        android:layout_marginBottom="1dp"
+        android:background="@color/gray"
+        android:gravity="start|center"
+        android:padding="10dp"
+        android:text="@string/apply_for_a_job"
+        android:textColor="@android:color/white" />
+
+
+    <TextView
+        android:id="@+id/invest_text"
+        android:layout_width="match_parent"
+        android:layout_height="50dp"
+        android:layout_marginBottom="1dp"
+        android:background="@color/gray"
+        android:gravity="start|center"
+        android:padding="10dp"
+        android:text="@string/invest_in_ajman"
+        android:textColor="@android:color/white" />
+
+    <TextView
+        android:id="@+id/pledge_text"
+        android:layout_width="match_parent"
+        android:layout_height="50dp"
+        android:layout_marginBottom="1dp"
+        android:background="@color/gray"
+        android:gravity="start|center"
+        android:padding="10dp"
+        android:text="@string/customer_s_happiness_pledge"
+        android:textColor="@android:color/white" />
+
+    <TextView
+        android:id="@+id/faq_text"
+        android:layout_width="match_parent"
+        android:layout_height="50dp"
+        android:layout_marginBottom="1dp"
+        android:background="@color/gray"
+        android:gravity="start|center"
+        android:padding="10dp"
+        android:text="@string/faq"
+        android:textColor="@android:color/white" />
+
+    <TextView
+        android:id="@+id/business_text"
+        android:layout_width="match_parent"
+        android:layout_height="50dp"
+        android:layout_marginBottom="1dp"
+        android:background="@color/gray"
+        android:gravity="start|center"
+        android:padding="10dp"
+        android:text="@string/business_control"
+        android:textColor="@android:color/white" />
+
+    <TextView
+        android:id="@+id/share_btn"
+        android:layout_width="match_parent"
+        android:layout_height="50dp"
+        android:layout_marginBottom="1dp"
+        android:background="@color/gray"
+        android:gravity="start|center"
+        android:padding="10dp"
+        android:text="@string/share_ajmanded"
+        android:textColor="@android:color/white" />
+
+    <TextView
+        android:id="@+id/help_btn"
+        android:layout_width="match_parent"
+        android:layout_height="50dp"
+        android:layout_marginBottom="1dp"
+        android:background="@color/gray"
+        android:gravity="start|center"
+        android:padding="10dp"
+        android:text="@string/help"
+        android:textColor="@android:color/white" />
+
+    <TextView
+        android:id="@+id/news_text"
+        android:layout_width="match_parent"
+        android:layout_height="50dp"
+        android:layout_marginBottom="1dp"
+        android:background="@color/gray"
+        android:gravity="start|center"
+        android:padding="10dp"
+        android:text="@string/news"
+        android:textColor="@android:color/white" />
+
+    <TextView
+        android:id="@+id/lang_text"
+        android:layout_width="match_parent"
+        android:layout_height="50dp"
+        android:layout_marginBottom="1dp"
+        android:background="@color/gray"
+        android:gravity="end|center"
+        android:padding="10dp"
+        android:text="@string/change_language"
+        android:textColor="@android:color/white" />
+
+    <TextView
+        android:id="@+id/logout_text"
+        android:layout_width="match_parent"
+        android:layout_height="50dp"
+        android:layout_marginBottom="1dp"
+        android:background="@color/gray"
+        android:gravity="start|center"
+        android:padding="10dp"
+        android:text="@string/logout"
+        android:textColor="@android:color/white" />
+
+    <TextView
+        android:id="@+id/register_text"
+        android:layout_width="match_parent"
+        android:layout_height="50dp"
+        android:layout_marginBottom="1dp"
+        android:background="@color/gray"
+        android:gravity="start|center"
+        android:padding="10dp"
+        android:text="@string/signup"
+        android:textColor="@android:color/white" />
+
+    <androidx.constraintlayout.widget.ConstraintLayout
+        android:layout_width="match_parent"
+        android:layout_height="50dp"
+        android:background="@color/gray"
+        android:padding="4dp">
+
+        <ImageView
+            android:id="@+id/twitter"
+            android:layout_width="50sp"
+            android:layout_height="wrap_content"
+            android:layout_marginStart="8dp"
+            android:src="@drawable/twitter"
+            app:layout_constraintBottom_toBottomOf="parent"
+            app:layout_constraintEnd_toStartOf="@+id/instagram"
+            app:layout_constraintHorizontal_bias="0.5"
+            app:layout_constraintHorizontal_chainStyle="spread_inside"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toTopOf="parent" />
+
+
+        <ImageView
+            android:id="@+id/fb"
+            android:layout_width="50sp"
+            android:layout_height="wrap_content"
+            android:src="@drawable/ic_facebook"
+            app:layout_constraintBottom_toBottomOf="parent"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintHorizontal_bias="0.5"
+            app:layout_constraintStart_toEndOf="@+id/instagram"
+            app:layout_constraintTop_toTopOf="parent" />
+
+
+        <ImageView
+            android:id="@+id/instagram"
+            android:layout_width="50sp"
+            android:layout_height="wrap_content"
+            android:src="@drawable/instagram"
+            app:layout_constraintBottom_toBottomOf="parent"
+            app:layout_constraintEnd_toStartOf="@+id/fb"
+            app:layout_constraintHorizontal_bias="0.5"
+            app:layout_constraintStart_toEndOf="@+id/twitter"
+            app:layout_constraintTop_toTopOf="parent" />
+
+    </androidx.constraintlayout.widget.ConstraintLayout>
+
+</LinearLayout>

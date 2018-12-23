@@ -1,0 +1,199 @@
+[
+  {
+    "id": 1,
+    "name": "Twasol Business Men Services",
+    "Building": {
+      "name": "Al Rashidiya 1- Ajman, Sheikh Khalifa Street, Al Muhairi Building",
+      "Lat": "25.3867667",
+      "Lng": "55.4637878"
+    },
+    "workinghours": [
+      "Sunday to Thursday - From 7:30 am to 8:30 pm",
+      "Saturday - From 8:00 am to 8:30 pm"
+    ],
+    "phone": [
+      "067030333"
+    ],
+    "fax": "067030399",
+    "email": "info@twasolajman.ae",
+    "website": [
+      "https://www.twasolajman.ae",
+      "https://www.diconinvestments.com"
+    ],
+    "postalcode": "Ajman 30300",
+    "customerservice": "600560605",
+    "Whatsapp": "0501626996",
+    "Facebook": {
+      "name": "Dicon investment llc",
+      "link": "https://www.facebook.com/Dicon-Investment-LLC-418233508644729/?ref=br_rs"
+    },
+    "Youtube": {
+      "name": "diconinvestments",
+      "link": "https://www.Youtube.com/"
+    },
+    "Instgram": {
+      "name": "diconinvestment",
+      "link": "https://www.instagram.com/diconinvestment/"
+    },
+    "Location": {
+      "Lat": 25.3867667,
+      "Lng": 55.4637878
+    },
+    "makaninumber": "4561909044",
+    "ServicesList": [
+      "Issue Trade License",
+      "Renew Trade License",
+      "Modify Trade License Request",
+      "Trade License Permits"
+    ]
+  },
+  {
+    "id": 2,
+    "name": "Tasheel Al Hajis Centre",
+    "Building": {
+      "name": "Industrial 2 – Beirut Street",
+      "Lat": "25.38325302",
+      "Lng": "55.47821831"
+    },
+    "workinghours": [
+      "From Saturday to Thursday - 8:00 am – 8:00 pm"
+    ],
+    "phone": [
+      "067011222"
+    ],
+    "fax": "Not Specified",
+    "email": "admin@alhajisbms.ae",
+    "website": [
+      "https://www.alhajisbms.ae"
+    ],
+    "postalcode": "Ajman - 20834",
+    "customerservice": "0562082227",
+    "Whatsapp": "0562082227",
+    "Facebook": {
+      "name": "Tasheel_Alhajis",
+      "link": "https://www.facebook.com/alhajis.tasheel/"
+    },
+    "Twitter": {
+      "name": "Tasheel_Alhajis",
+      "link": "https://twitter.com/search?f=tweets&q=Tasheel_Alhajis&src=typd"
+    },
+    "Youtube":{
+      "name": "Not Specified",
+      "link": "https://www.Youtube.com/"
+    },
+    "Instgram": {
+      "name": "Tasheel.Alhajis",
+      "link": "https://www.instagram.com/tasheel.alhajis/"
+    },
+    "Location": {
+      "Lat": 25.38325302,
+      "Lng": 55.47821831
+    },
+    "makaninumber": "4686108305",
+    "ServicesList": [
+      "Issue Trade License",
+      "Renew Trade License",
+      "Cancel License",
+      "Modify Trade License Request",
+      "Trade License Permits",
+      "Waiver License Service",
+      "Whom It May Concern Certificates"
+    ]
+  },
+  {
+    "id": 3,
+    "name": "Taajeel",
+    "Building": {
+      "name": "Al Roudha 3 - Ajman",
+      "Lat": "25.3973879",
+      "Lng": "55.4977387"
+    },
+    "workinghours": [
+      "From Saturday to Thursday - From 7:30 am to 9:30 pm"
+    ],
+    "phone": [
+      "067466697",
+      "067444431"
+    ],
+    "fax": "Not Specified",
+    "email": "info@taajeel.com",
+    "website": [
+      "https://www.taajeel.com"
+    ],
+    "postalcode": "Not Specified",
+    "customerservice": " 0501626996",
+    "Whatsapp": "0501626996",
+    "Facebook": {
+      "name": "Taajeel",
+      "link": "https://www.facebook.com/taajeelcenter/"
+    },
+    "Twitter": {
+      "name": "taajeeldxb",
+      "link": "https://twitter.com/search?q=taajeeldxb&src=typd"
+    },
+    "Youtube": {
+      "name": "Not Specified",
+      "link": "https://www.Youtube.com/"
+    },
+    "Instgram": {
+      "name": "Tasheel.Alhajis",
+      "link": "https://www.instagram.com/taajeel/"
+    },
+    "Location": {
+      "Lat": 25.3973879,
+      "Lng": 55.4977387
+    },
+    "makaninumber": "4914709769",
+    "ServicesList": [
+      "Reserving Trading Name",
+      "Issue Trade License",
+      "Renew Trade License",
+      "Modify Trade License Request",
+      "Waiver License Service",
+      "Cancel License"
+    ]
+  },
+  {
+    "id": 4,
+    "name": "Moamalat",
+    "Building": {
+      "name": "Jurf 2 – opposite the National School",
+      "Lat": "25.4020422",
+      "Lng": "55.5046643"
+    },
+    "workinghours": [
+      "From Saturday to Thursday - From 7:00 am to 10:00 pm"
+    ],
+    "phone": [
+      "067415030"
+    ],
+    "fax": "067415553",
+    "email": "moamalat.aj@gmail.com",
+    "website": [
+      "https://www.taajeel.com"
+    ],
+    "postalcode": "Ajman -  23555",
+    "customerservice": "Not Specified",
+    "Whatsapp": "0501493388",
+    "Facebook": {
+      "name": "Not Specified",
+      "link": "https://www.facebook.com/"
+    },
+    "Youtube": {
+      "name": "Not Specified",
+      "link": "https://www.youtube.com/"
+    },
+    "Instgram": {
+      "name": "Moamalat.aj",
+      "link": "https://www.instagram.com/moamalat_ajman/"
+    },
+    "Location": {
+      "Lat": 25.4020422,
+      "Lng": 55.5046643
+    },
+    "makaninumber": "4950710268",
+    "ServicesList": [
+      "Renew Trade License"
+    ]
+  }
+]

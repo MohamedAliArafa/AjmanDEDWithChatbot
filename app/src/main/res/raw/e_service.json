@@ -1,0 +1,349 @@
+[
+  {
+    "id": 0,
+    "name": "E-Services",
+    "nameAr": "الإجراءات الاقتصادية",
+    "services": [
+      {
+        "id": 0,
+        "name": "Trade Name Reservation",
+        "nameAr": "حجز اسم تجارى",
+        "icon": "ic_reservation_trade_name",
+        "color": 1,
+        "link": "entities/createbyform?defid=e65a3e12-691f-448e-9d98-cacf4ba6778b&formName=OnlineForm_Create"
+      },
+      {
+        "id": 1,
+        "name": "Issue Initial Approval",
+        "nameAr": "إصدار موافقة مبدئية",
+        "icon": "ic_issuing_preliminary_approval",
+        "color": 2,
+        "link": "entities/FormView?sar=mRhv506d%2fii6XiFBivkzlw6lzvqxNochAT46xB501WdI%2fyo3G8X1peE%2fzHqcLnlmLpVG6JFKWQlk2o7TyL6Mt9GVO24vnq3xiF5iiivQ4MygvP%2fGG7GW%2bMKhJLUb3Kqaj51DTZb5p4wgIJJeXNxbpIAhi%2bTSkk0a9HQ%2b1hciBoqUmMA0r0E%2blrn6QcsTdwI4JCDeaMeuKYIx4Rt1S7GIXlv5KwNg%2biQ2vDpE28QCpZ8mydvG%2bFuExQUUt9dSfplniB9TauLZdthDcNX2o5Rs%2fDn3np9avHuLYjWQRlmw6p3XTQQP05YqaRDLK03KMAxM"
+
+      },
+      {
+        "id": 2,
+        "name": "Issue Trade License",
+        "nameAr": "إصدار رخصة جديدة",
+        "icon": "ic_issuing_license",
+        "color": 3,
+        "link": "entities/createbyform?defid=8f538ec6-e623-4675-ab57-534865ec2b73&formName=OnlineForm_Create"
+      },
+      {
+        "id": 3,
+        "name": "Renew Trade License",
+        "nameAr": "تجديد رخصة",
+        "icon": "ic_renew_license",
+        "color": 4,
+        "link": "entities/createbyform?defid=1043782d-9d2b-403c-bfe0-9fbae0aa20e8&formName=OnlineForm_Step1"
+      },
+      {
+        "id": 4,
+        "name": "Issue New Permit",
+        "nameAr": "إصدار تصريح جديد",
+        "icon": "ic_issuing_permit",
+        "color": 5,
+        "link": "entities/createbyform?defid=3d79ac09-9cf1-49cc-9fb0-f17f6ca3029e&formName=OnlineForm_Step1"
+      },
+      {
+        "id": 5,
+        "name": "Certificate Request",
+        "nameAr": "إصدار شهادة جديدة",
+        "icon": "ic_issuing_certificate",
+        "color": 1,
+        "link": "entities/createbyform?defid=3b0848eb-40b0-4b5f-93de-5836323d88bf&formName=OnlineForm_Create"
+      },
+      {
+        "id": 6,
+        "name": "Cancel License",
+        "nameAr": "إلغاء رخصة إقتصادية",
+        "icon": null,
+        "color": 2,
+        "link": "entities/createbyform?defid=e42eb1eb-c5a5-4f53-8ea8-4875ec16dddb&formName=OnlineForm_CancelLicense"
+      },
+      {
+        "id": 7,
+        "name": "Link External License",
+        "nameAr": "ربط رخصة من خارج الإمارة",
+        "icon": "ic_linking_external_license",
+        "color": 3,
+        "link": "entities/createbyanon?defid=6b5dbf2f-282e-4ca2-953b-c4e22d073d7b&formName=OnlineForm"
+      },
+      {
+        "id": 8,
+        "name": "Print License",
+        "nameAr": "طباعة رخص إقتصادية",
+        "icon": "ic_printing_economic_licenses",
+        "color": 4,
+        "link": null
+      },
+      {
+        "id": 9,
+        "name": "ISIC 4 Activities Confirmation",
+        "nameAr": "تأكيد موائمة الأنشطة الإقتصادية",
+        "icon": "ic_activities",
+        "color": 5,
+        "link": "entities/createbyform?defid=228e6b6e-f49a-47bf-a0e4-5510cc71dc1f&formName=Online_Create"
+      }
+    ]
+  },
+  {
+    "id": 1,
+    "name": "Inspection Services",
+    "nameAr": "خدمات التفتيش",
+    "services": [
+      {
+        "id": 10,
+        "name": "Fraud Complaint Request",
+        "nameAr": "شكوى غش تجارى",
+        "icon": "ic_commercial_fraud_complaints",
+        "color": 6,
+        "link": "entities/createbyform?defid=6870342b-4e0f-4342-a542-86e3e18de026&formName=CreateForm_Online"
+      },
+      {
+        "id": 11,
+        "name": "Stakeholder fines payment",
+        "nameAr": "تسديد مخالفات صاحب علاقة",
+        "icon": "ic_reservation_trade_name",
+        "color": 9,
+        "link": "entities/createbyform?defid=ed3c89a6-a37b-4083-a0fd-81bd81935ac8&formName=InfractionsFormPerson_Online"
+      },
+      {
+        "id": 12,
+        "name": "Inspection Request",
+        "nameAr": "طلب تفتيش استباقى",
+        "icon": "ic_request_inspection",
+        "color": 8,
+        "link": null
+      },
+      {
+        "id": 13,
+        "name": "Price List Approval",
+        "nameAr": "تثبيت لائحة أسعار",
+        "icon": "ic_install_price_list",
+        "color": 7,
+        "link": "entities/createbyform?defid=3317fd29-df28-408e-b2dd-3a3978b5f307&formName=OnlineForm_Create"
+      },
+      {
+        "id": 14,
+        "name": "Stakeholder fines inquiry",
+        "nameAr": "استعلام عن المخالفات",
+        "icon": "ic_reservation_trade_name",
+        "color": 9,
+        "link": "entities/createbyform?defid=ed3c89a6-a37b-4083-a0fd-81bd81935ac8&formName=InfractionsFormPersonInquiry_Online"
+      },
+      {
+        "id": 15,
+        "name": "Inspection Status",
+        "nameAr": "استعلام عن حالة التفتيش",
+        "icon": "ic_inquiry_inspection_status",
+        "color": 8,
+        "link": "entities/createbyanon?defid=6fff2b47-e0e7-40bb-92b2-7a9c3039fb72&formName=InspectionInfo_Online"
+      }
+    ]
+  },
+  {
+    "id": 2,
+    "name": "Transactions",
+    "nameAr": "المعاملات",
+    "services": [
+      {
+        "id": 16,
+        "name": "My Tasks",
+        "nameAr": "استكمال المعاملات",
+        "icon": "ic_transaction_status",
+        "color": 9,
+        "link": "home/mytransactions"
+      },
+      {
+        "id": 17,
+        "name": "In Progress",
+        "nameAr": "معاملات قيد التدقيق",
+        "icon": "ic_transactions_under_audit",
+        "color": 6,
+        "link": "Transactions/InProgress"
+      },
+      {
+        "id": 18,
+        "name": "Rejected",
+        "nameAr": "المعاملات المرفوضة",
+        "icon": "ic_transaction_declined",
+        "color": 7,
+        "link": "Transactions/Rejected"
+      },
+      {
+        "id": 19,
+        "name": "Completed",
+        "nameAr": "المعاملات المكتملة",
+        "icon": "ic_complete_transactions",
+        "color": 8,
+        "link": "Transactions/Completed"
+      },
+      {
+        "id": 20,
+        "name": "All Applications",
+        "nameAr": "جميع المعاملات",
+        "icon": "ic_all_transactions",
+        "color": 9,
+        "link": "Transactions/index"
+      },
+      {
+        "id": 21,
+        "name": "Payment History",
+        "nameAr": "عمليات الدفع",
+        "icon": "ic_reservation_trade_name",
+        "color": 6,
+        "link": "extensions/OnlineServices/PaymentHistory"
+      }
+    ]
+  },
+  {
+    "id": 3,
+    "name": "Reports",
+    "nameAr": "التقارير",
+    "services": [
+      {
+        "id": 22,
+        "name": "License Report",
+        "nameAr": "كشف الرخص",
+        "icon": "ic_reports",
+        "color": 7,
+        "link": "OnlineInquiries/PersonLicenseList"
+      },
+      {
+        "id": 23,
+        "name": "Valid Permissions Report",
+        "nameAr": "تقرير التصاريح السارية",
+        "icon": "ic_report_valid_permits",
+        "color": 8,
+        "link": "OnlineInquiries/ValidPermitsReport"
+      },
+      {
+        "id": 24,
+        "name": "Expired Permissions Report",
+        "nameAr": "تقرير التصاريح المنتهية",
+        "icon": "ic_finished_permits_report",
+        "color": 9,
+        "link": "OnlineInquiries/ExpiredPermitsReport"
+      }
+    ]
+  },
+  {
+    "id": 4,
+    "name": "Inquiries",
+    "nameAr": "الاستعلامات",
+    "services": [
+      {
+        "id": 25,
+        "name": "Application Status",
+        "nameAr": "الاستعلام عن حالة معاملة",
+        "icon": "ic_inquiry_inspection_status",
+        "color": 6,
+        "link": "extensions/NewOnlineInquiries/getRequestStatus"
+      },
+      {
+        "id": 26,
+        "name": "Trade Name Availability",
+        "nameAr": "الاستعلام عن الأسماء التجارية",
+        "icon": "ic_inquiry_trade_names",
+        "color": 7,
+        "link": "extensions/BusinessNames/SearchOnline"
+      },
+      {
+        "id": 27,
+        "name": "Trade license Inquiry",
+        "nameAr": "الاستعلام عن بيانات رخصة",
+        "icon": "ic_inquiry_trade_names",
+        "color": 8,
+        "link": "OnlineInquiries/ViewLicenseData"
+      },
+      {
+        "id": 28,
+        "name": "ISIC Activities Inquiry",
+        "nameAr": "الاستعلام عن موائمة انشطة الايزك",
+        "icon": "ic_activities",
+        "color": 9,
+        "link": "entities/createbyanon?defid=7a295674-9213-4395-b522-4256cabf72e7&formName=OnlineForm"
+      },
+      {
+        "id": 29,
+        "name": "External Approvals",
+        "nameAr": "الاستعلام عن الموفقات الخارجية",
+        "icon": "ic_inquiries_external_approvals",
+        "color": 6,
+        "link": "entities/createbyanon?defid=6b5dbf2f-282e-4ca2-953b-c4e22d073d7b&formName=OnlineForm"
+      },
+      {
+        "id": 30,
+        "name": "Permit Terms & Conditions",
+        "nameAr": "الإستعلام عن إشتراطات تصريح",
+        "icon": "ic_conditions_issuing_permit",
+        "color": 7,
+        "link": "entities/createbyanon?defid=daaa4e0e-4958-4a5e-90fa-5f56e257a5a2&formName=PemitConditions"
+      },
+      {
+        "id": 31,
+        "name": "Estimate New license Fees",
+        "nameAr": "تقدير تكلفة إصدار رخصة",
+        "icon": "ic_estimating_cost_issuing_license",
+        "color": 8,
+        "link": "entities/createbyanon?defid=935bae4a-3842-432e-9e0a-12a9c2a177e4&formName=OnlineForm_Create"
+      },
+      {
+        "id": 32,
+        "name": "Estimate Renew license Fees",
+        "nameAr": "تقدير تكلفة تجديد رخصة",
+        "icon": "ic_estimate_cost_renewing_license",
+        "color": 9,
+        "link": "entities/createbyform?defid=fdbba621-b87e-40a1-a646-b7210baee798&formName=OnlineForm_Create"
+      },
+      {
+        "id": 33,
+        "name": "Estimate New Permit Fees",
+        "nameAr": "تقدير تكلفة إصدار تصريح",
+        "icon": "ic_estimate_cost_new_permit",
+        "color": 6,
+        "link": "entities/createbyanon?defid=daaa4e0e-4958-4a5e-90fa-5f56e257a5a2&formName=OnlineForm"
+      },
+      {
+        "id": 34,
+        "name": "ISIC Activities Inquiry",
+        "nameAr": "أنشطة ISIC",
+        "icon": "ic_activities",
+        "color": 7,
+        "link": "entities/createbyanon?defid=7a295674-9213-4395-b522-4256cabf72e7&formName=OnlineForm"
+      }
+    ]
+  },
+  {
+    "id": 5,
+    "name": "Administrative Control and Consumer Protection",
+    "nameAr": "الرقابة الادارية وحماية المستهلك",
+    "services": [
+      {
+        "id": 35,
+        "name": "Special conditions for exercising economic activities",
+        "nameAr": "الاشتراطات الخاصة لمزاولة الانشطة الاقتصادية",
+        "icon": null,
+        "color": 6,
+        "link": "businessguide3_mobile.html"
+      },
+      {
+        "id": 36,
+        "name": "BUSINESS LAWS IN THE UAE",
+        "nameAr": "القوانين والتشريعات",
+        "icon": null,
+        "color": 7,
+        "link": "legislations_mobile.html"
+      },
+      {
+        "id": 37,
+        "name": "Conditions for signboards",
+        "nameAr": "الاشتراطات الخاصة بلوحات الأسماء التجارية",
+        "icon": null,
+        "color": 8,
+        "link": "dccp3_mobile.html"
+      }
+      ]
+  }
+]

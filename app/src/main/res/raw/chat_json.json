@@ -1,0 +1,493 @@
+ [
+  {
+  "messages": [
+
+               {
+               "text": "How Can I Help You",
+               "image": "http://site.com/image.jpg"
+               }
+               ],
+  "options": [
+              {
+              "message": "Booking the trade name",
+              "code": 1
+              },
+              {
+              "message": "Procedures for Sole Corporates Incorporation, local –service agent and branch license",
+              "code": 2
+              },
+              {
+              "message": "Procedures for Limited Liability Companies Incorporation",
+              "code": 3
+              },
+              {
+              "message": "License Renew",
+              "code": 4
+              },
+			  {
+              "message": "Modification",
+              "code": 5
+              },
+			  {
+              "message": "License Cancellation",
+              "code": 6
+              }
+              ]
+  },
+  {
+  "messages": [
+               {
+               "text":"OK … You should follow the next steps: Online Services",
+               "image": "http://site.com/image.jpg"
+               },
+               {
+               "text": "Online Services",
+               "image": "http://site.com/image.jpg"
+               },
+               {
+               "text": "Choose the name required (Arabic / English)",
+               "image": "http://site.com/image.jpg"
+               },
+               {
+               "text": "For English names, there'll be 2000 dhs additional fees for the non - Arabic trading name",
+               "image": "http://site.com/image.jpg"
+               },
+               {
+               "text": "Choose the main activity",
+               "image": "http://site.com/image.jpg"
+               },
+               {
+               "text": "Choose the legal form",
+               "image": "http://site.com/image.jpg"
+               },
+               {
+               "text": "Prepare / adjust the trading name",
+               "image": "http://site.com/image.jpg"
+               },
+               {
+               "text": "Search the availability",
+               "image": "http://site.com/image.jpg"
+               },
+               {
+               "text": "Pay 260 dhs",
+               "image": "http://site.com/image.jpg"
+               },
+               {
+               "text": "Print your chosen name",
+               "image": "http://site.com/image.jpg"
+               }
+               ],
+  "options":  [
+              {
+              "message": "Thanks",
+              "code": 9
+              },
+              {
+              "message": "Replay",
+              "code": 1
+              },
+              {
+              "message": "ِAnother Procedures.",
+              "code": 0
+              }
+              ]
+  } ,
+  {
+  "messages": [
+               {
+               "text":"OK … You should follow the next steps:",
+               "image": "http://site.com/image.jpg"
+               },
+               {
+               "text": " Documents Required :",
+               "image": "http://site.com/image.jpg"
+               },
+               {
+               "text": "1. License Application Form",
+               "image": "http://site.com/image.jpg"
+               },
+               {
+               "text": "2. NAME CERTICATE",
+               "image": "http://site.com/image.jpg"
+               },
+               {
+               "text": "3. Passport and ID copies for partners (if any)",
+               "image": "http://site.com/image.jpg"
+               },
+               {
+               "text": "4. A copy of a valid headquarters license for",
+               "image": "http://site.com/image.jpg"
+               },
+               {
+               "text": "5. the branch license + a copy of the.",
+               "image": "http://site.com/image.jpg"
+               },
+               {
+               "text": "6. Company’s Memorandum of Association.",
+               "image": "http://site.com/image.jpg"
+               },
+               {
+               "text": "7. MAKANI NO.",
+               "image": "http://site.com/image.jpg"
+               }
+                ,
+               {
+               "text": " Service Delivery Steps a:",
+               "image": "http://site.com/image.jpg"
+               },
+               {
+               "text": "1. approval Attach the required documents and get primary approval.",
+               "image": "http://site.com/image.jpg"
+               },
+               {
+               "text": "2. Satisfy the requirements of inspection.",
+               "image": "http://site.com/image.jpg"
+               },
+               {
+               "text": "3. Provide external approval if any, depending on the type of activity.",
+               "image": "http://site.com/image.jpg"
+               },
+               {
+               "text": "4. Pay 160 dhs for primary approval.",
+               "image": "http://site.com/image.jpg"
+               },
+               {
+               "text": "5. Pay the fees and receive the license.",
+               "image": "http://site.com/image.jpg"
+               }
+               ],
+  "options":  [
+              {
+              "message": "Thanks",
+              "code": 9
+              },
+              {
+              "message": "Replay",
+              "code": 2
+              },
+              {
+              "message": "ِAnother Procedures.",
+              "code": 0
+              }
+              ]
+  } ,
+  {
+  "messages": [
+               {
+               "text": "OK … You should follow the next steps:",
+               "image": "http://site.com/image.jpg"
+               },
+               {
+               "text": " Documents Required :",
+               "image": "http://site.com/image.jpg"
+               },
+               {
+               "text": "1. License Application Form",
+               "image": "http://site.com/image.jpg"
+               },
+               {
+               "text": "2. NAME CERTICATE",
+               "image": "http://site.com/image.jpg"
+               },
+               {
+               "text": "3. ID copies for all partners + Passport copies COPY",
+               "image": "http://site.com/image.jpg"
+               },
+               {
+               "text": "4. Makani no.",
+               "image": "http://site.com/image.jpg"
+               },
+               {
+               "text": "5. Non objection letter from the partners (non-locals)",
+               "image": "http://site.com/image.jpg"
+               },
+               {
+               "text": " Service Delivery Steps :",
+               "image": "http://site.com/image.jpg"
+               },
+               {
+               "text": "1. Attach the required documents and get approval from immigration.",
+               "image": "http://site.com/image.jpg"
+               },
+               {
+               "text": "2. Satisfy the requirements of inspection.",
+               "image": "http://site.com/image.jpg"
+               },
+               {
+               "text": "3. Provide external approval if any, depending on the type of activity.",
+               "image": "http://site.com/image.jpg"
+               },
+               {
+               "text": "4. Pay 160 dhs for primary approval.",
+               "image": "http://site.com/image.jpg"
+               },
+               {
+               "text": "5. Company Memorandum of Association.",
+               "image": "http://site.com/image.jpg"
+               },
+               {
+               "text": "6. Pay the fees and receive the license.",
+               "image": "http://site.com/image.jpg"
+               }
+               ],
+  "options":  [
+              {
+              "message": "Thanks",
+              "code": 9
+              },
+              {
+              "message": "Replay",
+              "code": 3
+              },
+              {
+              "message": "ِAnother Procedures.",
+              "code": 0
+              }
+              ]
+  } ,
+  {
+  "messages": [
+               {
+               "text":"OK … You should follow the next steps:",
+               "image": "http://site.com/image.jpg"
+               },
+               {
+               "text": "1. Put on license no.",
+               "image": "http://site.com/image.jpg"
+               },
+               {
+               "text": "2. Put on the information required about the license",
+               "image": "http://site.com/image.jpg"
+               },
+               {
+               "text": "3. scan / download the required external approval.",
+               "image": "http://site.com/image.jpg"
+               },
+               {
+               "text": "4. download tenancy contract.",
+               "image": "http://site.com/image.jpg"
+               },
+               {
+               "text": "5. pay the fees and receive the license.",
+               "image": "http://site.com/image.jpg"
+               }
+               ],
+  "options":  [
+              {
+              "message": "Thanks",
+              "code": 9
+              },
+              {
+              "message": "Replay",
+              "code": 4
+              },
+              {
+              "message": "ِAnother Procedures.",
+              "code": 0
+              }
+              ]
+  } ,
+  {
+  "messages": [
+               {
+               "text":"OK … ",
+               "image": "http://site.com/image.jpg"
+               },
+               {
+               "text": "Which one of the Following Legal Forms:",
+               "image": "http://site.com/image.jpg"
+               }
+               ],
+  "options":  [
+              {
+              "message": "ADDING, OMITTING AND CHANGING ACTIVITY",
+              "code": 7
+              },
+              {
+              "message": "Change legal form / change trading name",
+              "code": 8
+              }
+              ]
+  } ,
+  {
+  "messages": [
+               {
+               "text":"OK … You should follow the next steps: ",
+               "image": "http://site.com/image.jpg"
+               },
+               {
+               "text": "1. Modify the trading name (only if, changing the main activity)",
+               "image": "http://site.com/image.jpg"
+               },
+               {
+               "text": "2. Satisfy the requirements of inspection (ONLY FOR ADDING OR CHANGING ACTIVITY)",
+               "image": "http://site.com/image.jpg"
+               },
+               {
+               "text": "3. SUPPMIT THE REQUIRD EXTERNAL APPROVAL.",
+               "image": "http://site.com/image.jpg"
+               },
+               {
+               "text": "4. PAY THE FEES.",
+               "image": "http://site.com/image.jpg"
+               },
+               {
+               "text": "5. Modify the memorandum ( For companies only).",
+               "image": "http://site.com/image.jpg"
+               },
+               {
+               "text": "6. Newspaper for 15 days (for changing main activity in companies only).",
+               "image": "http://site.com/image.jpg"
+               },
+               {
+               "text": "7. Receive the license.",
+               "image": "http://site.com/image.jpg"
+               },
+               {
+               "text": " Change location :",
+               "image": "http://site.com/image.jpg"
+               },
+               {
+               "text": "1. Submit the inception.",
+               "image": "http://site.com/image.jpg"
+               },
+               {
+               "text": "2. SUPPMIT THE REQUIRD EXTERNAL APPROVAL.",
+               "image": "http://site.com/image.jpg"
+               },
+               {
+               "text": "3. Pay the fees and receive the license.",
+               "image": "http://site.com/image.jpg"
+               }
+               ],
+  "options":  [
+              {
+              "message": "Thanks",
+              "code": 9
+              },
+              {
+              "message": "Replay",
+              "code": 6
+              },
+              {
+              "message": "ِAnother Procedures.",
+              "code": 0
+              }
+              ]
+  } ,
+  {
+  "messages": [
+               {
+               "text":"OK … You should follow the next steps: Online Services",
+               "image": "http://site.com/image.jpg"
+               },
+               {
+               "text": " Modify the trading name",
+               "image": "http://site.com/image.jpg"
+               },
+               {
+               "text": "1. Apply for immigration approval for new partners (if any).",
+               "image": "http://site.com/image.jpg"
+               },
+               {
+               "text": "2. Submit the (non objection letter) for new partners (if any).",
+               "image": "http://site.com/image.jpg"
+               },
+               {
+               "text": "3. Pay the fees.",
+               "image": "http://site.com/image.jpg"
+               },
+               {
+               "text": "4. Publish a local ad in official newspapers for 15 days.",
+               "image": "http://site.com/image.jpg"
+               },
+               {
+               "text": "5. Submit a copy memorandum /appendix of the memorandum.",
+               "image": "http://site.com/image.jpg"
+               },
+               {
+               "text": "6. Receive the license.",
+               "image": "http://site.com/image.jpg"
+               }
+               ],
+  "options":  [
+              {
+              "message": "Thanks",
+              "code": 9
+              },
+              {
+              "message": "Replay",
+              "code": 7
+              },
+              {
+              "message": "ِAnother Procedures.",
+              "code": 0
+              }
+              ]
+  } ,
+  {
+  "messages": [
+               {
+               "text":"OK … You should follow the next steps: Online Services",
+               "image": "http://site.com/image.jpg"
+               },
+               {
+               "text": "1. Attend to the service center for approval.",
+               "image": "http://site.com/image.jpg"
+               },
+               {
+               "text": "2. Attend to other governmental departments.",
+               "image": "http://site.com/image.jpg"
+               },
+               {
+               "text": "3. Ministry of Human Resources and Emiratization-Naturalization and Residency department.",
+               "image": "http://site.com/image.jpg"
+               },
+               {
+               "text": "4. Fees collection.",
+               "image": "http://site.com/image.jpg"
+               },
+               {
+               "text": "5. Publish a local ad in official newspapers for 15 days.",
+               "image": "http://site.com/image.jpg"
+               },
+               {
+               "text": "6. Print cancellation certificate and hand over to the customer.",
+               "image": "http://site.com/image.jpg"
+               }
+               ],
+  "options":  [
+              {
+              "message": "Thanks",
+              "code": 9
+              },
+              {
+              "message": "Replay",
+              "code": 8
+              },
+              {
+              "message": "ِAnother Procedures.",
+              "code": 0
+              }
+              ]
+  } ,
+  {
+  "messages": [
+
+               {
+               "text": "sThanks For Contacting Us",
+               "image": "http://site.com/image.jpg"
+               }
+               ],
+  "options": [
+              {
+              "message": "Replay",
+              "code": 0
+              },
+              {
+              "message": "Close",
+              "code": -1
+              }
+              ]
+  }
+  ]

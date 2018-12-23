@@ -1,0 +1,69 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+
+    <string-array name="film_genre">
+        <item>E-Services</item>
+        <item>Inspection Services</item>
+        <item>Transactions</item>
+        <item>Reports</item>
+        <item>Inquiries</item>
+        <item>Administrative Control and Consumer Protection</item>
+    </string-array>
+
+    <string-array name="e_services">
+        <item>Trade Name Reservation</item>
+        <item>Issue Initial Approval</item>
+        <item>Issue Trade License</item>
+        <item>Renew Trade License</item>
+        <item>Issue New Permit</item>
+        <item>Certificate Request</item>
+        <item>Cancel License</item>
+        <item>Link External License</item>
+        <item>Print License</item>
+        <item>ISIC 4 Activities Confirmation</item>
+    </string-array>
+
+    <string-array name="inspection">
+        <item>Fraud Complaint Request</item>
+        <item>Stakeholder fines payment</item>
+        <item>Inspection Request</item>
+        <item>Price List Approval</item>
+        <item>Stakeholder fines inquiry</item>
+        <item>Inspection Status</item>
+    </string-array>
+
+    <string-array name="transactions">
+        <item>My Tasks</item>
+        <item>In Progress</item>
+        <item>Rejected</item>
+        <item>Completed</item>
+        <item>All Applications</item>
+        <item>Payment History</item>
+    </string-array>
+
+    <string-array name="reports">
+        <item>License Report</item>
+        <item>Valid Permissions Report</item>
+        <item>Expired Permissions Report</item>
+    </string-array>
+
+    <string-array name="inquiries">
+        <item>Application Status</item>
+        <item>Trade Name Availability</item>
+        <item>Trade license Inquiry</item>
+        <item>ISIC Activities Inquiry</item>
+        <item>External Approvals</item>
+        <item>Permit Terms and Conditions</item>
+        <item>Estimate Renew license Fees</item>
+        <item>Estimate New Permit Fees</item>
+        <item>Estimate Renew license Fees</item>
+        <item>ISIC Activities Inquiry</item>
+    </string-array>
+
+    <string-array name="Administrative_Control">
+        <item>Special conditions for exercising economic activities</item>
+        <item>BUSINESS LAWS IN THE UAE</item>
+        <item>Conditions for signboards</item>
+    </string-array>
+
+</resources>

@@ -1,0 +1,285 @@
+<?xml version="1.0" encoding="UTF-8" standalone="no"?>
+<resources xmlns:tools="http://schemas.android.com/tools">
+    <string name="ISIC_confirmation">ISIC 4 Activities Confirmation</string>
+
+    <string name="about_ded">About DED</string>
+
+    <string name="account_settings">Account Settings</string>
+
+    <string name="action_call" translatable="false">80070</string>
+    <string name="action_settings" translatable="false">Settings</string>
+
+    <string name="active_license">ACTIVE</string>
+    <string name="active_permits">ACTIVE</string>
+
+    <string name="all_transaction">All Transaction</string>
+
+    <string name="app_name">AjmanDED</string>
+
+    <string name="application_status">Application Status</string>
+
+    <string name="arabic">Arabic</string>
+
+    <string name="banned_licenses">ADMIN CANCELED</string>
+
+    <string name="business_activity_external_approval">Business Activity External Approval</string>
+    <string name="business_name_inquiry">Business name Inquiry</string>
+
+    <string name="cancel">CANCEL</string>
+    <string name="cancel_license">Cancel License</string>
+
+    <string name="canceled_liceneses">CANCELED</string>
+
+    <string name="change_language">عربى</string>
+
+    <string name="check_application_status">Check Application Status</string>
+    <string name="check_inspection_status">Check Inspection Status</string>
+    <string name="check_status">Check Status</string>
+
+    <string name="completed">Completed</string>
+    <string name="completed_transactions">Completed Transactions</string>
+
+    <string name="continue_guest">Guest</string>
+    <string name="continue_login">Login</string>
+    <string name="continue_register">Register</string>
+    <string name="save_registration">Register</string>
+
+    <string name="dashboard">Dashboard</string>
+
+    <!-- TODO: Remove or change this placeholder text -->
+
+    <!--Online Services-->
+    <string name="e_services">E-Services</string>
+
+    <string name="english">English</string>
+
+    <string name="enter_application_number">Example: 9015911</string>
+
+    <string name="estimate_new_license_fees">Estimate New\nLicense Fees</string>
+    <string name="estimate_new_permit_fees">Estimate New Permit Fees</string>
+    <string name="estimate_renew_license_fees">Estimate Renew License Fees</string>
+
+    <string name="expired_license">EXPIRED</string>
+    <string name="expired_permits">EXPIRED</string>
+    <string name="expired_permits_report">Expired Permits Report</string>
+
+    <string name="external_approval">External Approval</string>
+
+    <string name="guest">Guest</string>
+
+    <!-- TODO: Remove or change this placeholder text -->
+
+    <!--Main Activity Fragment-->
+    <string name="home">Home</string>
+    <string name="home_screen">Home Screen</string>
+
+    <string name="how_would_you_like_to_continue">How would you like to continue?</string>
+
+    <string name="inquiries">Inquiries</string>
+
+    <string name="invest_in_ajman">Invest In Ajman</string>
+
+    <string name="issue_new">ISSUE</string>
+
+    <string name="latest_news">Latest News</string>
+
+    <string name="license">LICENSE</string>
+    <string name="license_information_inquiry">License Information Inquiry</string>
+
+    <string name="link_external_license">Link External License</string>
+
+    <string name="list_of_licenses">List of Licenses</string>
+
+    <string name="login">Login</string>
+
+    <string name="logout">Logout</string>
+
+    <string name="matched_isic_activites_by_old_activity">Matched ISIC Activites by Old Activity</string>
+
+    <!--AboutDED Fragment-->
+    <string name="message">Message</string>
+    <string name="message_body">To achieve a prosperous economy for the well-being of the people of the Emirate through planning, policy formulation, legislation, regulation, supervision and economic promotion</string>
+
+    <string name="most_used_services">Most Used Services</string>
+
+    <string name="new_certificate">New Certificate</string>
+    <string name="new_license">New\nLicense</string>
+    <string name="new_permit">New\nPermit</string>
+    <string name="new_permit_conditions">New Permit Conditions</string>
+
+    <string name="online_help">Online Help</string>
+    <string name="online_services">E-Services</string>
+
+    <string name="others">Others</string>
+
+    <string name="password">PASSWORD</string>
+
+    <string name="pending">In Progress</string>
+
+    <string name="permit">PERMIT</string>
+    <string name="permit_terms_conditions">Permit Terms Conditions</string>
+
+    <string name="print_license">Print License</string>
+
+    <string name="register">Register</string>
+
+    <string name="rejected">Rejected</string>
+
+    <string name="renew">RENEW</string>
+    <string name="renew_license">Renew\nLicense</string>
+
+    <string name="reports">Reports</string>
+
+    <string name="service_centers_location">Service Centers Location</string>
+
+    <string name="suggestions">Suggestions</string>
+
+    <string name="complaints">Complaints</string>
+
+    <string name="tasks">TASKS</string>
+
+    <string name="the_emirate_of_ajman_is_characterized_by_a_strategic_location_a_well_developed_infrastructure_comprising_port_roads_transport_and_industrial">The Emirate of Ajman is characterized by, a strategic location, a well-developed infrastructure comprising port, roads, transport and industrial</string>
+
+    <string name="title_activity_maps">Map</string>
+
+    <string name="total_napplications">TOTAL\nAPPLICATIONS</string>
+    <string name="total_nlicense">TOTAL\nLICENSE</string>
+    <string name="total_permits">TOTAL\nPERMITS</string>
+
+    <string name="trade_license_inquiry">Trade License Inquiry</string>
+    <string name="trade_name_availability">Trade Name Availability</string>
+    <string name="trade_name_reservation">Trade Name\nReservation</string>
+
+    <string name="transaction_in_process">Transaction In Process</string>
+    <string name="transaction_status">Transaction\nStatus</string>
+    <string name="transaction_under_review">Transaction Under Review</string>
+
+    <string name="under_process">Under Payment Process</string>
+
+    <string name="username">USERNAME</string>
+
+    <string name="valid_permits_report">Valid Permits Report</string>
+
+    <string name="value">Value</string>
+    <string name="value_body">Team spirit, transparency, customer delight, creativity and innovation</string>
+
+    <string name="view_my">VIEW MY</string>
+
+    <string name="vision">Vision</string>
+    <string name="vision_body">A diversified competitive economy for sustainable development in the Emirate of Ajman</string>
+    <string name="canceled_permits">CANCELED PERMITS</string>
+    <string name="initial_approval">Initial Approval</string>
+    <string name="mock_deep_blue_sea_for_overseas_l_l_c" translatable="false">DEEP BLUE SEA FOR OVERSEAS L.L.C</string>
+    <string name="mock_license_no">License No. </string>
+    <string name="mock_limited_liability_company">Limited Liability Company</string>
+    <string name="mock_professional_license">Professional License</string>
+    <string name="mock_issued_at">Issued at </string>
+    <string name="mock_expiry_at">Expiry at </string>
+    <string name="search">Search</string>
+
+    //nav menu
+    <string name="srn_drawer_open" translatable="false">Open</string>
+
+    <string name="srn_drawer_close" translatable="false">Close</string>
+
+    <string name="srn_ex_no_menu_view" translatable="false">No view for menu provided. You must either call .withMenuView(View) or pass a valid resource id to .withMenuLayout(int)</string>
+
+    <string name="srn_ex_bad_content_view" translatable="false">Your content view must contain exactly one child. Make sure you call inject() after setContentView().</string>
+    <string name="please_rate_our_service">how was your experience</string>
+    <string name="call">Call</string>
+    <string name="want_to_make_a_call">Contact customer service center</string>
+    <string name="change_default_language">change preferred language</string>
+    <string name="change_account">Change Account</string>
+    <string name="signup_comment">I don\'t have account - signup</string>
+    <string name="registration">Registeration</string>
+    <string name="ask_confirm">Account has not been activated by mobile</string>
+    <string name="wrong_auth">Error in username or password</string>
+    <string name="email_username">Email - Username</string>
+    <string name="mobile_no" tools:ignore="Typos">Mobile No. (5xx xxx xxx)</string>
+    <string name="confirm_password">Confirm Password</string>
+    <string name="prefered_language">Prefered Language</string>
+    <string name="arabic_arabic" translatable="false">عربى</string>
+    <string name="full_name_en">Full Name En</string>
+    <string name="full_name_ar">Full Name Ar</string>
+    <string name="female">Female</string>
+    <string name="male">Male</string>
+    <string name="gender">Gender</string>
+    <string name="nid_no">NID No.</string>
+    <string name="nid_expiry_date">NID Expiry Date</string>
+    <string name="passport_no">Passport No.</string>
+    <string name="address">Address</string>
+    <string name="current_investor">Current Investor</string>
+    <string name="select_stock_holder_type">Select Stock Holder Type</string>
+    <string name="select_nationality">Select Nationality</string>
+    <string name="required_field">this field is required</string>
+    <string name="password_no_match">password doesn\'t match</string>
+    <string name="yes">Yes</string>
+    <string name="no">No</string>
+    <string name="status_web_service">Status Web Service</string>
+
+
+    <string name="dialog_default_title" translatable="false">Here\'s a message!</string>
+    <string name="dialog_ok">OK</string>
+    <string name="dialog_cancel">Cancel</string>
+    <string name="LOADING">Loading...</string>
+    <string name="already_registered">Email is already registered!</string>
+    <string name="phone_registered">This phone is already registered!</string>
+    <string name="nid_registered">This NID is already registered!</string>
+    <string name="passport_registered">Passport is already registered!</string>
+    <string name="code_verification_formula">Your AjmanApp code is: : %s</string>
+    <string name="try_again">Try again</string>
+    <string name="confirm_account">Confirm Account</string>
+    <string name="ok">Ok</string>
+    <string name="went_wrong">something went wrong</string>
+    <string name="thanks_rate">Thank you for rating our services</string>
+    <string name="done">Done</string>
+    <string name="email_validation">Please Enter valid Email</string>
+    <string name="password_validation">Please Enter your Password</string>
+    <string name="wrong_code">wrong code</string>
+    <string name="no_notification">You have no notifications</string>
+    <string name="signup">Signup</string>
+    <string name="go_back_home">Go Back Home</string>
+    <string name="neutral">Neutral</string>
+    <string name="happy">Happy</string>
+    <string name="upset">Upset</string>
+    <string name="share_ajmanded">Share</string>
+
+    <string name="connected" translatable="false">Connected</string>
+    <string name="disconnected" translatable="false">Disconnected</string>
+
+    <string name="current_status_network_connected" translatable="false">Current Status: Connected</string>
+    <string name="current_status_network_disconnected" translatable="false">Current Status: Disconnected</string>
+
+    <string name="wifi_connected" translatable="false">Wifi Network: Connected</string>
+    <string name="wifi_disconnected" translatable="false">Wifi Network: Disconnected</string>
+
+    <string name="mobile_connected" translatable="false">Mobile Network: Connected</string>
+    <string name="mobile_disconnected" translatable="false">Mobile Network: Disconnected</string>
+
+    <string name="subtype_not_available" translatable="false">Subtype: Not Available</string>
+    <string name="subtype_value" translatable="false">Subtype: %s</string>
+
+    <string name="current_status" translatable="false">Get Current Status</string>
+    <string name="is_wifi_connected" translatable="false">Is connected to Wi-Fi</string>
+    <string name="is_mobile_connected" translatable="false">Is connected to mobile network</string>
+    <string name="get_network_subtype" translatable="false">Get network subtype</string>
+
+    <string name="demo_launch_button" translatable="false">Launch demo</string>
+    <string name="rx_java_demo_launch_button" translatable="false">Launch RxJava demo</string>
+    <string name="rx_java2_demo_launch_button" translatable="false">Launch RxJava2 demo</string>
+    <string name="no_internet">No Internet Connection</string>
+    <string name="resend">Resend</string>
+    <string name="investor_guide">Investor Guide</string>
+    <string name="next">Next</string>
+    <string name="previous">Previous</string>
+    <string name="help">Help</string>
+    <string name="news">News</string>
+    <string name="apply_for_a_job">Apply for a Job</string>
+    <string name="business_control">Business control</string>
+    <string name="customer_s_happiness_pledge">Customer\'s happiness Pledge</string>
+    <string name="faq">FAQ</string>
+    <string name="service_centers">Service Centers</string>
+    <string name="service_list">Service List</string>
+    <string name="location">Location</string>
+
+</resources>

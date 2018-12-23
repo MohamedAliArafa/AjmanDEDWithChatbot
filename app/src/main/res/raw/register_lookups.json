@@ -1,0 +1,860 @@
+{
+  "StockholderType": [
+    {
+      "id": "F710F386-DCC5-4FB2-A75D-FBADA7C18106",
+      "NameAR": "مواطن",
+      "NameEN": "UAE Citizen"
+    },
+    {
+      "id": "BB510FA4-66A6-497F-B20A-A6FDD5143BC9",
+      "NameAR": "خليجى",
+      "NameEN": "Gulf"
+    },
+    {
+      "id": "9443AFA0-C760-414B-AC43-12423B6F1A56",
+      "NameAR": "وافد",
+      "NameEN": "Citizen"
+    },
+    {
+      "id": "C2ACFA0E-F38C-4C6C-93C3-0838E8B24107",
+      "NameAR": "زائر",
+      "NameEN": "Visitor"
+    },
+    {
+      "id": "9D02C1CD-7024-4DF0-9B4A-19AFF89301B9",
+      "NameAR": "جهة حكومية",
+      "NameEN": "Government"
+    },
+    {
+      "id": "4E5EE8BF-554A-4B41-8F76-692FD78762B5",
+      "NameAR": "جهة شبه حكومية",
+      "NameEN": "Semi Government"
+    },
+    {
+      "id": "54170C78-1A05-41ED-8C07-6F404B3679CE",
+      "NameAR": "منشأة/ جهة محلية (على مستوى الامارات)",
+      "NameEN": "Establishment/UAE"
+    },
+    {
+      "id": "A90E2045-C543-4585-8F9C-B5A112E34717",
+      "NameAR": "منشأة/ جهة أجنبية",
+      "NameEN": "Establishment/Foreign"
+    }
+  ],
+  "Language": [
+    {
+      "id": "9F4CE435-0A75-49BB-94E3-7D58322EFE4A",
+      "NameAR": "العربية",
+      "NameEN": "Arabic"
+    },
+    {
+      "id": "119EB533-FD4A-4E38-A4E6-54CA7BB6183D",
+      "NameAR": "English",
+      "NameEN": "English"
+    }
+  ],
+  "Gender": [
+    {
+      "id": "B233364D-889A-436D-9C0B-5EBBAB93C27D",
+      "NameAR": "انثى",
+      "NameEN": "Female "
+    },
+    {
+      "id": "59911186-F8AB-46DA-9CF0-6511E4D6B6D8",
+      "NameAR": "ذكر",
+      "NameEN": "Male "
+    }
+  ],
+  "Country": [
+    {
+      "id": "F1CEDDE4-51D1-4E0B-AA03-A6FA276D4A1E",
+      "NameAR": "أرمينيا",
+      "NameEN": "Armenia "
+    },
+    {
+      "id": "EA85DD98-E19F-4FBC-B70C-9858399E6438",
+      "NameAR": "أفغانستان",
+      "NameEN": "Afghanistan "
+    },
+    {
+      "id": "32F85800-3285-42B3-9BF5-EBDA605305DD",
+      "NameAR": "أميركا",
+      "NameEN": "United States of America "
+    },
+    {
+      "id": "CC544F51-55F9-4ED4-A49E-1E343BDF43E4",
+      "NameAR": "أورجواي",
+      "NameEN": "Uruguay "
+    },
+    {
+      "id": "37984C3C-6AA7-44FB-A6D8-9DB79AEB7305",
+      "NameAR": "أوغندا",
+      "NameEN": "Uganda "
+    },
+    {
+      "id": "FDD2E594-7CCC-4F37-A041-2C594CF6D6A5",
+      "NameAR": "أوكرانيا",
+      "NameEN": "Ukraine "
+    },
+    {
+      "id": "53E1F4AC-15D5-405F-BE6A-8D03CAC979E4",
+      "NameAR": "اثيوبيا",
+      "NameEN": "Ethiopia "
+    },
+    {
+      "id": "19E045E9-0036-4B49-A181-0B71EBE05934",
+      "NameAR": "اذربيجان",
+      "NameEN": "Azerbaijan "
+    },
+    {
+      "id": "7EB09E6C-50A0-437B-9F39-F60903129A59",
+      "NameAR": "اريتريا",
+      "NameEN": "Eritrea "
+    },
+    {
+      "id": "3A35CD12-092F-4EF3-B906-3B2CCCA5686D",
+      "NameAR": "اسبانيا",
+      "NameEN": "Spain "
+    },
+    {
+      "id": "D1E1C3EF-5981-4292-B23F-41FC16F49D49",
+      "NameAR": "استراليا",
+      "NameEN": "Australia "
+    },
+    {
+      "id": "7CF3356D-BEA8-41FB-B91F-947FF1A921DF",
+      "NameAR": "استونيا",
+      "NameEN": "Estonia "
+    },
+    {
+      "id": "F14FF02B-AFBC-4F4E-B74A-203BC7DF9622",
+      "NameAR": "الأردن",
+      "NameEN": "Jordain "
+    },
+    {
+      "id": "09898E04-D523-4E2F-B1BD-A1211A7F7B16",
+      "NameAR": "الارجنتين",
+      "NameEN": "Argentina "
+    },
+    {
+      "id": "85FDB05E-9659-4681-B754-0820118FB466",
+      "NameAR": "الاكوادور",
+      "NameEN": "Ecuador "
+    },
+    {
+      "id": "87E9DED1-8099-4E55-8BD0-3A54764764C3",
+      "NameAR": "الإمارات العربية المتحدة",
+      "NameEN": "United Arab Emirates-The UAE"
+    },
+    {
+      "id": "61D11423-E24B-4D1E-AED8-127EF3013A84",
+      "NameAR": "البحرين",
+      "NameEN": "Kingdom of Bahrain "
+    },
+    {
+      "id": "52FDD9A0-DFCC-4DE4-B23C-55DC4F807E37",
+      "NameAR": "البرازيل",
+      "NameEN": "Brazil "
+    },
+    {
+      "id": "66072846-4E12-47B8-91AE-3D67B571CECB",
+      "NameAR": "البرتغال",
+      "NameEN": "Portugal "
+    },
+    {
+      "id": "D2DEEAB8-086C-4D4A-918E-DE6718F0371F",
+      "NameAR": "البوسنة",
+      "NameEN": "Bosnia"
+    },
+    {
+      "id": "B57C29AF-1D1F-4C88-9F63-8118D272AECB",
+      "NameAR": "التشيك",
+      "NameEN": "Czech Republic "
+    },
+    {
+      "id": "9E04E6B5-ABF1-48FE-93C5-021BFA5ADF46",
+      "NameAR": "الجابون",
+      "NameEN": "AL Jabon"
+    },
+    {
+      "id": "2B6A5B13-EE46-4E77-B7A0-7960473A93FF",
+      "NameAR": "الجزائر",
+      "NameEN": "Algeria "
+    },
+    {
+      "id": "33F0E5C6-7B09-4982-9BBD-A3811AE67A7E",
+      "NameAR": "الدانمارك",
+      "NameEN": "Denmark "
+    },
+    {
+      "id": "3CD3A895-C812-4D0D-9C6E-61C14650BE6F",
+      "NameAR": "الدومنيكا",
+      "NameEN": "Dominican Republic"
+    },
+    {
+      "id": "39DC69C0-31D9-4A5F-A43B-02734E94A2B2",
+      "NameAR": "السعودية",
+      "NameEN": "Saudi Arabia-The Kingdom of Saudi Arabia"
+    },
+    {
+      "id": "69DA34CE-BC85-465D-B90E-0D5DD7218042",
+      "NameAR": "السلفادور",
+      "NameEN": "El Salvador "
+    },
+    {
+      "id": "DF9F6D7A-A18A-4605-84A6-6125BB1B9EBD",
+      "NameAR": "السنغال",
+      "NameEN": "Senegal "
+    },
+    {
+      "id": "521B491F-907D-4368-B934-8577CCEBF486",
+      "NameAR": "السودان",
+      "NameEN": "The Sudan "
+    },
+    {
+      "id": "2EE07B4D-5BC4-43E3-9277-ABEFCDBF9968",
+      "NameAR": "السويد",
+      "NameEN": "Sweden "
+    },
+    {
+      "id": "96601A7A-A907-4D3B-92FD-D62CF94332AA",
+      "NameAR": "الصومال",
+      "NameEN": "Somalia "
+    },
+    {
+      "id": "462921E6-2C1D-42EB-8421-944DCDF6F6EC",
+      "NameAR": "الصين",
+      "NameEN": "China "
+    },
+    {
+      "id": "DB7BCA76-F622-43D3-865D-58CA0929D48F",
+      "NameAR": "العراق",
+      "NameEN": "Iraq "
+    },
+    {
+      "id": "C37B7AC3-2F4A-47AD-A742-0640857B6A3E",
+      "NameAR": "الفلبين",
+      "NameEN": "Philippines "
+    },
+    {
+      "id": "0FB3F151-419C-442E-8A1B-A722513225E7",
+      "NameAR": "الكاميرون",
+      "NameEN": "Cameroon"
+    },
+    {
+      "id": "E9E25FF3-09DB-45FE-95CD-AA161B39CA38",
+      "NameAR": "الكويت",
+      "NameEN": "Kuwait "
+    },
+    {
+      "id": "78A9DCE6-B6DB-42B9-9AD0-BD21E1819FA6",
+      "NameAR": "المانيا",
+      "NameEN": "Germany "
+    },
+    {
+      "id": "B1CCC63F-9219-4707-8DC2-989F9CE86A2A",
+      "NameAR": "المجر",
+      "NameEN": "Al Magar"
+    },
+    {
+      "id": "3696867B-8153-407E-A492-F9EBD515A6A7",
+      "NameAR": "المغرب",
+      "NameEN": "Morocco "
+    },
+    {
+      "id": "22639E2B-80E2-4AC2-AA55-1C4E1671B953",
+      "NameAR": "المكسيك",
+      "NameEN": "Mexico "
+    },
+    {
+      "id": "F07AECD9-E04F-402A-9D8C-CD11227721DC",
+      "NameAR": "النرويج",
+      "NameEN": "Norway "
+    },
+    {
+      "id": "D44D03BD-B01F-49B0-A193-CEBDD4971611",
+      "NameAR": "النمسا",
+      "NameEN": "Austria "
+    },
+    {
+      "id": "E4E2FD75-8873-427C-86CE-AD645867AA22",
+      "NameAR": "النيجر",
+      "NameEN": "Niger "
+    },
+    {
+      "id": "5F24AA7B-9340-4562-843E-50E7AE052890",
+      "NameAR": "الهند",
+      "NameEN": "India"
+    },
+    {
+      "id": "6F3EFC07-DFFB-4B86-AF7E-94EAB5015BDB",
+      "NameAR": "اليابان",
+      "NameEN": "Japan "
+    },
+    {
+      "id": "36352043-823C-4FD0-9E47-A0C99548F765",
+      "NameAR": "اليمن",
+      "NameEN": "Yemen "
+    },
+    {
+      "id": "292F1E5D-5618-47E8-8C22-6CAC4BC92604",
+      "NameAR": "اليونان",
+      "NameEN": "Greece "
+    },
+    {
+      "id": "E62CE3E3-B2A8-4439-A0F6-8FD23BC2C5D2",
+      "NameAR": "اندونيسيا",
+      "NameEN": "Indonesia "
+    },
+    {
+      "id": "AD122780-2339-4072-9E39-C922895114DA",
+      "NameAR": "اوزباكستان",
+      "NameEN": "Uzbekistan "
+    },
+    {
+      "id": "053E5241-0263-4CAB-B9AC-E5C04572CE6B",
+      "NameAR": "ايران",
+      "NameEN": "Iran "
+    },
+    {
+      "id": "D4721981-6BF8-4F21-983B-5A09E85096FE",
+      "NameAR": "ايرلندا",
+      "NameEN": "Ireland "
+    },
+    {
+      "id": "06AC7CD0-1C7C-4E70-89AD-D117F80CCC84",
+      "NameAR": "ايسلندا",
+      "NameEN": "Iceland "
+    },
+    {
+      "id": "D4104611-7181-4DBD-9861-E41418CDE239",
+      "NameAR": "ايطاليا",
+      "NameEN": "Italy "
+    },
+    {
+      "id": "375BB4D2-B0CB-4444-ABBE-D90AFAE77EDD",
+      "NameAR": "ايل اوف مان",
+      "NameEN": "Isle of Man "
+    },
+    {
+      "id": "98AE5EA9-9139-47E2-A008-D93F7A71EE1E",
+      "NameAR": "بارجواي",
+      "NameEN": "Paraguay "
+    },
+    {
+      "id": "B48B3941-5FA3-484B-9A7A-91804D5F7C36",
+      "NameAR": "باكستان",
+      "NameEN": "Pakistan "
+    },
+    {
+      "id": "BBE534FE-39A4-4C60-AD63-19E62A32E8BC",
+      "NameAR": "بدون",
+      "NameEN": "Without nationality "
+    },
+    {
+      "id": "8B023168-41CD-454B-AB89-8AC33702FC09",
+      "NameAR": "بروناي",
+      "NameEN": "Brunei "
+    },
+    {
+      "id": "7E8B6512-5E9A-42F3-AD03-C4720A1297FF",
+      "NameAR": "بروندي",
+      "NameEN": "Burundi "
+    },
+    {
+      "id": "FACD9786-A1EB-48B7-9DF0-8A82AC7E3B52",
+      "NameAR": "بريطانيا",
+      "NameEN": "Britain - United Kingdom "
+    },
+    {
+      "id": "A71B9BFF-3F9D-4C85-B0CA-57A1B462B986",
+      "NameAR": "بلجيكا",
+      "NameEN": "Belgium "
+    },
+    {
+      "id": "C91DD6AC-5DA1-4DC4-BB72-191F48FB4C80",
+      "NameAR": "بلغاريا",
+      "NameEN": "Bulgaria "
+    },
+    {
+      "id": "E1AE0393-1BD7-400F-B2F4-60C54653F6CB",
+      "NameAR": "بليز",
+      "NameEN": "Belize "
+    },
+    {
+      "id": "17B77A50-C6C7-40C7-8D72-E8238F9E96E2",
+      "NameAR": "بنغلادش",
+      "NameEN": "Bangladesh "
+    },
+    {
+      "id": "7B36BB54-1D8C-4D4A-8AD3-0603B7908130",
+      "NameAR": "بنما",
+      "NameEN": "Panama "
+    },
+    {
+      "id": "08C91E45-793D-489B-9787-A56CD8FA1EBF",
+      "NameAR": "بوركينافاسو",
+      "NameEN": "Bur Kinafaso"
+    },
+    {
+      "id": "6A533CD5-9EFE-46D1-8DEE-0BA58D5D1FE9",
+      "NameAR": "بورما اتحادميانمار",
+      "NameEN": "Burma Union of Myanmar"
+    },
+    {
+      "id": "58D18F3C-A3BD-48B8-A00B-CCABB788BDD5",
+      "NameAR": "بولندا",
+      "NameEN": "Poland "
+    },
+    {
+      "id": "2EA0C0BF-9863-4733-85E2-1E876646E6C3",
+      "NameAR": "بوليفيا",
+      "NameEN": "Bolivia "
+    },
+    {
+      "id": "85113E04-80D1-4F1E-8016-31DC447D3346",
+      "NameAR": "بيرو",
+      "NameEN": "Peru "
+    },
+    {
+      "id": "DD12C044-E846-47BF-9657-09527FC4A6B3",
+      "NameAR": "بيلوروسيا",
+      "NameEN": "Belarus "
+    },
+    {
+      "id": "DB03749B-D505-4B8F-964C-AB8E15AF3D36",
+      "NameAR": "تايلاند",
+      "NameEN": "Thailand "
+    },
+    {
+      "id": "1ED7EBB1-5F27-426C-AF18-354C1A904443",
+      "NameAR": "تايوان",
+      "NameEN": "Taiwan "
+    },
+    {
+      "id": "4EA0D98A-8ABF-421C-B2F5-8F7B01327B93",
+      "NameAR": "تركمانستان",
+      "NameEN": "Turkmenistan "
+    },
+    {
+      "id": "0BB09BC5-FCD3-4E27-9D93-1A1FA421F29A",
+      "NameAR": "تركيا",
+      "NameEN": "Turkey "
+    },
+    {
+      "id": "4BB4BF56-5403-4CCD-A6AB-7AC37FB94A5A",
+      "NameAR": "تشاد",
+      "NameEN": "Chad"
+    },
+    {
+      "id": "9ABB792E-20FE-495B-BD1A-29E12515D3A1",
+      "NameAR": "تنزانيا",
+      "NameEN": "Tanzania "
+    },
+    {
+      "id": "5FFCBAEE-71A2-4FF3-92DD-48EBAB27D89E",
+      "NameAR": "تونجا",
+      "NameEN": "Tonga "
+    },
+    {
+      "id": "EE26C2FC-12FB-4028-B05F-960DD06224D0",
+      "NameAR": "تونس",
+      "NameEN": "Tunisia "
+    },
+    {
+      "id": "199EFAA6-5BA7-42ED-9697-2774F81D177F",
+      "NameAR": "جامبيا",
+      "NameEN": "Gambia"
+    },
+    {
+      "id": "F5E222F2-6F85-463E-9026-7ECC6D930618",
+      "NameAR": "جزر البهاما",
+      "NameEN": "The Bahamas-The Islands of The Bahamas"
+    },
+    {
+      "id": "E9E7707E-117F-41F3-803C-C5AF34F943DE",
+      "NameAR": "جزر القمر",
+      "NameEN": "Comoros"
+    },
+    {
+      "id": "F551C497-1A82-4DFB-A933-99DDB03199BD",
+      "NameAR": "جزر شانيل",
+      "NameEN": "Channel Islands "
+    },
+    {
+      "id": "55331240-9A71-408A-8F16-6293B861CFA7",
+      "NameAR": "جزر كيمان",
+      "NameEN": "Kiman Islands"
+    },
+    {
+      "id": "CB5DB166-CB1D-4062-9523-D63847BDA55F",
+      "NameAR": "جزر مارشال",
+      "NameEN": "Marshall Islands "
+    },
+    {
+      "id": "AFBA300A-AC53-4152-992D-43959C0721A4",
+      "NameAR": "جمهورية مالاوي",
+      "NameEN": "Malawi"
+    },
+    {
+      "id": "2C0A1EEF-B3A2-401B-B863-63DBC30262EA",
+      "NameAR": "جنوب افريقيا",
+      "NameEN": "South Africa "
+    },
+    {
+      "id": "717AB942-6173-4112-B4D5-81110BB1E579",
+      "NameAR": "جواتيمالا",
+      "NameEN": "Guatemala "
+    },
+    {
+      "id": "B4AA00B5-1E96-4BA5-87F2-97CE74AE0BBC",
+      "NameAR": "جورجيا",
+      "NameEN": "Georgia "
+    },
+    {
+      "id": "85EBB200-BCB1-4F9B-8873-AC07EFEFC3F9",
+      "NameAR": "جيبوتي",
+      "NameEN": "Djibouti "
+    },
+    {
+      "id": "EA92C11B-EE96-4DFB-856C-B4638C375380",
+      "NameAR": "روسيا",
+      "NameEN": "Russia - Russian Federation "
+    },
+    {
+      "id": "D4F566E4-FDB0-4EF5-AF4A-2553B5E800D3",
+      "NameAR": "رومانيا",
+      "NameEN": "Romania "
+    },
+    {
+      "id": "E887A5AE-B5AA-46F1-AE1F-A0C0B6DBB76C",
+      "NameAR": "زائير",
+      "NameEN": "The Democratic Republic of Congo "
+    },
+    {
+      "id": "E1A32E6F-F48B-490A-B577-5D90FEA842C3",
+      "NameAR": "زامبيا",
+      "NameEN": "Zambia "
+    },
+    {
+      "id": "555E7C05-13EB-4FFB-8A42-302FCADBF234",
+      "NameAR": "زمبابوي",
+      "NameEN": "Zimbabwe "
+    },
+    {
+      "id": "104A8FD5-F316-41BA-8F3C-A4E13E015044",
+      "NameAR": "زنجبار",
+      "NameEN": "Zanzibar"
+    },
+    {
+      "id": "7EDD31B0-FCCF-420D-9F2B-CF5914ED44DD",
+      "NameAR": "ساحل العاج",
+      "NameEN": "Ivory Coast-Cote d Ivoire"
+    },
+    {
+      "id": "461B69B4-4049-4B1B-B596-A8285B6FB1DB",
+      "NameAR": "سانت كيتس-نافيس",
+      "NameEN": "Saint Kitts and Nevis"
+    },
+    {
+      "id": "C017E267-F145-43CB-B5EE-04E400DC0AC7",
+      "NameAR": "سلوفاكيا",
+      "NameEN": "Slovakia "
+    },
+    {
+      "id": "A6D839ED-7662-4E2B-820D-0B6D82B70649",
+      "NameAR": "سنغافورة",
+      "NameEN": "Singapore "
+    },
+    {
+      "id": "5DBD89F5-8309-466C-B067-0728BF464DE9",
+      "NameAR": "سوريا",
+      "NameEN": "Syria"
+    },
+    {
+      "id": "5A05FD3C-AF39-4774-83A8-819AFCA41504",
+      "NameAR": "سويسرا",
+      "NameEN": "Switzerland "
+    },
+    {
+      "id": "8C0AC1A5-A4F6-4CD6-B8C8-A288A30BDF86",
+      "NameAR": "سيرالانكا",
+      "NameEN": "Sri Lanka "
+    },
+    {
+      "id": "5C8AA05B-A801-4693-9D9F-8A37DBF5FD02",
+      "NameAR": "سيراليون",
+      "NameEN": "Sierra Leone "
+    },
+    {
+      "id": "496265D0-DD54-4A02-8A0F-4F28C7F06011",
+      "NameAR": "سيشل",
+      "NameEN": "Seychelles "
+    },
+    {
+      "id": "50A96595-BE4B-4424-A0DF-77CA987E613D",
+      "NameAR": "شيلي",
+      "NameEN": "Chile "
+    },
+    {
+      "id": "215D7B49-E549-4E74-A2A4-FBFF4A018079",
+      "NameAR": "صربيا",
+      "NameEN": "Serbia "
+    },
+    {
+      "id": "EB4F5524-D887-4B45-B18B-BA223A331774",
+      "NameAR": "طاجيكستان",
+      "NameEN": "Tajikstan "
+    },
+    {
+      "id": "35378605-B371-44D7-A50E-41B325FF8F7B",
+      "NameAR": "طاجيكستان",
+      "NameEN": "Maldives "
+    },
+    {
+      "id": "D27A73EF-FADE-4078-B736-29A10AFEE36B",
+      "NameAR": "عمان",
+      "NameEN": "Oman "
+    },
+    {
+      "id": "C453B2A6-5C23-4409-B3A0-53F1CAA20FB2",
+      "NameAR": "غانا",
+      "NameEN": "Ghana "
+    },
+    {
+      "id": "C5F2CDEC-8152-4B6E-87DE-AEC3442AD408",
+      "NameAR": "غينيا",
+      "NameEN": "Guinea"
+    },
+    {
+      "id": "CFD0DC99-E68B-4C72-B4EE-CF27F4AE4323",
+      "NameAR": "فرنسا",
+      "NameEN": "France "
+    },
+    {
+      "id": "75842DBB-5900-407C-8A8F-D6A5F875C30F",
+      "NameAR": "فلسطين",
+      "NameEN": "Palestine "
+    },
+    {
+      "id": "837553F5-35EE-4CA7-8EFA-05B17D2E6299",
+      "NameAR": "فنزويلا",
+      "NameEN": "Venezuela "
+    },
+    {
+      "id": "CCE2C826-2B4C-429B-A0FE-B2669538695F",
+      "NameAR": "فنلندا",
+      "NameEN": "Finland "
+    },
+    {
+      "id": "49A7BEB9-953B-4144-81D0-785689550DE5",
+      "NameAR": "فيتنام",
+      "NameEN": "Vietnam "
+    },
+    {
+      "id": "BF2FCACF-933E-4FF6-B077-8A52D55FAD27",
+      "NameAR": "فيجي",
+      "NameEN": "Fiji "
+    },
+    {
+      "id": "5DCE050C-85EC-49C8-A0CF-43E5B850CFA7",
+      "NameAR": "قبرص",
+      "NameEN": "Cyprus "
+    },
+    {
+      "id": "06C6F169-12B4-48CB-804B-840BD102D622",
+      "NameAR": "قرغيزيا",
+      "NameEN": "Kirgiziya"
+    },
+    {
+      "id": "B134983D-E7EB-41CC-A232-CF7A2B3A62B6",
+      "NameAR": "قرقيستان",
+      "NameEN": "Kyrgyzstan "
+    },
+    {
+      "id": "E9FCCA8C-7615-413A-97B0-31B6604CCD98",
+      "NameAR": "قطر",
+      "NameEN": "Qatar "
+    },
+    {
+      "id": "0337B1E0-1127-4F34-BFF9-DC5577575060",
+      "NameAR": "كازخستان",
+      "NameEN": "Kazakhstan "
+    },
+    {
+      "id": "E25C70EA-B7BC-41CE-9E0C-69CB84A17B63",
+      "NameAR": "كرواتيا",
+      "NameEN": "Croatia "
+    },
+    {
+      "id": "87DFAE36-5D3B-41F0-BB0B-CEEA8C9A48BD",
+      "NameAR": "كندا",
+      "NameEN": "Canada "
+    },
+    {
+      "id": "9FE5DBFC-9D4F-4506-ABA8-00A18D3BB4A2",
+      "NameAR": "كوريا الجنوبية",
+      "NameEN": "South Korea-Korea"
+    },
+    {
+      "id": "857B4B75-85D7-4ACA-8C3D-EF61B217B5D9",
+      "NameAR": "كوريا الشمالية",
+      "NameEN": "North Korea-Korea"
+    },
+    {
+      "id": "AB06F312-7ED8-49BE-AC9C-3445760F264E",
+      "NameAR": "كولومبيا",
+      "NameEN": "Colombia "
+    },
+    {
+      "id": "25044258-3118-429A-90D9-A82A95CE6BD0",
+      "NameAR": "كيرقيزيا",
+      "NameEN": "Kyrgyzstan "
+    },
+    {
+      "id": "62FE65C2-BA3B-4AA5-9DE1-666E77C3CE2D",
+      "NameAR": "كينيا",
+      "NameEN": "Kenya "
+    },
+    {
+      "id": "6AC99099-91F7-484A-B0E2-55C019B0FF09",
+      "NameAR": "لاتفيا",
+      "NameEN": "Latvia "
+    },
+    {
+      "id": "A7E7F278-8CAF-4061-9428-E3FEB2244059",
+      "NameAR": "لبنان",
+      "NameEN": "Lebanon "
+    },
+    {
+      "id": "F86F7F96-220B-4B34-B0C5-855F8CC7ADC2",
+      "NameAR": "لكسمبورج",
+      "NameEN": "Luxembourg "
+    },
+    {
+      "id": "722AA564-1EDD-489E-85EE-09A88AC1367E",
+      "NameAR": "ليبيا",
+      "NameEN": "Libya "
+    },
+    {
+      "id": "7930E49F-F498-4D23-B9FD-C13E5DD4BC6B",
+      "NameAR": "ليبيريا",
+      "NameEN": "Liberia "
+    },
+    {
+      "id": "84FC8A14-2C7B-47D4-A060-2838646CE93F",
+      "NameAR": "ليتوانيا",
+      "NameEN": "Lithuania "
+    },
+    {
+      "id": "988CF0A1-9C76-4674-BDBB-485DA147233A",
+      "NameAR": "ليخنشتين",
+      "NameEN": "Liechtenstein "
+    },
+    {
+      "id": "ACF29859-86E4-436C-915E-439994937D81",
+      "NameAR": "مالديف",
+      "NameEN": "Maldives "
+    },
+    {
+      "id": "E5BA1F0E-E60F-47E3-A0E3-54C8943974C8",
+      "NameAR": "مالطة",
+      "NameEN": "Malta"
+    },
+    {
+      "id": "83FBB01A-E233-4D72-ABB2-1226E2DEBB6D",
+      "NameAR": "مالي",
+      "NameEN": "Mali "
+    },
+    {
+      "id": "05E32493-0430-48A9-8851-AA2C85F7A504",
+      "NameAR": "ماليزيا",
+      "NameEN": "Malaysia "
+    },
+    {
+      "id": "C805D1BA-F373-4E6D-8762-0F33386F1790",
+      "NameAR": "مصر",
+      "NameEN": "Egypt.Arab Republic of Egypt"
+    },
+    {
+      "id": "D9A6F119-AA2A-4033-B994-66E0FDBEEE88",
+      "NameAR": "مقدونيا",
+      "NameEN": "Macedonia "
+    },
+    {
+      "id": "43C7CA6A-4781-4745-BA37-823F077EAFB3",
+      "NameAR": "منغوليا",
+      "NameEN": "Mongolia "
+    },
+    {
+      "id": "82A9E73C-9861-4F99-8F99-2B657CB74201",
+      "NameAR": "موريتانيا",
+      "NameEN": "Mauritania "
+    },
+    {
+      "id": "8A12ED5E-1166-4A44-83F0-CAEF84B9C2AE",
+      "NameAR": "موريشيوس",
+      "NameEN": "Mauritius"
+    },
+    {
+      "id": "7E00335B-EA9C-49D1-88B3-3BD38578AE58",
+      "NameAR": "موزمبيق",
+      "NameEN": "Mozambeg"
+    },
+    {
+      "id": "D097C594-4B14-46B7-839A-1ADD6F00EADD",
+      "NameAR": "مولدافيا",
+      "NameEN": "Republic of Moldovanon "
+    },
+    {
+      "id": "B3216503-85DE-4326-9EBC-2E3575811A39",
+      "NameAR": "نيبال",
+      "NameEN": "Nepal "
+    },
+    {
+      "id": "7BD68CE8-93E2-41CC-A235-6A86CAEBAE73",
+      "NameAR": "نيجيريا",
+      "NameEN": "Nigeria "
+    },
+    {
+      "id": "7425ED1E-472C-426B-9E2B-C29FC6EC707E",
+      "NameAR": "نيكارجوا",
+      "NameEN": "Nicaragua "
+    },
+    {
+      "id": "6F2E6BBE-E26F-457F-938D-4D2BD8358946",
+      "NameAR": "نيوزيلندا",
+      "NameEN": "New Zealand "
+    },
+    {
+      "id": "DEE294C3-718B-4494-9869-90C645BA4BD6",
+      "NameAR": "هنغاريا",
+      "NameEN": "Hungary "
+    },
+    {
+      "id": "840A5DAB-2E15-4EE1-B71C-854E09EC875A",
+      "NameAR": "هولندا",
+      "NameEN": "Netherlands "
+    },
+    {
+      "id": "D508C039-7F1B-4193-8F49-E2D8DFA0E806",
+      "NameAR": "هونج كونج",
+      "NameEN": "Hong Kong "
+    },
+    {
+      "id": "A5E0A871-07F0-4BB7-B527-9A37C185DCD2",
+      "NameAR": "يوغسلافيا",
+      "NameEN": "Yugoslavia "
+    },
+    {
+      "id": "2AD16A7F-3A2B-4920-B04C-C5751CC2026B",
+      "NameAR": "انتيفويا",
+      "NameEN": "انتيفويا"
+    },
+    {
+      "id": "34AC523D-113A-4422-84D2-0AE9691029B1",
+      "NameAR": "جرينادا",
+      "NameEN": "جرينادا"
+    }
+  ]
+}

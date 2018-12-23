@@ -1,0 +1,216 @@
+<?xml version="1.0" encoding="utf-8"?>
+<androidx.cardview.widget.CardView xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:card_view="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="300dp"
+    android:layout_height="wrap_content"
+    android:layout_gravity="center"
+    card_view:cardCornerRadius="12dp"
+    card_view:cardPreventCornerOverlap="true"
+    card_view:cardUseCompatPadding="true"
+    card_view:elevation="4dp">
+
+    <androidx.constraintlayout.widget.ConstraintLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content">
+
+        <TextView
+            android:id="@+id/textView10"
+            style="@style/TextStyle.Heading.default"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:background="@color/colorPrimaryDark"
+            android:gravity="center"
+            android:padding="16dp"
+            android:text="@string/please_rate_our_service"
+            android:textColor="@android:color/white" />
+
+        <ImageView
+            android:id="@+id/happy"
+            android:layout_width="55dp"
+            android:layout_height="55dp"
+            android:layout_marginBottom="8dp"
+            android:layout_marginEnd="16dp"
+            android:layout_marginStart="16dp"
+            android:layout_marginTop="32dp"
+            android:src="@drawable/happy"
+            card_view:layout_constraintBottom_toTopOf="@+id/textView4"
+            card_view:layout_constraintEnd_toStartOf="@+id/meh"
+            card_view:layout_constraintHorizontal_bias="0.5"
+            card_view:layout_constraintHorizontal_chainStyle="spread_inside"
+            card_view:layout_constraintStart_toStartOf="parent"
+            card_view:layout_constraintTop_toBottomOf="@+id/textView10"
+            card_view:layout_constraintVertical_chainStyle="packed" />
+
+        <ImageView
+            android:id="@+id/meh"
+            android:layout_width="55dp"
+            android:layout_height="55dp"
+            android:layout_marginBottom="8dp"
+            android:layout_marginEnd="16dp"
+            android:layout_marginStart="16dp"
+            android:layout_marginTop="32dp"
+            android:src="@drawable/meh"
+            card_view:layout_constraintBottom_toTopOf="@+id/textView5"
+            card_view:layout_constraintEnd_toStartOf="@+id/sad"
+            card_view:layout_constraintHorizontal_bias="0.5"
+            card_view:layout_constraintStart_toEndOf="@+id/happy"
+            card_view:layout_constraintTop_toBottomOf="@+id/textView10"
+            card_view:layout_constraintVertical_chainStyle="packed" />
+
+        <ImageView
+            android:id="@+id/sad"
+            android:layout_width="55dp"
+            android:layout_height="55dp"
+            android:layout_marginBottom="8dp"
+            android:layout_marginEnd="16dp"
+            android:layout_marginStart="16dp"
+            android:layout_marginTop="32dp"
+            android:src="@drawable/sad"
+            card_view:layout_constraintBottom_toTopOf="@+id/textView8"
+            card_view:layout_constraintEnd_toEndOf="parent"
+            card_view:layout_constraintHorizontal_bias="0.5"
+            card_view:layout_constraintStart_toEndOf="@+id/meh"
+            card_view:layout_constraintTop_toBottomOf="@+id/textView10"
+            card_view:layout_constraintVertical_chainStyle="packed" />
+
+        <TextView
+            android:id="@+id/textView4"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginBottom="16dp"
+            android:layout_marginEnd="8dp"
+            android:layout_marginStart="8dp"
+            android:layout_marginTop="8dp"
+            android:text="@string/happy"
+            android:textColor="@color/colorPrimaryDark"
+            android:textSize="16sp"
+            card_view:layout_constraintBottom_toBottomOf="parent"
+            card_view:layout_constraintEnd_toEndOf="@+id/happy"
+            card_view:layout_constraintStart_toStartOf="@+id/happy"
+            card_view:layout_constraintTop_toBottomOf="@+id/happy" />
+
+        <TextView
+            android:id="@+id/textView5"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginBottom="16dp"
+            android:layout_marginEnd="8dp"
+            android:layout_marginStart="8dp"
+            android:layout_marginTop="8dp"
+            android:text="@string/neutral"
+            android:textColor="@color/colorPrimaryDark"
+            android:textSize="16sp"
+            card_view:layout_constraintBottom_toBottomOf="parent"
+            card_view:layout_constraintEnd_toEndOf="@+id/meh"
+            card_view:layout_constraintStart_toStartOf="@+id/meh"
+            card_view:layout_constraintTop_toBottomOf="@+id/meh" />
+
+        <TextView
+            android:id="@+id/textView8"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginBottom="16dp"
+            android:layout_marginEnd="8dp"
+            android:layout_marginStart="8dp"
+            android:layout_marginTop="8dp"
+            android:text="@string/upset"
+            android:textColor="@color/colorPrimaryDark"
+            android:textSize="16sp"
+            card_view:layout_constraintBottom_toBottomOf="parent"
+            card_view:layout_constraintEnd_toEndOf="@+id/sad"
+            card_view:layout_constraintStart_toStartOf="@+id/sad"
+            card_view:layout_constraintTop_toBottomOf="@+id/sad" />
+
+        <!--
+
+        <TextView
+            android:id="@+id/textView9"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginBottom="8dp"
+            android:gravity="center"
+            android:text="@string/happy"
+            android:textColor="@color/colorPrimaryDark"
+            android:textSize="16sp"
+            card_view:layout_constraintBottom_toTopOf="@+id/textView17"
+            card_view:layout_constraintEnd_toStartOf="@+id/textView15"
+            card_view:layout_constraintHorizontal_chainStyle="packed"
+            card_view:layout_constraintStart_toStartOf="parent" />
+
+        <TextView
+            android:id="@+id/textView15"
+            android:layout_width="100dp"
+            android:layout_height="12dp"
+            android:layout_marginStart="16dp"
+            android:background="@color/colorPrimary"
+            android:gravity="center"
+            android:text="75%"
+            android:textColor="@android:color/white"
+            android:textSize="10sp"
+            card_view:layout_constraintBaseline_toBaselineOf="@+id/textView9"
+            card_view:layout_constraintEnd_toEndOf="parent"
+            card_view:layout_constraintHorizontal_bias="0.5"
+            card_view:layout_constraintStart_toEndOf="@+id/textView9" />
+
+        <TextView
+            android:id="@+id/textView17"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginBottom="8dp"
+            android:text="@string/neutral"
+            android:textSize="16sp"
+            android:textColor="@color/colorPrimaryDark"
+            card_view:layout_constraintBottom_toTopOf="@+id/textView20"
+            card_view:layout_constraintEnd_toEndOf="@+id/textView9"
+            card_view:layout_constraintHorizontal_bias="0.0"
+            card_view:layout_constraintStart_toStartOf="@+id/textView9" />
+
+        <TextView
+            android:id="@+id/textView19"
+            android:layout_width="55dp"
+            android:layout_height="12dp"
+            android:layout_marginEnd="8dp"
+            android:background="@color/colorPrimary"
+            android:gravity="center"
+            android:text="35%"
+            android:textColor="@android:color/white"
+            android:textSize="10sp"
+            card_view:layout_constraintBaseline_toBaselineOf="@+id/textView17"
+            card_view:layout_constraintEnd_toEndOf="@+id/textView15"
+            card_view:layout_constraintHorizontal_bias="0.0"
+            card_view:layout_constraintStart_toStartOf="@+id/textView15" />
+
+        <TextView
+            android:id="@+id/textView20"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginBottom="16dp"
+            android:text="@string/upset"
+            android:textColor="@color/colorPrimaryDark"
+            android:textSize="16sp"
+            card_view:layout_constraintBottom_toBottomOf="parent"
+            card_view:layout_constraintEnd_toEndOf="@+id/textView17"
+            card_view:layout_constraintHorizontal_bias="0.0"
+            card_view:layout_constraintStart_toStartOf="@+id/textView17" />
+
+        <TextView
+            android:layout_width="30dp"
+            android:layout_height="12dp"
+            android:background="@color/colorPrimary"
+            android:gravity="center"
+            android:text="15%"
+            android:textColor="@android:color/white"
+            android:textSize="10sp"
+            card_view:layout_constraintBaseline_toBaselineOf="@+id/textView20"
+            card_view:layout_constraintBottom_toBottomOf="@+id/textView20"
+            card_view:layout_constraintEnd_toEndOf="@+id/textView19"
+            card_view:layout_constraintHorizontal_bias="0.0"
+            card_view:layout_constraintStart_toStartOf="@+id/textView19"
+            card_view:layout_constraintTop_toTopOf="@+id/textView20" />
+
+    -->
+
+    </androidx.constraintlayout.widget.ConstraintLayout>
+</androidx.cardview.widget.CardView>
+
