@@ -1,6 +1,5 @@
 <?xml version="1.0" encoding="utf-8"?>
 <resources>
-
     <string-array name="film_genre">
         <item>E-Services</item>
         <item>Inspection Services</item>
@@ -8,6 +7,7 @@
         <item>Reports</item>
         <item>Inquiries</item>
         <item>Administrative Control and Consumer Protection</item>
+        <item>Complaints</item>
     </string-array>
 
     <string-array name="e_services">
@@ -60,10 +60,16 @@
         <item>ISIC Activities Inquiry</item>
     </string-array>
 
-    <string-array name="Administrative_Control">
+    <string-array name="administrative_control">
         <item>Special conditions for exercising economic activities</item>
         <item>BUSINESS LAWS IN THE UAE</item>
         <item>Conditions for signboards</item>
     </string-array>
 
+    <string-array name="complaints">
+        <item>Submit</item>
+        <item>On-going</item>
+        <item>Inquiry</item>
+        <item>Finished</item>
+    </string-array>
 </resources>

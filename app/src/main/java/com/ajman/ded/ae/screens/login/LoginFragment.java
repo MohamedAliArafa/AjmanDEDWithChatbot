@@ -141,7 +141,7 @@ public class LoginFragment extends Fragment implements SmsListener {
                             }
                         } else {
                             pDialog.setTitleText(getString(R.string.went_wrong))
-                                    .setConfirmText("OK")
+                                    .setConfirmText(getString(R.string.ok))
                                     .changeAlertType(SweetAlertDialog.ERROR_TYPE);
                         }
                     }
@@ -149,8 +149,8 @@ public class LoginFragment extends Fragment implements SmsListener {
                     @Override
                     public void onFailure(@NonNull Call<ResponseEnvelope_GetAccount> call, @NonNull Throwable t) {
                         Log.d("DATA ERROR:", String.valueOf(t));
-                        pDialog.setTitleText("something went wrong!")
-                                .setConfirmText("OK")
+                        pDialog.setTitleText(getString(R.string.went_wrong))
+                                .setConfirmText(getString(R.string.ok))
                                 .changeAlertType(SweetAlertDialog.ERROR_TYPE);
                     }
                 });

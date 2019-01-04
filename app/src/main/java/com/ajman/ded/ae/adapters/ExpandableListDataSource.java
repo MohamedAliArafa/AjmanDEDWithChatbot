@@ -10,18 +10,8 @@ import java.util.LinkedHashMap;
 import java.util.List;
 import java.util.Map;
 
-/**
- * Created by root on 10/3/17.
- */
-
 public class ExpandableListDataSource {
 
-    /**
-     * Returns fake data of films
-     *
-     * @param context
-     * @return
-     */
     public static Map<String, List<String>> getData(Context context) {
         Map<String, List<String>> expandableListData = new LinkedHashMap<>();
 
@@ -31,7 +21,8 @@ public class ExpandableListDataSource {
         List<String> permit = Arrays.asList(context.getResources().getStringArray(R.array.transactions));
         List<String> other = Arrays.asList(context.getResources().getStringArray(R.array.reports));
         List<String> reports = Arrays.asList(context.getResources().getStringArray(R.array.inquiries));
-        List<String> Administrative_Control = Arrays.asList(context.getResources().getStringArray(R.array.Administrative_Control));
+        List<String> administrative_control = Arrays.asList(context.getResources().getStringArray(R.array.administrative_control));
+        List<String> complaints = Arrays.asList(context.getResources().getStringArray(R.array.complaints));
 
         if (UserData.getUserObject(context) != null) {
             expandableListData.put(filmGenres.get(0), application);
@@ -39,11 +30,11 @@ public class ExpandableListDataSource {
             expandableListData.put(filmGenres.get(2), permit);
             expandableListData.put(filmGenres.get(3), other);
             expandableListData.put(filmGenres.get(4), reports);
-            expandableListData.put(filmGenres.get(5), Administrative_Control);
+            expandableListData.put(filmGenres.get(5), administrative_control);
+            expandableListData.put(filmGenres.get(6), complaints);
         } else {
             expandableListData.put(filmGenres.get(4), reports);
-            expandableListData.put(filmGenres.get(5), Administrative_Control);
-
+            expandableListData.put(filmGenres.get(5), administrative_control);
         }
 
         return expandableListData;

@@ -7,7 +7,8 @@
         <item>المعاملات</item>
         <item>التقارير</item>
         <item>الاستعلامات</item>
-        <item>الرقابة الادارية وحماية المستهلك</item>
+        <item>الرقابة الإدارية وحماية المستهلك</item>
+        <item>عين الدائرة</item>
     </string-array>
 
     <string-array name="e_services">
@@ -60,10 +61,17 @@
         <item>أنشطة ISIC</item>
     </string-array>
 
-    <string-array name="Administrative_Control">
+    <string-array name="administrative_control">
         <item>الاشتراطات الخاصة لمزاولة الانشطة الاقتصادية</item>
         <item>القوانين والتشريعات</item>
         <item>الاشتراطات الخاصة بلوحات الأسماء التجارية</item>
+    </string-array>
+
+    <string-array name="complaints">
+        <item>إرسال بلاغ</item>
+        <item>بلاغات قيد التدقيق</item>
+        <item>الاستعلام عن البلاغات</item>
+        <item>البلاغات المكتملة</item>
     </string-array>
 
 </resources>

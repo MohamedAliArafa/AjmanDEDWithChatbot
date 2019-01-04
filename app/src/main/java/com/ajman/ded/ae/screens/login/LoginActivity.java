@@ -37,9 +37,7 @@ public class LoginActivity extends AppCompatActivity {
         setContentView(R.layout.container);
         findViewById(R.id.up).setVisibility(View.VISIBLE);
         findViewById(R.id.up).setOnClickListener(view -> onBackPressed());
-        if (Build.VERSION.SDK_INT < 23) {
-
-        } else {
+        if (Build.VERSION.SDK_INT > 23) {
             requestContactPermission();
         }
         FragmentManager fragmentManager = getSupportFragmentManager();

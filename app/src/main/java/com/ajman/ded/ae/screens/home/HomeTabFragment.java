@@ -49,12 +49,7 @@ import static com.ajman.ded.ae.utility.Constants.links.ISSUE_TRADE_LICENSE;
 import static com.ajman.ded.ae.utility.Constants.links.RENEW_TRADE_LICENSE;
 import static com.ajman.ded.ae.utility.Constants.links.TRADE_NAME_RESERVATION;
 
-
-/**
- * A simple {@link Fragment} subclass.
- */
 public class HomeTabFragment extends AnimatedFragment {
-
 
     MapView mMapView;
     CardView cardView1;

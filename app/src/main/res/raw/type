@@ -1,0 +1,18 @@
+{
+  "ResponseContent": [
+    {
+      "ID": "e8c659d7-222b-4fd7-9416-6c0b0e83ab1d",
+      "NameAR": "ممارسة نشاط تجاري او اقتصادي بدون ترخيص",
+      "NameEN": "",
+      "DescriptionAR": "هو قيام احد الاشخاص بببيع او شراء البضائع دون ترخيص من الدائرة",
+      "DescriptionEN": "",
+      "DepartmentId": "B1E2D452-9CE6-4DFF-9D66-BA34EA7DC2FC",
+      "DepartmentNameAR": "قسم الرقابة والتفتيش",
+      "DepartmentNameEN": "Control and Inspection Department",
+      "NotificationStatusId": "7FB73B22-1BFB-4D35-8205-D63691EEE918",
+      "NotificationStatusNameAR": "طارىء",
+      "NotificationStatusNameEN": "",
+      "PeriodInDays": "1"
+    }
+  ]
+}

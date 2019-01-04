@@ -28,4 +28,8 @@
     <dimen name="content_padding_top">20dp</dimen>
     <dimen name="snackbar_minimum_height">48dp</dimen>
     <dimen name="snackbar_text_size">18sp</dimen>
+
+    <dimen name="default_icon_size">50dp</dimen>
+    <dimen name="default_icon_remove_size">50dp</dimen>
+    <dimen name="chronometer_margin">8dp</dimen>
 </resources>

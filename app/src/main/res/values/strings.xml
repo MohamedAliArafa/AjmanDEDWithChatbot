@@ -25,7 +25,7 @@
     <string name="business_activity_external_approval">Business Activity External Approval</string>
     <string name="business_name_inquiry">Business name Inquiry</string>
 
-    <string name="cancel">CANCEL</string>
+    <string name="cancel">Cancel</string>
     <string name="cancel_license">Cancel License</string>
 
     <string name="canceled_liceneses">CANCELED</string>
@@ -281,5 +281,24 @@
     <string name="service_centers">Service Centers</string>
     <string name="service_list">Service List</string>
     <string name="location">Location</string>
-
+    <string name="Establishment_name">Establishment Name</string>
+    <string name="licence_no">Licence No.</string>
+    <string name="complaint">Complaint</string>
+    <string name="complaint_details">Complaint details</string>
+    <string name="address_on_map">Address on map</string>
+    <string name="re_detect_location">Re/Detect location</string>
+    <string name="add_record_voice">Add record voice</string>
+    <string name="take_select_photo">Take/select photo</string>
+    <string name="send">Send</string>
+    <string name="submit_notification">Submit a notification</string>
+    <string name="your_location">Your Location</string>
+    <string name="notification_type">Notification Type</string>
+    <string name="something_wrong">something went wrong!</string>
+    <string name="fill_all">Fill all the required fields</string>
+    <string name="loading">Loading</string>
+    <string name="request_no">Request No.</string>
+    <string name="ongoing_notification">Ongoing Notifications</string>
+    <string name="finished_notification">Finished Notification</string>
+    <string name="inquiry_notification">Inquiry Notification</string>
+    <string name="add_attachment">Add attachment</string>
 </resources>

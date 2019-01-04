@@ -13,12 +13,15 @@ import android.widget.TextView;
 import com.ajman.ded.ae.R;
 import com.ajman.ded.ae.libs.LocaleManager;
 import com.ajman.ded.ae.models.Country;
+import com.ajman.ded.ae.models.ResponseContent;
 import com.ajman.ded.ae.models.StockholderType;
+import com.ajman.ded.ae.models.Tybe;
 
 import java.util.List;
 import java.util.Objects;
 
 import static com.ajman.ded.ae.libs.LocaleManager.LANGUAGE_ENGLISH;
+import static com.ajman.ded.ae.screens.complaints.SubmitActivity.TYPE_TYPE;
 import static com.ajman.ded.ae.screens.registeration.RegisterFragment.TYPE_NATIONALITY;
 import static com.ajman.ded.ae.screens.registeration.RegisterFragment.TYPE_STOCK;
 
@@ -79,6 +82,17 @@ public class SpinnerAdapter extends ArrayAdapter<String> {
                     tv.setText(R.string.select_nationality);
                 } else {
                     Country typeData = (Country) items.get(position - 1);
+                    if (Objects.equals(LocaleManager.getLanguage(mContext), LANGUAGE_ENGLISH))
+                        tv.setText(typeData.getNameEN());
+                    else
+                        tv.setText(typeData.getNameAR());
+                }
+                break;
+            case TYPE_TYPE:
+                if (position == 0) {
+                    tv.setText(mContext.getString(R.string.notification_type));
+                } else {
+                    ResponseContent typeData = (ResponseContent) items.get(position - 1);
                     if (Objects.equals(LocaleManager.getLanguage(mContext), LANGUAGE_ENGLISH))
                         tv.setText(typeData.getNameEN());
                     else

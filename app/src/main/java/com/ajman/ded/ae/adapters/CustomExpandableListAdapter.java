@@ -55,6 +55,8 @@ public class CustomExpandableListAdapter extends BaseExpandableListAdapter {
         return convertView;
     }
 
+
+
     @Override
     public int getChildrenCount(int listPosition) {
         return mExpandableListDetail.get(mExpandableListTitle.get(listPosition))

@@ -1,5 +1,7 @@
 package com.ajman.ded.ae.data;
 
+import android.app.Notification;
+
 import com.ajman.ded.ae.data.model.request.ApplicationListByEmail.RequestEnvelope_ApplicationListByEmail;
 import com.ajman.ded.ae.data.model.request.ConfirmCode.RequestEnvelope_ConfirmCode;
 import com.ajman.ded.ae.data.model.request.GetAccount.RequestEnvelope_GetAccount;
@@ -20,6 +22,8 @@ import com.ajman.ded.ae.data.model.response.OnlineUserAllLicense_CountMob.Respon
 import com.ajman.ded.ae.data.model.response.OnlineUserAllLicense_Mob.ResponseEnvelope_OnlineUserAllLicense_Mob;
 import com.ajman.ded.ae.data.model.response.OnlineUserAllPermits.ResponseEnvelope_OnlineUserAllPermits;
 import com.ajman.ded.ae.data.model.response.SendSMS.ResponseEnvelope_SendSMS;
+import com.ajman.ded.ae.models.InsertNotificationResponse;
+import com.ajman.ded.ae.models.notification.NotificationStatusResponse;
 
 import retrofit2.Call;
 import retrofit2.http.Body;
@@ -32,6 +36,10 @@ public interface Api {
     String BASE = "/WS_MobileApp/WebService_MobileApp.asmx";
 
     String NewsLink = "/_MobFiles/AjmanDED_MobService.asmx/News_Get?NumberOfItems=10";
+
+    String INSERT_NOTIFICATION = "extensions/dedeye/Notification_Insert";
+
+    String STATUS_NOTIFICATION = "extensions/dedeye/Notifications_GetByUserId";
 
 
     @Headers({"Content-Type: application/soap+xml; charset=utf-8"})
@@ -74,9 +82,13 @@ public interface Api {
     @POST(BASE)
     Call<ResponseEnvelope_GetRequestStatus> requestStatusCall(@Query("op") String param, @Body RequestEnvelope_GetRequestStatus body);
 
-
     @GET(NewsLink)
     Call<String> news_caller();
 
+    @GET(INSERT_NOTIFICATION)
+    Call<InsertNotificationResponse> insert_notification(@Query("UserId") String userId, @Query("NotificationDate") String notificationDate, @Query("EstablishmentName") String establishmentName, @Query("LicenseNumber") String licenceNo, @Query("NotificationTypeId") String notificationTypeId, @Query("NotificationDetails") String notificatoinDetails, @Query("ll") String ll, @Query("lg") String lg);
+
+    @GET(STATUS_NOTIFICATION)
+    Call<NotificationStatusResponse> status_notification(@Query("UserId") String userId, @Query("Status") String status);
 
 }

@@ -238,5 +238,25 @@
     <string name="service_centers">مراكز الخدمة</string>
     <string name="service_list">قائمة الخدمات</string>
     <string name="location">الموقع</string>
+    <string name="Establishment_name">اسم المنشأة</string>
+    <string name="licence_no">رقم الترخيص</string>
+    <string name="complaint">البلاغ</string>
+    <string name="complaint_details">تفاصيل البلاغ</string>
+    <string name="address_on_map">العنوان على الخريطة</string>
+    <string name="re_detect_location">إعادة/تحديد الموقع</string>
+    <string name="add_record_voice">إضف تسجيل صوتي</string>
+    <string name="add_attachment">أضف المرفقات</string>
+    <string name="take_select_photo">أختر أو التقط صورة</string>
+    <string name="send">إرسال البلاغ</string>
+    <string name="submit_notification">بلاغ جديد</string>
+    <string name="your_location">الموقع الحالي</string>
+    <string name="notification_type">نوع البلاغ</string>
+    <string name="something_wrong">حدث خطأ ما</string>
+    <string name="fill_all">إملأ جميع البيانات</string>
+    <string name="loading">تحميل</string>
+    <string name="request_no">رقم البلاغ</string>
+    <string name="ongoing_notification">البلاغات قيد التدقيق</string>
+    <string name="finished_notification">البلاغات المنتهية</string>
+    <string name="inquiry_notification">استعلام عن بلاغ</string>
 
 </resources>

@@ -18,6 +18,7 @@ import android.widget.ImageView;
 import android.widget.TextView;
 
 import com.ajman.ded.ae.FaqActivity;
+import com.ajman.ded.ae.NotificationsActivity;
 import com.ajman.ded.ae.R;
 import com.ajman.ded.ae.ServiceCentersActivity;
 import com.ajman.ded.ae.WebViewActivity;
@@ -35,6 +36,7 @@ import com.ajman.ded.ae.models.UserModel;
 import com.ajman.ded.ae.screens.IntroActivity;
 import com.ajman.ded.ae.screens.InvestorGuide;
 import com.ajman.ded.ae.screens.accountSettings.AccountActivity;
+import com.ajman.ded.ae.screens.complaints.SubmitActivity;
 import com.ajman.ded.ae.screens.dashboard.DashBoardActivity;
 import com.ajman.ded.ae.screens.home.HomeActivity;
 import com.ajman.ded.ae.screens.login.LoginActivity;
@@ -331,6 +333,9 @@ public abstract class BaseActivity extends AppCompatActivity implements View.OnC
         mExpandableListView.addFooterView(listFooterView);
         mExpandableListData = ExpandableListDataSource.getData(this);
         mExpandableListTitle = new ArrayList(mExpandableListData.keySet());
+        mExpandableListView.setChildIndicator(null);
+        mExpandableListView.setChildIndicatorBounds(0,0);
+        mExpandableListView.setDividerHeight(0);
         addDrawerItems();
 
     }
@@ -566,17 +571,31 @@ public abstract class BaseActivity extends AppCompatActivity implements View.OnC
                     break;
                 case "ExpandableList":
                     action = "null";
-                    Intent expandableList = new Intent(this, WebViewActivity.class);
-                    if (Objects.equals(LocaleManager.getLanguage(this), LANGUAGE_ARABIC)) {
-                        if (gPosition == 5)
-                            expandableList.putExtra(URL_INTENT_KEY, DOMAIN_APP_AR + models.get(gPosition).getList().get(cPosition).getLink());
-                        else
-                            expandableList.putExtra(URL_INTENT_KEY, DOMAIN_AR + models.get(gPosition).getList().get(cPosition).getLink());
+                    Intent expandableList = null;
+                    if (gPosition == 6) {
+                        switch (cPosition){
+                            case 0: expandableList = new Intent(this, SubmitActivity.class);
+                            break;
+                            case 1: expandableList = new Intent(this, NotificationsActivity.class).putExtra("status", 0);
+                            break;
+                            case 2: expandableList = new Intent(this, NotificationsActivity.class).putExtra("status", 3);
+                            break;
+                            case 3: expandableList = new Intent(this, NotificationsActivity.class).putExtra("status", 1);
+                            break;
+                        }
                     } else {
-                        if (gPosition == 5)
-                            expandableList.putExtra(URL_INTENT_KEY, DOMAIN_APP_EN + models.get(gPosition).getList().get(cPosition).getLink());
-                        else
-                            expandableList.putExtra(URL_INTENT_KEY, DOMAIN_EN + models.get(gPosition).getList().get(cPosition).getLink());
+                        expandableList = new Intent(this, WebViewActivity.class);
+                        if (Objects.equals(LocaleManager.getLanguage(this), LANGUAGE_ARABIC)) {
+                            if (gPosition == 5)
+                                expandableList.putExtra(URL_INTENT_KEY, DOMAIN_APP_AR + models.get(gPosition).getList().get(cPosition).getLink());
+                            else
+                                expandableList.putExtra(URL_INTENT_KEY, DOMAIN_AR + models.get(gPosition).getList().get(cPosition).getLink());
+                        } else {
+                            if (gPosition == 5)
+                                expandableList.putExtra(URL_INTENT_KEY, DOMAIN_APP_EN + models.get(gPosition).getList().get(cPosition).getLink());
+                            else
+                                expandableList.putExtra(URL_INTENT_KEY, DOMAIN_EN + models.get(gPosition).getList().get(cPosition).getLink());
+                        }
                     }
                     startActivity(expandableList);
                     break;
@@ -689,6 +708,7 @@ public abstract class BaseActivity extends AppCompatActivity implements View.OnC
                 data.setNeutral(1);
                 break;
         }
+
         body.setRequestData(data);
 
         envelope.setBody(body);
