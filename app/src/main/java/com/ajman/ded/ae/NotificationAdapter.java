@@ -1,6 +1,7 @@
 package com.ajman.ded.ae;
 
 import android.content.Context;
+import android.content.Intent;
 import android.content.res.Resources;
 import android.view.LayoutInflater;
 import android.view.View;
@@ -12,7 +13,6 @@ import com.ajman.ded.ae.models.notification.ResponseContent;
 import java.text.SimpleDateFormat;
 import java.util.ArrayList;
 import java.util.List;
-import java.util.Locale;
 
 import androidx.recyclerview.widget.RecyclerView;
 import butterknife.BindView;
@@ -57,7 +57,7 @@ public class NotificationAdapter extends RecyclerView.Adapter<NotificationAdapte
         return mList.size();
     }
 
-    class MyViewHolder extends RecyclerView.ViewHolder {
+    class MyViewHolder extends RecyclerView.ViewHolder implements View.OnClickListener {
 
         @BindView(R.id.request_no)
         TextView requestNo;
@@ -65,12 +65,20 @@ public class NotificationAdapter extends RecyclerView.Adapter<NotificationAdapte
         TextView date;
         @BindView(R.id.desc)
         TextView desc;
+        @BindView(R.id.clicker)
+        View clicker;
         SimpleDateFormat simpleDateFormat;
 
         MyViewHolder(View view) {
             super(view);
             ButterKnife.bind(this, view);
             simpleDateFormat = new SimpleDateFormat("yyyy/MM/dd - hh:mm a");
+            clicker.setOnClickListener(this);
+        }
+
+        @Override
+        public void onClick(View v) {
+            mContext.startActivity(new Intent(mContext, NotificationDetailsActivity.class).putExtra("id", mList.get(getAdapterPosition()).getID()));
         }
     }
 }

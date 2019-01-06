@@ -8,13 +8,11 @@ import android.content.Context;
 import android.content.Intent;
 import android.content.IntentSender;
 import android.content.pm.PackageManager;
-import android.graphics.Bitmap;
 import android.location.Location;
 import android.location.LocationListener;
 import android.location.LocationManager;
 import android.net.Uri;
 import android.os.Bundle;
-import android.provider.MediaStore;
 import android.text.InputType;
 import android.view.View;
 import android.widget.AdapterView;
@@ -27,6 +25,7 @@ import android.widget.Toast;
 
 import com.ajman.ded.ae.EyeImagesAdapter;
 import com.ajman.ded.ae.R;
+import com.ajman.ded.ae.ViewDialog;
 import com.ajman.ded.ae.adapters.SpinnerAdapter;
 import com.ajman.ded.ae.audio_recorder.AudioListener;
 import com.ajman.ded.ae.audio_recorder.AudioRecordButton;
@@ -57,13 +56,16 @@ import com.google.android.gms.tasks.Task;
 import com.google.gson.Gson;
 
 import java.io.BufferedReader;
-import java.io.ByteArrayOutputStream;
+import java.io.File;
 import java.io.InputStream;
 import java.io.InputStreamReader;
 import java.io.Reader;
+import java.text.DateFormat;
 import java.text.SimpleDateFormat;
 import java.util.ArrayList;
 import java.util.Calendar;
+import java.util.Date;
+import java.util.Locale;
 
 import javax.inject.Inject;
 
@@ -74,6 +76,7 @@ import androidx.appcompat.widget.AppCompatSeekBar;
 import androidx.cardview.widget.CardView;
 import androidx.constraintlayout.widget.ConstraintLayout;
 import androidx.core.app.ActivityCompat;
+import androidx.core.content.FileProvider;
 import androidx.recyclerview.widget.GridLayoutManager;
 import androidx.recyclerview.widget.RecyclerView;
 import butterknife.BindView;
@@ -89,7 +92,8 @@ public class SubmitActivity extends AppCompatActivity implements EyeImagesAdapte
     final private int REQUEST_CODE_AUDIO_PERMISSIONS = 9001;
     final private int REQUEST_CODE_IMAGE_PERMISSIONS = 9002;
     final private int REQUEST_CODE_LOCATION_PERMISSIONS = 9003;
-    final private int OPEN_DOCUMENT_CODE = 9004;
+    public static final int OPEN_CAMERA = 9004;
+    public static final int OPEN_GALLERY = 9005;
     private String[] perms;
 
     @Inject
@@ -144,6 +148,7 @@ public class SubmitActivity extends AppCompatActivity implements EyeImagesAdapte
     private String lng = "";
     private String tybePeriod, tybeStatus;
     private SweetAlertDialog pDialog;
+    private Uri uri;
 
     private Context viewContext() {
         return this;
@@ -225,11 +230,10 @@ public class SubmitActivity extends AppCompatActivity implements EyeImagesAdapte
             }
         });
 
-        Calendar calendar = Calendar.getInstance();
-        SimpleDateFormat sdf = new SimpleDateFormat("yyyy-mm-dd hh:mm:ss");
+        DateFormat df = new SimpleDateFormat("yyyy-MM-dd'T'HH:mm:ss", Locale.US);
+        String date = df.format(Calendar.getInstance().getTime());
 
         api = ApiBuilder.basicApi();
-        Call<InsertNotificationResponse> call = api.insert_notification("10", sdf.format(calendar.getTime()), establishmentTitle.getText().toString(), licenceNo.getText().toString(), tybeId, complaint_details.getText().toString(), lat, lng);
 
         pDialog = new SweetAlertDialog(this, SweetAlertDialog.PROGRESS_TYPE)
                 .setTitleText(getString(R.string.loading));
@@ -237,29 +241,25 @@ public class SubmitActivity extends AppCompatActivity implements EyeImagesAdapte
 
         findViewById(R.id.send).setOnClickListener(view -> {
             if (lat.length() > 0 && lng.length() > 0 && establishmentTitle.getText().toString().length() > 0 && licenceNo.getText().toString().length() > 0 && complaint_details.getText().toString().length() > 0) {
-            pDialog.show();
-            call.clone().enqueue(new Callback<InsertNotificationResponse>() {
-                @Override
-                public void onResponse(Call<InsertNotificationResponse> call, Response<InsertNotificationResponse> response) {
-                    if (response.isSuccessful()) {
-                        if (response.body().getResponseCode() == 1) {
-                            pDialog.setTitleText("بلاغ " + tybeStatus + " سوف يستغرق مدة " + tybePeriod + " من الأيام ليتم مراجعتها").setConfirmClickListener(new SweetAlertDialog.OnSweetClickListener() {
-                                @Override
-                                public void onClick(SweetAlertDialog sweetAlertDialog) {
-                                    SubmitActivity.super.onBackPressed();
-                                }
-                            }).changeAlertType(SweetAlertDialog.SUCCESS_TYPE);
+                Call<InsertNotificationResponse> call = api.insert_notification("10", date, establishmentTitle.getText().toString(), licenceNo.getText().toString(), tybeId, complaint_details.getText().toString(), lat, lng);
+                pDialog.show();
+                call.clone().enqueue(new Callback<InsertNotificationResponse>() {
+                    @Override
+                    public void onResponse(Call<InsertNotificationResponse> call, Response<InsertNotificationResponse> response) {
+                        if (response.isSuccessful()) {
+                            if (response.body().getResponseCode() == 1) {
+                                pDialog.setTitleText("بلاغ " + tybeStatus + " سوف يستغرق مدة " + tybePeriod + " من الأيام ليتم مراجعتها").setConfirmClickListener(sweetAlertDialog -> SubmitActivity.super.onBackPressed()).changeAlertType(SweetAlertDialog.SUCCESS_TYPE);
+                            }
+                        } else {
+                            pDialog.dismissWithAnimation();
                         }
-                    } else {
+                    }
+
+                    @Override
+                    public void onFailure(Call<InsertNotificationResponse> call, Throwable t) {
                         pDialog.dismissWithAnimation();
                     }
-                }
-
-                @Override
-                public void onFailure(Call<InsertNotificationResponse> call, Throwable t) {
-                    pDialog.dismissWithAnimation();
-                }
-            });
+                });
             } else {
                 Toast.makeText(this, getString(R.string.fill_all), Toast.LENGTH_SHORT).show();
             }
@@ -355,14 +355,14 @@ public class SubmitActivity extends AppCompatActivity implements EyeImagesAdapte
 
     @SuppressLint("MissingPermission")
     private void listenToLocations() {
-        locationManager.requestSingleUpdate(LocationManager.NETWORK_PROVIDER, (LocationListener) this, null);
+        locationManager.requestSingleUpdate(LocationManager.NETWORK_PROVIDER, this, null);
     }
 
     private void resolveLocation() {
         locationRequestTask().addOnCompleteListener(task -> {
             try {
                 LocationSettingsResponse response = task.getResult(ApiException.class);
-                listenToLocations();
+                requestLocationPermission();
             } catch (ApiException exception) {
                 switch (exception.getStatusCode()) {
                     case LocationSettingsStatusCodes.RESOLUTION_REQUIRED:
@@ -402,24 +402,18 @@ public class SubmitActivity extends AppCompatActivity implements EyeImagesAdapte
     }
 
     private void openGallery() {
-        Intent intent = new Intent(Intent.ACTION_OPEN_DOCUMENT);
-        intent.addCategory(Intent.CATEGORY_OPENABLE);
-        intent.putExtra(Intent.EXTRA_ALLOW_MULTIPLE, true);
-        intent.setType("image/*");
-        startActivityForResult(Intent.createChooser(intent, "Select Picture"), OPEN_DOCUMENT_CODE);
+        String timeStamp = new SimpleDateFormat("yyyyMMdd_HHmmss").format(new Date());
+        File imageFile = new File(this.getApplicationContext().getExternalFilesDir(android.os.Environment.DIRECTORY_PICTURES).getAbsolutePath() + File.separator + "ajmanded_" + timeStamp + ".jpg");
+        uri = FileProvider.getUriForFile(this, "com.ajman.ded.ae.provider", imageFile);
+        new ViewDialog().showChooseDialog(this, uri);
     }
 
-    public Uri getImageUri(Bitmap bitmap) {
-        bitmap.compress(Bitmap.CompressFormat.JPEG, 100, new ByteArrayOutputStream());
-        return Uri.parse(MediaStore.Images.Media.insertImage(this.getContentResolver(), bitmap, "Profile_Picture", null));
-    }
 
     @Override
     protected void onActivityResult(int requestCode, int resultCode, @Nullable Intent resultData) {
-        if (requestCode == OPEN_DOCUMENT_CODE && resultCode == RESULT_OK) {
+        if (requestCode == OPEN_GALLERY && resultCode == RESULT_OK) {
             imagesEncodedList = new ArrayList<>();
             if (resultData.getData() != null) {
-
                 Uri mImageUri = resultData.getData();
 //                imageEncoded = mImageUri.getPath();
                 imagesEncodedList.clear();
@@ -438,6 +432,18 @@ public class SubmitActivity extends AppCompatActivity implements EyeImagesAdapte
                     }
                 }
             }
+        }
+
+        if (requestCode == OPEN_CAMERA && resultCode == RESULT_OK) {
+            imagesEncodedList = new ArrayList<>();
+            imagesEncodedList.clear();
+//            try {
+//                mImageBitmap = MediaStore.Images.Media.getBitmap(this.getContentResolver(), uri);
+//            } catch (IOException e) {
+//                e.printStackTrace();
+//            }
+            imagesEncodedList.add(uri.toString());
+            mAdapter.addImage(imagesEncodedList);
         }
 
         if (requestCode == REQUEST_CHECK_SETTINGS) {
@@ -483,5 +489,11 @@ public class SubmitActivity extends AppCompatActivity implements EyeImagesAdapte
         int hasAudioPermission = ActivityCompat.checkSelfPermission(this, Manifest.permission.ACCESS_FINE_LOCATION);
         if (hasAudioPermission == PackageManager.PERMISSION_GRANTED)
             googleMap.setMyLocationEnabled(true);
+    }
+
+    public void onDestroy() {
+        if (audioRecord != null)
+            audioRecord.stop();
+        super.onDestroy();
     }
 }

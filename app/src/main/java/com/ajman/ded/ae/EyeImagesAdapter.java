@@ -2,7 +2,6 @@ package com.ajman.ded.ae;
 
 import android.content.Context;
 import android.content.res.Resources;
-import android.net.Uri;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
@@ -103,7 +102,7 @@ public class EyeImagesAdapter extends RecyclerView.Adapter<RecyclerView.ViewHold
 
     class MyViewHolder extends RecyclerView.ViewHolder implements View.OnClickListener {
 
-        @BindView(R.id.image)
+        @BindView(R.id.dot_1)
         ImageView mImage;
         @BindView(R.id.delete)
         ImageView mDelete;

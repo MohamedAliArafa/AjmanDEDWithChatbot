@@ -422,7 +422,7 @@
                         android:layout_margin="16dp">
 
                         <ImageView
-                            android:id="@+id/image"
+                            android:id="@+id/dot_1"
                             android:layout_width="20dp"
                             android:layout_height="20dp"
                             android:layout_marginStart="8dp"
@@ -442,8 +442,8 @@
                             android:text="@string/invest_in_ajman"
                             android:textColor="@color/bg_dark_blue"
                             android:textStyle="bold"
-                            app:layout_constraintLeft_toRightOf="@+id/image"
-                            app:layout_constraintStart_toEndOf="@+id/image"
+                            app:layout_constraintLeft_toRightOf="@+id/dot_1"
+                            app:layout_constraintStart_toEndOf="@+id/dot_1"
                             app:layout_constraintTop_toTopOf="parent" />
 
                         <TextView

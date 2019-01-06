@@ -282,9 +282,8 @@
     <string name="service_list">Service List</string>
     <string name="location">Location</string>
     <string name="Establishment_name">Establishment Name</string>
-    <string name="licence_no">Licence No.</string>
     <string name="complaint">Complaint</string>
-    <string name="complaint_details">Complaint details</string>
+    <string name="notification_details">Notification details</string>
     <string name="address_on_map">Address on map</string>
     <string name="re_detect_location">Re/Detect location</string>
     <string name="add_record_voice">Add record voice</string>
@@ -301,4 +300,18 @@
     <string name="finished_notification">Finished Notification</string>
     <string name="inquiry_notification">Inquiry Notification</string>
     <string name="add_attachment">Add attachment</string>
+    <string name="choose">Choose</string>
+    <string name="rate">Rate</string>
+    <string name="status">Status</string>
+    <string name="time_and_date">Time and date</string>
+    <string name="trade_name">Trade Name</string>
+    <string name="licence_no">Licence No.</string>
+    <string name="district">District</string>
+    <string name="notification">Notification</string>
+    <string name="voice_record">Voice record</string>
+    <string name="attachment">Attachment</string>
+    <string name="inspection_result">Inspection result</string>
+    <string name="satisfied">Satisfied</string>
+    <string name="not_satisfied">Not Satisfied</string>
+    <string name="note">Note</string>
 </resources>

@@ -6,7 +6,7 @@
     android:layout_height="wrap_content">
 
     <ImageView
-        android:id="@+id/image"
+        android:id="@+id/dot_1"
         android:layout_width="14dp"
         android:layout_height="14dp"
         android:layout_marginStart="8dp"
@@ -26,11 +26,11 @@
         android:ellipsize="end"
         android:maxLines="1"
         android:textColor="@color/gray"
-        app:layout_constraintBottom_toBottomOf="@+id/image"
+        app:layout_constraintBottom_toBottomOf="@+id/dot_1"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintHorizontal_bias="0.0"
-        app:layout_constraintStart_toEndOf="@+id/image"
-        app:layout_constraintTop_toTopOf="@+id/image"
+        app:layout_constraintStart_toEndOf="@+id/dot_1"
+        app:layout_constraintTop_toTopOf="@+id/dot_1"
         tools:text="ssssssssss" />
 
 </androidx.constraintlayout.widget.ConstraintLayout>

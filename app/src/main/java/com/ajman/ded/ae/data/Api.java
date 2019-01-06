@@ -1,7 +1,5 @@
 package com.ajman.ded.ae.data;
 
-import android.app.Notification;
-
 import com.ajman.ded.ae.data.model.request.ApplicationListByEmail.RequestEnvelope_ApplicationListByEmail;
 import com.ajman.ded.ae.data.model.request.ConfirmCode.RequestEnvelope_ConfirmCode;
 import com.ajman.ded.ae.data.model.request.GetAccount.RequestEnvelope_GetAccount;
@@ -24,7 +22,9 @@ import com.ajman.ded.ae.data.model.response.OnlineUserAllPermits.ResponseEnvelop
 import com.ajman.ded.ae.data.model.response.SendSMS.ResponseEnvelope_SendSMS;
 import com.ajman.ded.ae.models.InsertNotificationResponse;
 import com.ajman.ded.ae.models.notification.NotificationStatusResponse;
+import com.ajman.ded.ae.models.notification.details.NotificationDetailsResponse;
 
+import okhttp3.ResponseBody;
 import retrofit2.Call;
 import retrofit2.http.Body;
 import retrofit2.http.GET;
@@ -40,6 +40,10 @@ public interface Api {
     String INSERT_NOTIFICATION = "extensions/dedeye/Notification_Insert";
 
     String STATUS_NOTIFICATION = "extensions/dedeye/Notifications_GetByUserId";
+
+    String DETAILS_NOTIFICATION = "extensions/dedeye/Notification_GetById";
+
+    String RATE_NOTIFICATION = "extensions/dedeye/NotificationRate_Insert";
 
 
     @Headers({"Content-Type: application/soap+xml; charset=utf-8"})
@@ -85,10 +89,16 @@ public interface Api {
     @GET(NewsLink)
     Call<String> news_caller();
 
-    @GET(INSERT_NOTIFICATION)
+    @POST(INSERT_NOTIFICATION)
     Call<InsertNotificationResponse> insert_notification(@Query("UserId") String userId, @Query("NotificationDate") String notificationDate, @Query("EstablishmentName") String establishmentName, @Query("LicenseNumber") String licenceNo, @Query("NotificationTypeId") String notificationTypeId, @Query("NotificationDetails") String notificatoinDetails, @Query("ll") String ll, @Query("lg") String lg);
 
     @GET(STATUS_NOTIFICATION)
     Call<NotificationStatusResponse> status_notification(@Query("UserId") String userId, @Query("Status") String status);
+
+    @GET(DETAILS_NOTIFICATION)
+    Call<NotificationDetailsResponse> details_notification(@Query("notificationId") String notificationId);
+
+    @GET(RATE_NOTIFICATION)
+    Call<ResponseBody> rate_notification(@Query("UserId") String userId, @Query("notificationId") String notificationId, @Query("Satisfied") String satisfied, @Query("Note") String note);
 
 }

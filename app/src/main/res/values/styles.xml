@@ -133,4 +133,8 @@
         <item name="android:textColor">@color/colorPrimaryDark</item>
     </style>
 
+    <style name="Dialog">
+        <item name="android:windowBackground">@android:color/transparent</item>
+    </style>
+
 </resources>

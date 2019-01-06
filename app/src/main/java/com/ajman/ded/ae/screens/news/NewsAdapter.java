@@ -75,7 +75,7 @@ public class NewsAdapter extends RecyclerView.Adapter<NewsAdapter.MyViewHolder> 
 
     class MyViewHolder extends RecyclerView.ViewHolder {
 
-        @BindView(R.id.image)
+        @BindView(R.id.dot_1)
         ImageView imageView;
 
         @BindView(R.id.date)

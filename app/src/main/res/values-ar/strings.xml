@@ -241,7 +241,7 @@
     <string name="Establishment_name">اسم المنشأة</string>
     <string name="licence_no">رقم الترخيص</string>
     <string name="complaint">البلاغ</string>
-    <string name="complaint_details">تفاصيل البلاغ</string>
+    <string name="notification_details">تفاصيل البلاغ</string>
     <string name="address_on_map">العنوان على الخريطة</string>
     <string name="re_detect_location">إعادة/تحديد الموقع</string>
     <string name="add_record_voice">إضف تسجيل صوتي</string>
@@ -258,5 +258,15 @@
     <string name="ongoing_notification">البلاغات قيد التدقيق</string>
     <string name="finished_notification">البلاغات المنتهية</string>
     <string name="inquiry_notification">استعلام عن بلاغ</string>
+    <string name="choose">إختر</string>
+    <string name="rate">تقييم</string>
+    <string name="status">الحالة</string>
+    <string name="time_and_date">الوقت والتاريخ</string>
+    <string name="trade_name">الاسم التجاري</string>
+    <string name="district">المنطقة</string>
+    <string name="notification">البلاغ</string>
+    <string name="voice_record">تسجيل صوتي</string>
+    <string name="attachment">المرفقات</string>
+    <string name="inspection_result">نتيجة التفتيش</string>
 
 </resources>

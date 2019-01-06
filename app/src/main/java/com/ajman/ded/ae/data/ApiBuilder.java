@@ -1,6 +1,7 @@
 package com.ajman.ded.ae.data;
 
 import com.ajman.ded.ae.DateDeserializer;
+import com.ajman.ded.ae.HeaderInterceptor;
 import com.ajman.ded.ae.NTLMAuthenticator;
 import com.google.gson.Gson;
 import com.google.gson.GsonBuilder;
@@ -87,6 +88,8 @@ public class ApiBuilder {
         GsonBuilder gsonBuilder = new GsonBuilder();
         gsonBuilder.registerTypeAdapter(Date.class, new DateDeserializer());
         OkHttpClient client = new OkHttpClient.Builder()
+                .addInterceptor(interceptor)
+                .addInterceptor(new HeaderInterceptor())
                 .authenticator(new NTLMAuthenticator("sdg_hosam", "7atsheb$out@7070", ""))
                 .build();
 
@@ -99,4 +102,5 @@ public class ApiBuilder {
         return retrofit.create(Api.class);
 
     }
+
 }

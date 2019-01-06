@@ -101,7 +101,7 @@ public class AudioRecording {
         }
     }
 
-    public void prepare(RecordingItem recordingItem){
+    public void prepare(RecordingItem recordingItem) {
         try {
             mMediaPlayer.reset();
             this.mMediaPlayer.setDataSource(recordingItem.getFilePath());
@@ -177,5 +177,10 @@ public class AudioRecording {
         if (mMediaPlayer != null && mMediaPlayer.isPlaying()) {
             mSeekBar.setProgress(mMediaPlayer.getCurrentPosition());
         }
+    }
+
+    public void stop() {
+        if (mMediaPlayer != null)
+            mMediaPlayer.stop();
     }
 }
