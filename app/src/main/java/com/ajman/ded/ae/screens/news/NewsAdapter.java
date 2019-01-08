@@ -2,7 +2,9 @@ package com.ajman.ded.ae.screens.news;
 
 import android.content.Context;
 import android.content.Intent;
+
 import androidx.recyclerview.widget.RecyclerView;
+
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
@@ -23,9 +25,7 @@ import butterknife.ButterKnife;
 import static com.ajman.ded.ae.data.ApiBuilder.NEWS_IMAGE_BASE_URL;
 import static com.ajman.ded.ae.libs.LocaleManager.LANGUAGE_ENGLISH;
 
-
 public class NewsAdapter extends RecyclerView.Adapter<NewsAdapter.MyViewHolder> {
-
 
     private Context context;
     private List<News> list;
@@ -65,7 +65,6 @@ public class NewsAdapter extends RecyclerView.Adapter<NewsAdapter.MyViewHolder> 
             in.putExtra("new_for_details", list.get(position));
             context.startActivity(in);
         });
-
     }
 
     @Override

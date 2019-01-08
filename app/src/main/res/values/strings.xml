@@ -287,7 +287,7 @@
     <string name="address_on_map">Address on map</string>
     <string name="re_detect_location">Re/Detect location</string>
     <string name="add_record_voice">Add record voice</string>
-    <string name="take_select_photo">Take/select photo</string>
+    <string name="take_photo">Take photo</string>
     <string name="send">Send</string>
     <string name="submit_notification">Submit a notification</string>
     <string name="your_location">Your Location</string>
@@ -314,4 +314,5 @@
     <string name="satisfied">Satisfied</string>
     <string name="not_satisfied">Not Satisfied</string>
     <string name="note">Note</string>
+    <string name="enable_location">Enable Location</string>
 </resources>

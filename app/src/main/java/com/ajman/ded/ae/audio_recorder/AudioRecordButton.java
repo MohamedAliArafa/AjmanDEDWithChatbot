@@ -120,6 +120,11 @@ public class AudioRecordButton extends RelativeLayout implements View.OnTouchLis
         if (mAudioListener != null) {
             AudioListener audioListener = new AudioListener() {
                 @Override
+                public boolean isPermissionGranted() {
+                    return mAudioListener.isPermissionGranted();
+                }
+
+                @Override
                 public void onStop(RecordingItem recordingItem) {
                     mAudioListener.onStop(recordingItem);
                 }
@@ -308,72 +313,74 @@ public class AudioRecordButton extends RelativeLayout implements View.OnTouchLis
 
     @Override
     public boolean onTouch(View v, MotionEvent event) {
-        switch (event.getAction()) {
-            case MotionEvent.ACTION_DOWN:
-                if (!isPlaying && !isPausing) {
-                    requestFocus();
-                    setFocusableInTouchMode(true);
-                    getParent().requestDisallowInterceptTouchEvent(true);
-                    isPlaying = true;
-                    initialTouchX = event.getRawX();
-                    changeImageView();
+        if (mAudioListener.isPermissionGranted()) {
+            switch (event.getAction()) {
+                case MotionEvent.ACTION_DOWN:
+                    if (!isPlaying && !isPausing) {
+                        requestFocus();
+                        setFocusableInTouchMode(true);
+                        getParent().requestDisallowInterceptTouchEvent(true);
+                        isPlaying = true;
+                        initialTouchX = event.getRawX();
+                        changeImageView();
 
-                    if (this.initialX == 0) {
-                        this.initialX = this.mImageView.getX();
-                    }
-
-                    mLayoutTimer.setVisibility(VISIBLE);
-                    mImageButton.setVisibility(VISIBLE);
-                    startRecord();
-                    return true;
-                }
-                break;
-            case MotionEvent.ACTION_MOVE:
-
-                if (isPlaying && !isPausing) {
-                    this.mImageView.setX(event.getRawX() - this.mImageView.getWidth() / 2);
-
-                    if (this.mImageView.getX() < DEFAULT_REMOVE_ICON_SIZE - 20) {
-                        this.mImageView.setX(20);
-                        this.changeSizeToRemove();
-                    } else if (this.mImageView.getX() > DEFAULT_REMOVE_ICON_SIZE + DEFAULT_REMOVE_ICON_SIZE / 2) {
-                        this.unRevealSizeToRemove();
-                    }
-
-                    if (Objects.equals(LocaleManager.getLanguage(mContext), LANGUAGE_ENGLISH)) {
-                        if (this.mImageView.getX() <= 0) {
-                            this.mImageButton.setX(20);
+                        if (this.initialX == 0) {
+                            this.initialX = this.mImageView.getX();
                         }
-                    }else {
-                        if (this.mImageView.getX() >= 0) {
-                            this.mImageButton.setX(20);
+
+                        mLayoutTimer.setVisibility(VISIBLE);
+                        mImageButton.setVisibility(VISIBLE);
+                        startRecord();
+                        return true;
+                    }
+                    break;
+                case MotionEvent.ACTION_MOVE:
+
+                    if (isPlaying && !isPausing) {
+                        this.mImageView.setX(event.getRawX() - this.mImageView.getWidth() / 2);
+
+                        if (this.mImageView.getX() < DEFAULT_REMOVE_ICON_SIZE - 20) {
+                            this.mImageView.setX(20);
+                            this.changeSizeToRemove();
+                        } else if (this.mImageView.getX() > DEFAULT_REMOVE_ICON_SIZE + DEFAULT_REMOVE_ICON_SIZE / 2) {
+                            this.unRevealSizeToRemove();
+                        }
+
+                        if (Objects.equals(LocaleManager.getLanguage(mContext), LANGUAGE_ENGLISH)) {
+                            if (this.mImageView.getX() <= 0) {
+                                this.mImageButton.setX(20);
+                            }
+                        } else {
+                            if (this.mImageView.getX() >= 0) {
+                                this.mImageButton.setX(20);
+                            }
+                        }
+
+                        if (this.mImageView.getX() > this.initialX) {
+                            this.mImageView.setX(this.initialX);
                         }
                     }
 
-                    if (this.mImageView.getX() > this.initialX) {
-                        this.mImageView.setX(this.initialX);
+                    break;
+                case MotionEvent.ACTION_UP:
+                    if (isPlaying && !isPausing) {
+                        getParent().requestDisallowInterceptTouchEvent(false);
+                        isPausing = true;
+                        moveImageToBack();
+
+                        mLayoutTimer.setVisibility(VISIBLE);
+                        mImageButton.setVisibility(INVISIBLE);
+
+                        if (this.mImageView.getX() < DEFAULT_REMOVE_ICON_SIZE - 10) {
+                            stopRecord(true);
+                        } else {
+                            stopRecord(false);
+                        }
                     }
-                }
-
-                break;
-            case MotionEvent.ACTION_UP:
-                if (isPlaying && !isPausing) {
-                    getParent().requestDisallowInterceptTouchEvent(false);
-                    isPausing = true;
-                    moveImageToBack();
-
-                    mLayoutTimer.setVisibility(VISIBLE);
-                    mImageButton.setVisibility(INVISIBLE);
-
-                    if (this.mImageView.getX() < DEFAULT_REMOVE_ICON_SIZE - 10) {
-                        stopRecord(true);
-                    } else {
-                        stopRecord(false);
-                    }
-                }
-                break;
-            default:
-                return false;
+                    break;
+                default:
+                    return false;
+            }
         }
         return true;
     }

@@ -20,13 +20,11 @@ import butterknife.ButterKnife;
 
 public class EyeImagesAdapter extends RecyclerView.Adapter<RecyclerView.ViewHolder> {
 
-    private final Context mContext;
     Resources resources;
     private List<String> mList;
     private AdapterCallback adapterCallback;
 
     public EyeImagesAdapter(Context context, AdapterCallback adapterCallback) {
-        mContext = context;
         resources = context.getResources();
         this.mList = new ArrayList<>();
         this.adapterCallback = adapterCallback;
@@ -102,7 +100,7 @@ public class EyeImagesAdapter extends RecyclerView.Adapter<RecyclerView.ViewHold
 
     class MyViewHolder extends RecyclerView.ViewHolder implements View.OnClickListener {
 
-        @BindView(R.id.dot_1)
+        @BindView(R.id.image)
         ImageView mImage;
         @BindView(R.id.delete)
         ImageView mDelete;

@@ -69,6 +69,9 @@ import io.realm.Realm;
 import io.realm.RealmResults;
 import retrofit2.Call;
 import retrofit2.Response;
+import safety.com.br.android_shake_detector.core.ShakeCallback;
+import safety.com.br.android_shake_detector.core.ShakeDetector;
+import safety.com.br.android_shake_detector.core.ShakeOptions;
 
 import static com.ajman.ded.ae.libs.LocaleManager.LANGUAGE_ARABIC;
 import static com.ajman.ded.ae.libs.LocaleManager.LANGUAGE_ENGLISH;
@@ -106,6 +109,7 @@ public abstract class BaseActivity extends AppCompatActivity implements View.OnC
     private Toolbar mToolbar;
     private SweetAlertDialog sDialog;
     private Api api;
+    private ShakeDetector shakeDetector;
 
     @Override
     protected void attachBaseContext(Context base) {
@@ -125,6 +129,15 @@ public abstract class BaseActivity extends AppCompatActivity implements View.OnC
         setSupportActionBar(mToolbar);
         getSupportActionBar().setDisplayShowTitleEnabled(false);
         initItems();
+
+        ShakeOptions options = new ShakeOptions()
+                .background(true)
+                .interval(1000)
+                .shakeCount(2)
+                .sensibility(2.0f);
+
+        this.shakeDetector = new ShakeDetector(options).start(this, () -> startActivity(new Intent(BaseActivity.this, SubmitActivity.class)));
+
         final String appPackageName = getPackageName();
         if (!(this instanceof SearchActivity)) {
             mBottomBar = findViewById(R.id.bottomBar);

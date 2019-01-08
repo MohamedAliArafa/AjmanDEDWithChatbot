@@ -15,10 +15,11 @@
         android:layout_height="match_parent"
         android:animateLayoutChanges="true"
         android:background="@drawable/bg"
-        android:fillViewport="true"
         android:focusableInTouchMode="true"
         android:scrollbars="none"
         app:layout_behavior="@string/appbar_scrolling_view_behavior">
+
+
 
         <androidx.constraintlayout.widget.ConstraintLayout
             android:layout_width="match_parent"
@@ -33,9 +34,9 @@
                 android:layout_marginTop="16dp"
                 android:layout_marginEnd="16dp"
                 android:hint="@string/Establishment_name"
+                android:inputType="textPersonName"
                 android:maxLines="1"
                 android:textColor="@color/colorPrimary"
-                android:inputType="textPersonName"
                 android:textColorHint="@color/colorPrimary"
                 app:layout_constraintEnd_toEndOf="parent"
                 app:layout_constraintStart_toStartOf="parent"
@@ -83,12 +84,12 @@
                 android:layout_marginStart="16dp"
                 android:layout_marginTop="16dp"
                 android:layout_marginEnd="16dp"
+                android:editable="false"
                 android:hint="@string/complaint"
                 android:inputType="none"
+                android:longClickable="false"
                 android:maxLines="1"
                 android:textColor="@color/colorAccent"
-                android:longClickable="false"
-                android:editable="false"
                 android:textColorHint="@color/colorPrimary"
                 app:layout_constraintEnd_toEndOf="parent"
                 app:layout_constraintHorizontal_bias="1.0"
@@ -130,43 +131,14 @@
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content">
 
-                    <TextView
-                        android:id="@+id/textView9"
-                        android:layout_width="wrap_content"
-                        android:layout_height="wrap_content"
-                        android:layout_marginStart="8dp"
-                        android:layout_marginTop="16dp"
-                        android:text="@string/address_on_map"
-                        android:textColor="@color/colorPrimaryDark"
-                        android:textSize="18sp"
-                        android:textStyle="bold"
-                        app:layout_constraintStart_toStartOf="parent"
-                        app:layout_constraintTop_toTopOf="parent" />
-
-                    <Button
-                        android:id="@+id/location"
-                        android:layout_width="200dp"
-                        android:layout_height="wrap_content"
-                        android:layout_marginStart="8dp"
-                        android:layout_marginTop="16dp"
-                        android:layout_marginEnd="8dp"
-                        android:background="@drawable/radius"
-                        android:text="@string/re_detect_location"
-                        android:textAllCaps="false"
-                        android:textColor="@android:color/white"
-                        android:textSize="16sp"
-                        app:layout_constraintEnd_toEndOf="parent"
-                        app:layout_constraintStart_toStartOf="parent"
-                        app:layout_constraintTop_toBottomOf="@+id/textView9" />
-
                     <com.ajman.ded.ae.utility.CustomMapView
                         android:id="@+id/map"
                         android:layout_width="0dp"
-                        android:layout_height="120dp"
-                        android:layout_marginTop="16dp"
+                        android:layout_height="200dp"
+                        app:layout_constraintBottom_toBottomOf="parent"
                         app:layout_constraintEnd_toEndOf="parent"
                         app:layout_constraintStart_toStartOf="parent"
-                        app:layout_constraintTop_toBottomOf="@+id/location" />
+                        app:layout_constraintTop_toTopOf="parent" />
 
 
                 </androidx.constraintlayout.widget.ConstraintLayout>
@@ -180,7 +152,6 @@
                 android:layout_marginStart="16dp"
                 android:layout_marginTop="16dp"
                 android:layout_marginEnd="16dp"
-                android:visibility="gone"
                 app:cardCornerRadius="16dp"
                 app:cardElevation="8dp"
                 app:layout_constraintEnd_toEndOf="parent"
@@ -306,7 +277,7 @@
                         android:layout_marginTop="16dp"
                         android:layout_marginEnd="8dp"
                         android:background="@drawable/radius"
-                        android:text="@string/take_select_photo"
+                        android:text="@string/take_photo"
                         android:textAllCaps="false"
                         android:textColor="@android:color/white"
                         android:textSize="16sp"
@@ -369,7 +340,35 @@
                 app:layout_constraintHorizontal_bias="0.5"
                 app:layout_constraintStart_toEndOf="@+id/cancel"
                 app:layout_constraintTop_toBottomOf="@+id/image_cardview" />
+
         </androidx.constraintlayout.widget.ConstraintLayout>
 
     </androidx.core.widget.NestedScrollView>
+
+    <FrameLayout
+        android:id="@+id/permission_layout"
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:background="@android:color/white"
+        android:clickable="true"
+        android:elevation="20dp"
+        android:focusable="true"
+        android:visibility="gone"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent">
+
+        <TextView
+            android:id="@+id/grant_permission"
+            android:textSize="24sp"
+            android:padding="12dp"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_gravity="center"
+            android:text="@string/enable_location"
+            android:textColor="@color/colorAccent"
+            android:textStyle="bold" />
+
+    </FrameLayout>
 </androidx.coordinatorlayout.widget.CoordinatorLayout>

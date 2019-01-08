@@ -246,7 +246,7 @@
     <string name="re_detect_location">إعادة/تحديد الموقع</string>
     <string name="add_record_voice">إضف تسجيل صوتي</string>
     <string name="add_attachment">أضف المرفقات</string>
-    <string name="take_select_photo">أختر أو التقط صورة</string>
+    <string name="take_photo">التقط صورة</string>
     <string name="send">إرسال البلاغ</string>
     <string name="submit_notification">بلاغ جديد</string>
     <string name="your_location">الموقع الحالي</string>

@@ -13,6 +13,7 @@ import android.location.LocationListener;
 import android.location.LocationManager;
 import android.net.Uri;
 import android.os.Bundle;
+import android.provider.MediaStore;
 import android.text.InputType;
 import android.view.View;
 import android.widget.AdapterView;
@@ -25,7 +26,6 @@ import android.widget.Toast;
 
 import com.ajman.ded.ae.EyeImagesAdapter;
 import com.ajman.ded.ae.R;
-import com.ajman.ded.ae.ViewDialog;
 import com.ajman.ded.ae.adapters.SpinnerAdapter;
 import com.ajman.ded.ae.audio_recorder.AudioListener;
 import com.ajman.ded.ae.audio_recorder.AudioRecordButton;
@@ -118,8 +118,6 @@ public class SubmitActivity extends AppCompatActivity implements EyeImagesAdapte
     RecyclerView recyclerView;
     @BindView(R.id.add_image)
     Button addImage;
-    @BindView(R.id.location)
-    Button location;
     @BindView(R.id.toolbar_title)
     TextView toolbarTitle;
     @BindView(R.id.map)
@@ -134,6 +132,10 @@ public class SubmitActivity extends AppCompatActivity implements EyeImagesAdapte
     EditText establishmentTitle;
     @BindView(R.id.licence_no)
     EditText licenceNo;
+    @BindView(R.id.permission_layout)
+    View permissionLayout;
+    @BindView(R.id.grant_permission)
+    TextView grantPermission;
     private AudioRecording audioRecord;
     private RecordingItem recordingAudio;
     private EyeImagesAdapter mAdapter;
@@ -165,11 +167,16 @@ public class SubmitActivity extends AppCompatActivity implements EyeImagesAdapte
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_submit);
         ButterKnife.bind(this);
+        DaggerLocationComponent.builder().contextModule(new ContextModule(viewContext())).build().inject(this);
+
         toolbarTitle.setText(getString(R.string.submit_notification));
 
         findViewById(R.id.up).setOnClickListener(view -> super.onBackPressed());
         findViewById(R.id.cancel).setOnClickListener(view -> super.onBackPressed());
-        DaggerLocationComponent.builder().contextModule(new ContextModule(viewContext())).build().inject(this);
+
+        requestLocationPermission();
+
+        grantPermission.setOnClickListener(v -> requestLocationPermission());
 
         if (map != null) {
             map.onCreate(null);
@@ -179,16 +186,19 @@ public class SubmitActivity extends AppCompatActivity implements EyeImagesAdapte
         }
 
         perms = new String[]{Manifest.permission.READ_EXTERNAL_STORAGE, Manifest.permission.WRITE_EXTERNAL_STORAGE};
-        requestAudioPermission();
 
         mAdapter = new EyeImagesAdapter(this, this);
         recyclerView.setLayoutManager(new GridLayoutManager(this, 3));
         recyclerView.setAdapter(mAdapter);
 
         addImage.setOnClickListener(this::onAddImage);
-        location.setOnClickListener(this::onRequestLocation);
 
         audioRecordButton.setOnAudioListener(new AudioListener() {
+            @Override
+            public boolean isPermissionGranted() {
+                return requestAudioPermission();
+            }
+
             @Override
             public void onStop(RecordingItem recordingItem) {
                 audioContainer.setVisibility(View.VISIBLE);
@@ -266,9 +276,6 @@ public class SubmitActivity extends AppCompatActivity implements EyeImagesAdapte
         });
     }
 
-    private void onRequestLocation(View view) {
-        requestLocationPermission();
-    }
 
     private void play_stop(View view) {
         if (audioRecord.isPlaying()) {
@@ -279,7 +286,7 @@ public class SubmitActivity extends AppCompatActivity implements EyeImagesAdapte
         }
     }
 
-    private void requestAudioPermission() {
+    private boolean requestAudioPermission() {
         int hasAudioPermission = ActivityCompat.checkSelfPermission(this, Manifest.permission.RECORD_AUDIO);
 
         if (hasAudioPermission != PackageManager.PERMISSION_GRANTED) {
@@ -287,6 +294,7 @@ public class SubmitActivity extends AppCompatActivity implements EyeImagesAdapte
         } else {
             initAudio();
         }
+        return hasAudioPermission == PackageManager.PERMISSION_GRANTED;
     }
 
     private void requestLocationPermission() {
@@ -339,7 +347,9 @@ public class SubmitActivity extends AppCompatActivity implements EyeImagesAdapte
                 break;
             case REQUEST_CODE_LOCATION_PERMISSIONS:
                 if (grantResults.length > 0 && grantResults[0] == PackageManager.PERMISSION_GRANTED) {
-
+                    permissionLayout.setVisibility(View.GONE);
+                } else {
+                    permissionLayout.setVisibility(View.VISIBLE);
                 }
                 break;
         }
@@ -405,7 +415,9 @@ public class SubmitActivity extends AppCompatActivity implements EyeImagesAdapte
         String timeStamp = new SimpleDateFormat("yyyyMMdd_HHmmss").format(new Date());
         File imageFile = new File(this.getApplicationContext().getExternalFilesDir(android.os.Environment.DIRECTORY_PICTURES).getAbsolutePath() + File.separator + "ajmanded_" + timeStamp + ".jpg");
         uri = FileProvider.getUriForFile(this, "com.ajman.ded.ae.provider", imageFile);
-        new ViewDialog().showChooseDialog(this, uri);
+        Intent takePicture = new Intent(MediaStore.ACTION_IMAGE_CAPTURE);
+        takePicture.putExtra(MediaStore.EXTRA_OUTPUT, uri);
+        startActivityForResult(takePicture, OPEN_CAMERA);
     }
 
 
