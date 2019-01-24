@@ -26,8 +26,6 @@ import android.widget.TextView;
 import android.widget.Toast;
 
 import com.ajman.ded.ae.EyeImagesAdapter;
-import com.ajman.ded.ae.FileResolver;
-import com.ajman.ded.ae.FileUtils;
 import com.ajman.ded.ae.R;
 import com.ajman.ded.ae.adapters.SpinnerAdapter;
 import com.ajman.ded.ae.audio_recorder.AudioListener;
@@ -59,7 +57,6 @@ import com.google.android.gms.maps.model.LatLngBounds;
 import com.google.android.gms.maps.model.MarkerOptions;
 import com.google.android.gms.tasks.Task;
 
-import java.io.ByteArrayOutputStream;
 import java.io.File;
 import java.io.FileNotFoundException;
 import java.io.FileOutputStream;
@@ -250,13 +247,17 @@ public class SubmitActivity extends AppCompatActivity implements EyeImagesAdapte
                                 uploadFiles(response.body().getNotificationId());
                             }
                         } else {
-                            pDialog.dismissWithAnimation();
+                            pDialog.setTitleText(getString(R.string.went_wrong))
+                                    .setConfirmText(getString(R.string.try_again))
+                                    .changeAlertType(SweetAlertDialog.ERROR_TYPE);
                         }
                     }
 
                     @Override
                     public void onFailure(Call<NotificationResponse> call, Throwable t) {
-                        pDialog.dismissWithAnimation();
+                        pDialog.setTitleText(getString(R.string.went_wrong))
+                                .setConfirmText(getString(R.string.try_again))
+                                .changeAlertType(SweetAlertDialog.ERROR_TYPE);
                     }
                 });
             } else {
@@ -288,12 +289,18 @@ public class SubmitActivity extends AppCompatActivity implements EyeImagesAdapte
                     if (response.body().getResponseCode() == 1) {
                         pDialog.setTitleText("بلاغ " + tybeStatus + " سوف يستغرق مدة " + tybePeriod + " من الأيام ليتم مراجعتها").setConfirmClickListener(sweetAlertDialog -> SubmitActivity.super.onBackPressed()).changeAlertType(SweetAlertDialog.SUCCESS_TYPE);
                     }
+                } else {
+                    pDialog.setTitleText(getString(R.string.went_wrong))
+                            .setConfirmText(getString(R.string.try_again))
+                            .changeAlertType(SweetAlertDialog.ERROR_TYPE);
                 }
             }
 
             @Override
             public void onFailure(Call<NotificationResponse> call, Throwable t) {
-                pDialog.dismissWithAnimation();
+                pDialog.setTitleText(getString(R.string.went_wrong))
+                        .setConfirmText(getString(R.string.try_again))
+                        .changeAlertType(SweetAlertDialog.ERROR_TYPE);
             }
         });
     }
@@ -552,9 +559,9 @@ public class SubmitActivity extends AppCompatActivity implements EyeImagesAdapte
     @NonNull
     private MultipartBody.Part prepareFilePart(String partName, String filePath, Uri fileUri) {
         File file = new File(filePath);
-        Bitmap bitmap = BitmapFactory.decodeFile (file.getPath ());
+        Bitmap bitmap = BitmapFactory.decodeFile(file.getPath());
         try {
-            bitmap.compress (Bitmap.CompressFormat.JPEG, 50, new FileOutputStream(file));
+            bitmap.compress(Bitmap.CompressFormat.JPEG, 50, new FileOutputStream(file));
         } catch (FileNotFoundException e) {
             e.printStackTrace();
         }
