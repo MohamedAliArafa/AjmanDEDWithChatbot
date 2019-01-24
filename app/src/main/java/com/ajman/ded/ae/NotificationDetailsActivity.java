@@ -2,6 +2,8 @@ package com.ajman.ded.ae;
 
 import android.app.Dialog;
 import android.content.Context;
+import android.graphics.Bitmap;
+import android.graphics.BitmapFactory;
 import android.graphics.drawable.ColorDrawable;
 import android.media.MediaPlayer;
 import android.os.Bundle;
@@ -17,6 +19,7 @@ import com.ajman.ded.ae.data.ApiBuilder;
 import com.ajman.ded.ae.libs.LocaleManager;
 import com.ajman.ded.ae.models.notification.details.NotificationDetailsResponse;
 import com.ajman.ded.ae.models.notification.details.ResponseContent;
+import com.ajman.ded.ae.models.notification.files.FilesRsponse;
 import com.ajman.ded.ae.utility.CustomMapView;
 import com.bumptech.glide.Glide;
 import com.google.android.gms.maps.CameraUpdateFactory;
@@ -27,9 +30,14 @@ import com.google.android.gms.maps.model.LatLng;
 import com.google.android.gms.maps.model.LatLngBounds;
 import com.google.android.gms.maps.model.MarkerOptions;
 
+import java.io.File;
+import java.io.FileInputStream;
+import java.io.FileOutputStream;
+import java.io.IOException;
 import java.text.SimpleDateFormat;
 import java.util.ArrayList;
 import java.util.List;
+import java.util.Locale;
 import java.util.Objects;
 import java.util.concurrent.Executors;
 import java.util.concurrent.ScheduledExecutorService;
@@ -52,9 +60,10 @@ import static com.ajman.ded.ae.libs.LocaleManager.LANGUAGE_ARABIC;
 
 public class NotificationDetailsActivity extends AppCompatActivity implements EyeDetailsImagesAdapter.AdapterCallback {
 
+    private String BASE_URL = "http://site1.ajmanded.ae/apis/GetFileById?id=";
+
     @BindView(R.id.list)
     RecyclerView recyclerView;
-
     @BindView(R.id.status)
     TextView status;
     @BindView(R.id.date)
@@ -90,7 +99,6 @@ public class NotificationDetailsActivity extends AppCompatActivity implements Ey
 
     private Api api;
     private EyeDetailsImagesAdapter mAdapter;
-    private List<Integer> ImageList;
     private SimpleDateFormat simpleDateFormat;
     private MediaPlayer mMediaPlayer;
     private ScheduledExecutorService mExecutor;
@@ -100,6 +108,7 @@ public class NotificationDetailsActivity extends AppCompatActivity implements Ey
     private String id;
     private String satisfied = "1";
     private Button cancel, send;
+    private List<Bitmap> images;
 
     @Override
     protected void attachBaseContext(Context base) {
@@ -117,17 +126,14 @@ public class NotificationDetailsActivity extends AppCompatActivity implements Ey
         findViewById(R.id.up).setOnClickListener(view -> super.onBackPressed());
 
         simpleDateFormat = new SimpleDateFormat("yyyy/MM/dd - hh:mm a");
+        mMediaPlayer = new MediaPlayer();
+
         if (map != null) {
             map.onCreate(null);
             map.onResume();
             MapsInitializer.initialize(this);
             map.getMapAsync(this::onMapReady);
         }
-
-        ImageList = new ArrayList();
-        ImageList.add(R.drawable.ic_image_one);
-        ImageList.add(R.drawable.ic_image_two);
-        ImageList.add(R.drawable.ic_image_third);
 
         mAdapter = new EyeDetailsImagesAdapter(this, this);
         recyclerView.setLayoutManager(new GridLayoutManager(this, 3));
@@ -136,21 +142,92 @@ public class NotificationDetailsActivity extends AppCompatActivity implements Ey
         id = getIntent().getStringExtra("id");
 
         api = ApiBuilder.basicApi();
-        Call<NotificationDetailsResponse> call = api.details_notification(id);
 
+    }
+
+    private void getFiles() {
+        images = new ArrayList<>();
+        Call<FilesRsponse> callFiles = api.files_notification(id);
+        callFiles.enqueue(new Callback<FilesRsponse>() {
+            @Override
+            public void onResponse(Call<FilesRsponse> call, Response<FilesRsponse> response) {
+                if (response.isSuccessful()) {
+                    if (response.body().getResponseCode() == 1) {
+                        for (com.ajman.ded.ae.models.notification.files.ResponseContent link : response.body().getResponseContent()) {
+                            if (getFileExtension(link.getName()).equals("jpg") || getFileExtension(link.getName()).equals("png")) {
+                                getImage(link.getFileId());
+                            } else {
+                                getAudio(link.getFileId(), link.getName().substring(0, link.getName().lastIndexOf(".")), getFileExtension(link.getName()));
+                            }
+                        }
+                        mAdapter.setImage(images);
+                    }
+                }
+            }
+
+            @Override
+            public void onFailure(Call<FilesRsponse> call, Throwable t) {
+            }
+        });
+    }
+
+    private void getAudio(String id, String fileName, String type) {
+        Call<ResponseBody> callFile = api.file_notification(id);
+        callFile.enqueue(new Callback<ResponseBody>() {
+            @Override
+            public void onResponse(Call<ResponseBody> call, Response<ResponseBody> response) {
+                try {
+                    prepareAudio(response.body().bytes(), fileName, type);
+                } catch (IOException e) {
+                    e.printStackTrace();
+                }
+            }
+
+            @Override
+            public void onFailure(Call<ResponseBody> call, Throwable t) {
+
+            }
+        });
+    }
+
+    private void getImage(String id) {
+        Call<ResponseBody> callFile = api.file_notification(id);
+        callFile.enqueue(new Callback<ResponseBody>() {
+            @Override
+            public void onResponse(Call<ResponseBody> call, Response<ResponseBody> response) {
+                mAdapter.addImage(BitmapFactory.decodeStream(response.body().byteStream()));
+            }
+
+            @Override
+            public void onFailure(Call<ResponseBody> call, Throwable t) {
+            }
+        });
+    }
+
+    private void prepareAudio(byte[] audioByteArray, String filename, String type) throws IOException {
+        File tempAudio = File.createTempFile(filename, type, getCacheDir());
+        tempAudio.deleteOnExit();
+        FileOutputStream fos = new FileOutputStream(tempAudio);
+        fos.write(audioByteArray);
+        fos.close();
+        FileInputStream fis = new FileInputStream(tempAudio);
+        setPlayer(fis);
+    }
+
+    private void getDetails() {
+        Call<NotificationDetailsResponse> call = api.details_notification(id);
         call.clone().enqueue(new Callback<NotificationDetailsResponse>() {
             @Override
             public void onResponse(Call<NotificationDetailsResponse> call, Response<NotificationDetailsResponse> response) {
                 if (response.isSuccessful()) {
                     container.setVisibility(View.VISIBLE);
                     play_stop.setOnClickListener(NotificationDetailsActivity.this::Play_Stop);
-                    mAdapter.setImage(ImageList);
                     if (Objects.equals(LocaleManager.getLanguage(NotificationDetailsActivity.this), LANGUAGE_ARABIC)) {
                         setArData(response.body().getResponseContent().get(0));
                     } else {
                         setENData(response.body().getResponseContent().get(0));
                     }
-                    //MAP
+
                     builder = new LatLngBounds.Builder();
                     LatLng latLng = new LatLng(Double.valueOf(response.body().getResponseContent().get(0).getLl()), Double.valueOf(response.body().getResponseContent().get(0).getLg()));
                     googleMap.addMarker(new MarkerOptions().position(latLng).title(getString(R.string.your_location))).setIcon(BitmapDescriptorFactory.fromResource(R.drawable.ic_location));
@@ -186,7 +263,8 @@ public class NotificationDetailsActivity extends AppCompatActivity implements Ey
             rate.setVisibility(View.INVISIBLE);
         }
 
-        date.setText(simpleDateFormat.format(responseContent.getRequestDate()));
+        if (responseContent.getRequestDate() != null)
+            date.setText(simpleDateFormat.format(responseContent.getRequestDate()));
         name.setText(responseContent.getEstablishmentNameEN());
         licenceNo.setText(responseContent.getLicenseNumber());
         area.setText(responseContent.getAreaNameEN());
@@ -251,7 +329,8 @@ public class NotificationDetailsActivity extends AppCompatActivity implements Ey
             rate.setVisibility(View.INVISIBLE);
         }
 
-        date.setText(simpleDateFormat.format(responseContent.getRequestDate()));
+        if (responseContent.getRequestDate() != null)
+            date.setText(simpleDateFormat.format(responseContent.getRequestDate()));
         name.setText(responseContent.getEstablishmentNameAR());
         licenceNo.setText(responseContent.getLicenseNumber());
         area.setText(responseContent.getAreaNameAR());
@@ -262,10 +341,13 @@ public class NotificationDetailsActivity extends AppCompatActivity implements Ey
 
     private void onMapReady(GoogleMap googleMap) {
         this.googleMap = googleMap;
+        getDetails();
+
+        getFiles();
     }
 
     @Override
-    public void onOpenCallback(Integer photo) {
+    public void onOpenCallback(Bitmap photo) {
         Dialog mDialog = new Dialog(this, android.R.style.Theme_Light_NoTitleBar_Fullscreen);
         mDialog.setCancelable(true);
         mDialog.setCanceledOnTouchOutside(true);
@@ -312,17 +394,25 @@ public class NotificationDetailsActivity extends AppCompatActivity implements Ey
     public void stop() {
         if (mMediaPlayer != null) {
             stopUpdatingCallbackWithPosition();
-            mMediaPlayer.release();
-            mMediaPlayer = null;
+            mMediaPlayer.pause();
         }
     }
 
     public void play() {
-        stop();
-        startUpdatingCallbackWithPosition();
-        mMediaPlayer = MediaPlayer.create(this, R.raw.sound_test);
+        if (mMediaPlayer.isPlaying()) {
+            stop();
+        } else {
+            startUpdatingCallbackWithPosition();
+            mMediaPlayer.start();
+        }
+    }
+
+    private void setPlayer(FileInputStream audio) throws IOException {
+        mMediaPlayer.reset();
+        mMediaPlayer.setDataSource(audio.getFD());
+        mMediaPlayer.prepare();
         mSeekBar.setMax(mMediaPlayer.getDuration());
-        mMax.setText(String.format("%d:%d", mMediaPlayer.getDuration() % (1000 * 60 * 60) / (1000 * 60), mMediaPlayer.getDuration() % (1000 * 60 * 60) % (1000 * 60) / 1000));
+        mMax.setText(String.format("%d:%d", mMediaPlayer.getDuration() % (1000 * 60 * 60) / (1000 * 60), mMediaPlayer.getDuration() % (1000 * 60 * 60) % (1000 * 60) / 1000, Locale.US));
         mSeekBar.setOnSeekBarChangeListener(new SeekBar.OnSeekBarChangeListener() {
             @Override
             public void onProgressChanged(SeekBar seekBar, int progress, boolean fromUser) {
@@ -342,8 +432,29 @@ public class NotificationDetailsActivity extends AppCompatActivity implements Ey
             }
         });
         mMediaPlayer.setOnCompletionListener(mediaPlayer -> stop());
+    }
 
-        mMediaPlayer.start();
+    public String getFileExtension(String url) {
+
+        Objects.requireNonNull(url, "url is null");
+
+        final String file = url;
+
+        if (file.contains(".")) {
+            final String sub = file.substring(file.lastIndexOf('.') + 1);
+
+            if (sub.length() == 0) {
+                return "";
+            }
+
+            if (sub.contains("?")) {
+                return sub.substring(0, sub.indexOf('?'));
+            }
+
+            return sub;
+        }
+
+        return "";
     }
 
     public void onDestroy() {

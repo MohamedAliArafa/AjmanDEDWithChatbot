@@ -2,14 +2,17 @@ package com.ajman.ded.ae;
 
 import android.content.Context;
 import android.content.res.Resources;
+import android.net.Uri;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.ImageView;
 
+import com.ajman.ded.ae.models.notification.ImageBundle;
 import com.bumptech.glide.Glide;
 import com.bumptech.glide.request.RequestOptions;
 
+import java.io.IOException;
 import java.util.ArrayList;
 import java.util.List;
 
@@ -21,7 +24,7 @@ import butterknife.ButterKnife;
 public class EyeImagesAdapter extends RecyclerView.Adapter<RecyclerView.ViewHolder> {
 
     Resources resources;
-    private List<String> mList;
+    private List<ImageBundle> mList;
     private AdapterCallback adapterCallback;
 
     public EyeImagesAdapter(Context context, AdapterCallback adapterCallback) {
@@ -30,19 +33,23 @@ public class EyeImagesAdapter extends RecyclerView.Adapter<RecyclerView.ViewHold
         this.adapterCallback = adapterCallback;
     }
 
-    public void addImage(List<String> list) {
-        mList.addAll(list);
+    public void addImage(ImageBundle list) {
+        mList.add(list);
         this.notifyDataSetChanged();
     }
 
-    public void setImage(List<String> list) {
+    public void setImage(List<ImageBundle> list) {
         mList.clear();
         mList.addAll(list);
         this.notifyDataSetChanged();
     }
 
+    public List<ImageBundle> getImages(){
+        return mList;
+    }
+
     public interface AdapterCallback {
-        void onAddCallback();
+        void onAddCallback() throws IOException;
     }
 
     @Override
@@ -60,7 +67,7 @@ public class EyeImagesAdapter extends RecyclerView.Adapter<RecyclerView.ViewHold
     public void onBindViewHolder(RecyclerView.ViewHolder holder, int position) {
         if (holder.getItemViewType() == 0) {
             MyViewHolder viewHolder = (MyViewHolder) holder;
-            String model = mList.get(position);
+            Uri model = mList.get(position).getImageUri();
             Glide.with(viewHolder.mImage.getContext())
                     .load(model)
                     .apply(RequestOptions.circleCropTransform())
@@ -79,7 +86,7 @@ public class EyeImagesAdapter extends RecyclerView.Adapter<RecyclerView.ViewHold
                 return mList.size() + 1;
             }
         }
-        return 0;
+        return 1;
     }
 
     @Override
@@ -131,7 +138,11 @@ public class EyeImagesAdapter extends RecyclerView.Adapter<RecyclerView.ViewHold
 
         @Override
         public void onClick(View v) {
-            adapterCallback.onAddCallback();
+            try {
+                adapterCallback.onAddCallback();
+            } catch (IOException e) {
+                e.printStackTrace();
+            }
         }
     }
 }

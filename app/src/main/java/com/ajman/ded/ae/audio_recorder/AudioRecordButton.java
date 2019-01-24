@@ -10,6 +10,7 @@ import android.graphics.drawable.Drawable;
 import android.os.Build;
 import android.os.Handler;
 import android.os.SystemClock;
+import android.text.format.DateFormat;
 import android.util.AttributeSet;
 import android.view.MotionEvent;
 import android.view.View;
@@ -87,7 +88,7 @@ public class AudioRecordButton extends RelativeLayout implements View.OnTouchLis
     }
 
     WindowManager.LayoutParams getViewParams() {
-        return this.params;
+        return params;
     }
 
     @Override
@@ -96,9 +97,9 @@ public class AudioRecordButton extends RelativeLayout implements View.OnTouchLis
     }
 
     private void moveImageToBack() {
-        this.mImageButton.setAlpha(0.5f);
+        mImageButton.setAlpha(0.5f);
         final ValueAnimator positionAnimator =
-                ValueAnimator.ofFloat(this.mImageView.getX(), this.initialX);
+                ValueAnimator.ofFloat(mImageView.getX(), initialX);
 
         positionAnimator.setInterpolator(new AccelerateDecelerateInterpolator());
         positionAnimator.addUpdateListener(new ValueAnimator.AnimatorUpdateListener() {
@@ -140,8 +141,8 @@ public class AudioRecordButton extends RelativeLayout implements View.OnTouchLis
                 }
             };
 
-            this.mAudioRecording =
-                    new AudioRecording(this.mContext)
+            mAudioRecording =
+                    new AudioRecording(mContext)
                             .setNameFile("/" + UUID.randomUUID() + "-audio.ogg")
                             .start(audioListener);
         }
@@ -163,7 +164,7 @@ public class AudioRecordButton extends RelativeLayout implements View.OnTouchLis
     }
 
     public void setOnAudioListener(AudioListener audioListener) {
-        this.mAudioListener = audioListener;
+        mAudioListener = audioListener;
     }
 
     @TargetApi(Build.VERSION_CODES.JELLY_BEAN)
@@ -211,17 +212,17 @@ public class AudioRecordButton extends RelativeLayout implements View.OnTouchLis
         /**
          * chronometer
          */
-        this.mChronometer = new Chronometer(context);
-        this.mChronometer.setTextLocale(Locale.US);
-        this.mChronometer.setTextColor(Color.GRAY);
-        this.mChronometer.setTextSize(28);
+        mChronometer = new Chronometer(context);
+        mChronometer.setTextLocale(Locale.US);
+        mChronometer.setTextColor(getResources().getColor(R.color.colorPrimary));
+        mChronometer.setTextSize(18);
 
         LayoutParams layoutParamsChronometer = new LayoutParams(
                 ViewGroup.LayoutParams.WRAP_CONTENT,
                 ViewGroup.LayoutParams.WRAP_CONTENT);
 
         layoutParamsChronometer.addRule(RelativeLayout.CENTER_IN_PARENT, RelativeLayout.TRUE);
-        mLayoutTimer.addView(this.mChronometer, layoutParamsChronometer);
+        mLayoutTimer.addView(mChronometer, layoutParamsChronometer);
 
         /**
          * Layout to voice and cancel audio
@@ -232,29 +233,29 @@ public class AudioRecordButton extends RelativeLayout implements View.OnTouchLis
                 ViewGroup.LayoutParams.WRAP_CONTENT
         );
         layoutVoiceParams.addRule(RelativeLayout.BELOW, 9 + 1);
-        addView(this.mLayoutVoice, layoutVoiceParams);
+        addView(mLayoutVoice, layoutVoiceParams);
 
         /**
          * Image voice
          */
-        this.mImageView = new ImageView(context);
-        this.mImageView.setBackground(drawableMicVoice != null ? drawableMicVoice : ContextCompat.getDrawable(context, R.drawable.mic_shape));
+        mImageView = new ImageView(context);
+        mImageView.setBackground(drawableMicVoice != null ? drawableMicVoice : ContextCompat.getDrawable(context, R.drawable.mic_shape));
         LayoutParams layoutParamImage = new LayoutParams(
                 recorderImageWidth > 0 ? recorderImageWidth : DEFAULT_ICON_SIZE,
                 recorderImageHeight > 0 ? recorderImageHeight : DEFAULT_ICON_SIZE);
         layoutParamImage.addRule(RelativeLayout.CENTER_IN_PARENT, RelativeLayout.TRUE);
-        this.mLayoutVoice.addView(this.mImageView, layoutParamImage);
-        this.mImageView.setOnTouchListener(this);
+        mLayoutVoice.addView(mImageView, layoutParamImage);
+        mImageView.setOnTouchListener(this);
 
         /**
          * Image Button
          */
-        this.mImageButton = new ImageButton(context);
-        this.mImageButton.setVisibility(INVISIBLE);
-        this.mImageButton.setAlpha(0.5f);
-        this.mImageButton.setImageDrawable(drawableRemoveButton != null ? drawableRemoveButton : ContextCompat.getDrawable(context, R.drawable.ic_close));
-        this.mImageButton.setBackground(ContextCompat.getDrawable(context, R.drawable.shape_circle));
-        this.mImageButton.setColorFilter(Color.WHITE);
+        mImageButton = new ImageButton(context);
+        mImageButton.setVisibility(INVISIBLE);
+        mImageButton.setAlpha(0.5f);
+        mImageButton.setImageDrawable(drawableRemoveButton != null ? drawableRemoveButton : ContextCompat.getDrawable(context, R.drawable.ic_close));
+        mImageButton.setBackground(ContextCompat.getDrawable(context, R.drawable.shape_circle));
+        mImageButton.setColorFilter(Color.WHITE);
 
         LayoutParams layoutParamImageButton = new LayoutParams(
                 ((removeImageWidth > 0) && (removeImageWidth < DEFAULT_REMOVE_ICON_SIZE)) ? removeImageWidth : DEFAULT_REMOVE_ICON_SIZE,
@@ -263,9 +264,9 @@ public class AudioRecordButton extends RelativeLayout implements View.OnTouchLis
         layoutParamImageButton.setMargins(20, 0, 20, 0);
         layoutParamImageButton.addRule(RelativeLayout.CENTER_VERTICAL, RelativeLayout.TRUE);
 
-        this.mLayoutVoice.addView(this.mImageButton, layoutParamImageButton);
+        mLayoutVoice.addView(mImageButton, layoutParamImageButton);
 
-        this.initialXImageButton = this.mImageButton.getX();
+        initialXImageButton = mImageButton.getX();
 
     }
 
@@ -275,40 +276,44 @@ public class AudioRecordButton extends RelativeLayout implements View.OnTouchLis
         if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.JELLY_BEAN) {
             transition.enableTransitionType(LayoutTransition.CHANGING);
         }
-        this.mLayoutTimer.setLayoutTransition(transition);
-        this.setLayoutTransition(transition);
+        mLayoutTimer.setLayoutTransition(transition);
+        setLayoutTransition(transition);
 
-        this.mChronometer.setTextLocale(Locale.US);
-        this.mChronometer.setBase(SystemClock.elapsedRealtime());
-        this.mChronometer.start();
+        mChronometer.setTextLocale(Locale.US);
+        mChronometer.setBase(SystemClock.elapsedRealtime());
+        mChronometer.setOnChronometerTickListener(cArg -> {
+            long t = SystemClock.elapsedRealtime() - cArg.getBase();
+            cArg.setText(String.format("%s", DateFormat.format("mm:ss", t), Locale.US));
+        });
+        mChronometer.start();
 
-        this.mImageView.setScaleX(0.8f);
-        this.mImageView.setScaleY(0.8f);
-        this.requestLayout();
+        mImageView.setScaleX(0.8f);
+        mImageView.setScaleY(0.8f);
+        requestLayout();
     }
 
     public void changeSizeToRemove() {
-        if (this.mImageButton.getLayoutParams().width != this.mImageView.getWidth()) {
-            this.mImageButton.getLayoutParams().width = this.mImageView.getWidth();
-            this.mImageButton.getLayoutParams().height = this.mImageView.getHeight();
-            this.mImageButton.requestLayout();
-            this.mImageButton.setX(0);
+        if (mImageButton.getLayoutParams().width != mImageView.getWidth()) {
+            mImageButton.getLayoutParams().width = mImageView.getWidth();
+            mImageButton.getLayoutParams().height = mImageView.getHeight();
+            mImageButton.requestLayout();
+            mImageButton.setX(0);
         }
     }
 
     public void unRevealSizeToRemove() {
-        this.mImageButton.getLayoutParams().width = ((removeImageWidth > 0) && (removeImageWidth < DEFAULT_REMOVE_ICON_SIZE)) ? removeImageWidth : DEFAULT_REMOVE_ICON_SIZE;
-        this.mImageButton.getLayoutParams().height = ((removeImageHeight > 0) && (removeImageHeight < DEFAULT_REMOVE_ICON_SIZE)) ? removeImageHeight : DEFAULT_REMOVE_ICON_SIZE;
-        this.mImageButton.requestLayout();
+        mImageButton.getLayoutParams().width = ((removeImageWidth > 0) && (removeImageWidth < DEFAULT_REMOVE_ICON_SIZE)) ? removeImageWidth : DEFAULT_REMOVE_ICON_SIZE;
+        mImageButton.getLayoutParams().height = ((removeImageHeight > 0) && (removeImageHeight < DEFAULT_REMOVE_ICON_SIZE)) ? removeImageHeight : DEFAULT_REMOVE_ICON_SIZE;
+        mImageButton.requestLayout();
     }
 
     public void unRevealImageView() {
-        this.mChronometer.stop();
-        this.mChronometer.setBase(SystemClock.elapsedRealtime());
+        mChronometer.stop();
+        mChronometer.setBase(SystemClock.elapsedRealtime());
 
-        this.mImageView.setScaleX(1f);
-        this.mImageView.setScaleY(1f);
-        this.requestLayout();
+        mImageView.setScaleX(1f);
+        mImageView.setScaleY(1f);
+        requestLayout();
     }
 
     @Override
@@ -324,8 +329,8 @@ public class AudioRecordButton extends RelativeLayout implements View.OnTouchLis
                         initialTouchX = event.getRawX();
                         changeImageView();
 
-                        if (this.initialX == 0) {
-                            this.initialX = this.mImageView.getX();
+                        if (initialX == 0) {
+                            initialX = mImageView.getX();
                         }
 
                         mLayoutTimer.setVisibility(VISIBLE);
@@ -337,27 +342,27 @@ public class AudioRecordButton extends RelativeLayout implements View.OnTouchLis
                 case MotionEvent.ACTION_MOVE:
 
                     if (isPlaying && !isPausing) {
-                        this.mImageView.setX(event.getRawX() - this.mImageView.getWidth() / 2);
+                        mImageView.setX(event.getRawX() - mImageView.getWidth() / 2);
 
-                        if (this.mImageView.getX() < DEFAULT_REMOVE_ICON_SIZE - 20) {
-                            this.mImageView.setX(20);
-                            this.changeSizeToRemove();
-                        } else if (this.mImageView.getX() > DEFAULT_REMOVE_ICON_SIZE + DEFAULT_REMOVE_ICON_SIZE / 2) {
-                            this.unRevealSizeToRemove();
+                        if (mImageView.getX() < DEFAULT_REMOVE_ICON_SIZE - 20) {
+                            mImageView.setX(20);
+                            changeSizeToRemove();
+                        } else if (mImageView.getX() > DEFAULT_REMOVE_ICON_SIZE + DEFAULT_REMOVE_ICON_SIZE / 2) {
+                            unRevealSizeToRemove();
                         }
 
                         if (Objects.equals(LocaleManager.getLanguage(mContext), LANGUAGE_ENGLISH)) {
-                            if (this.mImageView.getX() <= 0) {
-                                this.mImageButton.setX(20);
+                            if (mImageView.getX() <= 0) {
+                                mImageButton.setX(20);
                             }
                         } else {
-                            if (this.mImageView.getX() >= 0) {
-                                this.mImageButton.setX(20);
+                            if (mImageView.getX() >= 0) {
+                                mImageButton.setX(20);
                             }
                         }
 
-                        if (this.mImageView.getX() > this.initialX) {
-                            this.mImageView.setX(this.initialX);
+                        if (mImageView.getX() > initialX) {
+                            mImageView.setX(initialX);
                         }
                     }
 
@@ -371,7 +376,7 @@ public class AudioRecordButton extends RelativeLayout implements View.OnTouchLis
                         mLayoutTimer.setVisibility(VISIBLE);
                         mImageButton.setVisibility(INVISIBLE);
 
-                        if (this.mImageView.getX() < DEFAULT_REMOVE_ICON_SIZE - 10) {
+                        if (mImageView.getX() < DEFAULT_REMOVE_ICON_SIZE - 10) {
                             stopRecord(true);
                         } else {
                             stopRecord(false);

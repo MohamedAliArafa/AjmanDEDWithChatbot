@@ -2,6 +2,7 @@ package com.ajman.ded.ae;
 
 import android.content.Context;
 import android.content.res.Resources;
+import android.graphics.Bitmap;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
@@ -21,25 +22,30 @@ public class EyeDetailsImagesAdapter extends RecyclerView.Adapter<RecyclerView.V
 
     private final Context mContext;
     Resources resources;
-    private List<Integer> mList;
+    private List<Bitmap> mList;
     private AdapterCallback adapterCallback;
 
     public EyeDetailsImagesAdapter(Context context, AdapterCallback adapterCallback) {
         mContext = context;
         resources = context.getResources();
-        this.mList = new ArrayList<>();
+        this.mList = new ArrayList<Bitmap>();
         this.adapterCallback = adapterCallback;
     }
 
 
-    public void setImage(List<Integer> list) {
+    public void setImage(List<Bitmap> list) {
         mList.clear();
         mList.addAll(list);
         this.notifyDataSetChanged();
     }
 
+    public void addImage(Bitmap image) {
+        mList.add(image);
+        this.notifyDataSetChanged();
+    }
+
     public interface AdapterCallback {
-        void onOpenCallback(Integer integer);
+        void onOpenCallback(Bitmap integer);
     }
 
     @Override
@@ -51,7 +57,7 @@ public class EyeDetailsImagesAdapter extends RecyclerView.Adapter<RecyclerView.V
     @Override
     public void onBindViewHolder(RecyclerView.ViewHolder holder, int position) {
         MyViewHolder viewHolder = (MyViewHolder) holder;
-        Integer model = mList.get(position);
+        Bitmap model = mList.get(position);
         Glide.with(viewHolder.mImage.getContext())
                 .load(model)
                 .apply(RequestOptions.circleCropTransform())

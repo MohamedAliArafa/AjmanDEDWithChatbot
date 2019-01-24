@@ -19,15 +19,17 @@ import butterknife.BindView;
 import butterknife.ButterKnife;
 
 
-public class NotificationAdapter extends RecyclerView.Adapter<NotificationAdapter.MyViewHolder> {
+public class NotificationAdapter extends RecyclerView.Adapter<RecyclerView.ViewHolder> {
 
     private final Context mContext;
     Resources resources;
+    private String title;
     private List<ResponseContent> mList;
 
-    public NotificationAdapter(Context context) {
+    public NotificationAdapter(Context context, String string) {
         mContext = context;
         resources = context.getResources();
+        this.title = string;
         this.mList = new ArrayList<>();
     }
 
@@ -37,24 +39,41 @@ public class NotificationAdapter extends RecyclerView.Adapter<NotificationAdapte
     }
 
     @Override
-    public MyViewHolder onCreateViewHolder(ViewGroup parent, int viewType) {
-        View itemView = LayoutInflater.from(parent.getContext())
-                .inflate(R.layout.item_notification, parent, false);
-        return new MyViewHolder(itemView);
+    public RecyclerView.ViewHolder onCreateViewHolder(ViewGroup parent, int viewType) {
+        if (viewType == 0) {
+            View itemView = LayoutInflater.from(parent.getContext()).inflate(R.layout.item_header_notification, parent, false);
+            return new MyHeaderViewHolder(itemView);
+        } else {
+            View itemView = LayoutInflater.from(parent.getContext()).inflate(R.layout.item_notification, parent, false);
+            return new MyViewHolder(itemView);
+        }
     }
 
     @Override
-    public void onBindViewHolder(MyViewHolder holder, int position) {
-        ResponseContent model = mList.get(position);
-        holder.requestNo.setText(model.getRequestNumber());
-        if (model.getRequestDate() != null)
-            holder.date.setText(holder.simpleDateFormat.format(model.getRequestDate()));
-        holder.desc.setText(model.getEstablishmentNameAR());
+    public void onBindViewHolder(RecyclerView.ViewHolder viewHolder, int position) {
+        if (position == 0) {
+            MyHeaderViewHolder holder = (MyHeaderViewHolder) viewHolder;
+            holder.title.setText(title);
+        } else {
+            MyViewHolder holder = (MyViewHolder) viewHolder;
+            ResponseContent model = mList.get(position-1);
+            holder.requestNo.setText(model.getRequestNumber());
+            if (model.getRequestDate() != null)
+                holder.date.setText(holder.simpleDateFormat.format(model.getRequestDate()));
+            holder.desc.setText(model.getEstablishmentNameAR());
+        }
+    }
+
+    @Override
+    public int getItemViewType(int position) {
+        if (position == 0)
+            return 0;
+        else return position;
     }
 
     @Override
     public int getItemCount() {
-        return mList.size();
+        return mList.size() + 1;
     }
 
     class MyViewHolder extends RecyclerView.ViewHolder implements View.OnClickListener {
@@ -78,7 +97,18 @@ public class NotificationAdapter extends RecyclerView.Adapter<NotificationAdapte
 
         @Override
         public void onClick(View v) {
-            mContext.startActivity(new Intent(mContext, NotificationDetailsActivity.class).putExtra("id", mList.get(getAdapterPosition()).getID()));
+            mContext.startActivity(new Intent(mContext, NotificationDetailsActivity.class).putExtra("id", mList.get(getAdapterPosition()-1).getID()));
+        }
+    }
+
+    class MyHeaderViewHolder extends RecyclerView.ViewHolder {
+
+        @BindView(R.id.title)
+        TextView title;
+
+        MyHeaderViewHolder(View view) {
+            super(view);
+            ButterKnife.bind(this, view);
         }
     }
 }

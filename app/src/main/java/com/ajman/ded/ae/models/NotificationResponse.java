@@ -4,7 +4,7 @@ package com.ajman.ded.ae.models;
 import com.google.gson.annotations.Expose;
 import com.google.gson.annotations.SerializedName;
 
-public class InsertNotificationResponse {
+public class NotificationResponse {
 
     @SerializedName("ResponseContent")
     @Expose
@@ -18,6 +18,9 @@ public class InsertNotificationResponse {
     @SerializedName("ErrorMessage")
     @Expose
     private String errorMessage;
+    @SerializedName("NotificationId")
+    @Expose
+    private String notificationId;
 
     public String getResponseContent() {
         return responseContent;
@@ -51,4 +54,11 @@ public class InsertNotificationResponse {
         this.errorMessage = errorMessage;
     }
 
+    public String getNotificationId() {
+        return notificationId;
+    }
+
+    public void setNotificationId(String notificationId) {
+        this.notificationId = notificationId;
+    }
 }

@@ -7,5 +7,5 @@
         android:id="@+id/add"
         android:layout_width="match_parent"
         android:layout_height="60dp"
-        android:src="@drawable/ic_add" />
+        android:src="@drawable/image_add" />
 </androidx.constraintlayout.widget.ConstraintLayout>

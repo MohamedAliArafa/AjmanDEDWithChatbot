@@ -244,7 +244,7 @@
     <string name="notification_details">تفاصيل البلاغ</string>
     <string name="address_on_map">العنوان على الخريطة</string>
     <string name="re_detect_location">إعادة/تحديد الموقع</string>
-    <string name="add_record_voice">إضف تسجيل صوتي</string>
+    <string name="add_record_voice">قم بتوثيق البلاغ عن طريق التسجيل الصوتي</string>
     <string name="add_attachment">أضف المرفقات</string>
     <string name="take_photo">التقط صورة</string>
     <string name="send">إرسال البلاغ</string>
@@ -268,5 +268,10 @@
     <string name="voice_record">تسجيل صوتي</string>
     <string name="attachment">المرفقات</string>
     <string name="inspection_result">نتيجة التفتيش</string>
+    <string name="enable_location">تفعيل الموقع</string>
+    <string name="ajmaneye">عين الدائرة</string>
+    <string name="note">ملاحظات</string>
+    <string name="not_satisfied">غير راض</string>
+    <string name="satisfied">راض</string>
 
 </resources>

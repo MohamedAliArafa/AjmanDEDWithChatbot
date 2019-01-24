@@ -3,9 +3,11 @@ package com.ajman.ded.ae.screens.login;
 
 import android.content.Intent;
 import android.os.Bundle;
+
 import androidx.annotation.NonNull;
 import androidx.core.app.ActivityCompat;
 import androidx.fragment.app.Fragment;
+
 import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
@@ -25,8 +27,13 @@ import com.ajman.ded.ae.data.model.request.ConfirmCode.RequestEnvelope_ConfirmCo
 import com.ajman.ded.ae.data.model.request.GetAccount.RequestBody_GetAccount;
 import com.ajman.ded.ae.data.model.request.GetAccount.RequestData_GetAccount;
 import com.ajman.ded.ae.data.model.request.GetAccount.RequestEnvelope_GetAccount;
+import com.ajman.ded.ae.data.model.request.UserId.RequestBody_UserId;
+import com.ajman.ded.ae.data.model.request.UserId.RequestData_UserId;
+import com.ajman.ded.ae.data.model.request.UserId.RequestEnvelope_UserId;
 import com.ajman.ded.ae.data.model.response.ConfirmCode.ResponseEnvelope_ConfirmCode;
 import com.ajman.ded.ae.data.model.response.GetAccount.ResponseEnvelope_GetAccount;
+import com.ajman.ded.ae.data.model.response.UserId.ResponseEnvelope_UserId;
+import com.ajman.ded.ae.models.UserIdResponse;
 import com.ajman.ded.ae.models.UserModel;
 import com.ajman.ded.ae.screens.IntroActivity;
 import com.ajman.ded.ae.screens.registeration.RegisterActivity;
@@ -35,8 +42,14 @@ import com.ajman.ded.ae.utility.otpSms.SmsListener;
 import com.ajman.ded.ae.utility.otpSms.SmsReceiver;
 import com.ajman.ded.ae.utility.sweetDialog.SweetAlertDialog;
 import com.goodiebag.pinview.Pinview;
+import com.google.gson.Gson;
+
+import java.util.ArrayList;
+import java.util.Arrays;
+import java.util.List;
 
 import retrofit2.Call;
+import retrofit2.Callback;
 import retrofit2.Response;
 
 import static com.ajman.ded.ae.utility.Helper.convertDpToPixel;
@@ -106,13 +119,7 @@ public class LoginFragment extends Fragment implements SmsListener {
                             String result = response.body().getBody().getData().getAccountResult().replace("\"", "");
                             switch (result) {
                                 case "1":
-                                    UserData.clearUser(getActivity());
-                                    pDialog.dismiss();
-                                    ActivityCompat.finishAffinity(getActivity());
-                                    MyApplication.get(getActivity()).addUser(username.getText().toString(), password.getText().toString());
-                                    UserModel model = new UserModel(username.getText().toString(), password.getText().toString());
-                                    UserData.saveUserObject(getActivity(), model, true);
-                                    startActivity(new Intent(getActivity(), IntroActivity.class).addFlags(Intent.FLAG_ACTIVITY_NO_HISTORY));
+                                    getUserId();
                                     break;
                                 case "2":
                                     pinview = new Pinview(getActivity());
@@ -186,10 +193,7 @@ public class LoginFragment extends Fragment implements SmsListener {
                     int codeResult = response.body().getBody().getData().getConfirmCodeResult();
                     switch (codeResult) {
                         case 1:
-                            MyApplication.get(getActivity()).addUser(username.getText().toString(), password.getText().toString());
-                            UserModel model = new UserModel(username.getText().toString(), password.getText().toString());
-                            UserData.saveUserObject(getActivity(), model, true);
-                            startActivity(new Intent(getActivity(), IntroActivity.class).addFlags(Intent.FLAG_ACTIVITY_NO_HISTORY));
+                            getUserId();
                             break;
                         case 2:
                             pDialog.setTitleText(getString(R.string.wrong_code))
@@ -202,7 +206,7 @@ public class LoginFragment extends Fragment implements SmsListener {
                     Log.d("PIN PASS:", String.valueOf(codeResult));
                 } else {
                     pDialog.setTitleText(getString(R.string.went_wrong))
-                            .setConfirmText("OK")
+                            .setConfirmText(getString(R.string.ok))
                             .changeAlertType(SweetAlertDialog.ERROR_TYPE);
                 }
             }
@@ -216,9 +220,42 @@ public class LoginFragment extends Fragment implements SmsListener {
 
     @Override
     public void messageReceived(String messageText) {
-//        String number = messageText.replaceAll("\\D+","");
-//        Log.d("Otp",number + " From " + messageText);
         pinview.setValue(messageText);
+    }
+
+    private void getUserId() {
+        UserData.clearUser(getActivity());
+        RequestEnvelope_UserId envelope = new RequestEnvelope_UserId();
+        RequestBody_UserId body = new RequestBody_UserId();
+        RequestData_UserId data = new RequestData_UserId();
+
+        data.setEmail(username.getText().toString());
+        body.setRequestData(data);
+        envelope.setBody(body);
+
+        Call<ResponseEnvelope_UserId> userIdCall = api.requestUserIdCall("GetAccountInfoByEmail_JOSN", envelope);
+        userIdCall.enqueue(new Callback<ResponseEnvelope_UserId>() {
+            @Override
+            public void onResponse(Call<ResponseEnvelope_UserId> call, Response<ResponseEnvelope_UserId> response) {
+                if (response.isSuccessful()) {
+                    pDialog.dismiss();
+                    Gson gson = new Gson();
+                    UserIdResponse[] list = gson.fromJson(response.body().getBody().getData().getElements(), UserIdResponse[].class);
+                    List<UserIdResponse> models = new ArrayList<>();
+                    models.addAll(Arrays.asList(list));
+                    ActivityCompat.finishAffinity(getActivity());
+                    MyApplication.get(getActivity()).addUser(username.getText().toString(), password.getText().toString());
+                    UserModel model = new UserModel(username.getText().toString(), password.getText().toString(), models.get(0).getId());
+                    UserData.saveUserObject(getActivity(), model, true);
+                    startActivity(new Intent(getActivity(), IntroActivity.class).addFlags(Intent.FLAG_ACTIVITY_NO_HISTORY));
+                }
+            }
+
+            @Override
+            public void onFailure(Call<ResponseEnvelope_UserId> call, Throwable t) {
+
+            }
+        });
     }
 
     @Override
@@ -257,7 +294,7 @@ public class LoginFragment extends Fragment implements SmsListener {
 //                    Log.d("SMS PASS:", String.valueOf(result));
 //                } else {
 //                    pDialog.setTitleText(getString(R.string.went_wrong))
-//                            .setConfirmText("OK")
+//                            .setConfirmText(getString(R.string.ok))
 //                            .changeAlertType(SweetAlertDialog.ERROR_TYPE);
 //                }
 //            }
@@ -266,7 +303,7 @@ public class LoginFragment extends Fragment implements SmsListener {
 //            public void onFailure(@NonNull Call<ResponseEnvelope_SendSMS> call, @NonNull Throwable t) {
 //                Log.d("SMS ERROR:", String.valueOf(t));
 //                pDialog.setTitleText(getString(R.string.went_wrong))
-//                        .setConfirmText("OK")
+//                        .setConfirmText(getString(R.string.ok))
 //                        .changeAlertType(SweetAlertDialog.ERROR_TYPE);
 //            }
 //        });

@@ -98,23 +98,23 @@
     </style>
 
     <style name="TextStyle.Title" parent="TextStyle">
-        <item name="android:textSize">18sp</item>
+        <item name="android:textSize">14sp</item>
         <item name="android:textAppearance">@style/TextAppearance.Text.Regular</item>
     </style>
 
     <style name="TextStyle.Title.Bold" parent="TextStyle">
-        <item name="android:textSize">18sp</item>
+        <item name="android:textSize">14sp</item>
         <item name="android:textStyle">bold</item>
         <item name="android:textAppearance">@style/TextAppearance.Text.Regular</item>
     </style>
 
     <style name="TextStyle.Title.Sub" parent="TextStyle.Title">
         <item name="android:textAppearance">@style/TextAppearance.Text.Regular</item>
-        <item name="android:textSize">14sp</item>
+        <item name="android:textSize">12sp</item>
     </style>
 
     <style name="TextStyle.Heading" parent="TextStyle">
-        <item name="android:textSize">20sp</item>
+        <item name="android:textSize">18sp</item>
         <item name="android:textAppearance">@style/TextAppearance.Text.Regular</item>
     </style>
 

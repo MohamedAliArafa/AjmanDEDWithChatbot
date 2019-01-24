@@ -3,21 +3,22 @@ package com.ajman.ded.ae.screens.complaints;
 import android.Manifest;
 import android.annotation.SuppressLint;
 import android.app.Activity;
-import android.content.ClipData;
 import android.content.Context;
 import android.content.Intent;
 import android.content.IntentSender;
 import android.content.pm.PackageManager;
+import android.graphics.Bitmap;
+import android.graphics.BitmapFactory;
+import android.location.Address;
+import android.location.Geocoder;
 import android.location.Location;
 import android.location.LocationListener;
 import android.location.LocationManager;
 import android.net.Uri;
 import android.os.Bundle;
 import android.provider.MediaStore;
-import android.text.InputType;
 import android.view.View;
 import android.widget.AdapterView;
-import android.widget.Button;
 import android.widget.EditText;
 import android.widget.ImageView;
 import android.widget.Spinner;
@@ -25,6 +26,8 @@ import android.widget.TextView;
 import android.widget.Toast;
 
 import com.ajman.ded.ae.EyeImagesAdapter;
+import com.ajman.ded.ae.FileResolver;
+import com.ajman.ded.ae.FileUtils;
 import com.ajman.ded.ae.R;
 import com.ajman.ded.ae.adapters.SpinnerAdapter;
 import com.ajman.ded.ae.audio_recorder.AudioListener;
@@ -36,9 +39,11 @@ import com.ajman.ded.ae.data.ApiBuilder;
 import com.ajman.ded.ae.dependency.component.DaggerLocationComponent;
 import com.ajman.ded.ae.dependency.module.ContextModule;
 import com.ajman.ded.ae.libs.LocaleManager;
-import com.ajman.ded.ae.models.InsertNotificationResponse;
-import com.ajman.ded.ae.models.Tybe;
+import com.ajman.ded.ae.models.NotificationResponse;
+import com.ajman.ded.ae.models.notification.ImageBundle;
+import com.ajman.ded.ae.models.notification.tybe.NotificationTypeResponse;
 import com.ajman.ded.ae.utility.CustomMapView;
+import com.ajman.ded.ae.utility.SharedTool.UserData;
 import com.ajman.ded.ae.utility.sweetDialog.SweetAlertDialog;
 import com.google.android.gms.common.api.ApiException;
 import com.google.android.gms.common.api.ResolvableApiException;
@@ -53,18 +58,18 @@ import com.google.android.gms.maps.model.LatLng;
 import com.google.android.gms.maps.model.LatLngBounds;
 import com.google.android.gms.maps.model.MarkerOptions;
 import com.google.android.gms.tasks.Task;
-import com.google.gson.Gson;
 
-import java.io.BufferedReader;
+import java.io.ByteArrayOutputStream;
 import java.io.File;
-import java.io.InputStream;
-import java.io.InputStreamReader;
-import java.io.Reader;
+import java.io.FileNotFoundException;
+import java.io.FileOutputStream;
+import java.io.IOException;
 import java.text.DateFormat;
 import java.text.SimpleDateFormat;
 import java.util.ArrayList;
 import java.util.Calendar;
 import java.util.Date;
+import java.util.List;
 import java.util.Locale;
 
 import javax.inject.Inject;
@@ -73,7 +78,6 @@ import androidx.annotation.NonNull;
 import androidx.annotation.Nullable;
 import androidx.appcompat.app.AppCompatActivity;
 import androidx.appcompat.widget.AppCompatSeekBar;
-import androidx.cardview.widget.CardView;
 import androidx.constraintlayout.widget.ConstraintLayout;
 import androidx.core.app.ActivityCompat;
 import androidx.core.content.FileProvider;
@@ -81,6 +85,9 @@ import androidx.recyclerview.widget.GridLayoutManager;
 import androidx.recyclerview.widget.RecyclerView;
 import butterknife.BindView;
 import butterknife.ButterKnife;
+import okhttp3.MediaType;
+import okhttp3.MultipartBody;
+import okhttp3.RequestBody;
 import retrofit2.Call;
 import retrofit2.Callback;
 import retrofit2.Response;
@@ -108,16 +115,14 @@ public class SubmitActivity extends AppCompatActivity implements EyeImagesAdapte
     AppCompatSeekBar mSeekBar;
     @BindView(R.id.play_stop)
     ImageView play_stop;
-    @BindView(R.id.voice_cardview)
-    CardView voice_cardview;
+    @BindView(R.id.voice_container)
+    View voice_cardview;
     @BindView(R.id.audio_container)
     ConstraintLayout audioContainer;
     @BindView(R.id.max)
     TextView max;
     @BindView(R.id.list)
     RecyclerView recyclerView;
-    @BindView(R.id.add_image)
-    Button addImage;
     @BindView(R.id.toolbar_title)
     TextView toolbarTitle;
     @BindView(R.id.map)
@@ -125,7 +130,7 @@ public class SubmitActivity extends AppCompatActivity implements EyeImagesAdapte
     @BindView(R.id.complaint_type)
     Spinner typeSpinner;
     @BindView(R.id.complaint)
-    EditText complaint;
+    TextView complaint;
     @BindView(R.id.complaint_details)
     EditText complaint_details;
     @BindView(R.id.facility_title)
@@ -136,21 +141,26 @@ public class SubmitActivity extends AppCompatActivity implements EyeImagesAdapte
     View permissionLayout;
     @BindView(R.id.grant_permission)
     TextView grantPermission;
+    @BindView(R.id.textView10)
+    TextView record_audio;
+    @BindView(R.id.location_title)
+    TextView locationTitle;
     private AudioRecording audioRecord;
     private RecordingItem recordingAudio;
     private EyeImagesAdapter mAdapter;
-    private ArrayList<String> imagesEncodedList;
-    private String imageEncoded;
+    private ArrayList<Uri> imagesEncodedList;
     private GoogleMap googleMap;
     private LatLngBounds.Builder builder;
     private SpinnerAdapter typeAdapter;
-    private String tybeId;
+    private String tybeId = "";
     private Api api;
     private String lat = "";
     private String lng = "";
     private String tybePeriod, tybeStatus;
     private SweetAlertDialog pDialog;
     private Uri uri;
+    private ImageBundle imageBundle;
+    private String mCurrentPhotoPath;
 
     private Context viewContext() {
         return this;
@@ -172,7 +182,6 @@ public class SubmitActivity extends AppCompatActivity implements EyeImagesAdapte
         toolbarTitle.setText(getString(R.string.submit_notification));
 
         findViewById(R.id.up).setOnClickListener(view -> super.onBackPressed());
-        findViewById(R.id.cancel).setOnClickListener(view -> super.onBackPressed());
 
         requestLocationPermission();
 
@@ -188,10 +197,8 @@ public class SubmitActivity extends AppCompatActivity implements EyeImagesAdapte
         perms = new String[]{Manifest.permission.READ_EXTERNAL_STORAGE, Manifest.permission.WRITE_EXTERNAL_STORAGE};
 
         mAdapter = new EyeImagesAdapter(this, this);
-        recyclerView.setLayoutManager(new GridLayoutManager(this, 3));
+        recyclerView.setLayoutManager(new GridLayoutManager(this, 6));
         recyclerView.setAdapter(mAdapter);
-
-        addImage.setOnClickListener(this::onAddImage);
 
         audioRecordButton.setOnAudioListener(new AudioListener() {
             @Override
@@ -217,29 +224,6 @@ public class SubmitActivity extends AppCompatActivity implements EyeImagesAdapte
             }
         });
 
-        InputStream raw = getResources().openRawResource(R.raw.type);
-        Reader rd = new BufferedReader(new InputStreamReader(raw));
-        Gson gson = new Gson();
-        Tybe obj = gson.fromJson(rd, Tybe.class);
-        typeAdapter = new SpinnerAdapter(this, R.layout.spinner_text, obj.getResponseContent(), TYPE_TYPE);
-        typeSpinner.setAdapter(typeAdapter);
-        typeSpinner.setOnItemSelectedListener(new AdapterView.OnItemSelectedListener() {
-            public void onItemSelected(AdapterView<?> parent, View view, int pos, long id) {
-                if (pos != 0) {
-                    tybeId = obj.getResponseContent().get(pos - 1).getID();
-                    tybePeriod = obj.getResponseContent().get(pos - 1).getPeriodInDays();
-                    tybeStatus = obj.getResponseContent().get(pos - 1).getNotificationStatusNameAR();
-                    typeSpinner.clearFocus();
-                    complaint.setInputType(InputType.TYPE_NULL);
-                    complaint.setText(obj.getResponseContent().get(pos - 1).getDescriptionAR());
-                    complaint_details.requestFocusFromTouch();
-                }
-            }
-
-            public void onNothingSelected(AdapterView<?> parent) {
-            }
-        });
-
         DateFormat df = new SimpleDateFormat("yyyy-MM-dd'T'HH:mm:ss", Locale.US);
         String date = df.format(Calendar.getInstance().getTime());
 
@@ -249,16 +233,21 @@ public class SubmitActivity extends AppCompatActivity implements EyeImagesAdapte
                 .setTitleText(getString(R.string.loading));
         pDialog.setCancelable(true);
 
+        populateType();
+
         findViewById(R.id.send).setOnClickListener(view -> {
-            if (lat.length() > 0 && lng.length() > 0 && establishmentTitle.getText().toString().length() > 0 && licenceNo.getText().toString().length() > 0 && complaint_details.getText().toString().length() > 0) {
-                Call<InsertNotificationResponse> call = api.insert_notification("10", date, establishmentTitle.getText().toString(), licenceNo.getText().toString(), tybeId, complaint_details.getText().toString(), lat, lng);
+            if (lat.length() > 0 && lng.length() > 0 && establishmentTitle.getText().toString().length() > 0 && licenceNo.getText().toString().length() > 0 && complaint_details.getText().toString().length() > 0 && tybeId.length() > 0) {
+                Call<NotificationResponse> call = api.insert_notification(UserData.getUserObject(SubmitActivity.this).getUserId(), date, establishmentTitle.getText().toString(), licenceNo.getText().toString(), tybeId, complaint_details.getText().toString(), lat, lng);
+                pDialog = new SweetAlertDialog(this, SweetAlertDialog.PROGRESS_TYPE)
+                        .setTitleText(getString(R.string.loading));
+                pDialog.setCancelable(true);
                 pDialog.show();
-                call.clone().enqueue(new Callback<InsertNotificationResponse>() {
+                call.clone().enqueue(new Callback<NotificationResponse>() {
                     @Override
-                    public void onResponse(Call<InsertNotificationResponse> call, Response<InsertNotificationResponse> response) {
+                    public void onResponse(Call<NotificationResponse> call, Response<NotificationResponse> response) {
                         if (response.isSuccessful()) {
                             if (response.body().getResponseCode() == 1) {
-                                pDialog.setTitleText("بلاغ " + tybeStatus + " سوف يستغرق مدة " + tybePeriod + " من الأيام ليتم مراجعتها").setConfirmClickListener(sweetAlertDialog -> SubmitActivity.super.onBackPressed()).changeAlertType(SweetAlertDialog.SUCCESS_TYPE);
+                                uploadFiles(response.body().getNotificationId());
                             }
                         } else {
                             pDialog.dismissWithAnimation();
@@ -266,7 +255,7 @@ public class SubmitActivity extends AppCompatActivity implements EyeImagesAdapte
                     }
 
                     @Override
-                    public void onFailure(Call<InsertNotificationResponse> call, Throwable t) {
+                    public void onFailure(Call<NotificationResponse> call, Throwable t) {
                         pDialog.dismissWithAnimation();
                     }
                 });
@@ -284,6 +273,63 @@ public class SubmitActivity extends AppCompatActivity implements EyeImagesAdapte
             if (audioRecord != null)
                 audioRecord.play();
         }
+    }
+
+    private void uploadFiles(String notificationId) {
+        List<MultipartBody.Part> parts = new ArrayList<>();
+        for (ImageBundle photoUri : mAdapter.getImages())
+            parts.add(prepareFilePart("_files", photoUri.getImageAbsolutePath(), photoUri.getImageUri()));
+        parts.add(prepareAudioPart("_files", recordingAudio.getFilePath()));
+        Call<NotificationResponse> uploadCall = api.uploadMultipleFilesDynamic(createPartFromString(notificationId), parts);
+        uploadCall.enqueue(new Callback<NotificationResponse>() {
+            @Override
+            public void onResponse(Call<NotificationResponse> call, Response<NotificationResponse> response) {
+                if (response.isSuccessful()) {
+                    if (response.body().getResponseCode() == 1) {
+                        pDialog.setTitleText("بلاغ " + tybeStatus + " سوف يستغرق مدة " + tybePeriod + " من الأيام ليتم مراجعتها").setConfirmClickListener(sweetAlertDialog -> SubmitActivity.super.onBackPressed()).changeAlertType(SweetAlertDialog.SUCCESS_TYPE);
+                    }
+                }
+            }
+
+            @Override
+            public void onFailure(Call<NotificationResponse> call, Throwable t) {
+                pDialog.dismissWithAnimation();
+            }
+        });
+    }
+
+    private void populateType() {
+        Call<NotificationTypeResponse> type = api.type_notification();
+        type.enqueue(new Callback<NotificationTypeResponse>() {
+            @Override
+            public void onResponse(Call<NotificationTypeResponse> call, Response<NotificationTypeResponse> response) {
+                if (response.isSuccessful()) {
+                    if (response.body().getResponseCode() == 1) {
+                        typeAdapter = new SpinnerAdapter(SubmitActivity.this, R.layout.spinner_text, response.body().getResponseContent(), TYPE_TYPE);
+                        typeSpinner.setAdapter(typeAdapter);
+                        typeSpinner.setOnItemSelectedListener(new AdapterView.OnItemSelectedListener() {
+                            public void onItemSelected(AdapterView<?> parent, View view, int pos, long id) {
+                                if (pos != 0) {
+                                    tybeId = response.body().getResponseContent().get(pos - 1).getID();
+                                    tybePeriod = response.body().getResponseContent().get(pos - 1).getPeriodInDays();
+                                    tybeStatus = response.body().getResponseContent().get(pos - 1).getNotificationStatusNameAR();
+                                    typeSpinner.clearFocus();
+                                    complaint.setText(response.body().getResponseContent().get(pos - 1).getDescriptionAR());
+                                }
+                            }
+
+                            public void onNothingSelected(AdapterView<?> parent) {
+                            }
+                        });
+                    }
+                }
+            }
+
+            @Override
+            public void onFailure(Call<NotificationTypeResponse> call, Throwable t) {
+
+            }
+        });
     }
 
     private boolean requestAudioPermission() {
@@ -319,17 +365,11 @@ public class SubmitActivity extends AppCompatActivity implements EyeImagesAdapte
         }
     }
 
-    private void onAddImage(View view) {
-        if (requestStoragePermission()) {
-            openGallery();
-        }
-    }
 
     private void initAudio() {
         audioRecord = new AudioRecording(SubmitActivity.this);
         audioRecord.setSeekBar(mSeekBar);
         audioRecord.setMax(max);
-        voice_cardview.setVisibility(View.VISIBLE);
         play_stop.setOnClickListener(this::play_stop);
     }
 
@@ -347,6 +387,7 @@ public class SubmitActivity extends AppCompatActivity implements EyeImagesAdapte
                 break;
             case REQUEST_CODE_LOCATION_PERMISSIONS:
                 if (grantResults.length > 0 && grantResults[0] == PackageManager.PERMISSION_GRANTED) {
+                    accessUserLocation();
                     permissionLayout.setVisibility(View.GONE);
                 } else {
                     permissionLayout.setVisibility(View.VISIBLE);
@@ -405,17 +446,22 @@ public class SubmitActivity extends AppCompatActivity implements EyeImagesAdapte
     }
 
     @Override
-    public void onAddCallback() {
+    public void onAddCallback() throws IOException {
         if (requestStoragePermission()) {
             openGallery();
         }
     }
 
-    private void openGallery() {
-        String timeStamp = new SimpleDateFormat("yyyyMMdd_HHmmss").format(new Date());
-        File imageFile = new File(this.getApplicationContext().getExternalFilesDir(android.os.Environment.DIRECTORY_PICTURES).getAbsolutePath() + File.separator + "ajmanded_" + timeStamp + ".jpg");
-        uri = FileProvider.getUriForFile(this, "com.ajman.ded.ae.provider", imageFile);
+    private void openGallery() throws IOException {
+        String timeStamp = new SimpleDateFormat("yyyyMMdd_HHmmss", Locale.US).format(new Date());
+        File storageDir = (getExternalFilesDir(android.os.Environment.DIRECTORY_PICTURES));
+        File image = File.createTempFile("ajmanded_" + timeStamp + "_", ".jpg", storageDir);
+        uri = FileProvider.getUriForFile(this, "com.ajman.ded.ae.provider", image);
+        imageBundle = new ImageBundle();
+        imageBundle.setImageUri(uri);
+        imageBundle.setImageAbsolutePath(image.getAbsolutePath());
         Intent takePicture = new Intent(MediaStore.ACTION_IMAGE_CAPTURE);
+        takePicture.addFlags(Intent.FLAG_GRANT_WRITE_URI_PERMISSION);
         takePicture.putExtra(MediaStore.EXTRA_OUTPUT, uri);
         startActivityForResult(takePicture, OPEN_CAMERA);
     }
@@ -424,38 +470,13 @@ public class SubmitActivity extends AppCompatActivity implements EyeImagesAdapte
     @Override
     protected void onActivityResult(int requestCode, int resultCode, @Nullable Intent resultData) {
         if (requestCode == OPEN_GALLERY && resultCode == RESULT_OK) {
-            imagesEncodedList = new ArrayList<>();
             if (resultData.getData() != null) {
-                Uri mImageUri = resultData.getData();
-//                imageEncoded = mImageUri.getPath();
-                imagesEncodedList.clear();
-                imagesEncodedList.add(mImageUri.toString());
-                mAdapter.addImage(imagesEncodedList);
-            } else {
-                if (resultData.getClipData() != null) {
-                    ClipData mClipData = resultData.getClipData();
-                    for (int i = 0; i < mClipData.getItemCount(); i++) {
-                        ClipData.Item item = mClipData.getItemAt(i);
-                        Uri uri = item.getUri();
-                        imagesEncodedList.clear();
-//                        imageEncoded = uri.getPath();
-                        imagesEncodedList.add(uri.toString());
-                        mAdapter.addImage(imagesEncodedList);
-                    }
-                }
+                mAdapter.addImage(imageBundle);
             }
         }
 
         if (requestCode == OPEN_CAMERA && resultCode == RESULT_OK) {
-            imagesEncodedList = new ArrayList<>();
-            imagesEncodedList.clear();
-//            try {
-//                mImageBitmap = MediaStore.Images.Media.getBitmap(this.getContentResolver(), uri);
-//            } catch (IOException e) {
-//                e.printStackTrace();
-//            }
-            imagesEncodedList.add(uri.toString());
-            mAdapter.addImage(imagesEncodedList);
+            mAdapter.addImage(imageBundle);
         }
 
         if (requestCode == REQUEST_CHECK_SETTINGS) {
@@ -472,13 +493,26 @@ public class SubmitActivity extends AppCompatActivity implements EyeImagesAdapte
     public void onLocationChanged(Location location) {
         lat = String.valueOf(location.getLatitude());
         lng = String.valueOf(location.getLongitude());
-        googleMap.setMyLocationEnabled(true);
+        if (googleMap != null)
+            googleMap.setMyLocationEnabled(true);
         builder = new LatLngBounds.Builder();
         LatLng latLng = new LatLng(location.getLatitude(), location.getLongitude());
-        googleMap.addMarker(new MarkerOptions().position(latLng).title(getString(R.string.your_location))).setIcon(BitmapDescriptorFactory.fromResource(R.drawable.ic_location));
-        builder.include(latLng);
-        LatLngBounds bounds = builder.build();
-        googleMap.moveCamera(CameraUpdateFactory.newLatLngBounds(bounds, 8));
+        if (googleMap != null) {
+            googleMap.addMarker(new MarkerOptions().position(latLng).title(getString(R.string.your_location))).setIcon(BitmapDescriptorFactory.fromResource(R.drawable.ic_location));
+            builder.include(latLng);
+            LatLngBounds bounds = builder.build();
+            googleMap.moveCamera(CameraUpdateFactory.newLatLngBounds(bounds, 8));
+
+            Geocoder geocoder;
+            List<Address> addresses;
+            geocoder = new Geocoder(this, Locale.getDefault());
+            try {
+                addresses = geocoder.getFromLocation(location.getLatitude(), location.getLongitude(), 1);
+                locationTitle.setText(addresses.get(0).getAddressLine(0));
+            } catch (IOException e) {
+                e.printStackTrace();
+            }
+        }
     }
 
     @Override
@@ -507,5 +541,31 @@ public class SubmitActivity extends AppCompatActivity implements EyeImagesAdapte
         if (audioRecord != null)
             audioRecord.stop();
         super.onDestroy();
+    }
+
+
+    @NonNull
+    private RequestBody createPartFromString(String descriptionString) {
+        return RequestBody.create(okhttp3.MultipartBody.FORM, descriptionString);
+    }
+
+    @NonNull
+    private MultipartBody.Part prepareFilePart(String partName, String filePath, Uri fileUri) {
+        File file = new File(filePath);
+        Bitmap bitmap = BitmapFactory.decodeFile (file.getPath ());
+        try {
+            bitmap.compress (Bitmap.CompressFormat.JPEG, 50, new FileOutputStream(file));
+        } catch (FileNotFoundException e) {
+            e.printStackTrace();
+        }
+        RequestBody requestFile = RequestBody.create(MediaType.parse(getContentResolver().getType(fileUri)), file);
+        return MultipartBody.Part.createFormData(partName, file.getName(), requestFile);
+    }
+
+    @NonNull
+    private MultipartBody.Part prepareAudioPart(String partName, String fileUri) {
+        File file = new File(fileUri);
+        RequestBody requestFile = RequestBody.create(MediaType.parse("audio/*"), file);
+        return MultipartBody.Part.createFormData(partName, file.getName(), requestFile);
     }
 }

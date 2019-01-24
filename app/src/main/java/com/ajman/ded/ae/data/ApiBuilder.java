@@ -13,6 +13,7 @@ import org.simpleframework.xml.strategy.Strategy;
 import org.simpleframework.xml.stream.Format;
 
 import java.util.Date;
+import java.util.concurrent.TimeUnit;
 
 import okhttp3.Authenticator;
 import okhttp3.Credentials;
@@ -37,17 +38,12 @@ public class ApiBuilder {
 
         Strategy strategy = new AnnotationStrategy();
 
-        Serializer serializer = new Persister(
-                new Format("<?xml version=\"1.0\" encoding=\"utf-8\" ?>"));
+        Serializer serializer = new Persister(new Format("<?xml version=\"1.0\" encoding=\"utf-8\" ?>"));
 
-        OkHttpClient okHttpClient = new OkHttpClient.Builder()
-                .addInterceptor(interceptor)
-                .build();
 
         Retrofit retrofit = new Retrofit.Builder()
                 .addConverterFactory(SimpleXmlConverterFactory.create(serializer))
                 .baseUrl(SITE_BASE_URL)
-                .client(okHttpClient)
                 .build();
 
         return retrofit.create(Api.class);
@@ -65,14 +61,9 @@ public class ApiBuilder {
         Serializer serializer = new Persister(
                 new Format("<?xml version=\"1.0\" encoding=\"utf-8\" ?>"));
 
-        OkHttpClient okHttpClient = new OkHttpClient.Builder()
-                .addInterceptor(interceptor)
-                .build();
-
         Retrofit retrofit = new Retrofit.Builder()
                 .addConverterFactory(SimpleXmlConverterFactory.create())
                 .baseUrl(NEWS_BASE_URL)
-                .client(okHttpClient)
                 .build();
 
         return retrofit.create(Api.class);
@@ -88,9 +79,10 @@ public class ApiBuilder {
         GsonBuilder gsonBuilder = new GsonBuilder();
         gsonBuilder.registerTypeAdapter(Date.class, new DateDeserializer());
         OkHttpClient client = new OkHttpClient.Builder()
-                .addInterceptor(interceptor)
-                .addInterceptor(new HeaderInterceptor())
-                .authenticator(new NTLMAuthenticator("sdg_hosam", "7atsheb$out@7070", ""))
+                .connectTimeout(5, TimeUnit.MINUTES)
+                .writeTimeout(5, TimeUnit.MINUTES)
+                .readTimeout(5, TimeUnit.MINUTES)
+                .authenticator(new NTLMAuthenticator("sdg_hosam", "7atsheb$out@7070"))
                 .build();
 
         Retrofit retrofit = new Retrofit.Builder()

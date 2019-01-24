@@ -13,9 +13,8 @@ import android.widget.TextView;
 import com.ajman.ded.ae.R;
 import com.ajman.ded.ae.libs.LocaleManager;
 import com.ajman.ded.ae.models.Country;
-import com.ajman.ded.ae.models.ResponseContent;
 import com.ajman.ded.ae.models.StockholderType;
-import com.ajman.ded.ae.models.Tybe;
+import com.ajman.ded.ae.models.notification.tybe.ResponseContent;
 
 import java.util.List;
 import java.util.Objects;
@@ -48,8 +47,7 @@ public class SpinnerAdapter extends ArrayAdapter<String> {
     }
 
     @Override
-    public View getDropDownView(int position, @Nullable View convertView,
-                                @NonNull ViewGroup parent) {
+    public View getDropDownView(int position, @Nullable View convertView, @NonNull ViewGroup parent) {
         return createItemView(position, convertView, parent);
     }
 

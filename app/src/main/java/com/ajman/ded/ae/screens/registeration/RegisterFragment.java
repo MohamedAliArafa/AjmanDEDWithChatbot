@@ -9,6 +9,7 @@ import android.os.Bundle;
 import android.os.CountDownTimer;
 import androidx.annotation.NonNull;
 import androidx.appcompat.widget.SwitchCompat;
+import androidx.core.app.ActivityCompat;
 import androidx.fragment.app.Fragment;
 import android.text.TextUtils;
 import android.util.Log;
@@ -40,12 +41,17 @@ import com.ajman.ded.ae.data.model.request.InsertNewOnlineUser.RequestEnvelope_I
 import com.ajman.ded.ae.data.model.request.SendSMS.RequestBody_SendSMS;
 import com.ajman.ded.ae.data.model.request.SendSMS.RequestData_SendSMS;
 import com.ajman.ded.ae.data.model.request.SendSMS.RequestEnvelope_SendSMS;
+import com.ajman.ded.ae.data.model.request.UserId.RequestBody_UserId;
+import com.ajman.ded.ae.data.model.request.UserId.RequestData_UserId;
+import com.ajman.ded.ae.data.model.request.UserId.RequestEnvelope_UserId;
 import com.ajman.ded.ae.data.model.response.ConfirmCode.ResponseEnvelope_ConfirmCode;
 import com.ajman.ded.ae.data.model.response.InsertNewOnlineUser.ResponseEnvelope_InsertNewOnlineUser;
 import com.ajman.ded.ae.data.model.response.SendSMS.ResponseEnvelope_SendSMS;
+import com.ajman.ded.ae.data.model.response.UserId.ResponseEnvelope_UserId;
 import com.ajman.ded.ae.models.Country;
 import com.ajman.ded.ae.models.RegisterLookups;
 import com.ajman.ded.ae.models.StockholderType;
+import com.ajman.ded.ae.models.UserIdResponse;
 import com.ajman.ded.ae.models.UserModel;
 import com.ajman.ded.ae.screens.IntroActivity;
 import com.ajman.ded.ae.utility.MaskEditText;
@@ -54,10 +60,12 @@ import com.ajman.ded.ae.utility.otpSms.SmsListener;
 import com.ajman.ded.ae.utility.otpSms.SmsReceiver;
 import com.ajman.ded.ae.utility.sweetDialog.SweetAlertDialog;
 import com.goodiebag.pinview.Pinview;
+import com.google.gson.Gson;
 
 import java.security.SecureRandom;
 import java.text.SimpleDateFormat;
 import java.util.ArrayList;
+import java.util.Arrays;
 import java.util.Calendar;
 import java.util.List;
 import java.util.Locale;
@@ -68,6 +76,7 @@ import butterknife.ButterKnife;
 import butterknife.Unbinder;
 import io.realm.Realm;
 import retrofit2.Call;
+import retrofit2.Callback;
 import retrofit2.Response;
 
 import static com.ajman.ded.ae.utility.Helper.convertDpToPixel;
@@ -328,26 +337,25 @@ public class RegisterFragment extends Fragment implements SmsListener {
                     switch (insertResult) {
                         case "101":
                             pDialog.setTitleText(getString(R.string.already_registered))
-                                    .setConfirmText("OK")
+                                    .setConfirmText(getString(R.string.ok))
                                     .changeAlertType(SweetAlertDialog.ERROR_TYPE);
                             break;
                         case "102":
                             pDialog.setTitleText(getString(R.string.phone_registered))
-                                    .setConfirmText("OK")
+                                    .setConfirmText(getString(R.string.ok))
                                     .changeAlertType(SweetAlertDialog.ERROR_TYPE);
                             break;
                         case "103":
                             pDialog.setTitleText(getString(R.string.nid_registered))
-                                    .setConfirmText("OK")
+                                    .setConfirmText(getString(R.string.ok))
                                     .changeAlertType(SweetAlertDialog.ERROR_TYPE);
                             break;
                         case "104":
                             pDialog.setTitleText(getString(R.string.passport_registered))
-                                    .setConfirmText("OK")
+                                    .setConfirmText(getString(R.string.ok))
                                     .changeAlertType(SweetAlertDialog.ERROR_TYPE);
                             break;
                         default:
-//                            sendSMS();
                             pinview = new Pinview(getActivity());
                             pinview.setPinHeight((int) convertDpToPixel(25));
                             pinview.setPinWidth((int) convertDpToPixel(25));
@@ -357,7 +365,7 @@ public class RegisterFragment extends Fragment implements SmsListener {
                             FrameLayout frameLayout = new FrameLayout(getActivity());
                             frameLayout.addView(pinview);
                             pDialog.setTitleText(getString(R.string.confirm_account))
-                                    .setConfirmText("OK")
+                                    .setConfirmText(getString(R.string.ok))
                                     .setCustomView(frameLayout)
                                     .setConfirmClickListener(sweetAlertDialog -> confirmCode(pinview.getValue()))
                                     .changeAlertType(SweetAlertDialog.NORMAL_TYPE);
@@ -366,7 +374,7 @@ public class RegisterFragment extends Fragment implements SmsListener {
                     }
                 } else {
                     pDialog.setTitleText(getString(R.string.went_wrong))
-                            .setConfirmText("OK")
+                            .setConfirmText(getString(R.string.ok))
                             .changeAlertType(SweetAlertDialog.ERROR_TYPE);
                 }
             }
@@ -375,7 +383,7 @@ public class RegisterFragment extends Fragment implements SmsListener {
             public void onFailure(@NonNull Call<ResponseEnvelope_InsertNewOnlineUser> call, @NonNull Throwable t) {
                 Log.d("INSERT ERROR:", String.valueOf(t));
                 pDialog.setTitleText(getString(R.string.went_wrong))
-                        .setConfirmText("OK")
+                        .setConfirmText(getString(R.string.ok))
                         .changeAlertType(SweetAlertDialog.ERROR_TYPE);
             }
         });
@@ -403,51 +411,6 @@ public class RegisterFragment extends Fragment implements SmsListener {
         pDialog.setCancelable(true);
     }
 
-    private void sendSMS() {
-        RequestEnvelope_SendSMS envelope = new RequestEnvelope_SendSMS();
-
-        RequestBody_SendSMS body = new RequestBody_SendSMS();
-
-        RequestData_SendSMS data = new RequestData_SendSMS();
-
-        SecureRandom random = new SecureRandom();
-        int num = random.nextInt(100000);
-        String formatted = String.format(Locale.US, "%05d", num);
-        data.setMessageEN(String.format(Locale.US, getString(R.string.code_verification_formula), formatted));
-        data.setMessageAR("رقم تفعيل تطبيق عجمان هو : " + formatted);
-        data.setMobileNo(mobileNo.getText().toString());
-        body.setRequestData(data);
-
-        envelope.setBody(body);
-
-        api = ApiBuilder.providesApi();
-
-        Call<ResponseEnvelope_SendSMS> call = api.requestSmsCall("SendSMS", envelope);
-
-        call.enqueue(new retrofit2.Callback<ResponseEnvelope_SendSMS>() {
-
-            @Override
-            public void onResponse(@NonNull Call<ResponseEnvelope_SendSMS> call, @NonNull final Response<ResponseEnvelope_SendSMS> response) {
-                if (response.isSuccessful()) {
-                    String result = response.body().getBody().getData().getSendSMSResult().replace("\"", "");
-                    Log.d("SMS PASS:", String.valueOf(result));
-                } else {
-                    pDialog.setTitleText(getString(R.string.went_wrong))
-                            .setConfirmText("OK")
-                            .changeAlertType(SweetAlertDialog.ERROR_TYPE);
-                }
-            }
-
-            @Override
-            public void onFailure(@NonNull Call<ResponseEnvelope_SendSMS> call, @NonNull Throwable t) {
-                Log.d("SMS ERROR:", String.valueOf(t));
-                pDialog.setTitleText(getString(R.string.went_wrong))
-                        .setConfirmText("OK")
-                        .changeAlertType(SweetAlertDialog.ERROR_TYPE);
-            }
-        });
-    }
-
     private void confirmCode(String pinٍ) {
 
         RequestEnvelope_ConfirmCode envelope = new RequestEnvelope_ConfirmCode();
@@ -455,7 +418,6 @@ public class RegisterFragment extends Fragment implements SmsListener {
         RequestBody_ConfirmCode body = new RequestBody_ConfirmCode();
 
         RequestData_ConfirmCode data = new RequestData_ConfirmCode();
-
 
         data.setEmail(username.getText().toString());
         data.setMobileConfirmationCode(pinٍ);
@@ -475,13 +437,7 @@ public class RegisterFragment extends Fragment implements SmsListener {
                     int codeResult = response.body().getBody().getData().getConfirmCodeResult();
                     switch (codeResult) {
                         case 1:
-                            UserData.clearUser(getActivity());
-                            pDialog.dismiss();
-
-                            MyApplication.get(getActivity()).addUser(username.getText().toString(), password.getText().toString());
-                            UserModel model = new UserModel(username.getText().toString(), password.getText().toString());
-                            UserData.saveUserObject(getActivity(), model, true);
-                            startActivity(new Intent(getActivity(), IntroActivity.class).addFlags(Intent.FLAG_ACTIVITY_NO_HISTORY));
+                           getUserId();
                             break;
                         default:
                             pDialog.setTitleText(getString(R.string.wrong_code))
@@ -492,7 +448,7 @@ public class RegisterFragment extends Fragment implements SmsListener {
                     Log.d("PIN PASS:", String.valueOf(codeResult));
                 } else {
                     pDialog.setTitleText(getString(R.string.went_wrong))
-                            .setConfirmText("OK")
+                            .setConfirmText(getString(R.string.ok))
                             .changeAlertType(SweetAlertDialog.ERROR_TYPE);
                 }
             }
@@ -502,7 +458,7 @@ public class RegisterFragment extends Fragment implements SmsListener {
             public void onFailure(@NonNull Call<ResponseEnvelope_ConfirmCode> call, @NonNull Throwable t) {
                 Log.d("PIN ERROR:", String.valueOf(t));
                 pDialog.setTitleText(getString(R.string.went_wrong))
-                        .setConfirmText("OK")
+                        .setConfirmText(getString(R.string.ok))
                         .changeAlertType(SweetAlertDialog.ERROR_TYPE);
             }
         });
@@ -546,10 +502,43 @@ public class RegisterFragment extends Fragment implements SmsListener {
 
     }
 
+    private void getUserId() {
+        UserData.clearUser(getActivity());
+        RequestEnvelope_UserId envelope = new RequestEnvelope_UserId();
+        RequestBody_UserId body = new RequestBody_UserId();
+        RequestData_UserId data = new RequestData_UserId();
+
+        data.setEmail(username.getText().toString());
+        body.setRequestData(data);
+        envelope.setBody(body);
+
+        Call<ResponseEnvelope_UserId> userIdCall = api.requestUserIdCall("GetAccountInfoByEmail_JOSN", envelope);
+        userIdCall.enqueue(new Callback<ResponseEnvelope_UserId>() {
+            @Override
+            public void onResponse(Call<ResponseEnvelope_UserId> call, Response<ResponseEnvelope_UserId> response) {
+                if (response.isSuccessful()) {
+                    pDialog.dismiss();
+                    Gson gson = new Gson();
+                    UserIdResponse[] list = gson.fromJson(response.body().getBody().getData().getElements(), UserIdResponse[].class);
+                    List<UserIdResponse> models = new ArrayList<>();
+                    models.addAll(Arrays.asList(list));
+                    ActivityCompat.finishAffinity(getActivity());
+                    MyApplication.get(getActivity()).addUser(username.getText().toString(), password.getText().toString());
+                    UserModel model = new UserModel(username.getText().toString(), password.getText().toString(), models.get(0).getId());
+                    UserData.saveUserObject(getActivity(), model, true);
+                    startActivity(new Intent(getActivity(), IntroActivity.class).addFlags(Intent.FLAG_ACTIVITY_NO_HISTORY));
+                }
+            }
+
+            @Override
+            public void onFailure(Call<ResponseEnvelope_UserId> call, Throwable t) {
+
+            }
+        });
+    }
+
     @Override
     public void messageReceived(String messageText) {
-//        String number = messageText.replaceAll("\\D+","");
-//        Log.d("Otp",number + " From " + messageText);
         pinview.setValue(messageText);
     }
 }

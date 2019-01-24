@@ -7,10 +7,12 @@ package com.ajman.ded.ae.models;
 public class UserModel {
     private String userName;
     private String password;
+    private String userId;
 
-    public UserModel(String userName, String password) {
+    public UserModel(String userName, String password, String userId) {
         this.userName = userName;
         this.password = password;
+        this.userId = userId;
     }
 
     public String getUserName() {
@@ -27,5 +29,13 @@ public class UserModel {
 
     public void setPassword(String password) {
         this.password = password;
+    }
+
+    public String getUserId() {
+        return userId;
+    }
+
+    public void setUserId(String userId) {
+        this.userId = userId;
     }
 }

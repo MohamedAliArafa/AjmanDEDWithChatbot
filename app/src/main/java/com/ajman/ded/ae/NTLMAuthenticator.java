@@ -3,47 +3,110 @@ package com.ajman.ded.ae;
 import java.io.IOException;
 import java.util.List;
 
-import javax.annotation.Nullable;
-
+import androidx.annotation.NonNull;
+import jcifs.ntlmssp.NtlmFlags;
+import jcifs.ntlmssp.Type1Message;
+import jcifs.ntlmssp.Type2Message;
+import jcifs.ntlmssp.Type3Message;
+import jcifs.util.Base64;
 import okhttp3.Authenticator;
+import okhttp3.Credentials;
 import okhttp3.Request;
 import okhttp3.Response;
 import okhttp3.Route;
 
 public class NTLMAuthenticator implements Authenticator {
-    final NTLMEngineImpl engine = new NTLMEngineImpl();
-    private final String domain;
-    private final String username;
-    private final String password;
-    private final String ntlmMsg1;
+    private static final int TYPE_1_FLAGS =
+            NtlmFlags.NTLMSSP_NEGOTIATE_56 |
+                    NtlmFlags.NTLMSSP_NEGOTIATE_128 |
+                    NtlmFlags.NTLMSSP_NEGOTIATE_NTLM2 |
+                    NtlmFlags.NTLMSSP_NEGOTIATE_ALWAYS_SIGN |
+                    NtlmFlags.NTLMSSP_REQUEST_TARGET;
 
-    public NTLMAuthenticator(String username, String password, String domain) {
-        this.domain = domain;
-        this.username = username;
-        this.password = password;
-        String localNtlmMsg1 = null;
-        try {
-            localNtlmMsg1 = engine.generateType1Msg(null, null);
-        } catch (Exception e) {
-            e.printStackTrace();
-        }
-        ntlmMsg1 = localNtlmMsg1;
+    private String mLogin;
+    private String mPassword;
+    private String mDomain;
+    private String mWorkstation;
+
+    public NTLMAuthenticator(@NonNull String login, @NonNull String password) {
+        this(login, password, "", "");
     }
 
+    public NTLMAuthenticator(@NonNull String login, @NonNull String password, @NonNull String domain, @NonNull String workstation) {
+        mLogin = login;
+        mPassword = password;
+        mDomain = domain;
+        mWorkstation = workstation;
+    }
 
-    @Nullable
     @Override
-    public Request authenticate(@Nullable Route route, Response response) throws IOException {
-        final List<String> WWWAuthenticate = response.headers().values("WWW-Authenticate");
-        if (WWWAuthenticate.contains("NTLM")) {
-            return response.request().newBuilder().header("Authorization", "NTLM " + ntlmMsg1).build();
+    public Request authenticate(Route route, Response response) throws IOException {
+
+        List<String> authHeaders = response.headers("WWW-Authenticate");
+        if (authHeaders != null) {
+            boolean negociate = false;
+            boolean ntlm = false;
+            String ntlmValue = null;
+            for (String authHeader : authHeaders) {
+                if (authHeader.equalsIgnoreCase("Negotiate")) {
+                    negociate = true;
+                }
+                if (authHeader.equalsIgnoreCase("NTLM")) {
+                    ntlm = true;
+                }
+                if (authHeader.startsWith("NTLM ")) {
+                    ntlmValue = authHeader.substring(5);
+                }
+            }
+
+            if (negociate && ntlm) {
+                String type1Msg = generateType1Msg(mDomain, mWorkstation);
+                String header = "NTLM " + type1Msg;
+                return response.request().newBuilder().header("Authorization", header).build();
+            } else if (ntlmValue != null) {
+                String type3Msg = generateType3Msg(mLogin, mPassword, mDomain, mWorkstation, ntlmValue);
+                String ntlmHeader = "NTLM " + type3Msg;
+                return response.request().newBuilder().header("Authorization", ntlmHeader).build();
+            }
         }
-        String ntlmMsg3 = null;
-        try {
-            ntlmMsg3 = engine.generateType3Msg(username, password, domain, "android-device", WWWAuthenticate.get(0).substring(5));
-        } catch (Exception e) {
-            e.printStackTrace();
+
+        if (responseCount(response) <= 3) {
+            String credential = Credentials.basic(mLogin, mPassword);
+            return response.request().newBuilder().header("Authorization", credential).build();
         }
-        return response.request().newBuilder().header("Authorization", "NTLM " + ntlmMsg3).build();
+
+        return null;
     }
+
+    private String generateType1Msg(@NonNull String domain, @NonNull String workstation) {
+        final Type1Message type1Message = new Type1Message(TYPE_1_FLAGS, domain, workstation);
+        byte[] source = type1Message.toByteArray();
+        return Base64.encode(source);
+    }
+
+    private String generateType3Msg(final String login, final String password, final String domain, final String workstation, final String challenge) {
+        Type2Message type2Message;
+        try {
+            byte[] decoded = Base64.decode(challenge);
+            type2Message = new Type2Message(decoded);
+        } catch (final IOException exception) {
+            exception.printStackTrace();
+            return null;
+        }
+        final int type2Flags = type2Message.getFlags();
+        final int type3Flags = type2Flags
+                & (0xffffffff ^ (NtlmFlags.NTLMSSP_TARGET_TYPE_DOMAIN | NtlmFlags.NTLMSSP_TARGET_TYPE_SERVER));
+        final Type3Message type3Message = new Type3Message(type2Message, password, domain,
+                login, workstation, type3Flags);
+        return Base64.encode(type3Message.toByteArray());
+    }
+
+    private int responseCount(Response response) {
+        int result = 1;
+        while ((response = response.priorResponse()) != null) {
+            result++;
+        }
+        return result;
+    }
+
 }

@@ -97,7 +97,7 @@ public class SplashFragment extends Fragment implements SplashContract.ModelView
                     return false;
                 }
             }).into(imageView);
-        }else {
+        } else {
             onGifFinished();
         }
     }
@@ -105,10 +105,11 @@ public class SplashFragment extends Fragment implements SplashContract.ModelView
     private void onGifFinished() {
         if (isFirstLaunch()) {
             ((MainActivity) getContext()).launchLanguage();
-        } else if (UserData.getUserObject(getContext()) == null)
+        } else if (UserData.getUserObject(getContext()) == null || UserData.getUserObject(getContext()).getUserId() == null) {
             ((MainActivity) getContext()).launchLoginMenu();
-        else
+        } else {
             ((MainActivity) getContext()).launchLanding();
+        }
     }
 
     @Override

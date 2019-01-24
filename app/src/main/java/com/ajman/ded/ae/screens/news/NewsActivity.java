@@ -59,7 +59,7 @@ public class NewsActivity extends BaseActivity {
 
                 } else {
                     pDialog.setTitleText(getString(R.string.went_wrong))
-                            .setConfirmText("OK")
+                            .setConfirmText(getString(R.string.ok))
                             .changeAlertType(SweetAlertDialog.ERROR_TYPE);
                 }
             }
@@ -68,7 +68,7 @@ public class NewsActivity extends BaseActivity {
             public void onFailure(@NonNull Call<String> call, @NonNull Throwable t) {
                 Log.d("DATA ERROR:", String.valueOf(t));
                 pDialog.setTitleText("something went wrong!")
-                        .setConfirmText("OK")
+                        .setConfirmText(getString(R.string.ok))
                         .changeAlertType(SweetAlertDialog.ERROR_TYPE);
             }
         });

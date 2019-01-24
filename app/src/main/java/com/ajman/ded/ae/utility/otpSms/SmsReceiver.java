@@ -14,14 +14,8 @@ import android.util.Log;
 
 public class SmsReceiver extends BroadcastReceiver {
 
-    /**
-     * Constant TAG for logging key.
-     */
     private static final String TAG = "OtpReader";
 
-    /**
-     * The bound OTP Listener that will be trigerred on receiving message.
-     */
     private static SmsListener otpListener;
 
     /**
@@ -63,7 +57,6 @@ public class SmsReceiver extends BroadcastReceiver {
                 Log.i(TAG, "senderNum: " + senderNum + " message: " + message);
 
                 if (!TextUtils.isEmpty(receiverString) && senderNum.contains(receiverString)) { //If message received is from required number.
-                    //If bound a listener interface, callback the overriden method.
                     if (otpListener != null) {
                         otpListener.messageReceived(message);
                     }
