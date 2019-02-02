@@ -273,5 +273,6 @@
     <string name="note">ملاحظات</string>
     <string name="not_satisfied">غير راض</string>
     <string name="satisfied">راض</string>
+    <string name="evaluation">تم إرسال التقييم</string>
 
 </resources>

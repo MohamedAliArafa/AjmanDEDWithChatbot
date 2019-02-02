@@ -143,7 +143,7 @@ public class AudioRecordButton extends RelativeLayout implements View.OnTouchLis
 
             mAudioRecording =
                     new AudioRecording(mContext)
-                            .setNameFile("/" + UUID.randomUUID() + "-audio.ogg")
+                            .setNameFile("/" + UUID.randomUUID() + "-audio.m4a")
                             .start(audioListener);
         }
     }

@@ -12,9 +12,9 @@ import android.view.animation.Transformation;
 import com.ajman.ded.ae.R;
 
 public class Rotate3dAnimation extends Animation {
-    public static final int ROLL_BY_X = 0;
-    public static final int ROLL_BY_Y = 1;
-    public static final int ROLL_BY_Z = 2;
+    private static final int ROLL_BY_X = 0;
+    private static final int ROLL_BY_Y = 1;
+    private static final int ROLL_BY_Z = 2;
     private int mPivotXType = ABSOLUTE;
     private int mPivotYType = ABSOLUTE;
     private float mPivotXValue = 0.0f;
@@ -79,7 +79,7 @@ public class Rotate3dAnimation extends Animation {
         initializePivotPoint();
     }
 
-    Description parseValue(TypedValue value) {
+    private Description parseValue(TypedValue value) {
         Description d = new Description();
         if (value == null) {
             d.type = ABSOLUTE;

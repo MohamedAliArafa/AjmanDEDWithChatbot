@@ -1,6 +1,5 @@
 package com.ajman.ded.ae.utility.sweetDialog;
 
-
 import android.app.Dialog;
 import android.content.Context;
 import android.content.DialogInterface;
@@ -32,9 +31,9 @@ public class SweetAlertDialog extends Dialog implements View.OnClickListener {
     public static final int CUSTOM_IMAGE_TYPE = 4;
     public static final int PROGRESS_TYPE = 5;
     //aliases
-    public final static int BUTTON_CONFIRM = DialogInterface.BUTTON_POSITIVE;
-    public final static int BUTTON_CANCEL = DialogInterface.BUTTON_NEGATIVE;
-    public static boolean DARK_STYLE = false;
+    private final static int BUTTON_CONFIRM = DialogInterface.BUTTON_POSITIVE;
+    private final static int BUTTON_CANCEL = DialogInterface.BUTTON_NEGATIVE;
+    private static boolean DARK_STYLE = false;
     private View mDialogView;
     private AnimationSet mModalInAnim;
     private AnimationSet mModalOutAnim;
@@ -90,18 +89,6 @@ public class SweetAlertDialog extends Dialog implements View.OnClickListener {
         mErrorXInAnim = (AnimationSet) OptAnimationLoader.loadAnimation(getContext(), R.anim.error_x_in);
         // 2.3.x system don't support alpha-animation on layer-list drawable
         // remove it from animation set
-        if (Build.VERSION.SDK_INT <= Build.VERSION_CODES.GINGERBREAD_MR1) {
-            List<Animation> childAnims = mErrorXInAnim.getAnimations();
-            int idx = 0;
-            for (; idx < childAnims.size(); idx++) {
-                if (childAnims.get(idx) instanceof AlphaAnimation) {
-                    break;
-                }
-            }
-            if (idx < childAnims.size()) {
-                childAnims.remove(idx);
-            }
-        }
         mSuccessBowAnim = OptAnimationLoader.loadAnimation(getContext(), R.anim.success_bow_roate);
         mSuccessLayoutAnimSet = (AnimationSet) OptAnimationLoader.loadAnimation(getContext(), R.anim.success_mask_layout);
         mModalInAnim = (AnimationSet) OptAnimationLoader.loadAnimation(getContext(), R.anim.modal_in);
@@ -115,14 +102,11 @@ public class SweetAlertDialog extends Dialog implements View.OnClickListener {
             @Override
             public void onAnimationEnd(Animation animation) {
                 mDialogView.setVisibility(View.GONE);
-                mDialogView.post(new Runnable() {
-                    @Override
-                    public void run() {
-                        if (mCloseFromCancel) {
-                            SweetAlertDialog.super.cancel();
-                        } else {
-                            SweetAlertDialog.super.dismiss();
-                        }
+                mDialogView.post(() -> {
+                    if (mCloseFromCancel) {
+                        SweetAlertDialog.super.cancel();
+                    } else {
+                        SweetAlertDialog.super.dismiss();
                     }
                 });
             }
@@ -297,7 +281,7 @@ public class SweetAlertDialog extends Dialog implements View.OnClickListener {
         return this;
     }
 
-    public SweetAlertDialog setCustomImage(Drawable drawable) {
+    private SweetAlertDialog setCustomImage(Drawable drawable) {
         mCustomImgDrawable = drawable;
         if (mCustomImage != null && mCustomImgDrawable != null) {
             mCustomImage.setVisibility(View.VISIBLE);
@@ -314,7 +298,7 @@ public class SweetAlertDialog extends Dialog implements View.OnClickListener {
         return mContentText;
     }
 
-    public SweetAlertDialog setContentText(String text) {
+    private SweetAlertDialog setContentText(String text) {
         mContentText = text;
         if (mContentTextView != null && mContentText != null) {
             showContentText(true);
@@ -329,7 +313,7 @@ public class SweetAlertDialog extends Dialog implements View.OnClickListener {
         return mShowCancel;
     }
 
-    public SweetAlertDialog showCancelButton(boolean isShow) {
+    private SweetAlertDialog showCancelButton(boolean isShow) {
         mShowCancel = isShow;
         if (mCancelButton != null) {
             mCancelButton.setVisibility(mShowCancel ? View.VISIBLE : View.GONE);
@@ -341,7 +325,7 @@ public class SweetAlertDialog extends Dialog implements View.OnClickListener {
         return mShowContent;
     }
 
-    public SweetAlertDialog showContentText(boolean isShow) {
+    private SweetAlertDialog showContentText(boolean isShow) {
         mShowContent = isShow;
         if (mContentTextView != null) {
             mContentTextView.setVisibility(mShowContent ? View.VISIBLE : View.GONE);
@@ -353,7 +337,7 @@ public class SweetAlertDialog extends Dialog implements View.OnClickListener {
         return mCancelText;
     }
 
-    public SweetAlertDialog setCancelText(String text) {
+    private SweetAlertDialog setCancelText(String text) {
         mCancelText = text;
         if (mCancelButton != null && mCancelText != null) {
             showCancelButton(true);
@@ -374,7 +358,7 @@ public class SweetAlertDialog extends Dialog implements View.OnClickListener {
         return this;
     }
 
-    public SweetAlertDialog setCancelClickListener(OnSweetClickListener listener) {
+    private SweetAlertDialog setCancelClickListener(OnSweetClickListener listener) {
         mCancelClickListener = listener;
         return this;
     }
@@ -384,7 +368,7 @@ public class SweetAlertDialog extends Dialog implements View.OnClickListener {
         return this;
     }
 
-    public SweetAlertDialog setNeutralText(String text) {
+    private SweetAlertDialog setNeutralText(String text) {
         mNeutralText = text;
         if (mNeutralButton != null && mNeutralText != null && !text.isEmpty()) {
             mNeutralButton.setVisibility(View.VISIBLE);
@@ -393,7 +377,7 @@ public class SweetAlertDialog extends Dialog implements View.OnClickListener {
         return this;
     }
 
-    public SweetAlertDialog setNeutralClickListener(OnSweetClickListener listener) {
+    private SweetAlertDialog setNeutralClickListener(OnSweetClickListener listener) {
         mNeutralClickListener = listener;
         return this;
     }
@@ -420,7 +404,7 @@ public class SweetAlertDialog extends Dialog implements View.OnClickListener {
         }
     }
 
-    public SweetAlertDialog setConfirmButton(String text, OnSweetClickListener listener) {
+    private SweetAlertDialog setConfirmButton(String text, OnSweetClickListener listener) {
         this.setConfirmText(text);
         this.setConfirmClickListener(listener);
         return this;
@@ -432,7 +416,7 @@ public class SweetAlertDialog extends Dialog implements View.OnClickListener {
         return this;
     }
 
-    public SweetAlertDialog setCancelButton(String text, OnSweetClickListener listener) {
+    private SweetAlertDialog setCancelButton(String text, OnSweetClickListener listener) {
         this.setCancelText(text);
         this.setCancelClickListener(listener);
         return this;
@@ -444,7 +428,7 @@ public class SweetAlertDialog extends Dialog implements View.OnClickListener {
         return this;
     }
 
-    public SweetAlertDialog setNeutralButton(String text, OnSweetClickListener listener) {
+    private SweetAlertDialog setNeutralButton(String text, OnSweetClickListener listener) {
         this.setNeutralText(text);
         this.setNeutralClickListener(listener);
         return this;

@@ -13,6 +13,7 @@ import android.widget.EditText;
 import android.widget.ImageView;
 import android.widget.SeekBar;
 import android.widget.TextView;
+import android.widget.Toast;
 
 import com.ajman.ded.ae.data.Api;
 import com.ajman.ded.ae.data.ApiBuilder;
@@ -20,7 +21,9 @@ import com.ajman.ded.ae.libs.LocaleManager;
 import com.ajman.ded.ae.models.notification.details.NotificationDetailsResponse;
 import com.ajman.ded.ae.models.notification.details.ResponseContent;
 import com.ajman.ded.ae.models.notification.files.FilesRsponse;
+import com.ajman.ded.ae.screens.complaints.SubmitActivity;
 import com.ajman.ded.ae.utility.CustomMapView;
+import com.ajman.ded.ae.utility.SharedTool.UserData;
 import com.bumptech.glide.Glide;
 import com.google.android.gms.maps.CameraUpdateFactory;
 import com.google.android.gms.maps.GoogleMap;
@@ -154,7 +157,7 @@ public class NotificationDetailsActivity extends AppCompatActivity implements Ey
                 if (response.isSuccessful()) {
                     if (response.body().getResponseCode() == 1) {
                         for (com.ajman.ded.ae.models.notification.files.ResponseContent link : response.body().getResponseContent()) {
-                            if (getFileExtension(link.getName()).equals("jpg") || getFileExtension(link.getName()).equals("png")) {
+                            if (getFileExtension(link.getName()).equals("jpg") || getFileExtension(link.getName()).equals("png") || getFileExtension(link.getName()).equals("JPEG")) {
                                 getImage(link.getFileId());
                             } else {
                                 getAudio(link.getFileId(), link.getName().substring(0, link.getName().lastIndexOf(".")), getFileExtension(link.getName()));
@@ -296,11 +299,14 @@ public class NotificationDetailsActivity extends AppCompatActivity implements Ey
 
         send = dialog.findViewById(R.id.send);
         send.setOnClickListener(v -> {
-            Call<ResponseBody> call = api.rate_notification("10", id, satisfied, note.getText().toString());
+            String notes = "";
+            notes = note.getText().toString();
+            Call<ResponseBody> call = api.rate_notification(UserData.getUserObject(NotificationDetailsActivity.this).getUserId(), id, satisfied, notes);
             call.enqueue(new Callback<ResponseBody>() {
                 @Override
                 public void onResponse(Call<ResponseBody> call, Response<ResponseBody> response) {
                     if (response.isSuccessful()) {
+                        Toast.makeText(NotificationDetailsActivity.this, getString(R.string.evaluation), Toast.LENGTH_SHORT).show();
                         dialog.dismiss();
                     }
                 }
@@ -365,7 +371,7 @@ public class NotificationDetailsActivity extends AppCompatActivity implements Ey
             mExecutor = Executors.newSingleThreadScheduledExecutor();
         }
         if (mSeekbarPositionUpdateTask == null) {
-            mSeekbarPositionUpdateTask = () -> updateProgressCallbackTask();
+            mSeekbarPositionUpdateTask = () -> NotificationDetailsActivity.this.updateProgressCallbackTask();
         }
         mExecutor.scheduleAtFixedRate(
                 mSeekbarPositionUpdateTask,

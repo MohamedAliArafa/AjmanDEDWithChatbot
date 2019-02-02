@@ -28,7 +28,7 @@ public class EyeDetailsImagesAdapter extends RecyclerView.Adapter<RecyclerView.V
     public EyeDetailsImagesAdapter(Context context, AdapterCallback adapterCallback) {
         mContext = context;
         resources = context.getResources();
-        this.mList = new ArrayList<Bitmap>();
+        this.mList = new ArrayList<>();
         this.adapterCallback = adapterCallback;
     }
 

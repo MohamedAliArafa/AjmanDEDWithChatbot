@@ -52,8 +52,8 @@ public class AudioRecording {
             mRecorder.reset();
             mRecorder.setAudioSource(MediaRecorder.AudioSource.MIC);
             mRecorder.setOutputFormat(MediaRecorder.OutputFormat.MPEG_4);
-            mRecorder.setOutputFile(mContext.getCacheDir() + mFileName);
             mRecorder.setAudioEncoder(MediaRecorder.AudioEncoder.AAC);
+            mRecorder.setOutputFile(mContext.getCacheDir() + mFileName);
 
             mRecorder.prepare();
             mRecorder.start();
