@@ -1,11 +1,18 @@
 package com.ajman.ded.ae.screens.home;
 
 import android.content.Context;
+import android.content.Intent;
 import android.os.Bundle;
+
+import com.ajman.ded.ae.screens.complaints.SubmitActivity;
 import com.google.android.material.appbar.AppBarLayout;
 import androidx.core.app.ActivityCompat;
 import androidx.fragment.app.FragmentManager;
 import androidx.fragment.app.FragmentTransaction;
+import safety.com.br.android_shake_detector.core.ShakeCallback;
+import safety.com.br.android_shake_detector.core.ShakeDetector;
+import safety.com.br.android_shake_detector.core.ShakeOptions;
+
 import android.view.Menu;
 import android.view.MenuInflater;
 import android.view.MenuItem;
@@ -19,7 +26,7 @@ import com.novoda.merlin.Merlin;
 import com.novoda.merlin.NetworkStatus;
 
 
-public class HomeActivity extends BaseActivity implements Bindable {
+public class HomeActivity extends BaseActivity implements Bindable, ShakeCallback {
 
     private static Context context;
     private ImageView mLogo;
@@ -32,6 +39,7 @@ public class HomeActivity extends BaseActivity implements Bindable {
     private Merlin merlin;
     private HomeFragment homeFragment;
     private int param;
+    private ShakeDetector shakeDetector;
 
 
     @Override
@@ -50,6 +58,14 @@ public class HomeActivity extends BaseActivity implements Bindable {
         mAppBar = findViewById(R.id.appbar);
         HomeActivity.context = this;
         param = getIntent().getIntExtra("param", 0);
+
+        ShakeOptions options = new ShakeOptions()
+                .background(true)
+                .interval(1000)
+                .shakeCount(2)
+                .sensibility(2.0f);
+
+        shakeDetector = new ShakeDetector(options);
 
         super.merlin.registerConnectable(() -> {
             if (homeFragment == null)
@@ -73,11 +89,13 @@ public class HomeActivity extends BaseActivity implements Bindable {
     @Override
     protected void onResume() {
         super.onResume();
+        shakeDetector.start(this, this);
     }
 
     @Override
     protected void onPause() {
         super.onPause();
+        shakeDetector.stopShakeDetector(this);
     }
 
     @Override
@@ -120,6 +138,7 @@ public class HomeActivity extends BaseActivity implements Bindable {
     @Override
     protected void onDestroy() {
         super.onDestroy();
+        shakeDetector.destroy(this);
     }
 
     @Override
@@ -138,5 +157,10 @@ public class HomeActivity extends BaseActivity implements Bindable {
             pDialog.show();
             pDialog.setCancelable(true);
         }
+    }
+
+    @Override
+    public void onShake() {
+        startActivity(new Intent(this,SubmitActivity.class));
     }
 }

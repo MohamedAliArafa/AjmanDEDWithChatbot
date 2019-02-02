@@ -105,11 +105,9 @@ public abstract class BaseActivity extends AppCompatActivity implements View.OnC
     private String action = "null";
     private RealmResults<ServiceModuleModel> models;
     private int gPosition, cPosition;
-    private String[] items;
     private Toolbar mToolbar;
     private SweetAlertDialog sDialog;
     private Api api;
-    private ShakeDetector shakeDetector;
 
     @Override
     protected void attachBaseContext(Context base) {
@@ -128,15 +126,6 @@ public abstract class BaseActivity extends AppCompatActivity implements View.OnC
         mToolbar = findViewById(R.id.toolbar);
         setSupportActionBar(mToolbar);
         getSupportActionBar().setDisplayShowTitleEnabled(false);
-        initItems();
-
-        ShakeOptions options = new ShakeOptions()
-                .background(true)
-                .interval(1000)
-                .shakeCount(2)
-                .sensibility(2.0f);
-
-        this.shakeDetector = new ShakeDetector(options).start(this, () -> startActivity(new Intent(BaseActivity.this, SubmitActivity.class)));
 
         final String appPackageName = getPackageName();
         if (!(this instanceof SearchActivity)) {
@@ -415,10 +404,6 @@ public abstract class BaseActivity extends AppCompatActivity implements View.OnC
         startActivity(intent);
     }
 
-
-    private void initItems() {
-        items = getResources().getStringArray(R.array.film_genre);
-    }
 
     private void addDrawerItems() {
         models = Realm.getDefaultInstance().where(ServiceModuleModel.class).findAll();
