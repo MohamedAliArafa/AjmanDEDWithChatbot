@@ -61,10 +61,10 @@
             android:id="@+id/view8"
             android:layout_width="0dp"
             android:layout_height="2dp"
-            android:layout_marginBottom="8dp"
-            android:layout_marginEnd="8dp"
             android:layout_marginStart="8dp"
             android:layout_marginTop="8dp"
+            android:layout_marginEnd="8dp"
+            android:layout_marginBottom="8dp"
             android:background="@android:color/white"
             app:layout_constraintBottom_toBottomOf="parent"
             app:layout_constraintEnd_toEndOf="parent"
@@ -75,10 +75,10 @@
             android:id="@+id/view7"
             android:layout_width="2dp"
             android:layout_height="0dp"
-            android:layout_marginBottom="8dp"
-            android:layout_marginEnd="8dp"
             android:layout_marginStart="8dp"
             android:layout_marginTop="8dp"
+            android:layout_marginEnd="8dp"
+            android:layout_marginBottom="8dp"
             android:background="@android:color/white"
             app:layout_constraintBottom_toBottomOf="parent"
             app:layout_constraintEnd_toEndOf="parent"
@@ -89,9 +89,9 @@
             android:id="@+id/tv_title_completed"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:layout_marginEnd="8dp"
             android:layout_marginStart="8dp"
             android:layout_marginTop="8dp"
+            android:layout_marginEnd="8dp"
             android:text="@string/active_license"
             android:textColor="@color/gray_darker"
             app:layout_constraintEnd_toStartOf="@+id/view7"
@@ -102,9 +102,9 @@
             android:id="@+id/tv_title_pending"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:layout_marginEnd="8dp"
             android:layout_marginStart="8dp"
             android:layout_marginTop="8dp"
+            android:layout_marginEnd="8dp"
             android:text="@string/expired_license"
             android:textColor="@color/gray_darker"
             app:layout_constraintEnd_toEndOf="parent"
@@ -115,9 +115,9 @@
             android:id="@+id/tv_title_rejected"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:layout_marginEnd="8dp"
             android:layout_marginStart="8dp"
             android:layout_marginTop="8dp"
+            android:layout_marginEnd="8dp"
             android:text="@string/canceled_liceneses"
             android:textColor="@color/gray_darker"
             app:layout_constraintEnd_toStartOf="@+id/view7"
@@ -128,10 +128,10 @@
             android:id="@+id/expiry"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:layout_marginBottom="8dp"
-            android:layout_marginEnd="8dp"
             android:layout_marginStart="8dp"
             android:layout_marginTop="8dp"
+            android:layout_marginEnd="8dp"
+            android:layout_marginBottom="8dp"
             android:textColor="@color/red"
             android:textSize="36sp"
             app:layout_constraintBottom_toTopOf="@+id/view8"
@@ -143,10 +143,10 @@
             android:id="@+id/active"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:layout_marginBottom="8dp"
-            android:layout_marginEnd="8dp"
             android:layout_marginStart="8dp"
             android:layout_marginTop="8dp"
+            android:layout_marginEnd="8dp"
+            android:layout_marginBottom="8dp"
             android:textColor="@color/cyan"
             android:textSize="36sp"
             app:layout_constraintBottom_toTopOf="@+id/view8"
@@ -158,9 +158,9 @@
             android:id="@+id/tv_title_under_process"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:layout_marginEnd="8dp"
             android:layout_marginStart="8dp"
             android:layout_marginTop="8dp"
+            android:layout_marginEnd="8dp"
             android:text="@string/banned_licenses"
             android:textColor="@color/gray_darker"
             app:layout_constraintEnd_toEndOf="parent"
@@ -171,10 +171,10 @@
             android:id="@+id/cancel"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:layout_marginBottom="8dp"
-            android:layout_marginEnd="8dp"
             android:layout_marginStart="8dp"
             android:layout_marginTop="8dp"
+            android:layout_marginEnd="8dp"
+            android:layout_marginBottom="8dp"
             android:textColor="@color/brown"
             android:textSize="36sp"
             app:layout_constraintBottom_toBottomOf="parent"
@@ -186,10 +186,10 @@
             android:id="@+id/banned"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:layout_marginBottom="8dp"
-            android:layout_marginEnd="8dp"
             android:layout_marginStart="8dp"
             android:layout_marginTop="8dp"
+            android:layout_marginEnd="8dp"
+            android:layout_marginBottom="8dp"
             android:textColor="@color/blue"
             android:textSize="36sp"
             app:layout_constraintBottom_toBottomOf="parent"
@@ -200,166 +200,166 @@
     </androidx.constraintlayout.widget.ConstraintLayout>
 
     <!--<LinearLayout-->
-        <!--android:id="@+id/menu_panel"-->
-        <!--android:layout_width="0dp"-->
-        <!--android:layout_height="wrap_content"-->
-        <!--android:layout_margin="8dp"-->
-        <!--android:gravity="center"-->
-        <!--android:orientation="horizontal"-->
-        <!--app:layout_constraintBottom_toBottomOf="parent"-->
-        <!--app:layout_constraintEnd_toEndOf="parent"-->
-        <!--app:layout_constraintStart_toStartOf="parent">-->
+    <!--android:id="@+id/menu_panel"-->
+    <!--android:layout_width="0dp"-->
+    <!--android:layout_height="wrap_content"-->
+    <!--android:layout_margin="8dp"-->
+    <!--android:gravity="center"-->
+    <!--android:orientation="horizontal"-->
+    <!--app:layout_constraintBottom_toBottomOf="parent"-->
+    <!--app:layout_constraintEnd_toEndOf="parent"-->
+    <!--app:layout_constraintStart_toStartOf="parent">-->
 
-        <!--<LinearLayout-->
-            <!--android:id="@+id/btn_home"-->
-            <!--android:layout_width="60dp"-->
-            <!--android:layout_height="60dp"-->
-            <!--android:layout_margin="10dp"-->
-            <!--android:layout_marginBottom="8dp"-->
-            <!--android:layout_marginStart="8dp"-->
-            <!--android:layout_marginTop="8dp"-->
-            <!--android:background="@drawable/bg_full_rounded_small"-->
-            <!--android:gravity="center"-->
-            <!--android:orientation="vertical"-->
-            <!--android:padding="5dp"-->
-            <!--app:layout_constraintBottom_toBottomOf="parent"-->
-            <!--app:layout_constraintStart_toStartOf="parent"-->
-            <!--app:layout_constraintTop_toTopOf="parent">-->
+    <!--<LinearLayout-->
+    <!--android:id="@+id/btn_home"-->
+    <!--android:layout_width="60dp"-->
+    <!--android:layout_height="60dp"-->
+    <!--android:layout_margin="10dp"-->
+    <!--android:layout_marginBottom="8dp"-->
+    <!--android:layout_marginStart="8dp"-->
+    <!--android:layout_marginTop="8dp"-->
+    <!--android:background="@drawable/bg_full_rounded_small"-->
+    <!--android:gravity="center"-->
+    <!--android:orientation="vertical"-->
+    <!--android:padding="5dp"-->
+    <!--app:layout_constraintBottom_toBottomOf="parent"-->
+    <!--app:layout_constraintStart_toStartOf="parent"-->
+    <!--app:layout_constraintTop_toTopOf="parent">-->
 
-            <!--<ImageView-->
-                <!--android:layout_width="30dp"-->
-                <!--android:layout_height="30dp"-->
-                <!--android:background="@drawable/bg_full_rounded_small"-->
-                <!--android:src="@drawable/ic_home"-->
-                <!--android:tint="@color/gray_darker" />-->
+    <!--<ImageView-->
+    <!--android:layout_width="30dp"-->
+    <!--android:layout_height="30dp"-->
+    <!--android:background="@drawable/bg_full_rounded_small"-->
+    <!--android:src="@drawable/ic_home"-->
+    <!--android:tint="@color/gray_darker" />-->
 
-            <!--<TextView-->
-                <!--android:layout_width="wrap_content"-->
-                <!--android:layout_height="0dp"-->
-                <!--android:layout_weight="1"-->
-                <!--android:background="@drawable/bg_full_rounded_small"-->
-                <!--android:text="@string/home"-->
-                <!--android:textColor="@color/gray_darker"-->
-                <!--android:textSize="12sp" />-->
-        <!--</LinearLayout>-->
+    <!--<TextView-->
+    <!--android:layout_width="wrap_content"-->
+    <!--android:layout_height="0dp"-->
+    <!--android:layout_weight="1"-->
+    <!--android:background="@drawable/bg_full_rounded_small"-->
+    <!--android:text="@string/home"-->
+    <!--android:textColor="@color/gray_darker"-->
+    <!--android:textSize="12sp" />-->
+    <!--</LinearLayout>-->
 
-        <!--<LinearLayout-->
-            <!--android:id="@+id/issue_licence"-->
-            <!--android:layout_width="60dp"-->
-            <!--android:layout_height="60dp"-->
-            <!--android:layout_margin="10dp"-->
-            <!--android:layout_marginBottom="8dp"-->
-            <!--android:layout_marginStart="8dp"-->
-            <!--android:layout_marginTop="8dp"-->
-            <!--android:background="@drawable/bg_full_rounded_small"-->
-            <!--android:gravity="center"-->
-            <!--android:orientation="vertical"-->
-            <!--android:padding="5dp"-->
-            <!--app:layout_constraintBottom_toBottomOf="parent"-->
-            <!--app:layout_constraintStart_toStartOf="parent"-->
-            <!--app:layout_constraintTop_toTopOf="parent">-->
+    <!--<LinearLayout-->
+    <!--android:id="@+id/issue_licence"-->
+    <!--android:layout_width="60dp"-->
+    <!--android:layout_height="60dp"-->
+    <!--android:layout_margin="10dp"-->
+    <!--android:layout_marginBottom="8dp"-->
+    <!--android:layout_marginStart="8dp"-->
+    <!--android:layout_marginTop="8dp"-->
+    <!--android:background="@drawable/bg_full_rounded_small"-->
+    <!--android:gravity="center"-->
+    <!--android:orientation="vertical"-->
+    <!--android:padding="5dp"-->
+    <!--app:layout_constraintBottom_toBottomOf="parent"-->
+    <!--app:layout_constraintStart_toStartOf="parent"-->
+    <!--app:layout_constraintTop_toTopOf="parent">-->
 
-            <!--<TextView-->
-                <!--android:layout_width="wrap_content"-->
-                <!--android:layout_height="wrap_content"-->
-                <!--android:background="@drawable/bg_full_rounded_small"-->
-                <!--android:gravity="center"-->
-                <!--android:text="@string/issue_new"-->
-                <!--android:textColor="@color/gray_darker"-->
-                <!--android:textSize="10sp" />-->
+    <!--<TextView-->
+    <!--android:layout_width="wrap_content"-->
+    <!--android:layout_height="wrap_content"-->
+    <!--android:background="@drawable/bg_full_rounded_small"-->
+    <!--android:gravity="center"-->
+    <!--android:text="@string/issue_new"-->
+    <!--android:textColor="@color/gray_darker"-->
+    <!--android:textSize="10sp" />-->
 
-            <!--<TextView-->
-                <!--android:layout_width="match_parent"-->
-                <!--android:layout_height="wrap_content"-->
-                <!--android:background="@drawable/bg_full_rounded_small"-->
-                <!--android:gravity="center"-->
-                <!--android:text="@string/license"-->
-                <!--android:textColor="@color/gray_darker"-->
-                <!--android:textSize="12sp" />-->
-        <!--</LinearLayout>-->
+    <!--<TextView-->
+    <!--android:layout_width="match_parent"-->
+    <!--android:layout_height="wrap_content"-->
+    <!--android:background="@drawable/bg_full_rounded_small"-->
+    <!--android:gravity="center"-->
+    <!--android:text="@string/license"-->
+    <!--android:textColor="@color/gray_darker"-->
+    <!--android:textSize="12sp" />-->
+    <!--</LinearLayout>-->
 
-        <!--<LinearLayout-->
-            <!--android:id="@+id/renew_licence"-->
-            <!--android:layout_width="60dp"-->
-            <!--android:layout_height="60dp"-->
-            <!--android:layout_margin="10dp"-->
-            <!--android:layout_marginBottom="8dp"-->
-            <!--android:layout_marginStart="8dp"-->
-            <!--android:layout_marginTop="8dp"-->
-            <!--android:background="@drawable/bg_full_rounded_small"-->
-            <!--android:gravity="center"-->
-            <!--android:orientation="vertical"-->
-            <!--android:padding="5dp"-->
-            <!--app:layout_constraintBottom_toBottomOf="parent"-->
-            <!--app:layout_constraintStart_toStartOf="parent"-->
-            <!--app:layout_constraintTop_toTopOf="parent">-->
+    <!--<LinearLayout-->
+    <!--android:id="@+id/renew_licence"-->
+    <!--android:layout_width="60dp"-->
+    <!--android:layout_height="60dp"-->
+    <!--android:layout_margin="10dp"-->
+    <!--android:layout_marginBottom="8dp"-->
+    <!--android:layout_marginStart="8dp"-->
+    <!--android:layout_marginTop="8dp"-->
+    <!--android:background="@drawable/bg_full_rounded_small"-->
+    <!--android:gravity="center"-->
+    <!--android:orientation="vertical"-->
+    <!--android:padding="5dp"-->
+    <!--app:layout_constraintBottom_toBottomOf="parent"-->
+    <!--app:layout_constraintStart_toStartOf="parent"-->
+    <!--app:layout_constraintTop_toTopOf="parent">-->
 
-            <!--<TextView-->
-                <!--android:layout_width="wrap_content"-->
-                <!--android:layout_height="wrap_content"-->
-                <!--android:background="@drawable/bg_full_rounded_small"-->
-                <!--android:gravity="center"-->
-                <!--android:text="@string/renew"-->
-                <!--android:textAlignment="center"-->
-                <!--android:textColor="@color/gray_darker"-->
-                <!--android:textSize="10sp" />-->
+    <!--<TextView-->
+    <!--android:layout_width="wrap_content"-->
+    <!--android:layout_height="wrap_content"-->
+    <!--android:background="@drawable/bg_full_rounded_small"-->
+    <!--android:gravity="center"-->
+    <!--android:text="@string/renew"-->
+    <!--android:textAlignment="center"-->
+    <!--android:textColor="@color/gray_darker"-->
+    <!--android:textSize="10sp" />-->
 
-            <!--<TextView-->
-                <!--android:layout_width="match_parent"-->
-                <!--android:layout_height="wrap_content"-->
-                <!--android:background="@drawable/bg_full_rounded_small"-->
-                <!--android:gravity="center"-->
-                <!--android:text="@string/license"-->
-                <!--android:textColor="@color/gray_darker"-->
-                <!--android:textSize="12sp" />-->
-        <!--</LinearLayout>-->
+    <!--<TextView-->
+    <!--android:layout_width="match_parent"-->
+    <!--android:layout_height="wrap_content"-->
+    <!--android:background="@drawable/bg_full_rounded_small"-->
+    <!--android:gravity="center"-->
+    <!--android:text="@string/license"-->
+    <!--android:textColor="@color/gray_darker"-->
+    <!--android:textSize="12sp" />-->
+    <!--</LinearLayout>-->
 
-        <!--<LinearLayout-->
-            <!--android:id="@+id/cancel_license"-->
-            <!--android:layout_width="60dp"-->
-            <!--android:layout_height="60dp"-->
-            <!--android:layout_margin="10dp"-->
-            <!--android:layout_marginBottom="8dp"-->
-            <!--android:layout_marginStart="8dp"-->
-            <!--android:layout_marginTop="8dp"-->
-            <!--android:background="@drawable/bg_full_rounded_small"-->
-            <!--android:gravity="center"-->
-            <!--android:orientation="vertical"-->
-            <!--android:padding="5dp"-->
-            <!--app:layout_constraintBottom_toBottomOf="parent"-->
-            <!--app:layout_constraintStart_toStartOf="parent"-->
-            <!--app:layout_constraintTop_toTopOf="parent">-->
+    <!--<LinearLayout-->
+    <!--android:id="@+id/cancel_license"-->
+    <!--android:layout_width="60dp"-->
+    <!--android:layout_height="60dp"-->
+    <!--android:layout_margin="10dp"-->
+    <!--android:layout_marginBottom="8dp"-->
+    <!--android:layout_marginStart="8dp"-->
+    <!--android:layout_marginTop="8dp"-->
+    <!--android:background="@drawable/bg_full_rounded_small"-->
+    <!--android:gravity="center"-->
+    <!--android:orientation="vertical"-->
+    <!--android:padding="5dp"-->
+    <!--app:layout_constraintBottom_toBottomOf="parent"-->
+    <!--app:layout_constraintStart_toStartOf="parent"-->
+    <!--app:layout_constraintTop_toTopOf="parent">-->
 
-            <!--<TextView-->
-                <!--android:layout_width="wrap_content"-->
-                <!--android:layout_height="wrap_content"-->
-                <!--android:gravity="center"-->
-                <!--android:text="@string/cancel"-->
-                <!--android:textColor="@color/gray_darker"-->
-                <!--android:textSize="10sp" />-->
+    <!--<TextView-->
+    <!--android:layout_width="wrap_content"-->
+    <!--android:layout_height="wrap_content"-->
+    <!--android:gravity="center"-->
+    <!--android:text="@string/cancel"-->
+    <!--android:textColor="@color/gray_darker"-->
+    <!--android:textSize="10sp" />-->
 
-            <!--<TextView-->
-                <!--android:layout_width="match_parent"-->
-                <!--android:layout_height="wrap_content"-->
-                <!--android:gravity="center"-->
-                <!--android:text="@string/license"-->
-                <!--android:textColor="@color/gray_darker"-->
-                <!--android:textSize="12sp" />-->
-        <!--</LinearLayout>-->
+    <!--<TextView-->
+    <!--android:layout_width="match_parent"-->
+    <!--android:layout_height="wrap_content"-->
+    <!--android:gravity="center"-->
+    <!--android:text="@string/license"-->
+    <!--android:textColor="@color/gray_darker"-->
+    <!--android:textSize="12sp" />-->
+    <!--</LinearLayout>-->
     <!--</LinearLayout>-->
 
     <Button
         android:id="@+id/button2"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:layout_marginBottom="8dp"
-        android:layout_marginEnd="8dp"
         android:layout_marginStart="8dp"
+        android:layout_marginEnd="8dp"
+        android:layout_marginBottom="8dp"
         android:background="@color/colorPrimary"
         android:text="@string/go_back_home"
         android:textAllCaps="false"
-        android:textSize="18sp"
         android:textColor="@android:color/white"
+        android:textSize="18sp"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent" />
@@ -369,10 +369,10 @@
         android:id="@+id/btn_prev"
         android:layout_width="50dp"
         android:layout_height="50dp"
-        android:layout_marginBottom="8dp"
-        android:layout_marginEnd="8dp"
         android:layout_marginStart="8dp"
         android:layout_marginTop="8dp"
+        android:layout_marginEnd="8dp"
+        android:layout_marginBottom="8dp"
         android:src="@drawable/ic_arrow_left"
         app:layout_constraintBottom_toBottomOf="@+id/frameLayout"
         app:layout_constraintEnd_toStartOf="@+id/frameLayout"
@@ -380,17 +380,17 @@
         app:layout_constraintTop_toTopOf="@+id/frameLayout" />
 
     <ImageView
-    android:id="@+id/btn_next"
-    android:layout_width="50dp"
-    android:layout_height="50dp"
-    android:layout_marginBottom="8dp"
-    android:layout_marginEnd="8dp"
-    android:layout_marginStart="8dp"
-    android:layout_marginTop="8dp"
-    android:src="@drawable/ic_arrow_right"
-    app:layout_constraintBottom_toBottomOf="@+id/frameLayout"
-    app:layout_constraintEnd_toEndOf="parent"
-    app:layout_constraintStart_toEndOf="@+id/frameLayout"
-    app:layout_constraintTop_toTopOf="@+id/frameLayout" />
+        android:id="@+id/btn_next"
+        android:layout_width="50dp"
+        android:layout_height="50dp"
+        android:layout_marginStart="8dp"
+        android:layout_marginTop="8dp"
+        android:layout_marginEnd="8dp"
+        android:layout_marginBottom="8dp"
+        android:src="@drawable/ic_arrow_right"
+        app:layout_constraintBottom_toBottomOf="@+id/frameLayout"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toEndOf="@+id/frameLayout"
+        app:layout_constraintTop_toTopOf="@+id/frameLayout" />
 
 </androidx.constraintlayout.widget.ConstraintLayout>

@@ -3,7 +3,6 @@ package com.ajman.ded.ae;
 import android.content.Context;
 import android.os.Bundle;
 import android.util.Log;
-import android.widget.TextView;
 
 import com.ajman.ded.ae.data.Api;
 import com.ajman.ded.ae.data.ApiBuilder;

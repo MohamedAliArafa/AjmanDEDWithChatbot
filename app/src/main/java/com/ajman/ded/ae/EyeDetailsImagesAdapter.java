@@ -44,10 +44,6 @@ public class EyeDetailsImagesAdapter extends RecyclerView.Adapter<RecyclerView.V
         this.notifyDataSetChanged();
     }
 
-    public interface AdapterCallback {
-        void onOpenCallback(Bitmap integer);
-    }
-
     @Override
     public RecyclerView.ViewHolder onCreateViewHolder(ViewGroup parent, int viewType) {
         View itemView = LayoutInflater.from(parent.getContext()).inflate(R.layout.item_eye_details_image, parent, false);
@@ -69,6 +65,9 @@ public class EyeDetailsImagesAdapter extends RecyclerView.Adapter<RecyclerView.V
         return mList.size();
     }
 
+    public interface AdapterCallback {
+        void onOpenCallback(Bitmap integer);
+    }
 
     class MyViewHolder extends RecyclerView.ViewHolder implements View.OnClickListener {
 

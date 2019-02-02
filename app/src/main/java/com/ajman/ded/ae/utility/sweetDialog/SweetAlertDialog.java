@@ -4,12 +4,10 @@ import android.app.Dialog;
 import android.content.Context;
 import android.content.DialogInterface;
 import android.graphics.drawable.Drawable;
-import android.os.Build;
 import android.os.Bundle;
 import android.view.View;
 import android.view.ViewGroup;
 import android.view.WindowManager;
-import android.view.animation.AlphaAnimation;
 import android.view.animation.Animation;
 import android.view.animation.AnimationSet;
 import android.view.animation.Transformation;
@@ -20,8 +18,6 @@ import android.widget.LinearLayout;
 import android.widget.TextView;
 
 import com.ajman.ded.ae.R;
-
-import java.util.List;
 
 public class SweetAlertDialog extends Dialog implements View.OnClickListener {
     public static final int NORMAL_TYPE = 0;

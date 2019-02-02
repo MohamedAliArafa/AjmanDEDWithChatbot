@@ -20,7 +20,6 @@ import butterknife.BindView;
 import butterknife.ButterKnife;
 
 
-
 public class DashboardFragment extends Fragment implements DashInterface {
 
     @BindView(R.id.vp_dashboard)

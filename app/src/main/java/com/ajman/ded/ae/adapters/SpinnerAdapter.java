@@ -1,9 +1,6 @@
 package com.ajman.ded.ae.adapters;
 
 import android.content.Context;
-import androidx.annotation.LayoutRes;
-import androidx.annotation.NonNull;
-import androidx.annotation.Nullable;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
@@ -18,6 +15,10 @@ import com.ajman.ded.ae.models.notification.tybe.ResponseContent;
 
 import java.util.List;
 import java.util.Objects;
+
+import androidx.annotation.LayoutRes;
+import androidx.annotation.NonNull;
+import androidx.annotation.Nullable;
 
 import static com.ajman.ded.ae.libs.LocaleManager.LANGUAGE_ENGLISH;
 import static com.ajman.ded.ae.screens.complaints.SubmitActivity.TYPE_TYPE;

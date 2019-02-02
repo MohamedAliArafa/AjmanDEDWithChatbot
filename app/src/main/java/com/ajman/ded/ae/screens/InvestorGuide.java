@@ -1,7 +1,6 @@
 package com.ajman.ded.ae.screens;
 
 import android.os.Bundle;
-import androidx.viewpager.widget.ViewPager;
 import android.view.View;
 import android.widget.ImageView;
 
@@ -9,6 +8,8 @@ import com.ajman.ded.ae.R;
 import com.ajman.ded.ae.screens.base.BaseActivity;
 import com.ajman.ded.ae.utility.pdfViewer.adapter.BasePDFPagerAdapter;
 import com.ajman.ded.ae.utility.pdfViewer.adapter.PDFViewPager;
+
+import androidx.viewpager.widget.ViewPager;
 
 
 public class InvestorGuide extends BaseActivity implements ViewPager.OnPageChangeListener {
@@ -31,6 +32,11 @@ public class InvestorGuide extends BaseActivity implements ViewPager.OnPageChang
         next = findViewById(R.id.next);
         next.setOnClickListener(this);
         findViewById(R.id.previous).setOnClickListener(this);
+    }
+
+    @Override
+    public void triggerByInternet() {
+
     }
 
 

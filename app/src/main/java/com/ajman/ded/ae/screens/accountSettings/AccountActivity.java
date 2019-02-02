@@ -3,11 +3,6 @@ package com.ajman.ded.ae.screens.accountSettings;
 
 import android.content.Intent;
 import android.os.Bundle;
-import androidx.annotation.Nullable;
-import androidx.core.app.ActivityCompat;
-import androidx.fragment.app.Fragment;
-import androidx.fragment.app.FragmentManager;
-import androidx.fragment.app.FragmentTransaction;
 import android.view.Menu;
 import android.view.MenuInflater;
 import android.view.MenuItem;
@@ -16,7 +11,6 @@ import android.widget.TextView;
 
 import com.ajman.ded.ae.FaqActivity;
 import com.ajman.ded.ae.R;
-import com.ajman.ded.ae.libs.LocaleManager;
 import com.ajman.ded.ae.screens.base.BaseActivity;
 import com.ajman.ded.ae.screens.home.HomeActivity;
 import com.ajman.ded.ae.screens.language.LangFragment;
@@ -25,9 +19,11 @@ import com.ajman.ded.ae.screens.loginMenu.LoginMenuFragment;
 import com.ajman.ded.ae.screens.main.MainContract;
 import com.ajman.ded.ae.utility.SharedTool.UserData;
 
-import java.util.Objects;
-
-import static com.ajman.ded.ae.libs.LocaleManager.LANGUAGE_ARABIC;
+import androidx.annotation.Nullable;
+import androidx.core.app.ActivityCompat;
+import androidx.fragment.app.Fragment;
+import androidx.fragment.app.FragmentManager;
+import androidx.fragment.app.FragmentTransaction;
 
 /**
  * A simple {@link Fragment} subclass.
@@ -155,23 +151,9 @@ public class AccountActivity extends BaseActivity implements MainContract.ModelV
 
     }
 
-    @Override
-    protected void onResume() {
-        super.onResume();
-        if (Objects.equals(LocaleManager.getLanguage(this), LANGUAGE_ARABIC)) {
-            overridePendingTransition(R.anim.slide_in_up, R.anim.slide_out_up);
-        } else {
-            overridePendingTransition(R.anim.slide_in_down, R.anim.slide_out_down);
-        }
-    }
 
     @Override
-    protected void onPause() {
-        super.onPause();
-        if (Objects.equals(LocaleManager.getLanguage(this), LANGUAGE_ARABIC)) {
-            overridePendingTransition(R.anim.slide_in_up, R.anim.slide_out_up);
-        } else {
-            overridePendingTransition(R.anim.slide_in_down, R.anim.slide_out_down);
-        }
+    public void triggerByInternet() {
+
     }
 }

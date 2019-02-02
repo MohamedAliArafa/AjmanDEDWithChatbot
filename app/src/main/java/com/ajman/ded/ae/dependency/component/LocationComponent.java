@@ -5,6 +5,7 @@ import com.ajman.ded.ae.dependency.scope.AjmanScope;
 import com.ajman.ded.ae.screens.complaints.SubmitActivity;
 
 import dagger.Component;
+
 @AjmanScope
 @Component(modules = LocationModule.class)
 public interface LocationComponent {

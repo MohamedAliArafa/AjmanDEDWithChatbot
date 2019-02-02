@@ -274,5 +274,6 @@
     <string name="not_satisfied">غير راض</string>
     <string name="satisfied">راض</string>
     <string name="evaluation">تم إرسال التقييم</string>
+    <string name="chat">محادثة</string>
 
 </resources>

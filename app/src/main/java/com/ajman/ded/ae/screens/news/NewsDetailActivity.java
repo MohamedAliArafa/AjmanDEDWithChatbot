@@ -1,7 +1,6 @@
 package com.ajman.ded.ae.screens.news;
 
 import android.os.Bundle;
-import androidx.appcompat.app.AppCompatActivity;
 import android.widget.ImageView;
 import android.widget.TextView;
 import android.widget.Toast;
@@ -13,6 +12,7 @@ import com.bumptech.glide.Glide;
 
 import java.util.Objects;
 
+import androidx.appcompat.app.AppCompatActivity;
 import butterknife.BindView;
 import butterknife.ButterKnife;
 

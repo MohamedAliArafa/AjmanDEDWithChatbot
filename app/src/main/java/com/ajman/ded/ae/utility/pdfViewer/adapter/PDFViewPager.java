@@ -17,11 +17,12 @@ package com.ajman.ded.ae.utility.pdfViewer.adapter;
 
 import android.content.Context;
 import android.content.res.TypedArray;
-import androidx.viewpager.widget.ViewPager;
 import android.util.AttributeSet;
 import android.view.MotionEvent;
 
 import com.ajman.ded.ae.R;
+
+import androidx.viewpager.widget.ViewPager;
 
 
 public class PDFViewPager extends ViewPager {

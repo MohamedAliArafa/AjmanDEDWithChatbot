@@ -1,9 +1,6 @@
 package com.ajman.ded.ae.screens.news;
 
 import android.os.Bundle;
-import androidx.annotation.NonNull;
-import androidx.recyclerview.widget.LinearLayoutManager;
-import androidx.recyclerview.widget.RecyclerView;
 import android.util.Log;
 
 import com.ajman.ded.ae.R;
@@ -17,6 +14,9 @@ import com.google.gson.reflect.TypeToken;
 
 import java.util.List;
 
+import androidx.annotation.NonNull;
+import androidx.recyclerview.widget.LinearLayoutManager;
+import androidx.recyclerview.widget.RecyclerView;
 import retrofit2.Call;
 import retrofit2.Response;
 
@@ -72,6 +72,11 @@ public class NewsActivity extends BaseActivity {
                         .changeAlertType(SweetAlertDialog.ERROR_TYPE);
             }
         });
+
+    }
+
+    @Override
+    public void triggerByInternet() {
 
     }
 }

@@ -1,11 +1,12 @@
 package com.ajman.ded.ae;
 
 import android.os.Bundle;
-import androidx.annotation.Nullable;
-import androidx.fragment.app.FragmentTransaction;
-import androidx.appcompat.app.AppCompatActivity;
 
 import com.ajman.ded.ae.screens.loginMenu.LoginMenuFragment;
+
+import androidx.annotation.Nullable;
+import androidx.appcompat.app.AppCompatActivity;
+import androidx.fragment.app.FragmentTransaction;
 
 public class LoginMenu extends AppCompatActivity {
     @Override

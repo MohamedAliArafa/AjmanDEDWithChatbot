@@ -10,7 +10,6 @@ import android.os.Bundle;
 import android.os.Environment;
 import android.provider.MediaStore;
 import android.util.Log;
-import android.view.View;
 import android.webkit.GeolocationPermissions;
 import android.webkit.ValueCallback;
 import android.webkit.WebChromeClient;
@@ -190,6 +189,11 @@ public class WebViewActivity extends BaseActivity {
         super.onResume();
         mWebView.resumeTimers();
         mWebView.onResume();
+    }
+
+    @Override
+    public void triggerByInternet() {
+
     }
 
 

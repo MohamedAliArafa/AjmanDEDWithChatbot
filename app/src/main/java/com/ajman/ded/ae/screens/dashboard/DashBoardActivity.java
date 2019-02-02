@@ -2,20 +2,18 @@ package com.ajman.ded.ae.screens.dashboard;
 
 import android.content.Intent;
 import android.os.Bundle;
-import androidx.fragment.app.FragmentManager;
-import androidx.fragment.app.FragmentTransaction;
 import android.view.Menu;
 import android.view.MenuItem;
 
 import com.ajman.ded.ae.FaqActivity;
 import com.ajman.ded.ae.R;
 import com.ajman.ded.ae.screens.base.BaseActivity;
-import com.ajman.ded.ae.utility.sweetDialog.SweetAlertDialog;
-import com.novoda.merlin.Bindable;
-import com.novoda.merlin.NetworkStatus;
+
+import androidx.fragment.app.FragmentManager;
+import androidx.fragment.app.FragmentTransaction;
 
 
-public class DashBoardActivity extends BaseActivity implements Bindable {
+public class DashBoardActivity extends BaseActivity {
 
     private DashboardFragment dashboardFragment;
 
@@ -27,29 +25,21 @@ public class DashBoardActivity extends BaseActivity implements Bindable {
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-//        getSupportActionBar().setDisplayHomeAsUpEnabled(true);
-//        getSupportActionBar().setDisplayShowHomeEnabled(true);
-        super.merlin.registerBindable(this);
-        super.merlin.registerConnectable(() -> {
+    }
 
-            if (dashboardFragment == null)
-                dashboardFragment = new DashboardFragment();
-            FragmentManager fragmentManager = getSupportFragmentManager();
-            FragmentTransaction fragmentTransaction = fragmentManager.beginTransaction();
-            fragmentTransaction.replace(R.id.fragment_container, dashboardFragment);
-            fragmentTransaction.setCustomAnimations(android.R.anim.slide_in_left,
-                    android.R.anim.slide_out_right, android.R.anim.slide_in_left,
-                    android.R.anim.slide_out_right);
-            fragmentTransaction.detach(dashboardFragment);
-            fragmentTransaction.attach(dashboardFragment);
-            fragmentTransaction.commitAllowingStateLoss();
-        });
-        super.merlin.registerDisconnectable(() -> {
-            SweetAlertDialog pDialog = new SweetAlertDialog(DashBoardActivity.this, SweetAlertDialog.CUSTOM_IMAGE_TYPE)
-                    .setTitleText(getString(R.string.no_internet)).setCustomImage(R.drawable.wifi_off);
-            pDialog.show();
-            pDialog.setCancelable(true);
-        });
+    @Override
+    public void triggerByInternet() {
+        if (dashboardFragment == null)
+            dashboardFragment = new DashboardFragment();
+        FragmentManager fragmentManager = getSupportFragmentManager();
+        FragmentTransaction fragmentTransaction = fragmentManager.beginTransaction();
+        fragmentTransaction.replace(R.id.fragment_container, dashboardFragment);
+        fragmentTransaction.setCustomAnimations(android.R.anim.slide_in_left,
+                android.R.anim.slide_out_right, android.R.anim.slide_in_left,
+                android.R.anim.slide_out_right);
+        fragmentTransaction.detach(dashboardFragment);
+        fragmentTransaction.attach(dashboardFragment);
+        fragmentTransaction.commitAllowingStateLoss();
     }
 
 
@@ -85,15 +75,5 @@ public class DashBoardActivity extends BaseActivity implements Bindable {
                 break;
         }
         return super.onOptionsItemSelected(item);
-    }
-
-    @Override
-    public void onBind(NetworkStatus networkStatus) {
-        if (!networkStatus.isAvailable()) {
-            SweetAlertDialog pDialog = new SweetAlertDialog(this, SweetAlertDialog.CUSTOM_IMAGE_TYPE)
-                    .setTitleText(getString(R.string.no_internet)).setCustomImage(R.drawable.wifi_off);
-            pDialog.show();
-            pDialog.setCancelable(true);
-        }
     }
 }

@@ -2,7 +2,6 @@ package com.ajman.ded.ae;
 
 import android.os.Bundle;
 
-import com.ajman.ded.ae.libs.ChatSplash.ResultModel;
 import com.ajman.ded.ae.models.service.ServiceList;
 import com.ajman.ded.ae.screens.base.BaseActivity;
 import com.google.gson.Gson;
@@ -15,7 +14,6 @@ import java.io.Reader;
 import java.util.ArrayList;
 import java.util.List;
 
-import androidx.appcompat.app.AppCompatActivity;
 import androidx.recyclerview.widget.LinearLayoutManager;
 import androidx.recyclerview.widget.RecyclerView;
 import butterknife.BindView;
@@ -44,7 +42,13 @@ public class ServiceCentersActivity extends BaseActivity {
         InputStream raw = getResources().openRawResource(R.raw.services_center);
         Reader rd = new BufferedReader(new InputStreamReader(raw));
         Gson gson = new Gson();
-        data = gson.fromJson(rd,  new TypeToken<ArrayList<ServiceList>>(){}.getType());
+        data = gson.fromJson(rd, new TypeToken<ArrayList<ServiceList>>() {
+        }.getType());
         recyclerView.setAdapter(new ExpandableRecyclerAdapter(data));
+    }
+
+    @Override
+    public void triggerByInternet() {
+
     }
 }

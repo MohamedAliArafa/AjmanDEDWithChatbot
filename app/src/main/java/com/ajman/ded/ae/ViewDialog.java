@@ -8,9 +8,6 @@ import android.provider.MediaStore;
 import android.view.View;
 import android.view.Window;
 
-import java.io.File;
-import java.io.IOException;
-
 import static com.ajman.ded.ae.screens.complaints.SubmitActivity.OPEN_CAMERA;
 import static com.ajman.ded.ae.screens.complaints.SubmitActivity.OPEN_GALLERY;
 

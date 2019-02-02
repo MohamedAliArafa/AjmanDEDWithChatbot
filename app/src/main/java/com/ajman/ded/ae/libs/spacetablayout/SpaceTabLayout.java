@@ -9,16 +9,6 @@ import android.graphics.drawable.Drawable;
 import android.os.Build;
 import android.os.Parcel;
 import android.os.Parcelable;
-import androidx.annotation.ColorInt;
-import androidx.annotation.DrawableRes;
-import androidx.annotation.LayoutRes;
-import androidx.annotation.StringRes;
-
-import androidx.fragment.app.Fragment;
-import androidx.fragment.app.FragmentManager;
-import androidx.core.content.ContextCompat;
-import androidx.viewpager.widget.ViewPager;
-
 import android.util.AttributeSet;
 import android.view.LayoutInflater;
 import android.view.View;
@@ -34,6 +24,15 @@ import com.google.android.material.tabs.TabLayout;
 import java.util.ArrayList;
 import java.util.List;
 import java.util.Locale;
+
+import androidx.annotation.ColorInt;
+import androidx.annotation.DrawableRes;
+import androidx.annotation.LayoutRes;
+import androidx.annotation.StringRes;
+import androidx.core.content.ContextCompat;
+import androidx.fragment.app.Fragment;
+import androidx.fragment.app.FragmentManager;
+import androidx.viewpager.widget.ViewPager;
 
 public class SpaceTabLayout extends RelativeLayout {
 
@@ -591,45 +590,40 @@ public class SpaceTabLayout extends RelativeLayout {
         return tabOne.getCustomView();
     }
 
-    public void setTabOneView(View tabOneView) {
-        tabOne.setCustomView(tabOneView);
-    }
-
     public void setTabOneView(@LayoutRes int tabOneLayout) {
         tabOne.setCustomView(tabOneLayout);
+    }
+
+    public void setTabOneView(View tabOneView) {
+        tabOne.setCustomView(tabOneView);
     }
 
     public View getTabTwoView() {
         return tabTwo.getCustomView();
     }
 
-    public void setTabTwoView(View tabTwoView) {
-        tabTwo.setCustomView(tabTwoView);
-    }
-
     public void setTabTwoView(@LayoutRes int tabTwoLayout) {
         tabOne.setCustomView(tabTwoLayout);
+    }
+
+    public void setTabTwoView(View tabTwoView) {
+        tabTwo.setCustomView(tabTwoView);
     }
 
     public View getTabThreeView() {
         return tabThree.getCustomView();
     }
 
-    public void setTabThreeView(View tabThreeView) {
-        tabThree.setCustomView(tabThreeView);
-    }
-
     public void setTabThreeView(@LayoutRes int tabThreeLayout) {
         tabThree.setCustomView(tabThreeLayout);
     }
 
-    public View getTabFourView() {
-        if (numberOfTabs > 3) return tabFour.getCustomView();
-        else throw new IllegalArgumentException("You have " + numberOfTabs + " tabs.");
+    public void setTabThreeView(View tabThreeView) {
+        tabThree.setCustomView(tabThreeView);
     }
 
-    public void setTabFourView(View tabFourView) {
-        if (numberOfTabs > 3) tabFour.setCustomView(tabFourView);
+    public View getTabFourView() {
+        if (numberOfTabs > 3) return tabFour.getCustomView();
         else throw new IllegalArgumentException("You have " + numberOfTabs + " tabs.");
     }
 
@@ -638,18 +632,23 @@ public class SpaceTabLayout extends RelativeLayout {
         else throw new IllegalArgumentException("You have " + numberOfTabs + " tabs.");
     }
 
+    public void setTabFourView(View tabFourView) {
+        if (numberOfTabs > 3) tabFour.setCustomView(tabFourView);
+        else throw new IllegalArgumentException("You have " + numberOfTabs + " tabs.");
+    }
+
     public View getTabFiveView() {
         if (numberOfTabs > 4) return tabFive.getCustomView();
         else throw new IllegalArgumentException("You have " + numberOfTabs + " tabs.");
     }
 
-    public void setTabFiveView(View tabFiveView) {
-        if (numberOfTabs > 4) tabFour.setCustomView(tabFiveView);
+    public void setTabFiveView(@LayoutRes int tabFiveLayout) {
+        if (numberOfTabs > 4) tabFour.setCustomView(tabFiveLayout);
         else throw new IllegalArgumentException("You have " + numberOfTabs + " tabs.");
     }
 
-    public void setTabFiveView(@LayoutRes int tabFiveLayout) {
-        if (numberOfTabs > 4) tabFour.setCustomView(tabFiveLayout);
+    public void setTabFiveView(View tabFiveView) {
+        if (numberOfTabs > 4) tabFour.setCustomView(tabFiveView);
         else throw new IllegalArgumentException("You have " + numberOfTabs + " tabs.");
     }
 

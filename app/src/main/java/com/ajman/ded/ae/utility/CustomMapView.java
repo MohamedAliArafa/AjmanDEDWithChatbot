@@ -1,13 +1,14 @@
 package com.ajman.ded.ae.utility;
 
 import android.content.Context;
-import androidx.annotation.Nullable;
 import android.util.AttributeSet;
 import android.view.MotionEvent;
 import android.view.ViewParent;
 
 import com.google.android.gms.maps.GoogleMapOptions;
 import com.google.android.gms.maps.MapView;
+
+import androidx.annotation.Nullable;
 
 /**
  * Created by Ahmed on 11/26/2017.

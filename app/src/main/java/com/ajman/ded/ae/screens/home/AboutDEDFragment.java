@@ -2,8 +2,6 @@ package com.ajman.ded.ae.screens.home;
 
 
 import android.os.Bundle;
-import androidx.annotation.Nullable;
-import androidx.cardview.widget.CardView;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
@@ -11,6 +9,9 @@ import android.widget.ImageView;
 
 import com.ajman.ded.ae.R;
 import com.ajman.ded.ae.libs.AnimatedFragment;
+
+import androidx.annotation.Nullable;
+import androidx.cardview.widget.CardView;
 
 public class AboutDEDFragment extends AnimatedFragment {
 

@@ -6,10 +6,13 @@ import android.content.SharedPreferences;
 import android.content.res.Configuration;
 import android.os.Handler;
 import android.preference.PreferenceManager;
+
 import com.ajman.ded.ae.libs.LocaleManager;
 import com.ajman.ded.ae.utility.pdfViewer.asset.CopyAsset;
 import com.ajman.ded.ae.utility.pdfViewer.asset.CopyAssetThreadImpl;
+
 import java.io.File;
+
 import io.realm.Realm;
 import io.realm.RealmConfiguration;
 

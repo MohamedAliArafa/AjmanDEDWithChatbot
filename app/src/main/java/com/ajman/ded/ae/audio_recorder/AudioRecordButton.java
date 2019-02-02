@@ -31,7 +31,6 @@ import java.util.UUID;
 
 import androidx.core.content.ContextCompat;
 
-import static com.ajman.ded.ae.libs.LocaleManager.LANGUAGE_ARABIC;
 import static com.ajman.ded.ae.libs.LocaleManager.LANGUAGE_ENGLISH;
 
 public class AudioRecordButton extends RelativeLayout implements View.OnTouchListener {

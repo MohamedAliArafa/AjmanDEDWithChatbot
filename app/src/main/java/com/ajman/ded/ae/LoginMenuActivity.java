@@ -2,6 +2,7 @@ package com.ajman.ded.ae;
 
 import android.content.res.Configuration;
 import android.os.Bundle;
+
 import androidx.appcompat.app.AppCompatActivity;
 
 public class LoginMenuActivity extends AppCompatActivity {

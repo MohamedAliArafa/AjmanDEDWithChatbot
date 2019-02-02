@@ -91,21 +91,16 @@ import retrofit2.Response;
 
 public class SubmitActivity extends AppCompatActivity implements EyeImagesAdapter.AdapterCallback, LocationListener, OnMapReadyCallback {
     public static final int TYPE_TYPE = 2;
-
+    public static final int OPEN_CAMERA = 9004;
+    public static final int OPEN_GALLERY = 9005;
     private static final int REQUEST_CHECK_SETTINGS = 9000;
     final private int REQUEST_CODE_AUDIO_PERMISSIONS = 9001;
     final private int REQUEST_CODE_IMAGE_PERMISSIONS = 9002;
     final private int REQUEST_CODE_LOCATION_PERMISSIONS = 9003;
-    public static final int OPEN_CAMERA = 9004;
-    public static final int OPEN_GALLERY = 9005;
-    private String[] perms;
-
     @Inject
     Task<LocationSettingsResponse> locationTask;
-
     @Inject
     LocationManager locationManager;
-
     @BindView(R.id.recorder)
     AudioRecordButton audioRecordButton;
     @BindView(R.id.seekbar)
@@ -142,6 +137,7 @@ public class SubmitActivity extends AppCompatActivity implements EyeImagesAdapte
     TextView record_audio;
     @BindView(R.id.location_title)
     TextView locationTitle;
+    private String[] perms;
     private AudioRecording audioRecord;
     private RecordingItem recordingAudio;
     private EyeImagesAdapter mAdapter;

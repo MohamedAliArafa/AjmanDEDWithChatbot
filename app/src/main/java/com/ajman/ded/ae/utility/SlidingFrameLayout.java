@@ -1,9 +1,10 @@
 package com.ajman.ded.ae.utility;
 
 import android.content.Context;
-import androidx.annotation.Keep;
 import android.util.AttributeSet;
 import android.widget.FrameLayout;
+
+import androidx.annotation.Keep;
 
 /**
  * Created by Ahmed on 12/2/2017.

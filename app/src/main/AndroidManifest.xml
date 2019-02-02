@@ -3,6 +3,8 @@
     package="com.ajman.ded.ae">
 
     <uses-feature android:name="android.hardware.camera" android:required="true" />
+    <uses-feature android:name="android.hardware.sensor.accelerometer" android:required="true" />
+
     <uses-permission android:name="android.permission.SYSTEM_ALERT_WINDOW" />
     <uses-permission android:name="android.permission.VIBRATE" />
     <uses-permission android:name="android.permission.INTERNET" />
@@ -15,7 +17,6 @@
     <uses-permission android:name="android.permission.ACCESS_FINE_LOCATION" />
     <uses-permission android:name="android.permission.ACCESS_COARSE_LOCATION" />
 
-    <uses-feature android:name="android.hardware.sensor.accelerometer" android:required="true" />
 
     <application
         android:usesCleartextTraffic="true"
@@ -26,6 +27,11 @@
         android:roundIcon="@mipmap/ic_launcher_round"
         android:supportsRtl="true"
         android:theme="@style/AppTheme">
+
+        <uses-library
+            android:name="org.apache.http.legacy"
+            android:required="false" />
+
         <activity
             android:name=".screens.home.HomeActivity"
             android:label="@string/app_name"
@@ -47,18 +53,25 @@
 
         <activity
             android:name=".MapsActivity"
+            android:screenOrientation="portrait"
             android:label="@string/title_activity_maps" />
-        <activity android:name=".WelcomeActivity" />
-        <activity android:name=".LoginMenuActivity" />
+        <activity android:name=".WelcomeActivity"
+            android:screenOrientation="portrait"
+            />
+        <activity android:name=".LoginMenuActivity"
+            android:screenOrientation="portrait"
+            />
         <activity
             android:name=".screens.login.LoginActivity"
             android:windowSoftInputMode="adjustResize" />
         <activity
             android:name=".WebViewActivity"
             android:largeHeap="true"
+            android:screenOrientation="portrait"
             android:parentActivityName=".screens.home.HomeActivity" />
         <activity
             android:name=".screens.dashboard.DashBoardActivity"
+            android:screenOrientation="portrait"
             android:parentActivityName=".screens.home.HomeActivity">
             <meta-data
                 android:name="androidx.PARENT_ACTIVITY"
@@ -66,6 +79,7 @@
         </activity>
         <activity
             android:name=".screens.main.MainActivity"
+            android:screenOrientation="portrait"
             android:label="@string/app_name">
             <intent-filter>
                 <action android:name="android.intent.action.MAIN" />
@@ -74,13 +88,18 @@
                 <category android:name="android.intent.category.DEFAULT" />
             </intent-filter>
         </activity>
-        <activity android:name=".screens.barcode.BarcodeActivity" />
+        <activity android:name=".screens.barcode.BarcodeActivity"
+            android:screenOrientation="portrait" />
         <activity
             android:name=".screens.registeration.RegisterActivity"
+            android:screenOrientation="portrait"
             android:windowSoftInputMode="adjustResize" />
-        <activity android:name=".screens.search.SearchActivity" />
-        <activity android:name=".StatusActivity" />
-        <activity android:name=".CustomTabs" />
+        <activity android:name=".screens.search.SearchActivity"
+            android:screenOrientation="portrait" />
+        <activity android:name=".StatusActivity"
+            android:screenOrientation="portrait" />
+        <activity android:name=".CustomTabs"
+            android:screenOrientation="portrait" />
 
         <receiver android:name=".utility.otpSms.SmsReceiver">
             <intent-filter>
@@ -88,28 +107,33 @@
             </intent-filter>
         </receiver>
 
-        <service
-            android:name="com.novoda.merlin.MerlinService"
-            android:exported="false" />
-
         <meta-data
             android:name="io.fabric.ApiKey"
             android:value="04da2ecb4654f439a43db0211b634ca63dfb1a6c" />
 
-        <activity android:name=".screens.InvestorGuide" />
-        <activity android:name=".screens.IntroActivity" />
-        <activity android:name=".LoginMenu" />
-        <activity android:name=".screens.news.NewsActivity" />
+        <activity android:name=".screens.InvestorGuide"
+            android:screenOrientation="portrait" />
+        <activity android:name=".screens.IntroActivity"
+            android:screenOrientation="portrait" />
+        <activity android:name=".LoginMenu"
+            android:screenOrientation="portrait" />
+        <activity android:name=".screens.news.NewsActivity"
+            android:screenOrientation="portrait" />
 
         <service
             android:name=".utility.pdfViewer.service.CopyAssetService"
             android:exported="false" />
 
-        <activity android:name=".screens.news.NewsDetailActivity" />
-        <activity android:name=".ServiceCentersActivity" />
-        <activity android:name=".screens.complaints.SubmitActivity" />
-        <activity android:name=".NotificationsActivity" />
-        <activity android:name=".NotificationDetailsActivity"></activity>
+        <activity android:name=".screens.news.NewsDetailActivity"
+            android:screenOrientation="portrait" />
+        <activity android:name=".ServiceCentersActivity"
+            android:screenOrientation="portrait" />
+        <activity android:name=".screens.complaints.SubmitActivity"
+            android:screenOrientation="portrait" />
+        <activity android:name=".NotificationsActivity"
+            android:screenOrientation="portrait" />
+        <activity android:name=".NotificationDetailsActivity"
+            android:screenOrientation="portrait" />
 
         <provider
             android:name="androidx.core.content.FileProvider"
@@ -120,13 +144,6 @@
                 android:name="android.support.FILE_PROVIDER_PATHS"
                 android:resource="@xml/file_paths"></meta-data>
         </provider>
-
-        <receiver android:name=".ShakeReceiver">
-            <intent-filter>
-                <action android:name="shake.detector" />
-            </intent-filter>
-        </receiver>
-
     </application>
 
 </manifest>

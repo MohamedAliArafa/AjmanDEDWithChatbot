@@ -3,10 +3,6 @@ package com.ajman.ded.ae.screens.main;
 import android.content.Context;
 import android.content.Intent;
 import android.os.Bundle;
-import androidx.fragment.app.FragmentManager;
-import androidx.fragment.app.FragmentTransaction;
-import androidx.core.app.TaskStackBuilder;
-import androidx.appcompat.app.AppCompatActivity;
 
 import com.ajman.ded.ae.R;
 import com.ajman.ded.ae.libs.LocaleManager;
@@ -18,6 +14,11 @@ import com.ajman.ded.ae.screens.loginMenu.LoginMenuFragment;
 import com.ajman.ded.ae.screens.splash.SplashFragment;
 
 import java.util.Objects;
+
+import androidx.appcompat.app.AppCompatActivity;
+import androidx.core.app.TaskStackBuilder;
+import androidx.fragment.app.FragmentManager;
+import androidx.fragment.app.FragmentTransaction;
 
 import static com.ajman.ded.ae.libs.LocaleManager.LANGUAGE_ARABIC;
 import static com.ajman.ded.ae.utility.Constants.LOGIN_FRAGMENT_KEY;

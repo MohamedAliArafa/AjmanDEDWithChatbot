@@ -7,10 +7,6 @@ import android.content.Intent;
 import android.graphics.Color;
 import android.os.Bundle;
 import android.os.CountDownTimer;
-import androidx.annotation.NonNull;
-import androidx.appcompat.widget.SwitchCompat;
-import androidx.core.app.ActivityCompat;
-import androidx.fragment.app.Fragment;
 import android.text.TextUtils;
 import android.util.Log;
 import android.view.LayoutInflater;
@@ -38,15 +34,11 @@ import com.ajman.ded.ae.data.model.request.ConfirmCode.RequestEnvelope_ConfirmCo
 import com.ajman.ded.ae.data.model.request.InsertNewOnlineUser.RequestBody_InsertNewOnlineUser;
 import com.ajman.ded.ae.data.model.request.InsertNewOnlineUser.RequestData_InsertNewOnlineUser;
 import com.ajman.ded.ae.data.model.request.InsertNewOnlineUser.RequestEnvelope_InsertNewOnlineUser;
-import com.ajman.ded.ae.data.model.request.SendSMS.RequestBody_SendSMS;
-import com.ajman.ded.ae.data.model.request.SendSMS.RequestData_SendSMS;
-import com.ajman.ded.ae.data.model.request.SendSMS.RequestEnvelope_SendSMS;
 import com.ajman.ded.ae.data.model.request.UserId.RequestBody_UserId;
 import com.ajman.ded.ae.data.model.request.UserId.RequestData_UserId;
 import com.ajman.ded.ae.data.model.request.UserId.RequestEnvelope_UserId;
 import com.ajman.ded.ae.data.model.response.ConfirmCode.ResponseEnvelope_ConfirmCode;
 import com.ajman.ded.ae.data.model.response.InsertNewOnlineUser.ResponseEnvelope_InsertNewOnlineUser;
-import com.ajman.ded.ae.data.model.response.SendSMS.ResponseEnvelope_SendSMS;
 import com.ajman.ded.ae.data.model.response.UserId.ResponseEnvelope_UserId;
 import com.ajman.ded.ae.models.Country;
 import com.ajman.ded.ae.models.RegisterLookups;
@@ -62,7 +54,6 @@ import com.ajman.ded.ae.utility.sweetDialog.SweetAlertDialog;
 import com.goodiebag.pinview.Pinview;
 import com.google.gson.Gson;
 
-import java.security.SecureRandom;
 import java.text.SimpleDateFormat;
 import java.util.ArrayList;
 import java.util.Arrays;
@@ -71,6 +62,10 @@ import java.util.List;
 import java.util.Locale;
 import java.util.Objects;
 
+import androidx.annotation.NonNull;
+import androidx.appcompat.widget.SwitchCompat;
+import androidx.core.app.ActivityCompat;
+import androidx.fragment.app.Fragment;
 import butterknife.BindView;
 import butterknife.ButterKnife;
 import butterknife.Unbinder;
@@ -437,7 +432,7 @@ public class RegisterFragment extends Fragment implements SmsListener {
                     int codeResult = response.body().getBody().getData().getConfirmCodeResult();
                     switch (codeResult) {
                         case 1:
-                           getUserId();
+                            getUserId();
                             break;
                         default:
                             pDialog.setTitleText(getString(R.string.wrong_code))

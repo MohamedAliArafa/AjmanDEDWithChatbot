@@ -2,11 +2,6 @@ package com.ajman.ded.ae.utility.slidingrootnav;
 
 import android.app.Activity;
 import android.os.Bundle;
-import androidx.annotation.FloatRange;
-import androidx.annotation.IntRange;
-import androidx.annotation.LayoutRes;
-import androidx.appcompat.app.ActionBarDrawerToggle;
-import androidx.appcompat.widget.Toolbar;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
@@ -26,6 +21,12 @@ import com.ajman.ded.ae.utility.slidingrootnav.util.HiddenMenuClickConsumer;
 import java.util.ArrayList;
 import java.util.Arrays;
 import java.util.List;
+
+import androidx.annotation.FloatRange;
+import androidx.annotation.IntRange;
+import androidx.annotation.LayoutRes;
+import androidx.appcompat.app.ActionBarDrawerToggle;
+import androidx.appcompat.widget.Toolbar;
 
 
 public class SlidingRootNavBuilder {

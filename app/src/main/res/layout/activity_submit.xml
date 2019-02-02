@@ -15,9 +15,9 @@
         android:layout_height="match_parent"
         android:animateLayoutChanges="true"
         android:background="@drawable/bg"
+        android:fillViewport="true"
         android:focusableInTouchMode="true"
         android:scrollbars="none"
-        android:fillViewport="true"
         app:layout_behavior="@string/appbar_scrolling_view_behavior">
 
         <androidx.constraintlayout.widget.ConstraintLayout
@@ -48,12 +48,12 @@
                 android:layout_height="wrap_content"
                 android:layout_marginStart="8dp"
                 android:layout_marginTop="16dp"
+                android:text="..."
+                android:textAlignment="viewStart"
                 android:textColor="@color/colorPrimary"
                 android:textSize="14sp"
-                android:textAlignment="viewStart"
                 app:layout_constraintStart_toEndOf="@+id/location_image"
-                app:layout_constraintTop_toBottomOf="@+id/map"
-                android:text="..." />
+                app:layout_constraintTop_toBottomOf="@+id/map" />
 
             <EditText
                 android:id="@+id/facility_title"
@@ -130,7 +130,6 @@
                 android:layout_marginTop="16dp"
                 android:layout_marginEnd="16dp"
                 android:text="@string/complaint"
-                android:maxLines="1"
                 android:textAlignment="viewStart"
                 android:textColor="@color/colorAccent"
                 android:textColorHint="@color/colorPrimary"
@@ -161,10 +160,10 @@
                 android:backgroundTint="@color/colorPrimary"
                 android:hint="@string/notification_details"
                 android:inputType="textMultiLine"
+                android:textAlignment="viewStart"
                 android:textColor="@color/colorPrimary"
                 android:textColorHint="@color/colorPrimary"
                 android:textSize="14sp"
-                android:textAlignment="viewStart"
                 app:layout_constraintEnd_toEndOf="parent"
                 app:layout_constraintHorizontal_bias="1.0"
                 app:layout_constraintStart_toStartOf="parent"

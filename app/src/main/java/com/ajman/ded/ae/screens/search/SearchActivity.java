@@ -71,15 +71,11 @@ public class SearchActivity extends BaseActivity {
 
             }
         });
+    }
 
-//        ToolbarSearchEditText.setOnEditorActionListener((v, actionId, event) -> {
-//            boolean handled = false;
-//            if (actionId == EditorInfo.IME_ACTION_SEARCH) {
-//                search(ToolbarSearchEditText.getText().toString());
-//                handled = true;
-//            }
-//            return handled;
-//        });
+    @Override
+    public void triggerByInternet() {
+
     }
 
     private void search(String keyword) {

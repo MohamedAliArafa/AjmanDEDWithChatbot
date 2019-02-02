@@ -1,9 +1,6 @@
 package com.ajman.ded.ae;
 
 import android.os.Bundle;
-import androidx.annotation.NonNull;
-import androidx.recyclerview.widget.LinearLayoutManager;
-import androidx.recyclerview.widget.RecyclerView;
 import android.util.Log;
 
 import com.ajman.ded.ae.adapters.StatusAdapter;
@@ -21,6 +18,9 @@ import java.util.ArrayList;
 import java.util.Arrays;
 import java.util.List;
 
+import androidx.annotation.NonNull;
+import androidx.recyclerview.widget.LinearLayoutManager;
+import androidx.recyclerview.widget.RecyclerView;
 import retrofit2.Call;
 import retrofit2.Response;
 
@@ -82,5 +82,10 @@ public class StatusActivity extends BaseActivity {
                 Log.d("DATA ERROR:", String.valueOf(t));
             }
         });
+    }
+
+    @Override
+    public void triggerByInternet() {
+
     }
 }

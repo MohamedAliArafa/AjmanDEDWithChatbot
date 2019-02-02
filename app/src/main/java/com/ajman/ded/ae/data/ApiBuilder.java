@@ -1,9 +1,7 @@
 package com.ajman.ded.ae.data;
 
 import com.ajman.ded.ae.DateDeserializer;
-import com.ajman.ded.ae.HeaderInterceptor;
 import com.ajman.ded.ae.NTLMAuthenticator;
-import com.google.gson.Gson;
 import com.google.gson.GsonBuilder;
 
 import org.simpleframework.xml.Serializer;
@@ -15,8 +13,6 @@ import org.simpleframework.xml.stream.Format;
 import java.util.Date;
 import java.util.concurrent.TimeUnit;
 
-import okhttp3.Authenticator;
-import okhttp3.Credentials;
 import okhttp3.OkHttpClient;
 import okhttp3.logging.HttpLoggingInterceptor;
 import retrofit2.Retrofit;
@@ -25,10 +21,10 @@ import retrofit2.converter.simplexml.SimpleXmlConverterFactory;
 
 public class ApiBuilder {
 
-    private static String NEWS_BASE_URL = "http://ded.sdg.ae/";
-    private static String SITE_BASE_URL = "http://site4.ajmanded.ae";
     public static String NEWS_IMAGE_BASE_URL = "http://ded.sdg.ae/Ufiles/News/";
     public static String BASIC_BASE_URL = "http://site1.ajmanded.ae/";
+    private static String NEWS_BASE_URL = "http://ded.sdg.ae/";
+    private static String SITE_BASE_URL = "http://site4.ajmanded.ae";
 
     public static Api providesApi() {
 

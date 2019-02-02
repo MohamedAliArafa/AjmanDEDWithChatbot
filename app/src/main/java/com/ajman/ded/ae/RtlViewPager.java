@@ -70,13 +70,13 @@ public class RtlViewPager extends ViewPager {
     }
 
     @Override
-    public void setCurrentItem(int item) {
-        super.setCurrentItem(convert(item));
+    public int getCurrentItem() {
+        return convert(super.getCurrentItem());
     }
 
     @Override
-    public int getCurrentItem() {
-        return convert(super.getCurrentItem());
+    public void setCurrentItem(int item) {
+        super.setCurrentItem(convert(item));
     }
 
     private int convert(int position) {
@@ -95,11 +95,6 @@ public class RtlViewPager extends ViewPager {
     }
 
     @Override
-    public void fakeDragBy(float xOffset) {
-        super.fakeDragBy(isRtl() ? xOffset : -xOffset);
-    }
-
-    @Override
     public void setAdapter(@Nullable PagerAdapter adapter) {
         unregisterRtlDataSetObserver();
 
@@ -112,6 +107,11 @@ public class RtlViewPager extends ViewPager {
         if (rtlReady) {
             setCurrentItemWithoutNotification(0);
         }
+    }
+
+    @Override
+    public void fakeDragBy(float xOffset) {
+        super.fakeDragBy(isRtl() ? xOffset : -xOffset);
     }
 
     private void setCurrentItemWithoutNotification(int index) {
@@ -143,6 +143,20 @@ public class RtlViewPager extends ViewPager {
         super.removeOnPageChangeListener(listener);
     }
 
+    private static class RevalidateIndicesOnContentChange extends DataSetObserver {
+        @NonNull
+        private final ReverseAdapter adapter;
+
+        private RevalidateIndicesOnContentChange(@NonNull ReverseAdapter adapter) {
+            this.adapter = adapter;
+        }
+
+        @Override
+        public void onChanged() {
+            super.onChanged();
+            adapter.revalidateIndices();
+        }
+    }
 
     private class ReverseAdapter extends PagerAdapterWrapper {
 
@@ -194,21 +208,6 @@ public class RtlViewPager extends ViewPager {
                 setCurrentItemWithoutNotification(Math.max(0, lastCount - 1));
                 lastCount = newCount;
             }
-        }
-    }
-
-    private static class RevalidateIndicesOnContentChange extends DataSetObserver {
-        @NonNull
-        private final ReverseAdapter adapter;
-
-        private RevalidateIndicesOnContentChange(@NonNull ReverseAdapter adapter) {
-            this.adapter = adapter;
-        }
-
-        @Override
-        public void onChanged() {
-            super.onChanged();
-            adapter.revalidateIndices();
         }
     }
 

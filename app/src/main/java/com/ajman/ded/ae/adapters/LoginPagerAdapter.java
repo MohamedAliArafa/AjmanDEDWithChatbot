@@ -1,9 +1,6 @@
 package com.ajman.ded.ae.adapters;
 
 import android.content.Intent;
-import androidx.fragment.app.FragmentManager;
-import androidx.viewpager.widget.PagerAdapter;
-
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
@@ -12,6 +9,9 @@ import com.ajman.ded.ae.R;
 import com.ajman.ded.ae.screens.home.HomeActivity;
 import com.ajman.ded.ae.screens.login.LoginActivity;
 import com.ajman.ded.ae.screens.loginMenu.LoginMenuFragment;
+
+import androidx.fragment.app.FragmentManager;
+import androidx.viewpager.widget.PagerAdapter;
 
 /**
  * Created by root on 9/29/17.

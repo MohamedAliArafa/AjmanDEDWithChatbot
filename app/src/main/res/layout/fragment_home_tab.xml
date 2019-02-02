@@ -18,11 +18,11 @@
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:layout_gravity="center"
-            android:layout_marginEnd="8dp"
-            android:layout_marginLeft="8dp"
-            android:layout_marginRight="8dp"
             android:layout_marginStart="8dp"
+            android:layout_marginLeft="8dp"
             android:layout_marginTop="8dp"
+            android:layout_marginEnd="8dp"
+            android:layout_marginRight="8dp"
             android:text="@string/home"
             android:textColor="@color/colorPrimaryDark"
             android:textSize="18sp"
@@ -33,8 +33,8 @@
             android:layout_width="match_parent"
             android:layout_height="5dp"
             android:layout_marginLeft="8dp"
-            android:layout_marginRight="8dp"
             android:layout_marginTop="8dp"
+            android:layout_marginRight="8dp"
             android:background="@color/bg_gray_light" />
 
         <ScrollView
@@ -53,9 +53,9 @@
                     android:id="@+id/card1"
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
-                    android:layout_marginEnd="16dp"
                     android:layout_marginStart="16dp"
-                    android:layout_marginTop="16dp">
+                    android:layout_marginTop="16dp"
+                    android:layout_marginEnd="16dp">
 
                     <View
                         android:layout_width="match_parent"
@@ -121,8 +121,8 @@
                                     android:layout_width="20dp"
                                     android:layout_height="20dp"
                                     android:layout_centerHorizontal="true"
-                                    android:layout_marginLeft="15dp"
                                     android:layout_marginStart="15dp"
+                                    android:layout_marginLeft="15dp"
                                     android:layout_marginTop="15dp"
                                     android:src="@drawable/icon1" />
 
@@ -160,8 +160,8 @@
                                     android:layout_width="20dp"
                                     android:layout_height="20dp"
                                     android:layout_centerHorizontal="true"
-                                    android:layout_marginLeft="15dp"
                                     android:layout_marginStart="15dp"
+                                    android:layout_marginLeft="15dp"
                                     android:layout_marginTop="15dp"
                                     android:src="@drawable/icon4" />
 
@@ -199,8 +199,8 @@
                                     android:layout_width="20dp"
                                     android:layout_height="20dp"
                                     android:layout_centerHorizontal="true"
-                                    android:layout_marginLeft="15dp"
                                     android:layout_marginStart="15dp"
+                                    android:layout_marginLeft="15dp"
                                     android:layout_marginTop="15dp"
                                     android:src="@drawable/icon2" />
 
@@ -267,9 +267,9 @@
                     android:id="@+id/card2"
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
-                    android:layout_marginEnd="16dp"
                     android:layout_marginStart="16dp"
                     android:layout_marginTop="16dp"
+                    android:layout_marginEnd="16dp"
                     android:descendantFocusability="beforeDescendants"
                     android:focusableInTouchMode="true">
 
@@ -327,13 +327,13 @@
                         <Button
                             android:id="@+id/check_status"
                             android:layout_width="wrap_content"
-                            android:layout_height="wrap_content"
+                            android:layout_height="35dp"
                             android:layout_gravity="end"
                             android:background="@drawable/bg_shape_light_red"
-                            android:paddingBottom="10dp"
                             android:paddingLeft="20dp"
-                            android:paddingRight="20dp"
                             android:paddingTop="10dp"
+                            android:paddingRight="20dp"
+                            android:paddingBottom="10dp"
                             android:text="@string/check_status"
                             android:textAllCaps="false"
                             android:textColor="@android:color/white" />
@@ -348,9 +348,9 @@
                     android:id="@+id/card3"
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
-                    android:layout_marginEnd="16dp"
                     android:layout_marginStart="16dp"
-                    android:layout_marginTop="16dp">
+                    android:layout_marginTop="16dp"
+                    android:layout_marginEnd="16dp">
 
                     <View
                         android:layout_width="match_parent"
@@ -411,10 +411,10 @@
                     android:id="@+id/card5"
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
-                    android:layout_marginBottom="18dp"
-                    android:layout_marginEnd="16dp"
                     android:layout_marginStart="16dp"
-                    android:layout_marginTop="16dp">
+                    android:layout_marginTop="16dp"
+                    android:layout_marginEnd="16dp"
+                    android:layout_marginBottom="18dp">
 
                     <androidx.constraintlayout.widget.ConstraintLayout
                         android:layout_width="match_parent"
@@ -460,11 +460,11 @@
                         <ImageView
                             android:layout_width="0dp"
                             android:layout_height="150dp"
-                            android:layout_marginEnd="8dp"
-                            android:layout_marginLeft="8dp"
-                            android:layout_marginRight="8dp"
                             android:layout_marginStart="8dp"
+                            android:layout_marginLeft="8dp"
                             android:layout_marginTop="8dp"
+                            android:layout_marginEnd="8dp"
+                            android:layout_marginRight="8dp"
                             android:contentDescription="@string/the_emirate_of_ajman_is_characterized_by_a_strategic_location_a_well_developed_infrastructure_comprising_port_roads_transport_and_industrial"
                             android:scaleType="centerCrop"
                             android:src="@drawable/meeting"

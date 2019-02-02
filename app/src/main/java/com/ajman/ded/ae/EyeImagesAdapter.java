@@ -44,12 +44,8 @@ public class EyeImagesAdapter extends RecyclerView.Adapter<RecyclerView.ViewHold
         this.notifyDataSetChanged();
     }
 
-    public List<ImageBundle> getImages(){
+    public List<ImageBundle> getImages() {
         return mList;
-    }
-
-    public interface AdapterCallback {
-        void onAddCallback() throws IOException;
     }
 
     @Override
@@ -100,9 +96,13 @@ public class EyeImagesAdapter extends RecyclerView.Adapter<RecyclerView.ViewHold
                 else
                     return 0;
             }
-        }else {
+        } else {
             return 3;
         }
+    }
+
+    public interface AdapterCallback {
+        void onAddCallback() throws IOException;
     }
 
     class MyViewHolder extends RecyclerView.ViewHolder implements View.OnClickListener {

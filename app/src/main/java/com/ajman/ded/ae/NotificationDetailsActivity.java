@@ -22,7 +22,6 @@ import com.ajman.ded.ae.libs.LocaleManager;
 import com.ajman.ded.ae.models.notification.details.NotificationDetailsResponse;
 import com.ajman.ded.ae.models.notification.details.ResponseContent;
 import com.ajman.ded.ae.models.notification.files.FilesRsponse;
-import com.ajman.ded.ae.screens.complaints.SubmitActivity;
 import com.ajman.ded.ae.utility.CustomMapView;
 import com.ajman.ded.ae.utility.SharedTool.UserData;
 import com.bumptech.glide.Glide;
@@ -64,8 +63,6 @@ import static com.ajman.ded.ae.libs.LocaleManager.LANGUAGE_ARABIC;
 
 public class NotificationDetailsActivity extends AppCompatActivity implements EyeDetailsImagesAdapter.AdapterCallback {
 
-    private String BASE_URL = "http://site1.ajmanded.ae/apis/GetFileById?id=";
-
     @BindView(R.id.list)
     RecyclerView recyclerView;
     @BindView(R.id.status)
@@ -100,7 +97,7 @@ public class NotificationDetailsActivity extends AppCompatActivity implements Ey
     TextView toolbarTitle;
     @BindView(R.id.map)
     CustomMapView map;
-
+    private String BASE_URL = "http://site1.ajmanded.ae/apis/GetFileById?id=";
     private Api api;
     private EyeDetailsImagesAdapter mAdapter;
     private SimpleDateFormat simpleDateFormat;
@@ -171,7 +168,7 @@ public class NotificationDetailsActivity extends AppCompatActivity implements Ey
 
             @Override
             public void onFailure(Call<FilesRsponse> call, Throwable t) {
-                Log.d("here",t.toString());
+                Log.d("here", t.toString());
             }
         });
     }

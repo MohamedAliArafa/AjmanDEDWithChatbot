@@ -3,7 +3,6 @@ package com.ajman.ded.ae.screens.loginMenu;
 
 import android.content.Intent;
 import android.os.Bundle;
-import androidx.fragment.app.Fragment;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
@@ -17,6 +16,7 @@ import com.ajman.ded.ae.R;
 import com.ajman.ded.ae.screens.home.HomeActivity;
 import com.ajman.ded.ae.screens.login.LoginActivity;
 
+import androidx.fragment.app.Fragment;
 import butterknife.BindView;
 import butterknife.ButterKnife;
 

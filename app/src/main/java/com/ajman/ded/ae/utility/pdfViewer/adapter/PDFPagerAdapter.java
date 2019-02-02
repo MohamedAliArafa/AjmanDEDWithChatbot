@@ -15,6 +15,7 @@ import com.github.chrisbanes.photoview.OnMatrixChangedListener;
 import com.github.chrisbanes.photoview.PhotoViewAttacher;
 
 import java.lang.ref.WeakReference;
+
 public class PDFPagerAdapter extends BasePDFPagerAdapter
         implements OnMatrixChangedListener {
 

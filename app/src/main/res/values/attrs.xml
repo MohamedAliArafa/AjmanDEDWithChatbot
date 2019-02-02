@@ -59,10 +59,10 @@
     </declare-styleable>
 
     <declare-styleable name="AudioButton">
-        <attr name="recorder_image_size" format="dimension"/>
-        <attr name="remove_image_size" format="dimension"/>
-        <attr name="recorder_image" format="reference"/>
-        <attr name="remove_image" format="reference"/>
+        <attr name="recorder_image_size" format="dimension" />
+        <attr name="remove_image_size" format="dimension" />
+        <attr name="recorder_image" format="reference" />
+        <attr name="remove_image" format="reference" />
         <attr name="remove_position" format="string" />
     </declare-styleable>
 </resources>

@@ -1,15 +1,12 @@
 package com.ajman.ded.ae.screens.base;
 
-import android.app.AlarmManager;
 import android.app.Dialog;
-import android.app.PendingIntent;
 import android.content.Context;
 import android.content.Intent;
 import android.content.pm.PackageManager;
 import android.graphics.drawable.ColorDrawable;
 import android.net.Uri;
 import android.os.Bundle;
-import android.util.Log;
 import android.view.View;
 import android.widget.Button;
 import android.widget.ExpandableListAdapter;
@@ -50,9 +47,8 @@ import com.ajman.ded.ae.utility.slidingrootnav.SlidingRootNav;
 import com.ajman.ded.ae.utility.slidingrootnav.SlidingRootNavBuilder;
 import com.ajman.ded.ae.utility.slidingrootnav.callback.DragListener;
 import com.ajman.ded.ae.utility.sweetDialog.SweetAlertDialog;
-import com.novoda.merlin.Merlin;
-import com.novoda.merlin.MerlinsBeard;
-import com.roughike.bottombar.BottomBar;
+import com.github.pwittchen.reactivenetwork.library.rx2.ReactiveNetwork;
+import com.google.android.material.bottomnavigation.BottomNavigationView;
 
 import java.io.File;
 import java.util.ArrayList;
@@ -65,13 +61,16 @@ import androidx.annotation.Nullable;
 import androidx.appcompat.app.AppCompatActivity;
 import androidx.appcompat.widget.Toolbar;
 import androidx.core.app.ActivityCompat;
+import de.halfbit.tinybus.Subscribe;
+import de.halfbit.tinybus.TinyBus;
+import de.halfbit.tinybus.wires.ShakeEventWire;
+import io.reactivex.android.schedulers.AndroidSchedulers;
+import io.reactivex.disposables.CompositeDisposable;
+import io.reactivex.schedulers.Schedulers;
 import io.realm.Realm;
 import io.realm.RealmResults;
 import retrofit2.Call;
 import retrofit2.Response;
-import safety.com.br.android_shake_detector.core.ShakeCallback;
-import safety.com.br.android_shake_detector.core.ShakeDetector;
-import safety.com.br.android_shake_detector.core.ShakeOptions;
 
 import static com.ajman.ded.ae.libs.LocaleManager.LANGUAGE_ARABIC;
 import static com.ajman.ded.ae.libs.LocaleManager.LANGUAGE_ENGLISH;
@@ -91,11 +90,9 @@ import static com.ajman.ded.ae.utility.Constants.links.suggestions;
 
 public abstract class BaseActivity extends AppCompatActivity implements View.OnClickListener, DragListener {
 
-    public Merlin merlin;
-    public MerlinsBeard merlinsBeard;
     ImageView sad, meh, happy;
     TextView logout;
-    private BottomBar mBottomBar;
+    private BottomNavigationView mBottomBar;
     private Dialog dialog;
     private ExpandableListView mExpandableListView;
     private ExpandableListAdapter mExpandableListAdapter;
@@ -108,6 +105,9 @@ public abstract class BaseActivity extends AppCompatActivity implements View.OnC
     private Toolbar mToolbar;
     private SweetAlertDialog sDialog;
     private Api api;
+    private CompositeDisposable internetDisposable;
+    private SweetAlertDialog pDialog;
+    private TinyBus mBus;
 
     @Override
     protected void attachBaseContext(Context base) {
@@ -121,38 +121,45 @@ public abstract class BaseActivity extends AppCompatActivity implements View.OnC
     protected void onCreate(@Nullable Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(getLayoutResource());
-        merlin = new Merlin.Builder().withAllCallbacks().build(BaseActivity.this);
-        merlinsBeard = new MerlinsBeard.Builder().build(this);
+        internetDisposable = new CompositeDisposable();
         mToolbar = findViewById(R.id.toolbar);
         setSupportActionBar(mToolbar);
         getSupportActionBar().setDisplayShowTitleEnabled(false);
 
+        mBus = TinyBus.from(this);
+
+        if (savedInstanceState == null) {
+            mBus.wire(new ShakeEventWire());
+        }
+
         final String appPackageName = getPackageName();
         if (!(this instanceof SearchActivity)) {
             mBottomBar = findViewById(R.id.bottomBar);
-            mBottomBar.setTabSelectionInterceptor((oldTabId, newTabId) -> {
-                switch (newTabId) {
+
+            mBottomBar.setOnNavigationItemSelectedListener(item -> {
+                int id = item.getItemId();
+                switch (id) {
                     case R.id.tab_chat:
-                        if (!(this instanceof FaqActivity))
-                            startActivity(new Intent(this, FaqActivity.class));
+                        if (!(BaseActivity.this instanceof FaqActivity))
+                            startActivity(new Intent(BaseActivity.this, FaqActivity.class));
                         break;
                     case R.id.tab_search:
-                        startActivity(new Intent(this, SearchActivity.class));
+                        startActivity(new Intent(BaseActivity.this, SearchActivity.class));
                         break;
                     case R.id.tab_rate:
-                        dialog = new Dialog(this);
+                        dialog = new Dialog(BaseActivity.this);
                         dialog.setContentView(R.layout.dialog_meter);
                         dialog.getWindow().setBackgroundDrawable(new ColorDrawable(android.graphics.Color.TRANSPARENT));
                         sad = dialog.findViewById(R.id.happy);
                         meh = dialog.findViewById(R.id.meh);
                         happy = dialog.findViewById(R.id.sad);
-                        sad.setOnClickListener(this);
-                        meh.setOnClickListener(this);
-                        happy.setOnClickListener(this);
+                        sad.setOnClickListener(BaseActivity.this);
+                        meh.setOnClickListener(BaseActivity.this);
+                        happy.setOnClickListener(BaseActivity.this);
                         dialog.show();
                         break;
                     case R.id.tab_call:
-                        final Dialog call = new Dialog(this);
+                        final Dialog call = new Dialog(BaseActivity.this);
                         call.setContentView(R.layout.dialog_call);
                         call.getWindow().setBackgroundDrawable(new ColorDrawable(android.graphics.Color.TRANSPARENT));
                         Button callButton = call.findViewById(R.id.call);
@@ -162,8 +169,9 @@ public abstract class BaseActivity extends AppCompatActivity implements View.OnC
                         });
 
                         call.show();
+                        break;
                 }
-                return false;
+                return true;
             });
         }
 
@@ -336,7 +344,7 @@ public abstract class BaseActivity extends AppCompatActivity implements View.OnC
         mExpandableListData = ExpandableListDataSource.getData(this);
         mExpandableListTitle = new ArrayList(mExpandableListData.keySet());
         mExpandableListView.setChildIndicator(null);
-        mExpandableListView.setChildIndicatorBounds(0,0);
+        mExpandableListView.setChildIndicatorBounds(0, 0);
         mExpandableListView.setDividerHeight(0);
         addDrawerItems();
 
@@ -368,7 +376,8 @@ public abstract class BaseActivity extends AppCompatActivity implements View.OnC
     @Override
     protected void onResume() {
         super.onResume();
-        merlin.bind();
+        stalkingInternet();
+        mBus.register(this);
         if (Objects.equals(LocaleManager.getLanguage(this), LANGUAGE_ARABIC)) {
             overridePendingTransition(R.anim.slide_in_up, R.anim.slide_out_up);
         } else {
@@ -376,9 +385,46 @@ public abstract class BaseActivity extends AppCompatActivity implements View.OnC
         }
     }
 
+
+    public void stalkingInternet() {
+        internetDisposable.add(ReactiveNetwork
+                .observeNetworkConnectivity(getApplicationContext())
+                .distinctUntilChanged()
+                .flatMapSingle(connectivity -> ReactiveNetwork.checkInternetConnectivity())
+                .subscribeOn(Schedulers.io())
+                .observeOn(AndroidSchedulers.mainThread())
+                .subscribe(isConnected -> {
+                    if (isConnected) {
+                        triggerByInternet();
+                    } else {
+                        pDialog = new SweetAlertDialog(this, SweetAlertDialog.CUSTOM_IMAGE_TYPE)
+                                .setTitleText(getString(R.string.no_internet)).setCustomImage(R.drawable.wifi_off);
+                        pDialog.show();
+                        pDialog.setCancelable(true);
+                    }
+                }));
+    }
+
+    public abstract void triggerByInternet();
+
+
+    public void dispose() {
+        if (internetDisposable != null) {
+            safelyDispose(internetDisposable);
+        }
+    }
+
+
+    private void safelyDispose(CompositeDisposable disposable) {
+        if (disposable != null && !disposable.isDisposed()) {
+            disposable.clear();
+        }
+    }
+
     @Override
     protected void onPause() {
-        merlin.unbind();
+        dispose();
+        mBus.unregister(this);
         super.onPause();
         if (Objects.equals(LocaleManager.getLanguage(this), LANGUAGE_ARABIC)) {
             overridePendingTransition(R.anim.slide_in_up, R.anim.slide_out_up);
@@ -390,11 +436,12 @@ public abstract class BaseActivity extends AppCompatActivity implements View.OnC
     @Override
     protected void onStart() {
         super.onStart();
-
     }
 
     @Override
     protected void onDestroy() {
+        if (dialog != null)
+            pDialog.cancel();
         super.onDestroy();
     }
 
@@ -571,15 +618,19 @@ public abstract class BaseActivity extends AppCompatActivity implements View.OnC
                     action = "null";
                     Intent expandableList = null;
                     if (gPosition == 6) {
-                        switch (cPosition){
-                            case 0: expandableList = new Intent(this, SubmitActivity.class);
-                            break;
-                            case 1: expandableList = new Intent(this, NotificationsActivity.class).putExtra("status", 0);
-                            break;
-                            case 2: expandableList = new Intent(this, NotificationsActivity.class).putExtra("status", 3);
-                            break;
-                            case 3: expandableList = new Intent(this, NotificationsActivity.class).putExtra("status", 1);
-                            break;
+                        switch (cPosition) {
+                            case 0:
+                                expandableList = new Intent(this, SubmitActivity.class);
+                                break;
+                            case 1:
+                                expandableList = new Intent(this, NotificationsActivity.class).putExtra("status", 0);
+                                break;
+                            case 2:
+                                expandableList = new Intent(this, NotificationsActivity.class).putExtra("status", 3);
+                                break;
+                            case 3:
+                                expandableList = new Intent(this, NotificationsActivity.class).putExtra("status", 1);
+                                break;
                         }
                     } else {
                         expandableList = new Intent(this, WebViewActivity.class);
@@ -650,35 +701,8 @@ public abstract class BaseActivity extends AppCompatActivity implements View.OnC
                     action = "null";
                     startActivity(new Intent(this, NewsActivity.class));
                     break;
-//                case "CHANGE_URL":
-//                    action = "null";
-//                    EditText myEditText = new EditText(this);
-//                    myEditText.setLayoutParams(new FrameLayout.LayoutParams(ViewGroup.LayoutParams.MATCH_PARENT, ViewGroup.LayoutParams.WRAP_CONTENT));
-//                    sDialog = new SweetAlertDialog(this, SweetAlertDialog.NORMAL_TYPE)
-//                            .setTitleText(getString(R.string.change_url))
-//                            .setCustomView(myEditText)
-//                            .setConfirmClickListener(sweetAlertDialog -> ChangeUrl(myEditText.getText().toString()))
-//                            .setConfirmText(getString(R.string.done));
-//                    sDialog.show();
-//                    sDialog.setCancelable(true);
-//                    break;
-
             }
         }
-    }
-
-    public void ChangeUrl(String url) {
-        if (!url.isEmpty()) {
-            AppPreferenceManager.putString(getApplicationContext(), AppPreferenceManager.KEY_IS_BASE_URL, url);
-            Intent mStartActivity = new Intent(getApplicationContext(), HomeActivity.class);
-            int mPendingIntentId = 123456;
-            PendingIntent mPendingIntent = PendingIntent.getActivity(getApplicationContext(), mPendingIntentId, mStartActivity, PendingIntent.FLAG_CANCEL_CURRENT);
-            AlarmManager mgr = (AlarmManager) getApplicationContext().getSystemService(Context.ALARM_SERVICE);
-            mgr.set(AlarmManager.RTC, System.currentTimeMillis() + 100, mPendingIntent);
-            System.exit(0);
-        }
-        if (sDialog != null)
-            sDialog.dismiss();
     }
 
 
@@ -721,7 +745,6 @@ public abstract class BaseActivity extends AppCompatActivity implements View.OnC
             public void onResponse(@NonNull Call<ResponseEnvelope_InsertNewHappy> call, @NonNull final Response<ResponseEnvelope_InsertNewHappy> response) {
                 if (response.isSuccessful()) {
                     int result = response.body().getBody().getData().getInsertNewHappyResult();
-                    Log.d("HAPPY PASS:", String.valueOf(result));
                     Success();
                 } else {
                     Failure();
@@ -730,10 +753,13 @@ public abstract class BaseActivity extends AppCompatActivity implements View.OnC
 
             @Override
             public void onFailure(@NonNull Call<ResponseEnvelope_InsertNewHappy> call, @NonNull Throwable t) {
-                Log.d("HAPPY ERROR:", String.valueOf(t));
                 Failure();
             }
         });
     }
 
+    @Subscribe
+    public void onShakeEvent(ShakeEventWire.ShakeEvent event) {
+        startActivity(new Intent(BaseActivity.this, SubmitActivity.class));
+    }
 }

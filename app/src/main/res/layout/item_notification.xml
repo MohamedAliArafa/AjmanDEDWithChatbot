@@ -50,10 +50,10 @@
             android:layout_height="wrap_content"
             android:layout_marginStart="8dp"
             android:layout_marginTop="16dp"
+            android:text="@string/ajmaneye"
             android:textColor="@color/colorPrimaryDark"
             app:layout_constraintStart_toEndOf="@+id/title_image"
-            app:layout_constraintTop_toTopOf="parent"
-            android:text="@string/ajmaneye" />
+            app:layout_constraintTop_toTopOf="parent" />
 
         <TextView
             android:id="@+id/date"

@@ -6,11 +6,6 @@ import android.content.Context;
 import android.content.pm.PackageManager;
 import android.os.Build;
 import android.os.Bundle;
-import androidx.annotation.NonNull;
-import androidx.core.app.ActivityCompat;
-import androidx.fragment.app.FragmentManager;
-import androidx.fragment.app.FragmentTransaction;
-import androidx.appcompat.app.AppCompatActivity;
 import android.util.Log;
 import android.view.View;
 
@@ -18,6 +13,12 @@ import com.ajman.ded.ae.R;
 import com.ajman.ded.ae.libs.LocaleManager;
 
 import java.util.Objects;
+
+import androidx.annotation.NonNull;
+import androidx.appcompat.app.AppCompatActivity;
+import androidx.core.app.ActivityCompat;
+import androidx.fragment.app.FragmentManager;
+import androidx.fragment.app.FragmentTransaction;
 
 import static com.ajman.ded.ae.libs.LocaleManager.LANGUAGE_ARABIC;
 import static com.ajman.ded.ae.utility.Constants.REGISTER_FRAGMENT_KEY;

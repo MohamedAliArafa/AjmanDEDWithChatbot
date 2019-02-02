@@ -1,11 +1,12 @@
 package com.ajman.ded.ae.libs.spacetablayout;
 
 import android.content.Context;
-import androidx.coordinatorlayout.widget.CoordinatorLayout;
 import android.util.AttributeSet;
 import android.view.View;
 
 import com.google.android.material.snackbar.Snackbar;
+
+import androidx.coordinatorlayout.widget.CoordinatorLayout;
 
 
 public class SpaceTabLayoutBehavior extends CoordinatorLayout.Behavior<SpaceTabLayout> {

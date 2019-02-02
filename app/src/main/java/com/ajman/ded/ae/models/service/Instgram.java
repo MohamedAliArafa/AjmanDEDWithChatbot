@@ -1,4 +1,3 @@
-
 package com.ajman.ded.ae.models.service;
 
 import com.google.gson.annotations.Expose;

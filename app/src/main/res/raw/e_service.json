@@ -19,7 +19,6 @@
         "icon": "ic_issuing_preliminary_approval",
         "color": 2,
         "link": "entities/FormView?sar=mRhv506d%2fii6XiFBivkzlw6lzvqxNochAT46xB501WdI%2fyo3G8X1peE%2fzHqcLnlmLpVG6JFKWQlk2o7TyL6Mt9GVO24vnq3xiF5iiivQ4MygvP%2fGG7GW%2bMKhJLUb3Kqaj51DTZb5p4wgIJJeXNxbpIAhi%2bTSkk0a9HQ%2b1hciBoqUmMA0r0E%2blrn6QcsTdwI4JCDeaMeuKYIx4Rt1S7GIXlv5KwNg%2biQ2vDpE28QCpZ8mydvG%2bFuExQUUt9dSfplniB9TauLZdthDcNX2o5Rs%2fDn3np9avHuLYjWQRlmw6p3XTQQP05YqaRDLK03KMAxM"
-
       },
       {
         "id": 2,
@@ -344,6 +343,6 @@
         "color": 8,
         "link": "dccp3_mobile.html"
       }
-      ]
+    ]
   }
 ]

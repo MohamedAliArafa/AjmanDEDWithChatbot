@@ -21,7 +21,6 @@ import android.graphics.Bitmap;
 import android.graphics.pdf.PdfRenderer;
 import android.net.Uri;
 import android.os.ParcelFileDescriptor;
-import androidx.viewpager.widget.PagerAdapter;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
@@ -32,6 +31,8 @@ import com.ajman.ded.ae.R;
 import java.io.File;
 import java.io.IOException;
 import java.net.URI;
+
+import androidx.viewpager.widget.PagerAdapter;
 
 
 public class BasePDFPagerAdapter extends PagerAdapter {

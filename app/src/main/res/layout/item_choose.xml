@@ -3,10 +3,10 @@
     xmlns:app="http://schemas.android.com/apk/res-auto"
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="300dp"
-    android:layout_gravity="center"
-    android:elevation="8dp"
     android:layout_height="wrap_content"
-    android:background="@drawable/white_radius">
+    android:layout_gravity="center"
+    android:background="@drawable/white_radius"
+    android:elevation="8dp">
 
     <TextView
         android:id="@+id/title"

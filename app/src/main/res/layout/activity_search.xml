@@ -21,17 +21,17 @@
                 android:id="@+id/logo"
                 android:layout_width="wrap_content"
                 android:layout_height="40dp"
-                android:layout_margin="8dp"
                 android:layout_gravity="center_horizontal"
+                android:layout_margin="8dp"
                 android:src="@drawable/ic_dedlogo_toolbar" />
 
             <ImageView
                 android:id="@+id/up"
                 android:layout_width="25dp"
                 android:layout_height="25dp"
-                android:src="@drawable/ic_up"
                 android:layout_gravity="end|center_vertical"
                 android:layout_margin="18dp"
+                android:src="@drawable/ic_up"
                 android:visibility="gone" />
 
 
@@ -46,9 +46,9 @@
                 android:layout_width="0dp"
                 android:layout_height="match_parent"
                 android:layout_gravity="start|center"
-                android:layout_marginBottom="8dp"
-                android:layout_marginEnd="8dp"
                 android:layout_marginStart="8dp"
+                android:layout_marginEnd="8dp"
+                android:layout_marginBottom="8dp"
                 android:layout_weight="1.5"
                 android:gravity="start|center"
                 android:imeOptions="actionSearch"
@@ -65,9 +65,9 @@
                 android:layout_width="40dp"
                 android:layout_height="wrap_content"
                 android:layout_gravity="center"
-                android:layout_marginBottom="8dp"
-                android:layout_marginEnd="8dp"
                 android:layout_marginStart="8dp"
+                android:layout_marginEnd="8dp"
+                android:layout_marginBottom="8dp"
                 android:layout_weight="0.1"
                 android:contentDescription="@null"
                 android:src="@drawable/ic_search_white"

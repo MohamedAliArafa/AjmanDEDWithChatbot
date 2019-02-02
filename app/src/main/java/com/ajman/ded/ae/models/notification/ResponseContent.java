@@ -1,4 +1,3 @@
-
 package com.ajman.ded.ae.models.notification;
 
 import com.google.gson.annotations.Expose;

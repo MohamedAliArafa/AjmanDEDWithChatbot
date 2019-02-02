@@ -3,9 +3,6 @@ package com.ajman.ded.ae;
 import android.content.Intent;
 import android.os.Bundle;
 import android.os.Handler;
-
-import androidx.recyclerview.widget.LinearLayoutManager;
-import androidx.recyclerview.widget.RecyclerView;
 import android.view.Menu;
 import android.view.MenuInflater;
 import android.view.MenuItem;
@@ -32,6 +29,8 @@ import java.io.Reader;
 import java.util.List;
 import java.util.Objects;
 
+import androidx.recyclerview.widget.LinearLayoutManager;
+import androidx.recyclerview.widget.RecyclerView;
 import jp.wasabeef.recyclerview.animators.SlideInUpAnimator;
 
 
@@ -66,6 +65,11 @@ public class FaqActivity extends BaseActivity {
         mModel = gson.fromJson(rd, ResultModel[].class);
         loadModel(0, false);
 
+
+    }
+
+    @Override
+    public void triggerByInternet() {
 
     }
 

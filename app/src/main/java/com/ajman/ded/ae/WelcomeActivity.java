@@ -2,9 +2,10 @@ package com.ajman.ded.ae;
 
 import android.content.Context;
 import android.os.Bundle;
-import androidx.appcompat.app.AppCompatActivity;
 
 import com.ajman.ded.ae.libs.LocaleManager;
+
+import androidx.appcompat.app.AppCompatActivity;
 
 public class WelcomeActivity extends AppCompatActivity {
 

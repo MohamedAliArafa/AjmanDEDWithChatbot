@@ -2,10 +2,6 @@ package com.ajman.ded.ae.screens;
 
 import android.content.Intent;
 import android.os.Bundle;
-import androidx.annotation.Nullable;
-import androidx.core.app.ActivityCompat;
-import androidx.fragment.app.Fragment;
-import androidx.core.app.TaskStackBuilder;
 
 import com.ajman.ded.ae.R;
 import com.ajman.ded.ae.libs.LocaleManager;
@@ -16,6 +12,11 @@ import com.ajman.ded.ae.utility.SharedTool.UserData;
 import com.github.paolorotolo.appintro.AppIntro2;
 
 import java.util.Objects;
+
+import androidx.annotation.Nullable;
+import androidx.core.app.ActivityCompat;
+import androidx.core.app.TaskStackBuilder;
+import androidx.fragment.app.Fragment;
 
 
 public class IntroActivity extends AppIntro2 {

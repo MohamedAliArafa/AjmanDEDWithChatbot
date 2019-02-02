@@ -2,20 +2,20 @@
 <LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
     android:layout_width="match_parent"
     android:layout_height="wrap_content"
-    android:paddingEnd="10dp"
-    android:paddingStart="10dp"
+    android:layout_marginBottom="1dp"
     android:orientation="vertical"
-    android:layout_marginBottom="1dp">
+    android:paddingStart="10dp"
+    android:paddingEnd="10dp">
 
     <TextView
         android:id="@+id/listTitle"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:background="@color/gray"
-        android:paddingBottom="10dp"
         android:layout_marginBottom="1dp"
-        android:paddingEnd="?android:attr/expandableListPreferredItemPaddingLeft"
+        android:background="@color/gray"
         android:paddingStart="?android:attr/expandableListPreferredItemPaddingLeft"
         android:paddingTop="10dp"
+        android:paddingEnd="?android:attr/expandableListPreferredItemPaddingLeft"
+        android:paddingBottom="10dp"
         android:textColor="@android:color/white" />
 </LinearLayout>

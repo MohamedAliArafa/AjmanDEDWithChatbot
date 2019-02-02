@@ -55,22 +55,20 @@
             app:layout_constraintTop_toBottomOf="@+id/view6"
             app:layout_constraintVertical_bias="0.0" />
 
-        <com.roughike.bottombar.BottomBar
+        <com.google.android.material.bottomnavigation.BottomNavigationView
             android:id="@+id/bottomBar"
             android:layout_width="0dp"
-            android:layout_height="60dp"
-            android:layout_gravity="bottom"
+            android:layout_height="wrap_content"
             android:background="@color/gray_darken"
-            android:clickable="true"
-            android:focusable="true"
-            app:bb_behavior="iconsOnly"
-            app:bb_showShadow="true"
-            app:bb_tabXmlResource="@xml/bottombar_tabs"
+            app:elevation="4dp"
+            app:itemIconSize="40dp"
+            app:labelVisibilityMode="unlabeled"
             app:layout_behavior="com.zeowls.ajmanded.ui.ScrollingBehavior"
             app:layout_constraintBottom_toBottomOf="parent"
             app:layout_constraintEnd_toEndOf="parent"
             app:layout_constraintRight_toRightOf="parent"
-            app:layout_constraintStart_toStartOf="parent" />
+            app:layout_constraintStart_toStartOf="parent"
+            app:menu="@menu/navigation" />
 
     </androidx.constraintlayout.widget.ConstraintLayout>
 

@@ -3,9 +3,6 @@ package com.ajman.ded.ae.adapters;
 import android.content.Intent;
 import android.content.res.Configuration;
 import android.content.res.Resources;
-import androidx.fragment.app.FragmentManager;
-import androidx.viewpager.widget.PagerAdapter;
-
 import android.util.DisplayMetrics;
 import android.view.LayoutInflater;
 import android.view.View;
@@ -17,6 +14,9 @@ import com.ajman.ded.ae.R;
 import com.ajman.ded.ae.screens.language.LangFragment;
 
 import java.util.Locale;
+
+import androidx.fragment.app.FragmentManager;
+import androidx.viewpager.widget.PagerAdapter;
 
 /*
  * Created by root on 9/29/17.

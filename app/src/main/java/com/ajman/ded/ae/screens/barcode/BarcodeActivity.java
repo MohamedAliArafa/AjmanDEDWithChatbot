@@ -1,13 +1,14 @@
 package com.ajman.ded.ae.screens.barcode;
 
 import android.os.Bundle;
-import androidx.fragment.app.FragmentManager;
-import androidx.fragment.app.FragmentTransaction;
 import android.view.Menu;
 import android.view.MenuInflater;
 
 import com.ajman.ded.ae.R;
 import com.ajman.ded.ae.screens.base.BaseActivity;
+
+import androidx.fragment.app.FragmentManager;
+import androidx.fragment.app.FragmentTransaction;
 
 
 public class BarcodeActivity extends BaseActivity {
@@ -27,6 +28,11 @@ public class BarcodeActivity extends BaseActivity {
                 android.R.anim.slide_out_right, android.R.anim.slide_in_left,
                 android.R.anim.slide_out_right);
         fragmentTransaction.commit();
+    }
+
+    @Override
+    public void triggerByInternet() {
+
     }
 
 

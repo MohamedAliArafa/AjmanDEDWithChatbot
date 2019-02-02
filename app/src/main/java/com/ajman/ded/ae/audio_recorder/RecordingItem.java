@@ -5,14 +5,22 @@ import android.os.Parcelable;
 
 public class RecordingItem implements Parcelable {
 
+    public static final Creator<RecordingItem> CREATOR = new Creator<RecordingItem>() {
+        public RecordingItem createFromParcel(Parcel in) {
+            return new RecordingItem(in);
+        }
+
+        public RecordingItem[] newArray(int size) {
+            return new RecordingItem[size];
+        }
+    };
     private String mName;
     private String mFilePath;
     private int mId;
     private int mLength;
     private long mTime;
 
-    public RecordingItem()
-    {
+    public RecordingItem() {
     }
 
     public RecordingItem(Parcel in) {
@@ -62,16 +70,6 @@ public class RecordingItem implements Parcelable {
     public void setTime(long time) {
         mTime = time;
     }
-
-    public static final Creator<RecordingItem> CREATOR = new Creator<RecordingItem>() {
-        public RecordingItem createFromParcel(Parcel in) {
-            return new RecordingItem(in);
-        }
-
-        public RecordingItem[] newArray(int size) {
-            return new RecordingItem[size];
-        }
-    };
 
     @Override
     public void writeToParcel(Parcel dest, int flags) {

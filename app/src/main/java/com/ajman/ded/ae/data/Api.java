@@ -23,7 +23,6 @@ import com.ajman.ded.ae.data.model.response.OnlineUserAllPermits.ResponseEnvelop
 import com.ajman.ded.ae.data.model.response.SendSMS.ResponseEnvelope_SendSMS;
 import com.ajman.ded.ae.data.model.response.UserId.ResponseEnvelope_UserId;
 import com.ajman.ded.ae.models.NotificationResponse;
-import com.ajman.ded.ae.models.UserIdResponse;
 import com.ajman.ded.ae.models.notification.NotificationStatusResponse;
 import com.ajman.ded.ae.models.notification.details.NotificationDetailsResponse;
 import com.ajman.ded.ae.models.notification.files.FilesRsponse;
@@ -42,7 +41,6 @@ import retrofit2.http.Multipart;
 import retrofit2.http.POST;
 import retrofit2.http.Part;
 import retrofit2.http.Query;
-import retrofit2.http.Streaming;
 
 public interface Api {
     String BASE = "/WS_MobileApp/WebService_MobileApp.asmx";

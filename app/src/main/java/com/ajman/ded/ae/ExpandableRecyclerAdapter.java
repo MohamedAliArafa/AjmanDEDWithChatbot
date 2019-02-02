@@ -125,7 +125,7 @@ public class ExpandableRecyclerAdapter extends RecyclerView.Adapter<ExpandableRe
         viewHolder.custome_service.setOnClickListener(v -> context.startActivity(dialPhoneNumber(repos.get(i).getCustomerservice())));
 
         viewHolder.map.getMapAsync(mMap -> {
-            mMap.setPadding(0,convertDpToPx(75),0,0);
+            mMap.setPadding(0, convertDpToPx(75), 0, 0);
             viewHolder.googleMap = mMap;
 
             viewHolder.googleMap.setOnMapLoadedCallback(() -> {
@@ -142,56 +142,6 @@ public class ExpandableRecyclerAdapter extends RecyclerView.Adapter<ExpandableRe
     @Override
     public int getItemCount() {
         return repos.size();
-    }
-
-    public class ViewHolder extends RecyclerView.ViewHolder {
-        private GoogleMap googleMap;
-        private LatLngBounds.Builder builder;
-        private RecyclerView recyclerView;
-        private ServiceListAdapter serviceListAdapter;
-        private TextView title, building, time, time2, phone, phone2, fax, email, website, website2, postalcode, custome_service, whatsapp, facebook, youtube, instagram, location, makani;
-        ImageView buttonLayout;
-        ConstraintLayout clicker, expandableLayout;
-        MapView map;
-
-        ViewHolder(View view) {
-            super(view);
-
-            clicker = view.findViewById(R.id.clicker);
-            title = view.findViewById(R.id.title);
-            building = view.findViewById(R.id.building);
-            time = view.findViewById(R.id.time);
-            time2 = view.findViewById(R.id.time2);
-            phone = view.findViewById(R.id.phone);
-            phone2 = view.findViewById(R.id.phone2);
-            fax = view.findViewById(R.id.fax);
-            email = view.findViewById(R.id.email);
-            website = view.findViewById(R.id.website);
-            website2 = view.findViewById(R.id.website2);
-            postalcode = view.findViewById(R.id.postalcode);
-            custome_service = view.findViewById(R.id.customerservice);
-            whatsapp = view.findViewById(R.id.whatsapp);
-            facebook = view.findViewById(R.id.facebook);
-            youtube = view.findViewById(R.id.youtube);
-            instagram = view.findViewById(R.id.instagram);
-            location = view.findViewById(R.id.location);
-            makani = view.findViewById(R.id.mkani);
-            recyclerView = view.findViewById(R.id.list);
-            recyclerView.setNestedScrollingEnabled(false);
-
-            buttonLayout = view.findViewById(R.id.button);
-            expandableLayout = view.findViewById(R.id.expandableLayout);
-            serviceListAdapter = new ServiceListAdapter(context);
-            recyclerView.setLayoutManager(new LinearLayoutManager(context));
-            recyclerView.setAdapter(serviceListAdapter);
-
-            map = view.findViewById(R.id.map);
-            if (map != null) {
-                map.onCreate(null);
-                map.onResume();
-                MapsInitializer.initialize(context);
-            }
-        }
     }
 
     @Override
@@ -252,7 +202,6 @@ public class ExpandableRecyclerAdapter extends RecyclerView.Adapter<ExpandableRe
         return intent;
     }
 
-
     public Intent getGoogleMap(Double latitude, Double lng) {
         String uri = String.format(Locale.ENGLISH, "geo:%f,%f", latitude, lng);
         Intent intent = new Intent(Intent.ACTION_VIEW, Uri.parse(uri));
@@ -299,8 +248,58 @@ public class ExpandableRecyclerAdapter extends RecyclerView.Adapter<ExpandableRe
         return intent;
     }
 
-    private int convertDpToPx(int dp){
-        return Math.round(dp*(context.getResources().getDisplayMetrics().xdpi/DisplayMetrics.DENSITY_DEFAULT));
+    private int convertDpToPx(int dp) {
+        return Math.round(dp * (context.getResources().getDisplayMetrics().xdpi / DisplayMetrics.DENSITY_DEFAULT));
+    }
+
+    public class ViewHolder extends RecyclerView.ViewHolder {
+        ImageView buttonLayout;
+        ConstraintLayout clicker, expandableLayout;
+        MapView map;
+        private GoogleMap googleMap;
+        private LatLngBounds.Builder builder;
+        private RecyclerView recyclerView;
+        private ServiceListAdapter serviceListAdapter;
+        private TextView title, building, time, time2, phone, phone2, fax, email, website, website2, postalcode, custome_service, whatsapp, facebook, youtube, instagram, location, makani;
+
+        ViewHolder(View view) {
+            super(view);
+
+            clicker = view.findViewById(R.id.clicker);
+            title = view.findViewById(R.id.title);
+            building = view.findViewById(R.id.building);
+            time = view.findViewById(R.id.time);
+            time2 = view.findViewById(R.id.time2);
+            phone = view.findViewById(R.id.phone);
+            phone2 = view.findViewById(R.id.phone2);
+            fax = view.findViewById(R.id.fax);
+            email = view.findViewById(R.id.email);
+            website = view.findViewById(R.id.website);
+            website2 = view.findViewById(R.id.website2);
+            postalcode = view.findViewById(R.id.postalcode);
+            custome_service = view.findViewById(R.id.customerservice);
+            whatsapp = view.findViewById(R.id.whatsapp);
+            facebook = view.findViewById(R.id.facebook);
+            youtube = view.findViewById(R.id.youtube);
+            instagram = view.findViewById(R.id.instagram);
+            location = view.findViewById(R.id.location);
+            makani = view.findViewById(R.id.mkani);
+            recyclerView = view.findViewById(R.id.list);
+            recyclerView.setNestedScrollingEnabled(false);
+
+            buttonLayout = view.findViewById(R.id.button);
+            expandableLayout = view.findViewById(R.id.expandableLayout);
+            serviceListAdapter = new ServiceListAdapter(context);
+            recyclerView.setLayoutManager(new LinearLayoutManager(context));
+            recyclerView.setAdapter(serviceListAdapter);
+
+            map = view.findViewById(R.id.map);
+            if (map != null) {
+                map.onCreate(null);
+                map.onResume();
+                MapsInitializer.initialize(context);
+            }
+        }
     }
 
 }

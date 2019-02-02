@@ -317,4 +317,5 @@
     <string name="enable_location">Enable Location</string>
     <string name="ajmaneye">AjmanEye</string>
     <string name="evaluation">The Evaluation was sent</string>
+    <string name="chat">Chat</string>
 </resources>

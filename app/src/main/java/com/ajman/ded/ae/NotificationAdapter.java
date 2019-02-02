@@ -56,7 +56,7 @@ public class NotificationAdapter extends RecyclerView.Adapter<RecyclerView.ViewH
             holder.title.setText(title);
         } else {
             MyViewHolder holder = (MyViewHolder) viewHolder;
-            ResponseContent model = mList.get(position-1);
+            ResponseContent model = mList.get(position - 1);
             holder.requestNo.setText(model.getRequestNumber());
             if (model.getRequestDate() != null)
                 holder.date.setText(holder.simpleDateFormat.format(model.getRequestDate()));
@@ -97,7 +97,7 @@ public class NotificationAdapter extends RecyclerView.Adapter<RecyclerView.ViewH
 
         @Override
         public void onClick(View v) {
-            mContext.startActivity(new Intent(mContext, NotificationDetailsActivity.class).putExtra("id", mList.get(getAdapterPosition()-1).getID()));
+            mContext.startActivity(new Intent(mContext, NotificationDetailsActivity.class).putExtra("id", mList.get(getAdapterPosition() - 1).getID()));
         }
     }
 
