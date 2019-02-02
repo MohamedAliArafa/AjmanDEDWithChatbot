@@ -91,7 +91,7 @@ public class NotificationAdapter extends RecyclerView.Adapter<RecyclerView.ViewH
         MyViewHolder(View view) {
             super(view);
             ButterKnife.bind(this, view);
-            simpleDateFormat = new SimpleDateFormat("yyyy/MM/dd - hh:mm a");
+            simpleDateFormat = new SimpleDateFormat("yyyy/MM/dd  hh:mm a");
             clicker.setOnClickListener(this);
         }
 

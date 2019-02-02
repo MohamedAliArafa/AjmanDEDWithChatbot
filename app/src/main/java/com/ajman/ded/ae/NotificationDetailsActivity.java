@@ -7,6 +7,7 @@ import android.graphics.BitmapFactory;
 import android.graphics.drawable.ColorDrawable;
 import android.media.MediaPlayer;
 import android.os.Bundle;
+import android.util.Log;
 import android.view.View;
 import android.widget.Button;
 import android.widget.EditText;
@@ -139,7 +140,7 @@ public class NotificationDetailsActivity extends AppCompatActivity implements Ey
         }
 
         mAdapter = new EyeDetailsImagesAdapter(this, this);
-        recyclerView.setLayoutManager(new GridLayoutManager(this, 3));
+        recyclerView.setLayoutManager(new GridLayoutManager(this, 6));
         recyclerView.setAdapter(mAdapter);
 
         id = getIntent().getStringExtra("id");
@@ -170,6 +171,7 @@ public class NotificationDetailsActivity extends AppCompatActivity implements Ey
 
             @Override
             public void onFailure(Call<FilesRsponse> call, Throwable t) {
+                Log.d("here",t.toString());
             }
         });
     }

@@ -7,9 +7,17 @@ import com.google.gson.annotations.SerializedName;
 
 public class FilesRsponse {
 
+    @SerializedName("ResponseContent")
+    @Expose
     private List<ResponseContent> responseContent = null;
+    @SerializedName("ResponseCode")
+    @Expose
     private Integer responseCode;
+    @SerializedName("ResponseDescription")
+    @Expose
     private String responseDescription;
+    @SerializedName("ErrorMessage")
+    @Expose
     private String errorMessage;
 
     public List<ResponseContent> getResponseContent() {
