@@ -15,7 +15,7 @@ android {
         android.compileOptions.sourceCompatibility 1.8
         android.compileOptions.targetCompatibility 1.8
         resValue "string", "google_maps_key",
-                (project.findProperty("GOOGLE_MAPS_API_KEY") ?: "AIzaSyAHQ2XdMjSSb65NQQMXWv3fp7vdeM1gkM4")
+                (project.findProperty("GOOGLE_MAPS_API_KEY") ?: "AIzaSyB_rm1sH1f3Xje8gzO8sRH_-Xhk_M5SD58")
 
     }
     lintOptions {
