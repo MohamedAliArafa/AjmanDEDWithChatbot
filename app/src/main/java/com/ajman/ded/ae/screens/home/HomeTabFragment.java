@@ -13,11 +13,13 @@ import android.widget.RelativeLayout;
 
 import com.ajman.ded.ae.R;
 import com.ajman.ded.ae.StatusActivity;
+import com.ajman.ded.ae.ViewDialog;
 import com.ajman.ded.ae.WebViewActivity;
 import com.ajman.ded.ae.libs.AnimatedFragment;
 import com.ajman.ded.ae.libs.LocaleManager;
 import com.ajman.ded.ae.models.ServiceCenter;
 import com.ajman.ded.ae.screens.login.LoginActivity;
+import com.ajman.ded.ae.utility.AppPreferenceManager;
 import com.ajman.ded.ae.utility.SharedTool.UserData;
 import com.google.android.gms.maps.CameraUpdateFactory;
 import com.google.android.gms.maps.GoogleMap;
@@ -65,6 +67,7 @@ public class HomeTabFragment extends AnimatedFragment {
     public HomeTabFragment() {
         // Required empty public constructor
     }
+
 
     @Override
     public View onCreateView(LayoutInflater inflater, ViewGroup container,
@@ -197,6 +200,10 @@ public class HomeTabFragment extends AnimatedFragment {
     public void onViewCreated(View view, @Nullable Bundle savedInstanceState) {
         super.onViewCreated(view, savedInstanceState);
         startAnimation();
+        if (AppPreferenceManager.getBool(getContext(), AppPreferenceManager.KEY_IS_FIRST_SHAKE, false)) {
+            new ViewDialog().showShakeDialog(getActivity());
+            AppPreferenceManager.putBool(getContext(), AppPreferenceManager.KEY_IS_FIRST_SHAKE, true);
+        }
     }
 
     @Override

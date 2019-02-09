@@ -275,5 +275,8 @@
     <string name="satisfied">راض</string>
     <string name="evaluation">تم إرسال التقييم</string>
     <string name="chat">محادثة</string>
+    <string name="notification_attention">تنوية : لابد من تحرير البلاغ من موقع البلاغ مباشرة</string>
+    <string name="close">إغلاق</string>
+    <string name="shake_content">للإبلاغ عن تجاوز أو مخالفة يرجى القيام برج الهاتف وسوف يتم فتح بلاغ جديد تلقائيا</string>
 
 </resources>

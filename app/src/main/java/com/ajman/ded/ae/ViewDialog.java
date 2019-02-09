@@ -42,6 +42,21 @@ public class ViewDialog {
     }
 
 
+    public void showShakeDialog(Activity activity) {
+        Dialog dialog = new Dialog(activity, R.style.Dialog);
+        dialog.requestWindowFeature(Window.FEATURE_NO_TITLE);
+        dialog.setCancelable(true);
+        dialog.setContentView(R.layout.item_shake);
+        View closeImage = dialog.findViewById(R.id.close_image);
+        View closeButton = dialog.findViewById(R.id.close_btn);
+
+        closeButton.setOnClickListener(v -> dialog.dismiss());
+
+        closeImage.setOnClickListener(v -> dialog.dismiss());
+        dialog.show();
+    }
+
+
     public void showRateDialog(Activity activity, Uri uri) {
         Dialog dialog = new Dialog(activity, R.style.Dialog);
         dialog.requestWindowFeature(Window.FEATURE_NO_TITLE);

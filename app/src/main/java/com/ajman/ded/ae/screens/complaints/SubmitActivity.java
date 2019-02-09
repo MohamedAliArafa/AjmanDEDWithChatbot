@@ -504,7 +504,7 @@ public class SubmitActivity extends AppCompatActivity implements EyeImagesAdapte
             googleMap.addMarker(new MarkerOptions().position(latLng).title(getString(R.string.your_location))).setIcon(BitmapDescriptorFactory.fromResource(R.drawable.ic_location));
             builder.include(latLng);
             LatLngBounds bounds = builder.build();
-            googleMap.moveCamera(CameraUpdateFactory.newLatLngBounds(bounds, 8));
+            googleMap.moveCamera(CameraUpdateFactory.newLatLngBounds(bounds, 20));
 
             Geocoder geocoder;
             List<Address> addresses;

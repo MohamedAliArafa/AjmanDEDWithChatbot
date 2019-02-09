@@ -13,7 +13,7 @@
         android:layout_width="match_parent"
         android:layout_height="?android:attr/actionBarSize"
         android:layout_gravity="center_horizontal"
-        android:background="@color/colorPrimary"
+        android:background="@color/eyeColorPrimaryDark"
         app:contentInsetEnd="0dp"
         app:contentInsetStart="0dp"
         app:layout_collapseMode="pin">

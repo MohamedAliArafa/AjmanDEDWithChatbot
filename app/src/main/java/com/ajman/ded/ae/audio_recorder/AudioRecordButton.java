@@ -213,7 +213,7 @@ public class AudioRecordButton extends RelativeLayout implements View.OnTouchLis
          */
         mChronometer = new Chronometer(context);
         mChronometer.setTextLocale(Locale.US);
-        mChronometer.setTextColor(getResources().getColor(R.color.colorPrimary));
+        mChronometer.setTextColor(getResources().getColor(R.color.eyeColorPrimaryDark));
         mChronometer.setTextSize(18);
 
         LayoutParams layoutParamsChronometer = new LayoutParams(

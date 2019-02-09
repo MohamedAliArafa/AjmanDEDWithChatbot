@@ -8,8 +8,8 @@ import android.preference.PreferenceManager;
 public class AppPreferenceManager {
     public static final String KEY_INT_LANGUAGE_SETTING = "key_int_language_setting";
     public static final String KEY_IS_FIRST_TIME = "com.zeowls.hyperapp.first_time";
-    public static final String KEY_IS_JUST_LOGIN = "com.zeowls.hyperapp.first_login";
-    public static final String KEY_IS_BASE_URL = "com.zeowls.hyperapp.base_url";
+    public static final String KEY_IS_JUST_LOGIN = "com.zeowls.hyperapp.first_shake_dialog";
+    public static final String KEY_IS_FIRST_SHAKE = "com.zeowls.hyperapp.base_url";
     private final String TAG = AppPreferenceManager.class.getSimpleName();
 
     public static boolean putBool(Context context, String prefName, boolean prefValue) {

@@ -315,7 +315,10 @@
     <string name="not_satisfied">Not Satisfied</string>
     <string name="note">Note</string>
     <string name="enable_location">Enable Location</string>
-    <string name="ajmaneye">AjmanEye</string>
+    <string name="ajmaneye">DED Eye</string>
     <string name="evaluation">The Evaluation was sent</string>
     <string name="chat">Chat</string>
+    <string name="notification_attention">تنوية : لابد من تحرير البلاغ من موقع البلاغ مباشرة</string>
+    <string name="close">Close</string>
+    <string name="shake_content">To report a violation please shake the mobile and a new Notification screen will be opened automatically</string>
 </resources>

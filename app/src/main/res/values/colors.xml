@@ -6,6 +6,12 @@
 
     <!-- tab style-->
 
+    <!-- AJMANEYE -->
+
+    <color name="eyeColorPrimary">#8E724A</color>
+    <color name="eyeColorPrimaryDark">#8E724A</color>
+    <color name="eyeColorAccent">#8E724A</color>
+
     <color name="bg_tab_selected">#c8b070</color>
     <color name="accent_orange">#e7953f</color>
     <color name="accent_blue">#81c8f6</color>
