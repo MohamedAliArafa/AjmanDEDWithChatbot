@@ -200,7 +200,7 @@ public class HomeTabFragment extends AnimatedFragment {
     public void onViewCreated(View view, @Nullable Bundle savedInstanceState) {
         super.onViewCreated(view, savedInstanceState);
         startAnimation();
-        if (AppPreferenceManager.getBool(getContext(), AppPreferenceManager.KEY_IS_FIRST_SHAKE, false)) {
+        if (!AppPreferenceManager.getBool(getContext(), AppPreferenceManager.KEY_IS_FIRST_SHAKE, false)) {
             new ViewDialog().showShakeDialog(getActivity());
             AppPreferenceManager.putBool(getContext(), AppPreferenceManager.KEY_IS_FIRST_SHAKE, true);
         }

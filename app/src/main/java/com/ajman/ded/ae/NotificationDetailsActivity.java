@@ -236,6 +236,8 @@ public class NotificationDetailsActivity extends AppCompatActivity implements Ey
                     builder.include(latLng);
                     LatLngBounds bounds = builder.build();
                     googleMap.moveCamera(CameraUpdateFactory.newLatLngBounds(bounds, 8));
+                    googleMap.moveCamera(CameraUpdateFactory.zoomTo(14));
+
                 }
             }
 

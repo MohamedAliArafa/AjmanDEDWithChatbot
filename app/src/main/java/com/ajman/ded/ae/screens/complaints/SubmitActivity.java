@@ -505,6 +505,7 @@ public class SubmitActivity extends AppCompatActivity implements EyeImagesAdapte
             builder.include(latLng);
             LatLngBounds bounds = builder.build();
             googleMap.moveCamera(CameraUpdateFactory.newLatLngBounds(bounds, 20));
+            googleMap.moveCamera(CameraUpdateFactory.zoomTo(14));
 
             Geocoder geocoder;
             List<Address> addresses;
