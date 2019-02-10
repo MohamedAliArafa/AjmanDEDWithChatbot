@@ -440,7 +440,7 @@ public abstract class BaseActivity extends AppCompatActivity implements View.OnC
 
     @Override
     protected void onDestroy() {
-        if (dialog != null)
+        if (dialog != null && dialog.isShowing())
             pDialog.cancel();
         super.onDestroy();
     }

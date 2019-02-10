@@ -42,7 +42,7 @@ public class ViewDialog {
     }
 
 
-    public void showShakeDialog(Activity activity) {
+    public Dialog showShakeDialog(Activity activity) {
         Dialog dialog = new Dialog(activity, R.style.Dialog);
         dialog.requestWindowFeature(Window.FEATURE_NO_TITLE);
         dialog.setCancelable(true);
@@ -54,6 +54,7 @@ public class ViewDialog {
 
         closeImage.setOnClickListener(v -> dialog.dismiss());
         dialog.show();
+        return dialog;
     }
 
 

@@ -308,7 +308,8 @@ public class SubmitActivity extends AppCompatActivity implements EyeImagesAdapte
             public void onResponse(Call<NotificationTypeResponse> call, Response<NotificationTypeResponse> response) {
                 if (response.isSuccessful()) {
                     if (response.body().getResponseCode() == 1) {
-                        typeAdapter = new SpinnerAdapter(SubmitActivity.this, R.layout.spinner_text, response.body().getResponseContent(), TYPE_TYPE);
+                        typeAdapter = new SpinnerAdapter(SubmitActivity.this, R.layout.spinner_row, response.body().getResponseContent(), TYPE_TYPE);
+                        typeAdapter.setDropDownViewResource(R.layout.row_spinners_dropdown);
                         typeSpinner.setAdapter(typeAdapter);
                         typeSpinner.setOnItemSelectedListener(new AdapterView.OnItemSelectedListener() {
                             public void onItemSelected(AdapterView<?> parent, View view, int pos, long id) {
@@ -496,8 +497,10 @@ public class SubmitActivity extends AppCompatActivity implements EyeImagesAdapte
     public void onLocationChanged(Location location) {
         lat = String.valueOf(location.getLatitude());
         lng = String.valueOf(location.getLongitude());
-        if (googleMap != null)
+        if (googleMap != null) {
+            googleMap.clear();
             googleMap.setMyLocationEnabled(true);
+        }
         builder = new LatLngBounds.Builder();
         LatLng latLng = new LatLng(location.getLatitude(), location.getLongitude());
         if (googleMap != null) {

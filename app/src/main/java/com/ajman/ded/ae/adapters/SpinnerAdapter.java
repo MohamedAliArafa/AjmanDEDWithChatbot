@@ -49,21 +49,8 @@ public class SpinnerAdapter extends ArrayAdapter<String> {
 
     @Override
     public View getDropDownView(int position, @Nullable View convertView, @NonNull ViewGroup parent) {
-        return createItemView(position, convertView, parent);
-    }
-
-    @Override
-    public @NonNull
-    View getView(int position, @Nullable View convertView, @NonNull ViewGroup parent) {
-        View view = createItemView(position, convertView, parent);
-        if (Objects.equals(LocaleManager.getLanguage(mContext), LANGUAGE_ENGLISH))
-            view.setPaddingRelative(0, view.getPaddingTop(), view.getPaddingEnd(), view.getPaddingBottom());
-        return view;
-    }
-
-    private View createItemView(int position, View convertView, ViewGroup parent) {
-        final View view = mInflater.inflate(mResource, parent, false);
-        TextView tv = view.findViewById(R.id.spinner_text);
+        final View view = mInflater.inflate(R.layout.row_spinners_dropdown, parent, false);
+        TextView tv = (TextView) view;
         switch (type) {
             case TYPE_STOCK:
                 if (position == 0) {
@@ -101,6 +88,50 @@ public class SpinnerAdapter extends ArrayAdapter<String> {
         }
         return view;
     }
+
+    @Override
+    public @NonNull
+    View getView(int position, @Nullable View convertView, @NonNull ViewGroup parent) {
+        final View view = mInflater.inflate(R.layout.spinner_row, parent, false);
+        TextView tv = (TextView) view;
+        switch (type) {
+            case TYPE_STOCK:
+                if (position == 0) {
+                    tv.setText(R.string.select_stock_holder_type);
+                } else {
+                    StockholderType typeData = (StockholderType) items.get(position - 1);
+                    if (Objects.equals(LocaleManager.getLanguage(mContext), LANGUAGE_ENGLISH))
+                        tv.setText(typeData.getNameEN());
+                    else
+                        tv.setText(typeData.getNameAR());
+                }
+                break;
+            case TYPE_NATIONALITY:
+                if (position == 0) {
+                    tv.setText(R.string.select_nationality);
+                } else {
+                    Country typeData = (Country) items.get(position - 1);
+                    if (Objects.equals(LocaleManager.getLanguage(mContext), LANGUAGE_ENGLISH))
+                        tv.setText(typeData.getNameEN());
+                    else
+                        tv.setText(typeData.getNameAR());
+                }
+                break;
+            case TYPE_TYPE:
+                if (position == 0) {
+                    tv.setText(mContext.getString(R.string.notification_type));
+                } else {
+                    ResponseContent typeData = (ResponseContent) items.get(position - 1);
+                    if (Objects.equals(LocaleManager.getLanguage(mContext), LANGUAGE_ENGLISH))
+                        tv.setText(typeData.getNameEN());
+                    else
+                        tv.setText(typeData.getNameAR());
+                }
+                break;
+        }
+        return view;
+    }
+
 
     @Override
     public boolean isEnabled(int position) {

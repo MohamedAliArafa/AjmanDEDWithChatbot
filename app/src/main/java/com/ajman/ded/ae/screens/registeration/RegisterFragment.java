@@ -159,7 +159,7 @@ public class RegisterFragment extends Fragment implements SmsListener {
         unbinder = ButterKnife.bind(this, view);
         stockholderTypes = new ArrayList<>();
         stockholderTypes.addAll(models.getStockholderType());
-        stockAdapter = new SpinnerAdapter(getActivity(), R.layout.spinner_text, stockholderTypes, TYPE_STOCK);
+        stockAdapter = new SpinnerAdapter(getActivity(), R.layout.spinner_row, stockholderTypes, TYPE_STOCK);
         spinnerStock.setAdapter(stockAdapter);
         spinnerStock.setOnItemSelectedListener(new AdapterView.OnItemSelectedListener() {
             public void onItemSelected(AdapterView<?> parent, View view, int pos, long id) {
@@ -177,7 +177,7 @@ public class RegisterFragment extends Fragment implements SmsListener {
 
         countries = new ArrayList<>();
         countries.addAll(models.getCountry());
-        nationalityAdapter = new SpinnerAdapter(getActivity(), R.layout.spinner_text, countries, TYPE_NATIONALITY);
+        nationalityAdapter = new SpinnerAdapter(getActivity(), R.layout.spinner_row, countries, TYPE_NATIONALITY);
         spinnerNationality.setAdapter(nationalityAdapter);
         spinnerNationality.setOnItemSelectedListener(new AdapterView.OnItemSelectedListener() {
             public void onItemSelected(AdapterView<?> parent, View view, int pos, long id) {

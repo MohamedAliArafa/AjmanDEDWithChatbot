@@ -1,6 +1,7 @@
 package com.ajman.ded.ae.screens.home;
 
 
+import android.app.Dialog;
 import android.content.Intent;
 import android.os.Bundle;
 import android.text.TextUtils;
@@ -63,6 +64,7 @@ public class HomeTabFragment extends AnimatedFragment {
     private LatLngBounds.Builder builder;
     private GoogleMap googleMap;
     private RelativeLayout newLicence, renewLicence, tradeName, newPermit;
+    private Dialog dialog;
 
     public HomeTabFragment() {
         // Required empty public constructor
@@ -201,7 +203,7 @@ public class HomeTabFragment extends AnimatedFragment {
         super.onViewCreated(view, savedInstanceState);
         startAnimation();
         if (!AppPreferenceManager.getBool(getContext(), AppPreferenceManager.KEY_IS_FIRST_SHAKE, false)) {
-            new ViewDialog().showShakeDialog(getActivity());
+            dialog = new ViewDialog().showShakeDialog(getActivity());
             AppPreferenceManager.putBool(getContext(), AppPreferenceManager.KEY_IS_FIRST_SHAKE, true);
         }
     }
@@ -220,6 +222,8 @@ public class HomeTabFragment extends AnimatedFragment {
     @Override
     public void onPause() {
         super.onPause();
+        if (dialog != null && dialog.isShowing())
+            dialog.dismiss();
         mMapView.onPause();
     }
 

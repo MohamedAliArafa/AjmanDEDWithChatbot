@@ -137,4 +137,12 @@
         <item name="android:windowBackground">@android:color/transparent</item>
     </style>
 
+    <style name="style_Spinner">
+        <item name="android:background">@drawable/dropdown</item>
+        <item name="android:dropDownSelector">@android:color/transparent</item>
+        <item name="android:popupBackground">@android:color/white</item>
+        <item name="android:spinnerMode">dropdown</item>
+
+    </style>
+
 </resources>
