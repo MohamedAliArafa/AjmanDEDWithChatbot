@@ -51,7 +51,7 @@ public class NotificationAdapter extends RecyclerView.Adapter<RecyclerView.ViewH
     @Override
     public void onBindViewHolder(RecyclerView.ViewHolder viewHolder, int position) {
             MyViewHolder holder = (MyViewHolder) viewHolder;
-            ResponseContent model = mList.get(position - 1);
+            ResponseContent model = mList.get(position);
             holder.requestNo.setText(model.getRequestNumber());
             if (model.getRequestDate() != null) {
                 holder.date.setText(holder.sdft.format(model.getRequestDate()));

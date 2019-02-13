@@ -50,7 +50,7 @@
                 android:id="@+id/search"
                 style="@style/SearchView"
                 android:layout_width="wrap_content"
-                android:layout_height="40dp"
+                android:layout_height="30dp"
                 android:layout_marginStart="8dp"
                 android:layout_marginTop="16dp"
                 android:layout_marginEnd="8dp"
@@ -70,7 +70,7 @@
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:layout_marginStart="8dp"
-                android:layout_marginTop="24dp"
+                android:layout_marginTop="18dp"
                 android:layout_marginEnd="8dp"
                 app:layout_constraintEnd_toEndOf="parent"
                 app:layout_constraintStart_toStartOf="parent"
@@ -95,10 +95,12 @@
                 android:id="@+id/textView14"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:layout_marginStart="8dp"
+                android:layout_marginStart="30dp"
                 android:layout_marginTop="8dp"
-                android:layout_marginEnd="8dp"
-                android:gravity="center"
+                android:paddingStart="40dp"
+                android:paddingEnd="40dp"
+                android:layout_marginEnd="30dp"
+                android:gravity="center_horizontal"
                 android:text="@string/shake_content"
                 android:textColor="@color/eyeColorPrimaryDark"
                 app:layout_constraintEnd_toEndOf="parent"
@@ -124,9 +126,9 @@
 
             <ImageView
                 android:id="@+id/call"
-                android:layout_width="60dp"
-                android:layout_height="60dp"
-                android:layout_marginTop="16dp"
+                android:layout_width="45dp"
+                android:layout_height="45dp"
+                android:layout_marginTop="26dp"
                 android:layout_marginEnd="24dp"
                 android:background="@drawable/circle"
                 android:padding="12dp"
@@ -137,12 +139,13 @@
 
             <ImageView
                 android:layout_width="match_parent"
-                android:layout_height="wrap_content"
-                android:layout_marginTop="16dp"
+                android:layout_height="50dp"
+                android:layout_marginTop="26dp"
                 android:src="@drawable/ic_dedlogo_toolbar_dark"
                 app:layout_constraintEnd_toEndOf="parent"
                 app:layout_constraintStart_toStartOf="parent"
-                app:layout_constraintTop_toBottomOf="@+id/call" />
+                app:layout_constraintTop_toBottomOf="@+id/call"
+                />
         </androidx.constraintlayout.widget.ConstraintLayout>
     </androidx.core.widget.NestedScrollView>
 </androidx.coordinatorlayout.widget.CoordinatorLayout>
