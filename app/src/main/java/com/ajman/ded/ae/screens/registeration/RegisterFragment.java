@@ -519,7 +519,7 @@ public class RegisterFragment extends Fragment implements SmsListener {
                     models.addAll(Arrays.asList(list));
                     ActivityCompat.finishAffinity(getActivity());
                     MyApplication.get(getActivity()).addUser(username.getText().toString(), password.getText().toString());
-                    UserModel model = new UserModel(username.getText().toString(), password.getText().toString(), models.get(0).getId());
+                    UserModel model = new UserModel(username.getText().toString(), password.getText().toString(), models.get(0).getId(), models.get(0).getNameAR(), models.get(0).getNameEN());
                     UserData.saveUserObject(getActivity(), model, true);
                     startActivity(new Intent(getActivity(), IntroActivity.class).addFlags(Intent.FLAG_ACTIVITY_NO_HISTORY));
                 }

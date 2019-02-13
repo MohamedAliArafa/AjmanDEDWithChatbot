@@ -1,4 +1,4 @@
-package com.ajman.ded.ae;
+package com.ajman.ded.ae.screens.ded_eye.adapter;
 
 import android.content.Context;
 import android.content.Intent;
@@ -6,9 +6,13 @@ import android.content.res.Resources;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
+import android.widget.Filter;
+import android.widget.Filterable;
 import android.widget.ImageView;
 import android.widget.TextView;
 
+import com.ajman.ded.ae.NotificationDetailsActivity;
+import com.ajman.ded.ae.R;
 import com.ajman.ded.ae.models.notification.ResponseContent;
 
 import java.text.SimpleDateFormat;
@@ -20,18 +24,16 @@ import androidx.recyclerview.widget.RecyclerView;
 import butterknife.BindView;
 import butterknife.ButterKnife;
 
-
-public class NotificationAdapter extends RecyclerView.Adapter<RecyclerView.ViewHolder> {
+public class NotificationAdapter extends RecyclerView.Adapter<RecyclerView.ViewHolder>implements Filterable {
 
     private final Context mContext;
     Resources resources;
     private String title;
     private List<ResponseContent> mList;
 
-    public NotificationAdapter(Context context, String string) {
+    public NotificationAdapter(Context context) {
         mContext = context;
         resources = context.getResources();
-        this.title = string;
         this.mList = new ArrayList<>();
     }
 
@@ -42,21 +44,12 @@ public class NotificationAdapter extends RecyclerView.Adapter<RecyclerView.ViewH
 
     @Override
     public RecyclerView.ViewHolder onCreateViewHolder(ViewGroup parent, int viewType) {
-        if (viewType == 0) {
-            View itemView = LayoutInflater.from(parent.getContext()).inflate(R.layout.item_header_notification, parent, false);
-            return new MyHeaderViewHolder(itemView);
-        } else {
             View itemView = LayoutInflater.from(parent.getContext()).inflate(R.layout.item_notification, parent, false);
             return new MyViewHolder(itemView);
-        }
     }
 
     @Override
     public void onBindViewHolder(RecyclerView.ViewHolder viewHolder, int position) {
-        if (position == 0) {
-            MyHeaderViewHolder holder = (MyHeaderViewHolder) viewHolder;
-            holder.title.setText(title);
-        } else {
             MyViewHolder holder = (MyViewHolder) viewHolder;
             ResponseContent model = mList.get(position - 1);
             holder.requestNo.setText(model.getRequestNumber());
@@ -94,19 +87,43 @@ public class NotificationAdapter extends RecyclerView.Adapter<RecyclerView.ViewH
 
             holder.attachment.setText(model.getAttachmentsCount());
             holder.title.setText(model.getEstablishmentNameAR());
-        }
     }
 
-    @Override
-    public int getItemViewType(int position) {
-        if (position == 0)
-            return 0;
-        else return position;
-    }
+
 
     @Override
     public int getItemCount() {
-        return mList.size() + 1;
+        return mList.size();
+    }
+
+    @Override
+    public Filter getFilter() {
+        return new Filter() {
+            @Override
+            protected FilterResults performFiltering(CharSequence charSequence) {
+                FilterResults results = new FilterResults();
+                String charString = charSequence.toString().toLowerCase();
+                if (charString.isEmpty()) {
+                    results.count = mList.size();
+                    results.values = mList;
+                } else {
+                    List<ResponseContent> filteredList = new ArrayList<>();
+                    for (ResponseContent row : mList) {
+                        if (row.getEstablishmentNameAR().toLowerCase().startsWith(charString) || row.getEstablishmentNameEN().toLowerCase().startsWith(charString) || row.getRequestNumber().startsWith(charString)) {
+                            filteredList.add(row);
+                        }
+                    }
+                    results.count = filteredList.size();
+                    results.values = filteredList;
+                }
+                return results;
+            }
+
+            @Override
+            protected void publishResults(CharSequence charSequence, FilterResults filterResults) {
+                setData((List<ResponseContent>) filterResults.values);
+            }
+        };
     }
 
     class MyViewHolder extends RecyclerView.ViewHolder implements View.OnClickListener {
@@ -144,18 +161,7 @@ public class NotificationAdapter extends RecyclerView.Adapter<RecyclerView.ViewH
 
         @Override
         public void onClick(View v) {
-            mContext.startActivity(new Intent(mContext, NotificationDetailsActivity.class).putExtra("id", mList.get(getAdapterPosition() - 1).getId()));
-        }
-    }
-
-    class MyHeaderViewHolder extends RecyclerView.ViewHolder {
-
-        @BindView(R.id.title)
-        TextView title;
-
-        MyHeaderViewHolder(View view) {
-            super(view);
-            ButterKnife.bind(this, view);
+            mContext.startActivity(new Intent(mContext, NotificationDetailsActivity.class).putExtra("id", mList.get(getAdapterPosition()).getId()));
         }
     }
 }

@@ -7,7 +7,6 @@
         <item>Reports</item>
         <item>Inquiries</item>
         <item>Administrative Control and Consumer Protection</item>
-        <item>Complaints</item>
     </string-array>
 
     <string-array name="e_services">
@@ -66,10 +65,4 @@
         <item>Conditions for signboards</item>
     </string-array>
 
-    <string-array name="complaints">
-        <item>Submit</item>
-        <item>On-going</item>
-        <item>Inquiry</item>
-        <item>Finished</item>
-    </string-array>
 </resources>

@@ -3,8 +3,8 @@
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    android:background="@drawable/bg_notification"
-    tools:context=".screens.complaints.SubmitActivity">
+    android:background="@drawable/bg"
+    tools:context=".screens.ded_eye.NewNotificationActivity">
 
 
     <androidx.recyclerview.widget.RecyclerView

@@ -321,4 +321,10 @@
     <string name="notification_attention">تنوية : لابد من تحرير البلاغ من موقع البلاغ مباشرة</string>
     <string name="close">Close</string>
     <string name="shake_content">To report a violation please shake the mobile and a new Notification screen will be opened automatically</string>
+    <string name="shake_phone">Shake Phone</string>
+    <string name="ongoing">ongoing</string>
+    <string name="closed">closed</string>
+    <string name="search_notification">search for Notification</string>
+    <string name="new_notification">New Notification</string>
+    <string name="all_notification">All Notification</string>
 </resources>

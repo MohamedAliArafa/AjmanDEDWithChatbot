@@ -48,6 +48,10 @@ public class NotificationsActivity extends AppCompatActivity {
             case 3:
                 mAdapter = new NotificationAdapter(this, getString(R.string.inquiry_notification));
                 break;
+            default:
+                mAdapter = new NotificationAdapter(this, getString(R.string.inquiry_notification));
+                break;
+
         }
         recyclerView.setLayoutManager(new LinearLayoutManager(this));
         recyclerView.setAdapter(mAdapter);

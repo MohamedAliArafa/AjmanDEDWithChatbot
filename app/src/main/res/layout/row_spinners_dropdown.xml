@@ -3,10 +3,7 @@
     android:id="@+id/tvText"
     android:layout_width="match_parent"
     android:layout_height="wrap_content"
-    android:ellipsize="marquee"
-    android:singleLine="true"
-    android:textSize="14sp"
     android:foreground="?android:attr/selectableItemBackgroundBorderless"
     android:padding="12dp"
     android:textColor="@color/eyeColorPrimaryDark"
-    />
+    android:textSize="14sp" />

@@ -15,7 +15,6 @@ import android.widget.ImageView;
 import android.widget.TextView;
 
 import com.ajman.ded.ae.FaqActivity;
-import com.ajman.ded.ae.NotificationsActivity;
 import com.ajman.ded.ae.R;
 import com.ajman.ded.ae.ServiceCentersActivity;
 import com.ajman.ded.ae.WebViewActivity;
@@ -33,8 +32,9 @@ import com.ajman.ded.ae.models.UserModel;
 import com.ajman.ded.ae.screens.IntroActivity;
 import com.ajman.ded.ae.screens.InvestorGuide;
 import com.ajman.ded.ae.screens.accountSettings.AccountActivity;
-import com.ajman.ded.ae.screens.complaints.SubmitActivity;
+import com.ajman.ded.ae.screens.ded_eye.NewNotificationActivity;
 import com.ajman.ded.ae.screens.dashboard.DashBoardActivity;
+import com.ajman.ded.ae.screens.ded_eye.DedEyeActivity;
 import com.ajman.ded.ae.screens.home.HomeActivity;
 import com.ajman.ded.ae.screens.login.LoginActivity;
 import com.ajman.ded.ae.screens.news.NewsActivity;
@@ -133,7 +133,7 @@ public abstract class BaseActivity extends AppCompatActivity implements View.OnC
         }
 
         final String appPackageName = getPackageName();
-        if (!(this instanceof SearchActivity)) {
+        if (!(this instanceof SearchActivity || this instanceof DedEyeActivity)) {
             mBottomBar = findViewById(R.id.bottomBar);
 
             mBottomBar.setOnNavigationItemSelectedListener(item -> {
@@ -307,6 +307,18 @@ public abstract class BaseActivity extends AppCompatActivity implements View.OnC
             action = "Language";
             mSlidingRootNav.closeMenu(true);
         });
+
+        if (UserData.getUserObject(this) != null) {
+            listFooterView.findViewById(R.id.eye_text).setVisibility(View.VISIBLE);
+            listFooterView.findViewById(R.id.eye_text).setOnClickListener(view -> {
+                action = "DEDEYE";
+                mSlidingRootNav.closeMenu(true);
+
+            });
+        }else {
+            listFooterView.findViewById(R.id.eye_text).setVisibility(View.GONE);
+        }
+
 
         listFooterView.findViewById(R.id.services_text).setOnClickListener(view -> {
             action = "Services";
@@ -545,6 +557,11 @@ public abstract class BaseActivity extends AppCompatActivity implements View.OnC
                         complains.putExtra(URL_INTENT_KEY, DOMAIN_APP_EN + complaints);
                     this.startActivity(complains);
                     break;
+                case "DEDEYE":
+                    action = "null";
+                    Intent eye = new Intent(this, DedEyeActivity.class);
+                    this.startActivity(eye);
+                    break;
                 case "Services":
                     action = "null";
                     Intent service = new Intent(this, ServiceCentersActivity.class);
@@ -617,34 +634,17 @@ public abstract class BaseActivity extends AppCompatActivity implements View.OnC
                 case "ExpandableList":
                     action = "null";
                     Intent expandableList = null;
-                    if (gPosition == 6) {
-                        switch (cPosition) {
-                            case 0:
-                                expandableList = new Intent(this, SubmitActivity.class);
-                                break;
-                            case 1:
-                                expandableList = new Intent(this, NotificationsActivity.class).putExtra("status", 0);
-                                break;
-                            case 2:
-                                expandableList = new Intent(this, NotificationsActivity.class).putExtra("status", 3);
-                                break;
-                            case 3:
-                                expandableList = new Intent(this, NotificationsActivity.class).putExtra("status", 1);
-                                break;
-                        }
+                    expandableList = new Intent(this, WebViewActivity.class);
+                    if (Objects.equals(LocaleManager.getLanguage(this), LANGUAGE_ARABIC)) {
+                        if (gPosition == 5)
+                            expandableList.putExtra(URL_INTENT_KEY, DOMAIN_APP_AR + models.get(gPosition).getList().get(cPosition).getLink());
+                        else
+                            expandableList.putExtra(URL_INTENT_KEY, DOMAIN_AR + models.get(gPosition).getList().get(cPosition).getLink());
                     } else {
-                        expandableList = new Intent(this, WebViewActivity.class);
-                        if (Objects.equals(LocaleManager.getLanguage(this), LANGUAGE_ARABIC)) {
-                            if (gPosition == 5)
-                                expandableList.putExtra(URL_INTENT_KEY, DOMAIN_APP_AR + models.get(gPosition).getList().get(cPosition).getLink());
-                            else
-                                expandableList.putExtra(URL_INTENT_KEY, DOMAIN_AR + models.get(gPosition).getList().get(cPosition).getLink());
-                        } else {
-                            if (gPosition == 5)
-                                expandableList.putExtra(URL_INTENT_KEY, DOMAIN_APP_EN + models.get(gPosition).getList().get(cPosition).getLink());
-                            else
-                                expandableList.putExtra(URL_INTENT_KEY, DOMAIN_EN + models.get(gPosition).getList().get(cPosition).getLink());
-                        }
+                        if (gPosition == 5)
+                            expandableList.putExtra(URL_INTENT_KEY, DOMAIN_APP_EN + models.get(gPosition).getList().get(cPosition).getLink());
+                        else
+                            expandableList.putExtra(URL_INTENT_KEY, DOMAIN_EN + models.get(gPosition).getList().get(cPosition).getLink());
                     }
                     startActivity(expandableList);
                     break;
@@ -760,6 +760,6 @@ public abstract class BaseActivity extends AppCompatActivity implements View.OnC
 
     @Subscribe
     public void onShakeEvent(ShakeEventWire.ShakeEvent event) {
-        startActivity(new Intent(BaseActivity.this, SubmitActivity.class));
+        startActivity(new Intent(BaseActivity.this, NewNotificationActivity.class));
     }
 }

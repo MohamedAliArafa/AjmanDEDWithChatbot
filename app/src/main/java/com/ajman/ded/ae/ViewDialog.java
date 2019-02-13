@@ -8,8 +8,8 @@ import android.provider.MediaStore;
 import android.view.View;
 import android.view.Window;
 
-import static com.ajman.ded.ae.screens.complaints.SubmitActivity.OPEN_CAMERA;
-import static com.ajman.ded.ae.screens.complaints.SubmitActivity.OPEN_GALLERY;
+import static com.ajman.ded.ae.screens.ded_eye.NewNotificationActivity.OPEN_CAMERA;
+import static com.ajman.ded.ae.screens.ded_eye.NewNotificationActivity.OPEN_GALLERY;
 
 public class ViewDialog {
 

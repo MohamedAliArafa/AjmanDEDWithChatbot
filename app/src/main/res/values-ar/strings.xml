@@ -278,5 +278,11 @@
     <string name="notification_attention">تنوية : لابد من تحرير البلاغ من موقع البلاغ مباشرة</string>
     <string name="close">إغلاق</string>
     <string name="shake_content">للإبلاغ عن تجاوز أو مخالفة يرجى القيام برج الهاتف وسوف يتم فتح بلاغ جديد تلقائيا</string>
+    <string name="shake_phone">رج الهاتف</string>
+    <string name="ongoing">قيد التدقيق</string>
+    <string name="closed">تم التدقيق</string>
+    <string name="search_notification">بحث عن بلاغ</string>
+    <string name="new_notification">بلاغ جديد</string>
+    <string name="all_notification">كل البلاغات</string>
 
 </resources>

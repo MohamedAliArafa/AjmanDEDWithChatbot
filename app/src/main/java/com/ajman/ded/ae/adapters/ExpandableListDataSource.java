@@ -22,7 +22,6 @@ public class ExpandableListDataSource {
         List<String> other = Arrays.asList(context.getResources().getStringArray(R.array.reports));
         List<String> reports = Arrays.asList(context.getResources().getStringArray(R.array.inquiries));
         List<String> administrative_control = Arrays.asList(context.getResources().getStringArray(R.array.administrative_control));
-        List<String> complaints = Arrays.asList(context.getResources().getStringArray(R.array.complaints));
 
         if (UserData.getUserObject(context) != null) {
             expandableListData.put(filmGenres.get(0), application);
@@ -31,7 +30,6 @@ public class ExpandableListDataSource {
             expandableListData.put(filmGenres.get(3), other);
             expandableListData.put(filmGenres.get(4), reports);
             expandableListData.put(filmGenres.get(5), administrative_control);
-            expandableListData.put(filmGenres.get(6), complaints);
         } else {
             expandableListData.put(filmGenres.get(4), reports);
             expandableListData.put(filmGenres.get(5), administrative_control);

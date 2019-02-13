@@ -1,6 +1,5 @@
 package com.ajman.ded.ae.screens.login;
 
-
 import android.content.Intent;
 import android.os.Bundle;
 import android.util.Log;
@@ -53,11 +52,7 @@ import retrofit2.Response;
 import static com.ajman.ded.ae.utility.Helper.convertDpToPixel;
 import static com.ajman.ded.ae.utility.Helper.isValidEmail;
 
-/**
- * A simple {@link Fragment} subclass.
- */
 public class LoginFragment extends Fragment implements SmsListener {
-
 
     private Api api;
     private SweetAlertDialog pDialog;
@@ -68,7 +63,6 @@ public class LoginFragment extends Fragment implements SmsListener {
     public LoginFragment() {
         // Required empty public constructor
     }
-
 
     @Override
     public View onCreateView(LayoutInflater inflater, ViewGroup container,
@@ -243,7 +237,7 @@ public class LoginFragment extends Fragment implements SmsListener {
                     models.addAll(Arrays.asList(list));
                     ActivityCompat.finishAffinity(getActivity());
                     MyApplication.get(getActivity()).addUser(username.getText().toString(), password.getText().toString());
-                    UserModel model = new UserModel(username.getText().toString(), password.getText().toString(), models.get(0).getId());
+                    UserModel model = new UserModel(username.getText().toString(), password.getText().toString(), models.get(0).getId(), models.get(0).getNameAR(), models.get(0).getNameEN());
                     UserData.saveUserObject(getActivity(), model, true);
                     startActivity(new Intent(getActivity(), IntroActivity.class).addFlags(Intent.FLAG_ACTIVITY_NO_HISTORY));
                 }
@@ -261,49 +255,4 @@ public class LoginFragment extends Fragment implements SmsListener {
         super.onDestroyView();
         SmsReceiver.unbind();
     }
-
-//    private void sendSMS() {
-//        RequestEnvelope_SendSMS envelope = new RequestEnvelope_SendSMS();
-//
-//        RequestBody_SendSMS body = new RequestBody_SendSMS();
-//
-//        RequestData_SendSMS data = new RequestData_SendSMS();
-//
-//        SecureRandom random = new SecureRandom();
-//        int num = random.nextInt(100000);
-//        String formatted = String.format(Locale.US, "%05d", num);
-//        data.setMessageEN(String.format(Locale.US, getString(R.string.code_verification_formula), formatted));
-//        data.setMessageAR("رقم تفعيل تطبيق عجمان هو : " + formatted);
-//        data.setMobileNo(mobileNo.getText().toString());
-//        body.setRequestData(data);
-//
-//        envelope.setBody(body);
-//
-//        api = ApiBuilder.providesApi();
-//
-//        Call<ResponseEnvelope_SendSMS> call = api.requestSmsCall("SendSMS", envelope);
-//
-//        call.enqueue(new retrofit2.Callback<ResponseEnvelope_SendSMS>() {
-//
-//            @Override
-//            public void onResponse(@NonNull Call<ResponseEnvelope_SendSMS> call, @NonNull final Response<ResponseEnvelope_SendSMS> response) {
-//                if (response.isSuccessful()) {
-//                    String result = response.body().getBody().getData().getSendSMSResult().replace("\"", "");
-//                    Log.d("SMS PASS:", String.valueOf(result));
-//                } else {
-//                    pDialog.setTitleText(getString(R.string.went_wrong))
-//                            .setConfirmText(getString(R.string.ok))
-//                            .changeAlertType(SweetAlertDialog.ERROR_TYPE);
-//                }
-//            }
-//
-//            @Override
-//            public void onFailure(@NonNull Call<ResponseEnvelope_SendSMS> call, @NonNull Throwable t) {
-//                Log.d("SMS ERROR:", String.valueOf(t));
-//                pDialog.setTitleText(getString(R.string.went_wrong))
-//                        .setConfirmText(getString(R.string.ok))
-//                        .changeAlertType(SweetAlertDialog.ERROR_TYPE);
-//            }
-//        });
-//    }
 }

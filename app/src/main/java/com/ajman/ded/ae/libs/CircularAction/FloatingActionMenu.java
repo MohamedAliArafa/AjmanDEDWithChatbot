@@ -110,7 +110,7 @@ public class FloatingActionMenu {
         this.animationHandler = animationHandler;
         this.animated = animated;
         this.systemOverlay = systemOverlay;
-        // The menu is initially closed.
+        // The menu is initially ongoing.
         this.open = false;
 
         this.stateChangeListener = stateChangeListener;
@@ -276,7 +276,7 @@ public class FloatingActionMenu {
             }
             detachOverlayContainer();
         }
-        // do not forget to specify that the menu is now closed.
+        // do not forget to specify that the menu is now ongoing.
         open = false;
 
         if (stateChangeListener != null) {
@@ -545,7 +545,7 @@ public class FloatingActionMenu {
     }
 
     /**
-     * A listener to listen open/closed state changes of the Menu
+     * A listener to listen open/ongoing state changes of the Menu
      */
     public static interface MenuStateChangeListener {
         public void onMenuOpened(FloatingActionMenu menu);

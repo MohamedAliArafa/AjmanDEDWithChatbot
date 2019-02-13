@@ -1,4 +1,4 @@
-package com.ajman.ded.ae.screens.complaints;
+package com.ajman.ded.ae.screens.ded_eye;
 
 import android.Manifest;
 import android.annotation.SuppressLint;
@@ -89,7 +89,7 @@ import retrofit2.Call;
 import retrofit2.Callback;
 import retrofit2.Response;
 
-public class SubmitActivity extends AppCompatActivity implements EyeImagesAdapter.AdapterCallback, LocationListener, OnMapReadyCallback {
+public class NewNotificationActivity extends AppCompatActivity implements EyeImagesAdapter.AdapterCallback, LocationListener, OnMapReadyCallback {
     public static final int TYPE_TYPE = 2;
     public static final int OPEN_CAMERA = 9004;
     public static final int OPEN_GALLERY = 9005;
@@ -230,7 +230,7 @@ public class SubmitActivity extends AppCompatActivity implements EyeImagesAdapte
 
         findViewById(R.id.send).setOnClickListener(view -> {
             if (lat.length() > 0 && lng.length() > 0 && establishmentTitle.getText().toString().length() > 0 && licenceNo.getText().toString().length() > 0 && complaint_details.getText().toString().length() > 0 && tybeId.length() > 0) {
-                Call<NotificationResponse> call = api.insert_notification(UserData.getUserObject(SubmitActivity.this).getUserId(), date, establishmentTitle.getText().toString(), licenceNo.getText().toString(), tybeId, complaint_details.getText().toString(), lat, lng);
+                Call<NotificationResponse> call = api.insert_notification(UserData.getUserObject(NewNotificationActivity.this).getUserId(), date, establishmentTitle.getText().toString(), licenceNo.getText().toString(), tybeId, complaint_details.getText().toString(), lat, lng);
                 pDialog = new SweetAlertDialog(this, SweetAlertDialog.PROGRESS_TYPE)
                         .setTitleText(getString(R.string.loading));
                 pDialog.setCancelable(true);
@@ -283,7 +283,22 @@ public class SubmitActivity extends AppCompatActivity implements EyeImagesAdapte
             public void onResponse(Call<NotificationResponse> call, Response<NotificationResponse> response) {
                 if (response.isSuccessful()) {
                     if (response.body().getResponseCode() == 1) {
-                        pDialog.setTitleText("بلاغ " + tybeStatus + " سوف يستغرق مدة " + tybePeriod + " من الأيام ليتم مراجعتها").setConfirmClickListener(sweetAlertDialog -> SubmitActivity.super.onBackPressed()).changeAlertType(SweetAlertDialog.SUCCESS_TYPE);
+                        String title;
+                        switch (tybePeriod.trim()) {
+                            case "1":
+                                title = "سوف يتم التحقق من البلاغ خلال يوم عمل";
+                                break;
+                            case "2":
+                                title = "سوف يتم التحقق من البلاغ خلال يومين عمل";
+                                break;
+                            case "3":
+                                title = "سوف يتم التحقق من البلاغ خلال 3 يوم عمل";
+                                break;
+                            default:
+                                title = "سوف يتم التحقق من البلاغ خلال " + tybePeriod + "يوم عمل";
+                                break;
+                        }
+                        pDialog.setTitleText(title).setConfirmClickListener(sweetAlertDialog -> NewNotificationActivity.super.onBackPressed()).changeAlertType(SweetAlertDialog.SUCCESS_TYPE);
                     }
                 } else {
                     pDialog.setTitleText(getString(R.string.went_wrong))
@@ -308,7 +323,7 @@ public class SubmitActivity extends AppCompatActivity implements EyeImagesAdapte
             public void onResponse(Call<NotificationTypeResponse> call, Response<NotificationTypeResponse> response) {
                 if (response.isSuccessful()) {
                     if (response.body().getResponseCode() == 1) {
-                        typeAdapter = new SpinnerAdapter(SubmitActivity.this, R.layout.spinner_row, response.body().getResponseContent(), TYPE_TYPE);
+                        typeAdapter = new SpinnerAdapter(NewNotificationActivity.this, R.layout.spinner_row, response.body().getResponseContent(), TYPE_TYPE);
                         typeAdapter.setDropDownViewResource(R.layout.row_spinners_dropdown);
                         typeSpinner.setAdapter(typeAdapter);
                         typeSpinner.setOnItemSelectedListener(new AdapterView.OnItemSelectedListener() {
@@ -371,7 +386,7 @@ public class SubmitActivity extends AppCompatActivity implements EyeImagesAdapte
 
 
     private void initAudio() {
-        audioRecord = new AudioRecording(SubmitActivity.this);
+        audioRecord = new AudioRecording(NewNotificationActivity.this);
         audioRecord.setSeekBar(mSeekBar);
         audioRecord.setMax(max);
         play_stop.setOnClickListener(this::play_stop);
@@ -424,7 +439,7 @@ public class SubmitActivity extends AppCompatActivity implements EyeImagesAdapte
                         try {
                             ResolvableApiException resolvable = (ResolvableApiException) exception;
                             resolvable.startResolutionForResult(
-                                    SubmitActivity.this,
+                                    NewNotificationActivity.this,
                                     REQUEST_CHECK_SETTINGS);
                         } catch (IntentSender.SendIntentException | ClassCastException ignored) {
                         }

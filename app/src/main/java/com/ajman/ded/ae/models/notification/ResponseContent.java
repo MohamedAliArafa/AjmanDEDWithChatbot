@@ -9,7 +9,7 @@ public class ResponseContent {
 
     @SerializedName("ID")
     @Expose
-    private String iD;
+    private String id;
     @SerializedName("EstablishmentNameAR")
     @Expose
     private String establishmentNameAR;
@@ -25,14 +25,12 @@ public class ResponseContent {
     @SerializedName("IsClosed")
     @Expose
     private String isClosed;
-
-    public String getID() {
-        return iD;
-    }
-
-    public void setID(String iD) {
-        this.iD = iD;
-    }
+    @SerializedName("PeriodInDays")
+    @Expose
+    private String periodInDays;
+    @SerializedName("AttachmentsCount")
+    @Expose
+    private String attachmentsCount;
 
     public String getEstablishmentNameAR() {
         return establishmentNameAR;
@@ -74,4 +72,28 @@ public class ResponseContent {
         this.isClosed = isClosed;
     }
 
+
+    public String getId() {
+        return id;
+    }
+
+    public void setId(String id) {
+        this.id = id;
+    }
+
+    public String getPeriodInDays() {
+        return periodInDays;
+    }
+
+    public void setPeriodInDays(String periodInDays) {
+        this.periodInDays = periodInDays;
+    }
+
+    public String getAttachmentsCount() {
+        return attachmentsCount;
+    }
+
+    public void setAttachmentsCount(String attachmentsCount) {
+        this.attachmentsCount = attachmentsCount;
+    }
 }

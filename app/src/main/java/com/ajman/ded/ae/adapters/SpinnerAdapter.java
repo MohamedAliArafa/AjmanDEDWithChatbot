@@ -21,7 +21,7 @@ import androidx.annotation.NonNull;
 import androidx.annotation.Nullable;
 
 import static com.ajman.ded.ae.libs.LocaleManager.LANGUAGE_ENGLISH;
-import static com.ajman.ded.ae.screens.complaints.SubmitActivity.TYPE_TYPE;
+import static com.ajman.ded.ae.screens.ded_eye.NewNotificationActivity.TYPE_TYPE;
 import static com.ajman.ded.ae.screens.registeration.RegisterFragment.TYPE_NATIONALITY;
 import static com.ajman.ded.ae.screens.registeration.RegisterFragment.TYPE_STOCK;
 

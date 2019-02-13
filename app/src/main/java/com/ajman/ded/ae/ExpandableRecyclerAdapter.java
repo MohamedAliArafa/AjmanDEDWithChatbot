@@ -268,7 +268,7 @@ public class ExpandableRecyclerAdapter extends RecyclerView.Adapter<ExpandableRe
             clicker = view.findViewById(R.id.clicker);
             title = view.findViewById(R.id.title);
             building = view.findViewById(R.id.building);
-            time = view.findViewById(R.id.time);
+            time = view.findViewById(R.id.status_time);
             time2 = view.findViewById(R.id.time2);
             phone = view.findViewById(R.id.phone);
             phone2 = view.findViewById(R.id.phone2);

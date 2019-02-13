@@ -28,8 +28,8 @@
 
             <ImageView
                 android:id="@+id/dot_1"
-                android:layout_width="14dp"
-                android:layout_height="14dp"
+                android:layout_width="6dp"
+                android:layout_height="6dp"
                 android:layout_marginStart="16dp"
                 android:layout_marginTop="16dp"
                 android:layout_marginBottom="8dp"
@@ -74,8 +74,8 @@
 
             <ImageView
                 android:id="@+id/dot_2"
-                android:layout_width="14dp"
-                android:layout_height="14dp"
+                android:layout_width="6dp"
+                android:layout_height="6dp"
                 android:layout_marginStart="16dp"
                 android:layout_marginTop="16dp"
                 android:background="@drawable/circle"
@@ -119,8 +119,8 @@
 
             <ImageView
                 android:id="@+id/dot_3"
-                android:layout_width="14dp"
-                android:layout_height="14dp"
+                android:layout_width="6dp"
+                android:layout_height="6dp"
                 android:layout_marginStart="16dp"
                 android:layout_marginTop="16dp"
                 android:background="@drawable/circle"
@@ -163,8 +163,8 @@
 
             <ImageView
                 android:id="@+id/dot_4"
-                android:layout_width="14dp"
-                android:layout_height="14dp"
+                android:layout_width="6dp"
+                android:layout_height="6dp"
                 android:layout_marginStart="16dp"
                 android:layout_marginTop="16dp"
                 android:background="@drawable/circle"
@@ -208,8 +208,8 @@
 
             <ImageView
                 android:id="@+id/dot_5"
-                android:layout_width="14dp"
-                android:layout_height="14dp"
+                android:layout_width="6dp"
+                android:layout_height="6dp"
                 android:layout_marginStart="16dp"
                 android:layout_marginTop="16dp"
                 android:background="@drawable/circle"
@@ -253,8 +253,8 @@
 
             <ImageView
                 android:id="@+id/dot_6"
-                android:layout_width="14dp"
-                android:layout_height="14dp"
+                android:layout_width="6dp"
+                android:layout_height="6dp"
                 android:layout_marginStart="16dp"
                 android:layout_marginTop="16dp"
                 android:background="@drawable/circle"
@@ -292,8 +292,8 @@
 
             <ImageView
                 android:id="@+id/dot_7"
-                android:layout_width="14dp"
-                android:layout_height="14dp"
+                android:layout_width="6dp"
+                android:layout_height="6dp"
                 android:layout_marginStart="16dp"
                 android:layout_marginTop="16dp"
                 android:background="@drawable/circle"
@@ -337,8 +337,8 @@
 
             <ImageView
                 android:id="@+id/dot_8"
-                android:layout_width="14dp"
-                android:layout_height="14dp"
+                android:layout_width="6dp"
+                android:layout_height="6dp"
                 android:layout_marginStart="16dp"
                 android:layout_marginTop="16dp"
                 android:background="@drawable/circle"
@@ -382,8 +382,8 @@
 
             <ImageView
                 android:id="@+id/dot_9"
-                android:layout_width="14dp"
-                android:layout_height="14dp"
+                android:layout_width="6dp"
+                android:layout_height="6dp"
                 android:layout_marginStart="16dp"
                 android:layout_marginTop="16dp"
                 android:background="@drawable/circle"
@@ -427,8 +427,8 @@
 
             <ImageView
                 android:id="@+id/dot_10"
-                android:layout_width="14dp"
-                android:layout_height="14dp"
+                android:layout_width="6dp"
+                android:layout_height="6dp"
                 android:layout_marginStart="16dp"
                 android:layout_marginTop="16dp"
                 android:background="@drawable/circle"
@@ -503,8 +503,8 @@
 
             <ImageView
                 android:id="@+id/dot_11"
-                android:layout_width="14dp"
-                android:layout_height="14dp"
+                android:layout_width="6dp"
+                android:layout_height="6dp"
                 android:layout_marginStart="16dp"
                 android:layout_marginTop="16dp"
                 android:background="@drawable/circle"
@@ -544,8 +544,8 @@
 
             <ImageView
                 android:id="@+id/dot_12"
-                android:layout_width="14dp"
-                android:layout_height="14dp"
+                android:layout_width="6dp"
+                android:layout_height="6dp"
                 android:layout_marginStart="16dp"
                 android:layout_marginTop="16dp"
                 android:background="@drawable/circle"
