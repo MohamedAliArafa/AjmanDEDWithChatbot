@@ -66,12 +66,12 @@ public class NotificationAdapter extends RecyclerView.Adapter<RecyclerView.ViewH
             }
 
             if (model.getIsClosed() != null && model.getIsClosed().equals("true")) {
-                holder.statusView.setBackgroundColor(ContextCompat.getColor(mContext, R.color.closed));
+                holder.statusView.setBackground(ContextCompat.getDrawable(mContext, R.drawable.radius_one_side_closed));
                 holder.statusIcon.setImageResource(R.drawable.closed);
                 holder.status.setText(mContext.getString(R.string.closed));
                 holder.status.setTextColor(mContext.getResources().getColor(R.color.closed));
             } else {
-                holder.statusView.setBackgroundColor(ContextCompat.getColor(mContext, R.color.ongoing));
+                holder.statusView.setBackground(ContextCompat.getDrawable(mContext, R.drawable.radius_one_side_ongoing));
                 holder.statusIcon.setImageResource(R.drawable.ongoing);
                 holder.status.setText(mContext.getString(R.string.ongoing));
                 holder.status.setTextColor(mContext.getResources().getColor(R.color.ongoing));

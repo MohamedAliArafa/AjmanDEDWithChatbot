@@ -47,13 +47,13 @@ public class HomeEyeAdapter extends RecyclerView.Adapter<HomeEyeAdapter.MyViewHo
         holder.status.setText(data.get(position).getTitle());
         switch (position) {
             case 0:
-                holder.status_view.setBackgroundColor(ContextCompat.getColor(mContext, R.color.closed));
+                holder.status_view.setBackground(ContextCompat.getDrawable(mContext, R.drawable.radius_one_side_closed));
                 break;
             case 1:
-                holder.status_view.setBackgroundColor(ContextCompat.getColor(mContext, R.color.ongoing));
+                holder.status_view.setBackground(ContextCompat.getDrawable(mContext, R.drawable.radius_one_side_ongoing));
                 break;
             case 2:
-                holder.status_view.setBackgroundColor(ContextCompat.getColor(mContext, R.color.eyeColorPrimaryDark));
+                holder.status_view.setBackground(ContextCompat.getDrawable(mContext, R.drawable.radius_one_side));
                 break;
         }
     }

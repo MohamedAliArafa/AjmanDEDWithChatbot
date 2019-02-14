@@ -2,7 +2,7 @@ package com.ajman.ded.ae.screens.ded_eye;
 
 import android.content.Intent;
 import android.os.Bundle;
-import android.view.View;
+import android.view.ViewGroup;
 import android.widget.Button;
 import android.widget.ImageView;
 import android.widget.TextView;
@@ -58,24 +58,19 @@ public class DedEyeActivity extends BaseActivity {
         ButterKnife.bind(this);
         toolbarTitle.setText(getString(R.string.ajmaneye));
         name.setText(UserData.getUserObject(this).getNameAr());
-        searchView.clearFocus();
-        searchView.setOnQueryTextListener(new SearchView.OnQueryTextListener() {
-            @Override
-            public boolean onQueryTextSubmit(String query) {
+        searchView.setOnQueryTextFocusChangeListener((v, hasFocus) -> {
+            if (hasFocus) {
                 startActivity(new Intent(DedEyeActivity.this, NotificationSearchActivity.class));
                 searchView.clearFocus();
-                return false;
-            }
-
-            @Override
-            public boolean onQueryTextChange(String newText) {
-                startActivity(new Intent(DedEyeActivity.this, NotificationSearchActivity.class));
-                searchView.clearFocus();
-                return false;
             }
         });
-        searchView.setOnSearchClickListener(v -> startActivity(new Intent(DedEyeActivity.this, NotificationSearchActivity.class)));
         newNotification.setOnClickListener(v -> startActivity(new Intent(DedEyeActivity.this, NewNotificationActivity.class)));
+        ImageView searchViewIcon = searchView.findViewById(androidx.appcompat.R.id.search_mag_icon);
+        SearchView.SearchAutoComplete searchText = searchView.findViewById(androidx.appcompat.R.id.search_src_text);
+        searchText.setCursorVisible(false);
+        ViewGroup linearLayoutSearchView = (ViewGroup) searchViewIcon.getParent();
+        linearLayoutSearchView.removeView(searchViewIcon);
+        linearLayoutSearchView.addView(searchViewIcon);
         callNo.setOnClickListener(v -> dialPhoneNumber("80070"));
         adapter = new HomeEyeAdapter(this);
         recyclerView.setLayoutManager(new GridLayoutManager(this, 3));

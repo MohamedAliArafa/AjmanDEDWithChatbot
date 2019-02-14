@@ -32,9 +32,9 @@ import com.ajman.ded.ae.models.UserModel;
 import com.ajman.ded.ae.screens.IntroActivity;
 import com.ajman.ded.ae.screens.InvestorGuide;
 import com.ajman.ded.ae.screens.accountSettings.AccountActivity;
-import com.ajman.ded.ae.screens.ded_eye.NewNotificationActivity;
 import com.ajman.ded.ae.screens.dashboard.DashBoardActivity;
 import com.ajman.ded.ae.screens.ded_eye.DedEyeActivity;
+import com.ajman.ded.ae.screens.ded_eye.NewNotificationActivity;
 import com.ajman.ded.ae.screens.home.HomeActivity;
 import com.ajman.ded.ae.screens.login.LoginActivity;
 import com.ajman.ded.ae.screens.news.NewsActivity;
@@ -126,9 +126,8 @@ public abstract class BaseActivity extends AppCompatActivity implements View.OnC
         setSupportActionBar(mToolbar);
         getSupportActionBar().setDisplayShowTitleEnabled(false);
 
-        mBus = TinyBus.from(this);
-
-        if (savedInstanceState == null) {
+        if (savedInstanceState == null && UserData.getUserObject(this) != null) {
+            mBus = TinyBus.from(this);
             mBus.wire(new ShakeEventWire());
         }
 
@@ -315,7 +314,7 @@ public abstract class BaseActivity extends AppCompatActivity implements View.OnC
                 mSlidingRootNav.closeMenu(true);
 
             });
-        }else {
+        } else {
             listFooterView.findViewById(R.id.eye_text).setVisibility(View.GONE);
         }
 

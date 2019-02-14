@@ -256,7 +256,7 @@
     <string name="loading">تحميل</string>
     <string name="request_no">رقم البلاغ</string>
     <string name="ongoing_notification">البلاغات قيد التدقيق</string>
-    <string name="finished_notification">البلاغات المنتهية</string>
+    <string name="finished_notification">البلاغات المكتملة</string>
     <string name="inquiry_notification">استعلام عن بلاغ</string>
     <string name="choose">إختر</string>
     <string name="rate">تقييم</string>

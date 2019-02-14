@@ -24,76 +24,78 @@ import androidx.recyclerview.widget.RecyclerView;
 import butterknife.BindView;
 import butterknife.ButterKnife;
 
-public class NotificationAdapter extends RecyclerView.Adapter<RecyclerView.ViewHolder>implements Filterable {
+public class NotificationSearchAdapter extends RecyclerView.Adapter<RecyclerView.ViewHolder> implements Filterable {
 
     private final Context mContext;
     Resources resources;
-    private String title;
+    private List<ResponseContent> mFilteredList;
     private List<ResponseContent> mList;
 
-    public NotificationAdapter(Context context) {
+    public NotificationSearchAdapter(Context context) {
+        this.mList = new ArrayList<>();
+        this.mFilteredList = new ArrayList<>();
         mContext = context;
         resources = context.getResources();
-        this.mList = new ArrayList<>();
     }
 
     public void setData(List<ResponseContent> list) {
-        mList = list;
+        if (list == null) return;
+        this.mList = list;
+        this.mFilteredList = list;
         this.notifyDataSetChanged();
     }
 
     @Override
     public RecyclerView.ViewHolder onCreateViewHolder(ViewGroup parent, int viewType) {
-            View itemView = LayoutInflater.from(parent.getContext()).inflate(R.layout.item_notification, parent, false);
-            return new MyViewHolder(itemView);
+        View itemView = LayoutInflater.from(parent.getContext()).inflate(R.layout.item_notification, parent, false);
+        return new MyViewHolder(itemView);
     }
 
     @Override
     public void onBindViewHolder(RecyclerView.ViewHolder viewHolder, int position) {
-            MyViewHolder holder = (MyViewHolder) viewHolder;
-            ResponseContent model = mList.get(position);
-            holder.requestNo.setText(model.getRequestNumber());
-            if (model.getRequestDate() != null) {
-                holder.date.setText(holder.sdft.format(model.getRequestDate()));
-                holder.date2.setText(holder.sdfc.format(model.getRequestDate()));
-            }
+        MyViewHolder holder = (MyViewHolder) viewHolder;
+        ResponseContent model = mFilteredList.get(position);
+        holder.requestNo.setText(model.getRequestNumber());
+        if (model.getRequestDate() != null) {
+            holder.date.setText(holder.sdft.format(model.getRequestDate()));
+            holder.date2.setText(holder.sdfc.format(model.getRequestDate()));
+        }
 
-            if (model.getIsClosed() != null && model.getIsClosed().equals("true")) {
-                holder.statusView.setBackgroundColor(ContextCompat.getColor(mContext, R.color.closed));
-                holder.statusIcon.setImageResource(R.drawable.closed);
-                holder.status.setText(mContext.getString(R.string.closed));
-                holder.status.setTextColor(mContext.getResources().getColor(R.color.closed));
-            } else {
-                holder.statusView.setBackgroundColor(ContextCompat.getColor(mContext, R.color.ongoing));
-                holder.statusIcon.setImageResource(R.drawable.ongoing);
-                holder.status.setText(mContext.getString(R.string.ongoing));
-                holder.status.setTextColor(mContext.getResources().getColor(R.color.ongoing));
-            }
+        if (model.getIsClosed() != null && model.getIsClosed().equals("true")) {
+            holder.statusView.setBackground(ContextCompat.getDrawable(mContext, R.drawable.radius_one_side_closed));
+            holder.statusIcon.setImageResource(R.drawable.closed);
+            holder.status.setText(mContext.getString(R.string.closed));
+            holder.status.setTextColor(mContext.getResources().getColor(R.color.closed));
+        } else {
+            holder.statusView.setBackground(ContextCompat.getDrawable(mContext, R.drawable.radius_one_side_ongoing));
+            holder.statusIcon.setImageResource(R.drawable.ongoing);
+            holder.status.setText(mContext.getString(R.string.ongoing));
+            holder.status.setTextColor(mContext.getResources().getColor(R.color.ongoing));
+        }
 
-            switch (model.getPeriodInDays()) {
-                case "1":
-                    holder.statusTime.setText("يوم عمل");
-                    break;
-                case "2":
-                    holder.statusTime.setText("يومين عمل");
-                    break;
-                case "3":
-                    holder.statusTime.setText("يوم عمل");
-                    break;
-                default:
-                    holder.statusTime.setText(model.getPeriodInDays() + "يوم عمل");
-                    break;
-            }
+        switch (model.getPeriodInDays()) {
+            case "1":
+                holder.statusTime.setText("يوم عمل");
+                break;
+            case "2":
+                holder.statusTime.setText("يومين عمل");
+                break;
+            case "3":
+                holder.statusTime.setText("يوم عمل");
+                break;
+            default:
+                holder.statusTime.setText(model.getPeriodInDays() + "يوم عمل");
+                break;
+        }
 
-            holder.attachment.setText(model.getAttachmentsCount());
-            holder.title.setText(model.getEstablishmentNameAR());
+        holder.attachment.setText(model.getAttachmentsCount());
+        holder.title.setText(model.getEstablishmentNameAR());
     }
-
 
 
     @Override
     public int getItemCount() {
-        return mList.size();
+        return mFilteredList.size();
     }
 
     @Override
@@ -109,7 +111,7 @@ public class NotificationAdapter extends RecyclerView.Adapter<RecyclerView.ViewH
                 } else {
                     List<ResponseContent> filteredList = new ArrayList<>();
                     for (ResponseContent row : mList) {
-                        if (row.getEstablishmentNameAR().toLowerCase().startsWith(charString) || row.getEstablishmentNameEN().toLowerCase().startsWith(charString) || row.getRequestNumber().startsWith(charString)) {
+                        if (row.getEstablishmentNameAR().contains(charString) || row.getRequestNumber().contains(charString)) {
                             filteredList.add(row);
                         }
                     }
@@ -121,7 +123,7 @@ public class NotificationAdapter extends RecyclerView.Adapter<RecyclerView.ViewH
 
             @Override
             protected void publishResults(CharSequence charSequence, FilterResults filterResults) {
-                setData((List<ResponseContent>) filterResults.values);
+                mFilteredList = (List<ResponseContent>) filterResults.values;
             }
         };
     }
@@ -161,7 +163,7 @@ public class NotificationAdapter extends RecyclerView.Adapter<RecyclerView.ViewH
 
         @Override
         public void onClick(View v) {
-            mContext.startActivity(new Intent(mContext, NotificationDetailsActivity.class).putExtra("id", mList.get(getAdapterPosition()).getId()));
+            mContext.startActivity(new Intent(mContext, NotificationDetailsActivity.class).putExtra("id", mFilteredList.get(getAdapterPosition()).getId()));
         }
     }
 }

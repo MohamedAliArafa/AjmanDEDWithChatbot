@@ -168,7 +168,7 @@ public class NewNotificationActivity extends AppCompatActivity implements EyeIma
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-        setContentView(R.layout.activity_submit);
+        setContentView(R.layout.activity_new_notification);
         ButterKnife.bind(this);
         DaggerLocationComponent.builder().contextModule(new ContextModule(viewContext())).build().inject(this);
 
@@ -229,7 +229,7 @@ public class NewNotificationActivity extends AppCompatActivity implements EyeIma
         populateType();
 
         findViewById(R.id.send).setOnClickListener(view -> {
-            if (lat.length() > 0 && lng.length() > 0 && establishmentTitle.getText().toString().length() > 0 && licenceNo.getText().toString().length() > 0 && complaint_details.getText().toString().length() > 0 && tybeId.length() > 0) {
+            if (lat.length() > 0 && lng.length() > 0 && establishmentTitle.getText().toString().length() > 0 && licenceNo.getText().toString().length() > 0 && complaint_details.getText().toString().length() > 0 && tybeId.length() > 0 && UserData.getUserObject(this) != null) {
                 Call<NotificationResponse> call = api.insert_notification(UserData.getUserObject(NewNotificationActivity.this).getUserId(), date, establishmentTitle.getText().toString(), licenceNo.getText().toString(), tybeId, complaint_details.getText().toString(), lat, lng);
                 pDialog = new SweetAlertDialog(this, SweetAlertDialog.PROGRESS_TYPE)
                         .setTitleText(getString(R.string.loading));

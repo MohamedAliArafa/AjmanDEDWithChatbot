@@ -52,17 +52,17 @@
                 android:layout_width="20dp"
                 android:layout_height="20dp"
                 android:layout_marginStart="16dp"
-                android:src="@drawable/address"
-                app:layout_constraintBottom_toBottomOf="@+id/location_title"
+                android:layout_marginTop="16dp"
+                android:src="@drawable/ic_address"
                 app:layout_constraintStart_toStartOf="parent"
-                app:layout_constraintTop_toTopOf="@+id/location_title" />
+                app:layout_constraintTop_toBottomOf="@+id/textView9" />
 
             <TextView
                 android:id="@+id/location_title"
                 android:layout_width="0dp"
-                android:layout_height="wrap_content"
+                android:layout_height="17dp"
                 android:layout_marginStart="8dp"
-                android:layout_marginTop="8dp"
+                android:layout_marginTop="16dp"
                 android:layout_marginEnd="8dp"
                 android:text="..."
                 android:textAlignment="viewStart"
@@ -148,10 +148,10 @@
                 android:layout_width="20dp"
                 android:layout_height="20dp"
                 android:layout_marginStart="16dp"
+                android:layout_marginTop="16dp"
                 android:src="@drawable/agreement"
-                app:layout_constraintBottom_toBottomOf="@+id/complaint"
                 app:layout_constraintStart_toStartOf="parent"
-                app:layout_constraintTop_toTopOf="@+id/complaint" />
+                app:layout_constraintTop_toBottomOf="@+id/complaint_details" />
 
             <EditText
                 android:id="@+id/complaint_details"

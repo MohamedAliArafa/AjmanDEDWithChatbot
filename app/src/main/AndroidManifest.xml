@@ -30,8 +30,14 @@
         android:supportsRtl="true"
         android:theme="@style/AppTheme"
         android:usesCleartextTraffic="true">
-        <activity android:name=".screens.ded_eye.NotificationSearchActivity"></activity>
-        <activity android:name=".screens.ded_eye.DedEyeActivity" />
+        <activity
+            android:name=".screens.ded_eye.NotificationSearchActivity"
+            android:screenOrientation="portrait"
+            android:theme="@style/EyeTheme"></activity>
+        <activity
+            android:name=".screens.ded_eye.DedEyeActivity"
+            android:screenOrientation="portrait"
+            android:theme="@style/EyeTheme" />
 
         <uses-library
             android:name="org.apache.http.legacy"
@@ -145,13 +151,16 @@
             android:screenOrientation="portrait" />
         <activity
             android:name=".screens.ded_eye.NewNotificationActivity"
-            android:screenOrientation="portrait" />
+            android:screenOrientation="portrait"
+            android:theme="@style/EyeTheme" />
         <activity
             android:name=".NotificationsActivity"
-            android:screenOrientation="portrait" />
+            android:screenOrientation="portrait"
+            android:theme="@style/EyeTheme" />
         <activity
             android:name=".NotificationDetailsActivity"
-            android:screenOrientation="portrait" />
+            android:screenOrientation="portrait"
+            android:theme="@style/EyeTheme" />
 
         <provider
             android:name="androidx.core.content.FileProvider"

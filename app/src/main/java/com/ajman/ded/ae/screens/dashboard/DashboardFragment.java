@@ -1,6 +1,7 @@
 package com.ajman.ded.ae.screens.dashboard;
 
 
+import android.app.Dialog;
 import android.content.Context;
 import android.os.Bundle;
 import android.view.LayoutInflater;
@@ -9,11 +10,15 @@ import android.view.ViewGroup;
 
 import com.ajman.ded.ae.R;
 import com.ajman.ded.ae.RtlViewPager;
+import com.ajman.ded.ae.ViewDialog;
 import com.ajman.ded.ae.libs.MyPagerAdapter;
+import com.ajman.ded.ae.utility.AppPreferenceManager;
 
 import java.util.ArrayList;
 import java.util.List;
 
+import androidx.annotation.NonNull;
+import androidx.annotation.Nullable;
 import androidx.fragment.app.Fragment;
 import androidx.viewpager.widget.PagerAdapter;
 import butterknife.BindView;
@@ -28,6 +33,7 @@ public class DashboardFragment extends Fragment implements DashInterface {
     List<Fragment> mFragments;
     String[] fragmentsTitles;
     PagerAdapter adapterViewPager;
+    private Dialog dialog;
 
     public DashboardFragment() {
         // Required empty public constructor
@@ -48,13 +54,19 @@ public class DashboardFragment extends Fragment implements DashInterface {
     @Override
     public View onCreateView(LayoutInflater inflater, ViewGroup container,
                              Bundle savedInstanceState) {
-        // Inflate the layout for this fragment
-        View view = inflater.inflate(R.layout.fragment_dashboard, container, false);
+        return inflater.inflate(R.layout.fragment_dashboard, container, false);
+    }
+
+    @Override
+    public void onViewCreated(@NonNull View view, @Nullable Bundle savedInstanceState) {
+        super.onViewCreated(view, savedInstanceState);
         ButterKnife.bind(this, view);
-        //init and set the adapter
         adapterViewPager = new MyPagerAdapter(mFragments, fragmentsTitles, getChildFragmentManager());
         vpPager.setAdapter(adapterViewPager);
-        return view;
+        if (!AppPreferenceManager.getBool(getContext(), AppPreferenceManager.KEY_IS_FIRST_SHAKE, false)) {
+            dialog = new ViewDialog().showShakeDialog(getActivity());
+            AppPreferenceManager.putBool(getContext(), AppPreferenceManager.KEY_IS_FIRST_SHAKE, true);
+        }
     }
 
     @Override
@@ -67,5 +79,12 @@ public class DashboardFragment extends Fragment implements DashInterface {
     public void movePrev() {
         if (vpPager.getCurrentItem() > 0)
             vpPager.setCurrentItem(vpPager.getCurrentItem() - 1);
+    }
+
+    @Override
+    public void onDestroyView() {
+        if (dialog != null && dialog.isShowing())
+            dialog.dismiss();
+        super.onDestroyView();
     }
 }

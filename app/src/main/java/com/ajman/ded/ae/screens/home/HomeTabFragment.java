@@ -64,7 +64,6 @@ public class HomeTabFragment extends AnimatedFragment {
     private LatLngBounds.Builder builder;
     private GoogleMap googleMap;
     private RelativeLayout newLicence, renewLicence, tradeName, newPermit;
-    private Dialog dialog;
 
     public HomeTabFragment() {
         // Required empty public constructor
@@ -172,7 +171,7 @@ public class HomeTabFragment extends AnimatedFragment {
                     }
                 }
                 LatLngBounds bounds = builder.build();
-                googleMap.moveCamera(CameraUpdateFactory.newLatLngBounds(bounds, 100));
+                googleMap.moveCamera(CameraUpdateFactory.newLatLngBounds(bounds, 20));
             });
         });
 
@@ -202,10 +201,6 @@ public class HomeTabFragment extends AnimatedFragment {
     public void onViewCreated(View view, @Nullable Bundle savedInstanceState) {
         super.onViewCreated(view, savedInstanceState);
         startAnimation();
-        if (!AppPreferenceManager.getBool(getContext(), AppPreferenceManager.KEY_IS_FIRST_SHAKE, false)) {
-            dialog = new ViewDialog().showShakeDialog(getActivity());
-            AppPreferenceManager.putBool(getContext(), AppPreferenceManager.KEY_IS_FIRST_SHAKE, true);
-        }
     }
 
     @Override
@@ -222,8 +217,6 @@ public class HomeTabFragment extends AnimatedFragment {
     @Override
     public void onPause() {
         super.onPause();
-        if (dialog != null && dialog.isShowing())
-            dialog.dismiss();
         mMapView.onPause();
     }
 
