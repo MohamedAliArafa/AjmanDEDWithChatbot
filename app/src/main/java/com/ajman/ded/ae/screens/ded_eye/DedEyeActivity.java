@@ -92,6 +92,9 @@ public class DedEyeActivity extends BaseActivity {
 
     private void call() {
         List<ItemHome> data = new ArrayList<>();
+        closed = 0;
+        ongoing = 0;
+        all = 0;
         call.clone().enqueue(new Callback<NotificationStatusResponse>() {
             @Override
             public void onResponse(Call<NotificationStatusResponse> call, Response<NotificationStatusResponse> response) {
