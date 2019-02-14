@@ -92,7 +92,7 @@ public class NotificationAdapter extends RecyclerView.Adapter<RecyclerView.ViewH
                     break;
             }
 
-            holder.attachment.setText(model.getAttachmentsCount());
+            holder.attachment.setText(String.format("%s %s", model.getAttachmentsCount(), mContext.getString(R.string.attachment)));
             holder.title.setText(model.getEstablishmentNameAR());
         }
     }

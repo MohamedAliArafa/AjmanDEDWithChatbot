@@ -88,7 +88,7 @@ public class NotificationSearchAdapter extends RecyclerView.Adapter<RecyclerView
                 break;
         }
 
-        holder.attachment.setText(model.getAttachmentsCount());
+        holder.attachment.setText(String.format("%s %s", model.getAttachmentsCount(), mContext.getString(R.string.attachment)));
         holder.title.setText(model.getEstablishmentNameAR());
     }
 
