@@ -402,6 +402,11 @@ public class NewNotificationActivity extends AppCompatActivity implements EyeIma
                 break;
             case REQUEST_CODE_IMAGE_PERMISSIONS:
                 if (grantResults.length > 0 && grantResults[0] == PackageManager.PERMISSION_GRANTED && grantResults[1] == PackageManager.PERMISSION_GRANTED) {
+                    try {
+                        openGallery();
+                    } catch (IOException e) {
+                        e.printStackTrace();
+                    }
                 }
                 break;
             case REQUEST_CODE_LOCATION_PERMISSIONS:

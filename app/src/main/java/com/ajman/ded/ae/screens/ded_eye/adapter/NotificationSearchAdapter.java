@@ -112,7 +112,7 @@ public class NotificationSearchAdapter extends RecyclerView.Adapter<RecyclerView
                 } else {
                     List<ResponseContent> filteredList = new ArrayList<>();
                     for (ResponseContent row : mList) {
-                        if (row.getEstablishmentNameAR().startsWith(charString) || row.getRequestNumber().startsWith(charString)) {
+                        if (row.getEstablishmentNameAR().contains(charString) || row.getRequestNumber().contains(charString)) {
                             filteredList.add(row);
                         }
                     }
