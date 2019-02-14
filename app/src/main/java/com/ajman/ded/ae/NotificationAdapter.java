@@ -14,6 +14,7 @@ import com.ajman.ded.ae.models.notification.ResponseContent;
 import java.text.SimpleDateFormat;
 import java.util.ArrayList;
 import java.util.List;
+import java.util.Locale;
 
 import androidx.core.content.ContextCompat;
 import androidx.recyclerview.widget.RecyclerView;
@@ -137,8 +138,8 @@ public class NotificationAdapter extends RecyclerView.Adapter<RecyclerView.ViewH
         MyViewHolder(View view) {
             super(view);
             ButterKnife.bind(this, view);
-            sdft = new SimpleDateFormat("yyyy/MM/dd");
-            sdfc = new SimpleDateFormat("hh:mm a");
+            sdft = new SimpleDateFormat("yyyy/MM/dd", Locale.US);
+            sdfc = new SimpleDateFormat("hh:mm a", Locale.US);
             clicker.setOnClickListener(this);
         }
 

@@ -5,9 +5,9 @@
     android:id="@+id/clicker"
     android:layout_width="match_parent"
     android:layout_height="wrap_content"
-    app:cardElevation="8dp"
-    android:layout_marginEnd="16dp"
     android:layout_marginStart="16dp"
+    android:layout_marginEnd="16dp"
+    app:cardElevation="8dp"
     app:cardUseCompatPadding="true">
 
     <androidx.constraintlayout.widget.ConstraintLayout
@@ -123,8 +123,8 @@
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:layout_marginEnd="8dp"
-            android:gravity="center_horizontal"
             android:drawableTop="@drawable/ic_attachment"
+            android:gravity="center_horizontal"
             android:text="@string/attachment"
             android:textColor="@color/eyeColorPrimaryDark"
             app:layout_constraintBottom_toTopOf="@+id/v_divider"
@@ -172,8 +172,8 @@
             android:layout_marginStart="8dp"
             android:layout_marginTop="4dp"
             android:layout_marginEnd="8dp"
-            android:textAlignment="viewStart"
             android:layout_marginBottom="4dp"
+            android:textAlignment="viewStart"
             app:layout_constraintBottom_toBottomOf="parent"
             app:layout_constraintEnd_toEndOf="parent"
             app:layout_constraintHorizontal_bias="0.5"
