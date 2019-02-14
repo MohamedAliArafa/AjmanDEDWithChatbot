@@ -388,7 +388,8 @@ public abstract class BaseActivity extends AppCompatActivity implements View.OnC
     protected void onResume() {
         super.onResume();
         stalkingInternet();
-        mBus.register(this);
+        if (UserData.getUserObject(this) != null)
+            mBus.register(this);
         if (Objects.equals(LocaleManager.getLanguage(this), LANGUAGE_ARABIC)) {
             overridePendingTransition(R.anim.slide_in_up, R.anim.slide_out_up);
         } else {
@@ -435,7 +436,8 @@ public abstract class BaseActivity extends AppCompatActivity implements View.OnC
     @Override
     protected void onPause() {
         dispose();
-        mBus.unregister(this);
+        if (UserData.getUserObject(this) != null)
+            mBus.unregister(this);
         super.onPause();
         if (Objects.equals(LocaleManager.getLanguage(this), LANGUAGE_ARABIC)) {
             overridePendingTransition(R.anim.slide_in_up, R.anim.slide_out_up);
