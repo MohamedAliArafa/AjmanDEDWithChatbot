@@ -112,7 +112,7 @@ public class NotificationSearchAdapter extends RecyclerView.Adapter<RecyclerView
                 } else {
                     List<ResponseContent> filteredList = new ArrayList<>();
                     for (ResponseContent row : mList) {
-                        if (row.getEstablishmentNameAR().contains(charString) || row.getRequestNumber().contains(charString)) {
+                        if (row.getEstablishmentNameAR().startsWith(charString) || row.getRequestNumber().startsWith(charString)) {
                             filteredList.add(row);
                         }
                     }
@@ -125,6 +125,7 @@ public class NotificationSearchAdapter extends RecyclerView.Adapter<RecyclerView
             @Override
             protected void publishResults(CharSequence charSequence, FilterResults filterResults) {
                 mFilteredList = (List<ResponseContent>) filterResults.values;
+                notifyDataSetChanged();
             }
         };
     }
@@ -158,7 +159,7 @@ public class NotificationSearchAdapter extends RecyclerView.Adapter<RecyclerView
             super(view);
             ButterKnife.bind(this, view);
             sdft = new SimpleDateFormat("yyyy/MM/dd", Locale.US);
-            sdfc = new SimpleDateFormat("hh:mm a" , Locale.US);
+            sdfc = new SimpleDateFormat("hh:mm a", Locale.US);
             clicker.setOnClickListener(this);
         }
 
