@@ -75,10 +75,23 @@ public class DedEyeActivity extends BaseActivity {
         adapter = new HomeEyeAdapter(this);
         recyclerView.setLayoutManager(new GridLayoutManager(this, 3));
         recyclerView.setAdapter(adapter);
-        List<ItemHome> data = new ArrayList<>();
-
         api = ApiBuilder.basicApi();
         call = api.status_notification(UserData.getUserObject(DedEyeActivity.this).getUserId(), String.valueOf(3));
+    }
+
+    @Override
+    public void triggerByInternet() {
+
+    }
+
+    @Override
+    protected void onResume() {
+        super.onResume();
+        call();
+    }
+
+    private void call() {
+        List<ItemHome> data = new ArrayList<>();
         call.clone().enqueue(new Callback<NotificationStatusResponse>() {
             @Override
             public void onResponse(Call<NotificationStatusResponse> call, Response<NotificationStatusResponse> response) {
@@ -102,12 +115,6 @@ public class DedEyeActivity extends BaseActivity {
             public void onFailure(Call<NotificationStatusResponse> call, Throwable t) {
             }
         });
-
-    }
-
-    @Override
-    public void triggerByInternet() {
-
     }
 
     @Override

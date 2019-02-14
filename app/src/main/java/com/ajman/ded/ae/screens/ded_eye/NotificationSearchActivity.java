@@ -72,9 +72,7 @@ public class NotificationSearchActivity extends AppCompatActivity {
 
         api = ApiBuilder.basicApi();
         call = api.status_notification(UserData.getUserObject(NotificationSearchActivity.this).getUserId(), String.valueOf(3));
-    }
 
-    private void call() {
         call.clone().enqueue(new Callback<NotificationStatusResponse>() {
             @Override
             public void onResponse(Call<NotificationStatusResponse> call, Response<NotificationStatusResponse> response) {
@@ -87,12 +85,6 @@ public class NotificationSearchActivity extends AppCompatActivity {
             public void onFailure(Call<NotificationStatusResponse> call, Throwable t) {
             }
         });
-    }
-
-    @Override
-    protected void onResume() {
-        super.onResume();
-        call();
     }
 
     @Override
