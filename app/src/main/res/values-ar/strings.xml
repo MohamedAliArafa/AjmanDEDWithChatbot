@@ -284,5 +284,10 @@
     <string name="search_notification">بحث عن بلاغ</string>
     <string name="new_notification">بلاغ جديد</string>
     <string name="all_notification">كل البلاغات</string>
+    <string name="Notification_Result_Value_Solved">تم الحل</string>
+    <string name="Notification_Result_Value_Not_Solved">قيد التدقيق</string>
+    <string name="HOME_closed">منجزة</string>
+
+
 
 </resources>

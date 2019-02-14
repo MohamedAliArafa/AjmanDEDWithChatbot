@@ -327,4 +327,10 @@
     <string name="search_notification">search for Notification</string>
     <string name="new_notification">New Notification</string>
     <string name="all_notification">All Notification</string>
+    <string name="Notification_Result_Value_Solved">Solved</string>
+    <string name="Notification_Result_Value_Not_Solved">in process</string>
+    <string name="HOME_closed">Solved</string>
+
+
+
 </resources>

@@ -107,7 +107,7 @@ public class DedEyeActivity extends BaseActivity {
 
                         all += 1;
                     }
-                    data.add(new ItemHome(closed, getString(R.string.closed)));
+                    data.add(new ItemHome(closed, getString(R.string.HOME_closed)));
                     data.add(new ItemHome(ongoing, getString(R.string.ongoing)));
                     data.add(new ItemHome(all, getString(R.string.all_notification)));
                     adapter.setData(data);
