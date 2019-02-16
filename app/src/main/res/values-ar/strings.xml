@@ -287,7 +287,6 @@
     <string name="Notification_Result_Value_Solved">تم الحل</string>
     <string name="Notification_Result_Value_Not_Solved">قيد التدقيق</string>
     <string name="HOME_closed">منجزة</string>
-
-
-
+    <string name="notification_content">فى المنشأة:</string>
+    <string name="notification_no">رقم البلاغ</string>
 </resources>

@@ -281,8 +281,9 @@ public class NotificationDetailsActivity extends AppCompatActivity implements Ey
         Dialog dialog = new Dialog(this);
         dialog.setContentView(R.layout.dialog_rate);
         dialog.getWindow().setBackgroundDrawable(new ColorDrawable(android.graphics.Color.TRANSPARENT));
-        ImageView sad = dialog.findViewById(R.id.happy);
-        ImageView happy = dialog.findViewById(R.id.sad);
+        ImageView sad = dialog.findViewById(R.id.sad);
+        ImageView happy = dialog.findViewById(R.id.happy);
+        EditText note = dialog.findViewById(R.id.note);
         sad.setOnClickListener(v -> {
             satisfied = "0";
             sad.setColorFilter(getResources().getColor(R.color.colorPrimaryDark));
@@ -294,19 +295,18 @@ public class NotificationDetailsActivity extends AppCompatActivity implements Ey
             sad.setColorFilter(getResources().getColor(R.color.colorPrimary));
         });
 
-        EditText note = dialog.findViewById(R.id.note);
         cancel = dialog.findViewById(R.id.cancel);
         cancel.setOnClickListener(v -> dialog.dismiss());
 
         send = dialog.findViewById(R.id.send);
         send.setOnClickListener(v -> {
-            String notes = "";
-            notes = note.getText().toString();
+            String notes = note.getText().toString();
             Call<ResponseBody> call = api.rate_notification(UserData.getUserObject(NotificationDetailsActivity.this).getUserId(), id, satisfied, notes);
             call.enqueue(new Callback<ResponseBody>() {
                 @Override
                 public void onResponse(Call<ResponseBody> call, Response<ResponseBody> response) {
                     if (response.isSuccessful()) {
+                        rate.setVisibility(View.GONE);
                         Toast.makeText(NotificationDetailsActivity.this, getString(R.string.evaluation), Toast.LENGTH_SHORT).show();
                         dialog.dismiss();
                     }

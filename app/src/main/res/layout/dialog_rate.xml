@@ -1,9 +1,11 @@
 <?xml version="1.0" encoding="utf-8"?>
 <androidx.cardview.widget.CardView xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:card_view="http://schemas.android.com/apk/res-auto"
-    android:layout_width="350dp"
+    android:layout_width="match_parent"
     android:layout_height="wrap_content"
     android:layout_gravity="center"
+    android:layout_marginStart="24dp"
+    android:layout_marginEnd="24dp"
     card_view:cardCornerRadius="12dp"
     card_view:cardPreventCornerOverlap="true"
     card_view:cardUseCompatPadding="true"
@@ -18,11 +20,14 @@
             style="@style/TextStyle.Heading.default"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:background="@color/colorPrimaryDark"
+            android:background="@color/eyeColorPrimaryDark"
             android:gravity="center"
             android:padding="16dp"
             android:text="@string/please_rate_our_service"
-            android:textColor="@android:color/white" />
+            android:textColor="@android:color/white"
+            card_view:layout_constraintEnd_toEndOf="parent"
+            card_view:layout_constraintStart_toStartOf="parent"
+            card_view:layout_constraintTop_toTopOf="parent" />
 
         <ImageView
             android:id="@+id/happy"

@@ -292,10 +292,10 @@ public class NewNotificationActivity extends AppCompatActivity implements EyeIma
                                 title = "سوف يتم التحقق من البلاغ خلال يومين عمل";
                                 break;
                             case "3":
-                                title = "سوف يتم التحقق من البلاغ خلال 3 يوم عمل";
+                                title = "سوف يتم التحقق من البلاغ خلال 3 أيام عمل";
                                 break;
                             default:
-                                title = "سوف يتم التحقق من البلاغ خلال " + tybePeriod + "يوم عمل";
+                                title = "سوف يتم التحقق من البلاغ خلال " + tybePeriod + " أيام عمل";
                                 break;
                         }
                         pDialog.setTitleText(title).setConfirmClickListener(sweetAlertDialog -> NewNotificationActivity.super.onBackPressed()).changeAlertType(SweetAlertDialog.SUCCESS_TYPE);

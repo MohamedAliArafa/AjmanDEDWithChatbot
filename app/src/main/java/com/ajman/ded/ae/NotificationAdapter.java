@@ -89,7 +89,7 @@ public class NotificationAdapter extends RecyclerView.Adapter<RecyclerView.ViewH
                     holder.statusTime.setText("يوم عمل");
                     break;
                 default:
-                    holder.statusTime.setText(model.getPeriodInDays() + "يوم عمل");
+                    holder.statusTime.setText(model.getPeriodInDays() + " أيام عمل");
                     break;
             }
 

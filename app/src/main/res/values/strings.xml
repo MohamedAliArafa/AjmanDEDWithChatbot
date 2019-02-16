@@ -330,7 +330,8 @@
     <string name="Notification_Result_Value_Solved">Solved</string>
     <string name="Notification_Result_Value_Not_Solved">in process</string>
     <string name="HOME_closed">Solved</string>
-
+    <string name="notification_no">Notification No.</string>
+    <string name="notification_content">at the establishment:</string>
 
 
 </resources>

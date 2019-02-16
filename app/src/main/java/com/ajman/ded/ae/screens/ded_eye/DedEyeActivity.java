@@ -59,10 +59,8 @@ public class DedEyeActivity extends BaseActivity {
         toolbarTitle.setText(getString(R.string.ajmaneye));
         name.setText(UserData.getUserObject(this).getNameAr());
         searchView.setOnQueryTextFocusChangeListener((v, hasFocus) -> {
-            if (hasFocus) {
-                startActivity(new Intent(DedEyeActivity.this, NotificationSearchActivity.class));
-                searchView.clearFocus();
-            }
+            searchView.clearFocus();
+            startActivity(new Intent(DedEyeActivity.this, NotificationSearchActivity.class));
         });
         newNotification.setOnClickListener(v -> startActivity(new Intent(DedEyeActivity.this, NewNotificationActivity.class)));
         ImageView searchViewIcon = searchView.findViewById(androidx.appcompat.R.id.search_mag_icon);

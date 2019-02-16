@@ -46,10 +46,10 @@ public class NotificationsActivity extends AppCompatActivity {
                 mAdapter = new NotificationAdapter(this, getString(R.string.finished_notification));
                 break;
             case 3:
-                mAdapter = new NotificationAdapter(this, getString(R.string.inquiry_notification));
+                mAdapter = new NotificationAdapter(this, getString(R.string.all_notification));
                 break;
             default:
-                mAdapter = new NotificationAdapter(this, getString(R.string.inquiry_notification));
+                mAdapter = new NotificationAdapter(this, getString(R.string.all_notification));
                 break;
 
         }

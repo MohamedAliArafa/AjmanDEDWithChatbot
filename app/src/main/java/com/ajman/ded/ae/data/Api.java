@@ -129,7 +129,7 @@ public interface Api {
     Call<ResponseBody> file_notification(@Query("id") String id);
 
     @GET(RATE_NOTIFICATION)
-    Call<ResponseBody> rate_notification(@Query("UserId") String userId, @Query("notificationId") String notificationId, @Query("Satisfied") String satisfied, @Query("Note") String note);
+    Call<ResponseBody> rate_notification(@Query("UserId") String userId, @Query("notificationId") String notificationId, @Query("Satisfied") String satisfied, @Query("Notes") String note);
 
     @Multipart
     @POST(UPLAOD_NOTIFICATION)
