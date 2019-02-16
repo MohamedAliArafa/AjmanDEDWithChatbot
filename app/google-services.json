@@ -1,0 +1,55 @@
+{
+  "project_info": {
+    "project_number": "186555616933",
+    "firebase_url": "https://ajmanded-1515580160212.firebaseio.com",
+    "project_id": "ajmanded-1515580160212",
+    "storage_bucket": "ajmanded-1515580160212.appspot.com"
+  },
+  "client": [
+    {
+      "client_info": {
+        "mobilesdk_app_id": "1:186555616933:android:061697e3d3ece282",
+        "android_client_info": {
+          "package_name": "com.ajman.ded.ae"
+        }
+      },
+      "oauth_client": [
+        {
+          "client_id": "186555616933-10omjpdvc7sbovmqbokdshenhcgs3ujn.apps.googleusercontent.com",
+          "client_type": 1,
+          "android_info": {
+            "package_name": "com.ajman.ded.ae",
+            "certificate_hash": "9794e02c6a5c589c27f7808d06f37655ccbac343"
+          }
+        },
+        {
+          "client_id": "186555616933-88d4tun35p4vaojdra49lhqrv6aqrdd3.apps.googleusercontent.com",
+          "client_type": 3
+        }
+      ],
+      "api_key": [
+        {
+          "current_key": "AIzaSyAV7iEYEog_0OST8vJsv6v3by983k5aYbk"
+        }
+      ],
+      "services": {
+        "analytics_service": {
+          "status": 1
+        },
+        "appinvite_service": {
+          "status": 2,
+          "other_platform_oauth_client": [
+            {
+              "client_id": "186555616933-88d4tun35p4vaojdra49lhqrv6aqrdd3.apps.googleusercontent.com",
+              "client_type": 3
+            }
+          ]
+        },
+        "ads_service": {
+          "status": 2
+        }
+      }
+    }
+  ],
+  "configuration_version": "1"
+}
