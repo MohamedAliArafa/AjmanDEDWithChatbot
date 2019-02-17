@@ -7,6 +7,8 @@ import android.net.Uri;
 import android.provider.MediaStore;
 import android.view.View;
 import android.view.Window;
+import android.view.WindowManager;
+import android.widget.TextView;
 
 import static com.ajman.ded.ae.screens.ded_eye.NewNotificationActivity.OPEN_CAMERA;
 import static com.ajman.ded.ae.screens.ded_eye.NewNotificationActivity.OPEN_GALLERY;
@@ -14,11 +16,14 @@ import static com.ajman.ded.ae.screens.ded_eye.NewNotificationActivity.OPEN_GALL
 public class ViewDialog {
 
     public void showChooseDialog(Activity activity, Uri uri) {
-        Dialog dialog = new Dialog(activity, R.style.Dialog);
-        dialog.requestWindowFeature(Window.FEATURE_NO_TITLE);
-        dialog.setCancelable(true);
+        Dialog dialog = new Dialog(activity, R.style.DialogStyle);
         dialog.setContentView(R.layout.item_choose);
-
+        dialog.getWindow().setFlags(WindowManager.LayoutParams.FLAG_FULLSCREEN, WindowManager.LayoutParams.FLAG_FULLSCREEN);
+        dialog.getWindow().setBackgroundDrawableResource(android.R.color.transparent);
+        dialog.getWindow().addFlags(WindowManager.LayoutParams.FLAG_DIM_BEHIND);
+        dialog.getWindow().setDimAmount(0.4f);
+        dialog.setCancelable(true);
+        dialog.setCanceledOnTouchOutside(true);
         View camera = dialog.findViewById(R.id.camera);
 
         View gallery = dialog.findViewById(R.id.gallery);
@@ -43,10 +48,32 @@ public class ViewDialog {
 
 
     public Dialog showShakeDialog(Activity activity) {
-        Dialog dialog = new Dialog(activity, R.style.Dialog);
-        dialog.requestWindowFeature(Window.FEATURE_NO_TITLE);
-        dialog.setCancelable(true);
+        Dialog dialog = new Dialog(activity, R.style.DialogStyle);
         dialog.setContentView(R.layout.item_shake);
+        dialog.getWindow().setFlags(WindowManager.LayoutParams.FLAG_FULLSCREEN, WindowManager.LayoutParams.FLAG_FULLSCREEN);
+        dialog.getWindow().setBackgroundDrawableResource(android.R.color.transparent);
+        dialog.getWindow().addFlags(WindowManager.LayoutParams.FLAG_DIM_BEHIND);
+        dialog.getWindow().setDimAmount(0.4f);
+        dialog.setCancelable(true);
+        dialog.setCanceledOnTouchOutside(true);
+        View closeImage = dialog.findViewById(R.id.close_image);
+        View closeButton = dialog.findViewById(R.id.close_btn);
+        closeButton.setOnClickListener(v -> dialog.dismiss());
+
+        closeImage.setOnClickListener(v -> dialog.dismiss());
+        dialog.show();
+        return dialog;
+    }
+
+    public Dialog showNewFeatureDialog(Activity activity) {
+        Dialog dialog = new Dialog(activity, R.style.DialogStyle);
+        dialog.setContentView(R.layout.item_feature);
+        dialog.getWindow().setFlags(WindowManager.LayoutParams.FLAG_FULLSCREEN, WindowManager.LayoutParams.FLAG_FULLSCREEN);
+        dialog.getWindow().setBackgroundDrawableResource(android.R.color.transparent);
+        dialog.getWindow().addFlags(WindowManager.LayoutParams.FLAG_DIM_BEHIND);
+        dialog.getWindow().setDimAmount(0.4f);
+        dialog.setCancelable(true);
+        dialog.setCanceledOnTouchOutside(true);
         View closeImage = dialog.findViewById(R.id.close_image);
         View closeButton = dialog.findViewById(R.id.close_btn);
 
@@ -59,10 +86,14 @@ public class ViewDialog {
 
 
     public void showRateDialog(Activity activity, Uri uri) {
-        Dialog dialog = new Dialog(activity, R.style.Dialog);
-        dialog.requestWindowFeature(Window.FEATURE_NO_TITLE);
-        dialog.setCancelable(true);
+        Dialog dialog = new Dialog(activity, R.style.DialogStyle);
         dialog.setContentView(R.layout.item_choose);
+        dialog.getWindow().setFlags(WindowManager.LayoutParams.FLAG_FULLSCREEN, WindowManager.LayoutParams.FLAG_FULLSCREEN);
+        dialog.getWindow().setBackgroundDrawableResource(android.R.color.transparent);
+        dialog.getWindow().addFlags(WindowManager.LayoutParams.FLAG_DIM_BEHIND);
+        dialog.getWindow().setDimAmount(0.4f);
+        dialog.setCancelable(true);
+        dialog.setCanceledOnTouchOutside(true);
 
         View camera = dialog.findViewById(R.id.camera);
 

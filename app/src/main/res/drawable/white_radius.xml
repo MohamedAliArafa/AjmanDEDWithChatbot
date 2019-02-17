@@ -13,15 +13,13 @@
     </item>
 
     <item
+        android:bottom="1dp"
         android:drawable="@drawable/bg"
-        android:bottom="3dp"
-        android:left="3dp"
-        android:right="3dp"
-        android:top="3dp"
-        >
-        <!--<shape android:shape="rectangle">-->
-            <!--<solid android:color="@android:color/white" />-->
-            <!--<corners android:radius="8dp" />-->
-        <!--</shape>-->
+        android:left="1dp"
+        android:right="1dp"
+        android:top="1dp">
+        <shape android:shape="rectangle">
+            <corners android:radius="8dp" />
+        </shape>
     </item>
 </layer-list>

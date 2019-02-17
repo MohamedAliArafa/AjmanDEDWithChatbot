@@ -63,9 +63,9 @@ public class DashboardFragment extends Fragment implements DashInterface {
         ButterKnife.bind(this, view);
         adapterViewPager = new MyPagerAdapter(mFragments, fragmentsTitles, getChildFragmentManager());
         vpPager.setAdapter(adapterViewPager);
-        if (!AppPreferenceManager.getBool(getContext(), AppPreferenceManager.KEY_IS_FIRST_SHAKE, false)) {
+        if (!AppPreferenceManager.getBool(getContext(), AppPreferenceManager.KEY_IS_FIRST_SHAKE_LOGGED, false)) {
             dialog = new ViewDialog().showShakeDialog(getActivity());
-            AppPreferenceManager.putBool(getContext(), AppPreferenceManager.KEY_IS_FIRST_SHAKE, true);
+            AppPreferenceManager.putBool(getContext(), AppPreferenceManager.KEY_IS_FIRST_SHAKE_LOGGED, true);
         }
     }
 

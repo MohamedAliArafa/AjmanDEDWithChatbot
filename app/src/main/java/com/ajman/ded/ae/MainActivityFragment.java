@@ -42,9 +42,7 @@ public class MainActivityFragment extends Fragment {
     public void onViewCreated(View view, @Nullable Bundle savedInstanceState) {
         super.onViewCreated(view, savedInstanceState);
         vpPager = view.findViewById(R.id.pager);
-//        vpPagerHeader = (SpaceTabLayout) view.findViewById(R.id.pager_header);
 
-        //init the pager fragments
 
     }
 

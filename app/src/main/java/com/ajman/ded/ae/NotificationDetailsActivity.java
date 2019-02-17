@@ -222,22 +222,24 @@ public class NotificationDetailsActivity extends AppCompatActivity implements Ey
             @Override
             public void onResponse(Call<NotificationDetailsResponse> call, Response<NotificationDetailsResponse> response) {
                 if (response.isSuccessful()) {
-                    container.setVisibility(View.VISIBLE);
-                    play_stop.setOnClickListener(NotificationDetailsActivity.this::Play_Stop);
-                    if (Objects.equals(LocaleManager.getLanguage(NotificationDetailsActivity.this), LANGUAGE_ARABIC)) {
-                        setArData(response.body().getResponseContent().get(0));
-                    } else {
-                        setENData(response.body().getResponseContent().get(0));
+                    if (response.body().getResponseContent() != null && response.body().getResponseContent().size() > 0) {
+                        container.setVisibility(View.VISIBLE);
+                        play_stop.setOnClickListener(NotificationDetailsActivity.this::Play_Stop);
+                        if (Objects.equals(LocaleManager.getLanguage(NotificationDetailsActivity.this), LANGUAGE_ARABIC)) {
+                            setArData(response.body().getResponseContent().get(0));
+                        } else {
+                            setENData(response.body().getResponseContent().get(0));
+                        }
+
+                        builder = new LatLngBounds.Builder();
+                        LatLng latLng = new LatLng(Double.valueOf(response.body().getResponseContent().get(0).getLl()), Double.valueOf(response.body().getResponseContent().get(0).getLg()));
+                        googleMap.addMarker(new MarkerOptions().position(latLng).title(getString(R.string.your_location))).setIcon(BitmapDescriptorFactory.fromResource(R.drawable.ic_location));
+                        builder.include(latLng);
+                        LatLngBounds bounds = builder.build();
+                        googleMap.moveCamera(CameraUpdateFactory.newLatLngBounds(bounds, 8));
+                        googleMap.moveCamera(CameraUpdateFactory.zoomTo(14));
+
                     }
-
-                    builder = new LatLngBounds.Builder();
-                    LatLng latLng = new LatLng(Double.valueOf(response.body().getResponseContent().get(0).getLl()), Double.valueOf(response.body().getResponseContent().get(0).getLg()));
-                    googleMap.addMarker(new MarkerOptions().position(latLng).title(getString(R.string.your_location))).setIcon(BitmapDescriptorFactory.fromResource(R.drawable.ic_location));
-                    builder.include(latLng);
-                    LatLngBounds bounds = builder.build();
-                    googleMap.moveCamera(CameraUpdateFactory.newLatLngBounds(bounds, 8));
-                    googleMap.moveCamera(CameraUpdateFactory.zoomTo(14));
-
                 }
             }
 

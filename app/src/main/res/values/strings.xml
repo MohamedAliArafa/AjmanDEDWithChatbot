@@ -332,6 +332,11 @@
     <string name="HOME_closed">Solved</string>
     <string name="notification_no">Notification No.</string>
     <string name="notification_content">at the establishment:</string>
+    <string name="notification_channel_id" translatable="false">1</string>
+    <string name="new_service">New Service</string>
+    <string name="be_an_ded_eye_by_reporting_any_violations_or_abuse">Be an Ded Eye by reporting any violations or abuse</string>
+    <string name="you_can_shake_phone_to_open_a_new_notification">You can Shake Phone to open a new Notification</string>
+    <string name="please_login_first_to_use_the_new_service">Please Login First to use the new service</string>
 
 
 </resources>

@@ -17,6 +17,7 @@ import android.widget.TextView;
 import com.ajman.ded.ae.FaqActivity;
 import com.ajman.ded.ae.R;
 import com.ajman.ded.ae.ServiceCentersActivity;
+import com.ajman.ded.ae.ViewDialog;
 import com.ajman.ded.ae.WebViewActivity;
 import com.ajman.ded.ae.adapters.CustomExpandableListAdapter;
 import com.ajman.ded.ae.adapters.ExpandableListDataSource;
@@ -108,6 +109,7 @@ public abstract class BaseActivity extends AppCompatActivity implements View.OnC
     private CompositeDisposable internetDisposable;
     private SweetAlertDialog pDialog;
     private TinyBus mBus;
+    private Dialog dialogFeature;
 
     @Override
     protected void attachBaseContext(Context base) {
@@ -126,7 +128,7 @@ public abstract class BaseActivity extends AppCompatActivity implements View.OnC
         setSupportActionBar(mToolbar);
         getSupportActionBar().setDisplayShowTitleEnabled(false);
 
-        if (savedInstanceState == null && UserData.getUserObject(this) != null) {
+        if (UserData.getUserObject(this) != null) {
             mBus = TinyBus.from(this);
             mBus.wire(new ShakeEventWire());
         }
@@ -307,16 +309,12 @@ public abstract class BaseActivity extends AppCompatActivity implements View.OnC
             mSlidingRootNav.closeMenu(true);
         });
 
-        if (UserData.getUserObject(this) != null) {
-            listFooterView.findViewById(R.id.eye_text).setVisibility(View.VISIBLE);
-            listFooterView.findViewById(R.id.eye_text).setOnClickListener(view -> {
-                action = "DEDEYE";
-                mSlidingRootNav.closeMenu(true);
+        listFooterView.findViewById(R.id.eye_text).setVisibility(View.VISIBLE);
+        listFooterView.findViewById(R.id.eye_text).setOnClickListener(view -> {
+            action = "DEDEYE";
+            mSlidingRootNav.closeMenu(true);
 
-            });
-        } else {
-            listFooterView.findViewById(R.id.eye_text).setVisibility(View.GONE);
-        }
+        });
 
 
         listFooterView.findViewById(R.id.services_text).setOnClickListener(view -> {
@@ -388,7 +386,7 @@ public abstract class BaseActivity extends AppCompatActivity implements View.OnC
     protected void onResume() {
         super.onResume();
         stalkingInternet();
-        if (UserData.getUserObject(this) != null)
+        if (UserData.getUserObject(this) != null && mBus != null)
             mBus.register(this);
         if (Objects.equals(LocaleManager.getLanguage(this), LANGUAGE_ARABIC)) {
             overridePendingTransition(R.anim.slide_in_up, R.anim.slide_out_up);
@@ -436,7 +434,7 @@ public abstract class BaseActivity extends AppCompatActivity implements View.OnC
     @Override
     protected void onPause() {
         dispose();
-        if (UserData.getUserObject(this) != null)
+        if (UserData.getUserObject(this) != null && mBus != null)
             mBus.unregister(this);
         super.onPause();
         if (Objects.equals(LocaleManager.getLanguage(this), LANGUAGE_ARABIC)) {
@@ -455,6 +453,8 @@ public abstract class BaseActivity extends AppCompatActivity implements View.OnC
     protected void onDestroy() {
         if (dialog != null && dialog.isShowing())
             pDialog.cancel();
+        if (dialogFeature != null && dialogFeature.isShowing())
+            dialogFeature.cancel();
         super.onDestroy();
     }
 
@@ -560,8 +560,12 @@ public abstract class BaseActivity extends AppCompatActivity implements View.OnC
                     break;
                 case "DEDEYE":
                     action = "null";
-                    Intent eye = new Intent(this, DedEyeActivity.class);
-                    this.startActivity(eye);
+                    if (UserData.getUserObject(this)!=null){
+                        Intent eye = new Intent(this, DedEyeActivity.class);
+                        this.startActivity(eye);
+                    }else {
+                        dialogFeature = new ViewDialog().showNewFeatureDialog(this);
+                    }
                     break;
                 case "Services":
                     action = "null";
@@ -758,6 +762,7 @@ public abstract class BaseActivity extends AppCompatActivity implements View.OnC
             }
         });
     }
+
 
     @Subscribe
     public void onShakeEvent(ShakeEventWire.ShakeEvent event) {

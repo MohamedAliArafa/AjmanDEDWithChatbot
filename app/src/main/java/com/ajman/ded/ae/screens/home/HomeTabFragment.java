@@ -64,6 +64,7 @@ public class HomeTabFragment extends AnimatedFragment {
     private LatLngBounds.Builder builder;
     private GoogleMap googleMap;
     private RelativeLayout newLicence, renewLicence, tradeName, newPermit;
+    private Dialog dialog;
 
     public HomeTabFragment() {
         // Required empty public constructor
@@ -194,6 +195,12 @@ public class HomeTabFragment extends AnimatedFragment {
             }
         });
 
+        if (UserData.getUserObject(getContext()) == null) {
+            if (!AppPreferenceManager.getBool(getContext(), AppPreferenceManager.KEY_IS_FIRST_SHAKE_GUEST, false)) {
+                dialog = new ViewDialog().showNewFeatureDialog(getActivity());
+                AppPreferenceManager.putBool(getContext(), AppPreferenceManager.KEY_IS_FIRST_SHAKE_GUEST, true);
+            }
+        }
         return view;
     }
 
@@ -230,5 +237,12 @@ public class HomeTabFragment extends AnimatedFragment {
     public void onLowMemory() {
         super.onLowMemory();
         mMapView.onLowMemory();
+    }
+
+    @Override
+    public void onDestroyView() {
+        if (dialog != null && dialog.isShowing())
+            dialog.dismiss();
+        super.onDestroyView();
     }
 }

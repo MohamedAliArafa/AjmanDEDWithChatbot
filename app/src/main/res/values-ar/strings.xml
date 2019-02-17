@@ -289,4 +289,8 @@
     <string name="HOME_closed">منجزة</string>
     <string name="notification_content">فى المنشأة:</string>
     <string name="notification_no">رقم البلاغ</string>
+    <string name="new_service">خدمة جديدة</string>
+    <string name="you_can_shake_phone_to_open_a_new_notification">يمكنك القيام برج الهاتف وسوف يتم فتح بلاغ جديد تلقائيا</string>
+    <string name="please_login_first_to_use_the_new_service">الرجاء تسجبل الدخول أولا لإستخدام خدمة عين الدائرة</string>
+    <string name="be_an_ded_eye_by_reporting_any_violations_or_abuse">كن عينا للدائرة  بالإبلاغ عن أي تجاوز أو مخالفة</string>
 </resources>
