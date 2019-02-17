@@ -337,6 +337,7 @@
     <string name="be_an_ded_eye_by_reporting_any_violations_or_abuse">Be an Ded Eye by reporting any violations or abuse</string>
     <string name="you_can_shake_phone_to_open_a_new_notification">You can Shake Phone to open a new Notification</string>
     <string name="please_login_first_to_use_the_new_service">Please Login First to use the new service</string>
+    <string name="sendrate">Send Rate</string>
 
 
 </resources>
