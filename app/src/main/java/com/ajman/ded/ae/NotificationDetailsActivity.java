@@ -329,7 +329,7 @@ public class NotificationDetailsActivity extends AppCompatActivity implements Ey
         if (responseContent.getIsClosed() != null) {
             if (responseContent.getIsClosed()) {
                 if (responseContent.getSatisfied() != null) {
-                    rate.setVisibility(View.GONE);
+                    rate.setVisibility(View.INVISIBLE);
                 } else {
                     rate.setVisibility(View.VISIBLE);
                     rate.setOnClickListener(this::onRate);
