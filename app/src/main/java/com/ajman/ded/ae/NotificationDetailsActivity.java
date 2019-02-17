@@ -112,6 +112,7 @@ public class NotificationDetailsActivity extends AppCompatActivity implements Ey
     private String satisfied = "1";
     private Button cancel, send;
     private List<Bitmap> images;
+    private BitmapFactory.Options options;
 
     @Override
     protected void attachBaseContext(Context base) {
@@ -123,6 +124,10 @@ public class NotificationDetailsActivity extends AppCompatActivity implements Ey
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_notification_details);
         ButterKnife.bind(this);
+        options = new BitmapFactory.Options();
+        options.inPreferredConfig = Bitmap.Config.RGB_565;
+        options.inSampleSize = 2;
+
 
         toolbarTitle.setText(getString(R.string.notification_details));
 
@@ -199,7 +204,7 @@ public class NotificationDetailsActivity extends AppCompatActivity implements Ey
         callFile.enqueue(new Callback<ResponseBody>() {
             @Override
             public void onResponse(Call<ResponseBody> call, Response<ResponseBody> response) {
-                mAdapter.addImage(BitmapFactory.decodeStream(response.body().byteStream()));
+                mAdapter.addImage(BitmapFactory.decodeStream(response.body().byteStream(), null, options));
             }
 
             @Override
