@@ -83,6 +83,8 @@ public class NotificationDetailsActivity extends AppCompatActivity implements Ey
     TextView details;
     @BindView(R.id.result)
     TextView result;
+    @BindView(R.id.result_notifier)
+    TextView result_notifier;
     @BindView(R.id.rate)
     Button rate;
     @BindView(R.id.main_container)
@@ -326,10 +328,15 @@ public class NotificationDetailsActivity extends AppCompatActivity implements Ey
     private void setArData(ResponseContent responseContent) {
         if (responseContent.getIsClosed() != null) {
             if (responseContent.getIsClosed()) {
+                if (responseContent.getSatisfied() != null) {
+                    rate.setVisibility(View.GONE);
+                } else {
+                    rate.setVisibility(View.VISIBLE);
+                    rate.setOnClickListener(this::onRate);
+                }
                 result.setText(getString(R.string.Notification_Result_Value_Solved));
+                result_notifier.setText(responseContent.getDEDEyeSMSText());
                 status.setText(getString(R.string.finished_notification));
-                rate.setVisibility(View.VISIBLE);
-                rate.setOnClickListener(this::onRate);
             } else {
                 status.setText(getString(R.string.ongoing_notification));
                 result.setText(R.string.Notification_Result_Value_Not_Solved);

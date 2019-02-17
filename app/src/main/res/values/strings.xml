@@ -310,7 +310,7 @@
     <string name="notification">Notification</string>
     <string name="voice_record">Voice record</string>
     <string name="attachment">Attachment</string>
-    <string name="inspection_result">Inspection result</string>
+    <string name="inspection_result">Notification result</string>
     <string name="satisfied">Satisfied</string>
     <string name="not_satisfied">Not Satisfied</string>
     <string name="note">Note</string>

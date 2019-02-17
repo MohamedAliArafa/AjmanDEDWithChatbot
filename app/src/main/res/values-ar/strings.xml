@@ -267,7 +267,7 @@
     <string name="notification">البلاغ</string>
     <string name="voice_record">تسجيل صوتي</string>
     <string name="attachment">المرفقات</string>
-    <string name="inspection_result">نتيجة التفتيش</string>
+    <string name="inspection_result">نتيجة البلاغ</string>
     <string name="enable_location">تفعيل الموقع</string>
     <string name="ajmaneye">عين الدائرة</string>
     <string name="note">ملاحظات</string>

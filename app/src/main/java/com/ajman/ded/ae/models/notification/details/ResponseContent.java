@@ -9,7 +9,7 @@ public class ResponseContent {
 
     @SerializedName("ID")
     @Expose
-    private String iD;
+    private String id;
     @SerializedName("EstablishmentNameAR")
     @Expose
     private String establishmentNameAR;
@@ -67,13 +67,22 @@ public class ResponseContent {
     @SerializedName("lg")
     @Expose
     private String lg;
+    @SerializedName("Satisfied")
+    @Expose
+    private String Satisfied;
+    @SerializedName("Notes")
+    @Expose
+    private String Notes;
+    @SerializedName("DEDEyeSMSText")
+    @Expose
+    private String DEDEyeSMSText ;
 
-    public String getID() {
-        return iD;
+    public String getId() {
+        return id;
     }
 
-    public void setID(String iD) {
-        this.iD = iD;
+    public void setId(String id) {
+        this.id = id;
     }
 
     public String getEstablishmentNameAR() {
@@ -228,4 +237,35 @@ public class ResponseContent {
         this.lg = lg;
     }
 
+    public Boolean getClosed() {
+        return isClosed;
+    }
+
+    public void setClosed(Boolean closed) {
+        isClosed = closed;
+    }
+
+    public String getSatisfied() {
+        return Satisfied;
+    }
+
+    public void setSatisfied(String satisfied) {
+        Satisfied = satisfied;
+    }
+
+    public String getNotes() {
+        return Notes;
+    }
+
+    public void setNotes(String notes) {
+        Notes = notes;
+    }
+
+    public String getDEDEyeSMSText() {
+        return DEDEyeSMSText;
+    }
+
+    public void setDEDEyeSMSText(String DEDEyeSMSText) {
+        this.DEDEyeSMSText = DEDEyeSMSText;
+    }
 }

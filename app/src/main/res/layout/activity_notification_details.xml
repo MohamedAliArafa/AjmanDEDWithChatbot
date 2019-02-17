@@ -408,10 +408,9 @@
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:layout_marginStart="16dp"
-                android:layout_marginTop="16dp"
                 android:layout_marginEnd="16dp"
                 app:layout_constraintEnd_toEndOf="parent"
-                app:layout_constraintHorizontal_bias="0.0"
+                app:layout_constraintHorizontal_bias="0.247"
                 app:layout_constraintStart_toEndOf="@+id/title_attachment"
                 app:layout_constraintTop_toBottomOf="@+id/title_attachment"
                 tools:text="ssssssssss" />
@@ -449,6 +448,21 @@
                 app:layout_constraintStart_toEndOf="@+id/title_result"
                 tools:text="ssssssssss" />
 
+            <TextView
+                android:id="@+id/result_notifier"
+                android:layout_width="251dp"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="8dp"
+                android:layout_marginEnd="8dp"
+                android:ellipsize="end"
+                android:textAlignment="viewStart"
+                android:textColor="@color/eyeColorPrimaryDark"
+                app:layout_constrainedWidth="true"
+                app:layout_constraintEnd_toEndOf="parent"
+                app:layout_constraintStart_toStartOf="@+id/result"
+                app:layout_constraintTop_toBottomOf="@+id/result"
+                tools:text="ssssssssss" />
+
 
             <Button
                 android:id="@+id/rate"
@@ -456,7 +470,7 @@
                 android:layout_width="150dp"
                 android:layout_height="35dp"
                 android:layout_marginStart="8dp"
-                android:layout_marginTop="32dp"
+                android:layout_marginTop="16dp"
                 android:layout_marginEnd="8dp"
                 android:layout_marginBottom="32dp"
                 android:background="@drawable/radius"
@@ -467,7 +481,7 @@
                 app:layout_constraintBottom_toBottomOf="parent"
                 app:layout_constraintEnd_toEndOf="parent"
                 app:layout_constraintStart_toStartOf="parent"
-                app:layout_constraintTop_toBottomOf="@+id/result" />
+                app:layout_constraintTop_toBottomOf="@+id/result_notifier" />
 
         </androidx.constraintlayout.widget.ConstraintLayout>
     </androidx.core.widget.NestedScrollView>

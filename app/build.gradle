@@ -26,6 +26,16 @@ android {
         noCompress "pdf"
     }
 
+    bundle {
+        language {
+            // Specifies that the app bundle should not support
+            // configuration APKs for language resources. These
+            // resources are instead packaged with each base and
+            // dynamic feature APK.
+            enableSplit = false
+        }
+    }
+
     buildTypes {
         release {
             proguardFiles getDefaultProguardFile('proguard-android.txt'), 'proguard-rules.pro'
@@ -64,7 +74,7 @@ dependencies {
     implementation 'com.google.android.material:material:1.0.0'
     implementation 'androidx.core:core:1.0.1'
     implementation 'androidx.cardview:cardview:1.0.0'
-    implementation 'com.google.android.gms:play-services-maps:16.0.0'
+    implementation 'com.google.android.gms:play-services-maps:16.1.0'
     implementation 'com.google.code.gson:gson:2.8.5'
     implementation 'jp.wasabeef:recyclerview-animators:3.0.0'
     implementation 'com.romandanylyk:pageindicatorview:1.0.3'
