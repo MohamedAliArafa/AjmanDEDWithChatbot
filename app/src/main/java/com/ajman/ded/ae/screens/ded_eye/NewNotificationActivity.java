@@ -230,7 +230,8 @@ public class NewNotificationActivity extends AppCompatActivity implements EyeIma
 
         findViewById(R.id.send).setOnClickListener(view -> {
             if (lat.length() > 0 && lng.length() > 0 && establishmentTitle.getText().toString().length() > 0 && licenceNo.getText().toString().length() > 0 && complaint_details.getText().toString().length() > 0 && tybeId.length() > 0 && UserData.getUserObject(this) != null) {
-                Call<NotificationResponse> call = api.insert_notification(UserData.getUserObject(NewNotificationActivity.this).getUserId(), date, establishmentTitle.getText().toString(), licenceNo.getText().toString(), tybeId, complaint_details.getText().toString(), lat, lng);
+                Call<NotificationResponse> call =
+                        api.insert_notification(UserData.getUserObject(NewNotificationActivity.this).getUserId(), date, establishmentTitle.getText().toString(), licenceNo.getText().toString(), tybeId, complaint_details.getText().toString(), lat, lng, "");
                 pDialog = new SweetAlertDialog(this, SweetAlertDialog.PROGRESS_TYPE)
                         .setTitleText(getString(R.string.loading));
                 pDialog.setCancelable(true);
@@ -274,9 +275,12 @@ public class NewNotificationActivity extends AppCompatActivity implements EyeIma
 
     private void uploadFiles(String notificationId) {
         List<MultipartBody.Part> parts = new ArrayList<>();
-        for (ImageBundle photoUri : mAdapter.getImages())
-            parts.add(prepareFilePart("_files", photoUri.getImageAbsolutePath(), photoUri.getImageUri()));
-        parts.add(prepareAudioPart("_files", recordingAudio.getFilePath()));
+        if (mAdapter.getImages().size() > 0) {
+            for (ImageBundle photoUri : mAdapter.getImages())
+                parts.add(prepareFilePart(photoUri.getImageAbsolutePath(), photoUri.getImageUri()));
+        }
+        if (recordingAudio != null)
+            parts.add(prepareAudioPart(recordingAudio.getFilePath()));
         Call<NotificationResponse> uploadCall = api.uploadMultipleFilesDynamic(createPartFromString(notificationId), parts);
         uploadCall.enqueue(new Callback<NotificationResponse>() {
             @Override
@@ -436,7 +440,7 @@ public class NewNotificationActivity extends AppCompatActivity implements EyeIma
     private void resolveLocation() {
         locationRequestTask().addOnCompleteListener(task -> {
             try {
-                LocationSettingsResponse response = task.getResult(ApiException.class);
+                task.getResult(ApiException.class);
                 requestLocationPermission();
             } catch (ApiException exception) {
                 switch (exception.getStatusCode()) {
@@ -571,13 +575,11 @@ public class NewNotificationActivity extends AppCompatActivity implements EyeIma
     }
 
 
-    @NonNull
     private RequestBody createPartFromString(String descriptionString) {
         return RequestBody.create(okhttp3.MultipartBody.FORM, descriptionString);
     }
 
-    @NonNull
-    private MultipartBody.Part prepareFilePart(String partName, String filePath, Uri fileUri) {
+    private MultipartBody.Part prepareFilePart(String filePath, Uri fileUri) {
         File file = new File(filePath);
         Bitmap bitmap = BitmapFactory.decodeFile(file.getPath());
         try {
@@ -586,13 +588,13 @@ public class NewNotificationActivity extends AppCompatActivity implements EyeIma
             e.printStackTrace();
         }
         RequestBody requestFile = RequestBody.create(MediaType.parse(getContentResolver().getType(fileUri)), file);
-        return MultipartBody.Part.createFormData(partName, file.getName(), requestFile);
+        return MultipartBody.Part.createFormData("_files", file.getName(), requestFile);
     }
 
     @NonNull
-    private MultipartBody.Part prepareAudioPart(String partName, String fileUri) {
+    private MultipartBody.Part prepareAudioPart(String fileUri) {
         File file = new File(fileUri);
         RequestBody requestFile = RequestBody.create(MediaType.parse("audio/*"), file);
-        return MultipartBody.Part.createFormData(partName, file.getName(), requestFile);
+        return MultipartBody.Part.createFormData("_files", file.getName(), requestFile);
     }
 }

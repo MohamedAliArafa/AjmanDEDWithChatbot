@@ -33,7 +33,6 @@ import com.ajman.ded.ae.screens.IntroActivity;
 import com.ajman.ded.ae.screens.registeration.RegisterActivity;
 import com.ajman.ded.ae.utility.SharedTool.UserData;
 import com.ajman.ded.ae.utility.otpSms.SmsListener;
-import com.ajman.ded.ae.utility.otpSms.SmsReceiver;
 import com.ajman.ded.ae.utility.sweetDialog.SweetAlertDialog;
 import com.goodiebag.pinview.Pinview;
 import com.google.gson.Gson;
@@ -74,7 +73,7 @@ public class LoginFragment extends Fragment implements SmsListener {
         password = rootView.findViewById(R.id.password_input);
         TextView regisrer = rootView.findViewById(R.id.signup);
         regisrer.setOnClickListener(view -> startActivity(new Intent(getActivity(), RegisterActivity.class)));
-        SmsReceiver.bind(this, "AjmanDED");
+//        SmsReceiver.bind(this, "AjmanDED");
         login.setOnClickListener(view -> {
             if (!isValidEmail(username.getText().toString())) {
                 username.setError(getString(R.string.email_validation));
@@ -83,7 +82,7 @@ public class LoginFragment extends Fragment implements SmsListener {
                 password.setError(getString(R.string.password_validation));
                 password.requestFocus();
             } else {
-                pDialog = new SweetAlertDialog(getContext(), SweetAlertDialog.PROGRESS_TYPE)
+                pDialog = new SweetAlertDialog(getActivity(), SweetAlertDialog.PROGRESS_TYPE)
                         .setTitleText("Loading");
                 pDialog.show();
                 pDialog.setCancelable(true);
@@ -253,6 +252,6 @@ public class LoginFragment extends Fragment implements SmsListener {
     @Override
     public void onDestroyView() {
         super.onDestroyView();
-        SmsReceiver.unbind();
+//        SmsReceiver.unbind();
     }
 }

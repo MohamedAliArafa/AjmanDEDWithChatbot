@@ -111,7 +111,13 @@ public interface Api {
     Call<String> news_caller();
 
     @POST(INSERT_NOTIFICATION)
-    Call<NotificationResponse> insert_notification(@Query("UserId") String userId, @Query("NotificationDate") String notificationDate, @Query("EstablishmentName") String establishmentName, @Query("LicenseNumber") String licenceNo, @Query("NotificationTypeId") String notificationTypeId, @Query("NotificationDetails") String notificatoinDetails, @Query("ll") String ll, @Query("lg") String lg);
+    Call<NotificationResponse> insert_notification(@Query("UserId") String userId, @Query(
+            "NotificationDate") String notificationDate,
+             @Query("EstablishmentName") String establishmentName,
+             @Query("LicenseNumber") String licenceNo,
+             @Query("NotificationTypeId") String notificationTypeId,
+             @Query("NotificationDetails") String notificatoinDetails,
+             @Query("ll") String ll, @Query("lg") String lg, @Query("AreaId") String areaId);
 
     @GET(STATUS_NOTIFICATION)
     Call<NotificationStatusResponse> status_notification(@Query("UserId") String userId, @Query("Status") String status);

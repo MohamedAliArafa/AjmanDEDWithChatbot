@@ -4,7 +4,6 @@ import android.content.Context;
 import android.content.Intent;
 import android.os.Bundle;
 import android.util.Log;
-import android.widget.Toast;
 
 import com.ajman.ded.ae.R;
 import com.ajman.ded.ae.libs.LocaleManager;
@@ -14,14 +13,10 @@ import com.ajman.ded.ae.screens.language.LangFragment;
 import com.ajman.ded.ae.screens.login.LoginFragment;
 import com.ajman.ded.ae.screens.loginMenu.LoginMenuFragment;
 import com.ajman.ded.ae.screens.splash.SplashFragment;
-import com.google.android.gms.tasks.OnCompleteListener;
-import com.google.android.gms.tasks.Task;
 import com.google.firebase.iid.FirebaseInstanceId;
-import com.google.firebase.iid.InstanceIdResult;
 
 import java.util.Objects;
 
-import androidx.annotation.NonNull;
 import androidx.appcompat.app.AppCompatActivity;
 import androidx.core.app.TaskStackBuilder;
 import androidx.fragment.app.FragmentManager;
@@ -43,7 +38,6 @@ public class MainActivity extends AppCompatActivity implements MainContract.Mode
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_main);
-
         FirebaseInstanceId.getInstance().getInstanceId()
                 .addOnCompleteListener(task -> {
                     if (!task.isSuccessful()) {

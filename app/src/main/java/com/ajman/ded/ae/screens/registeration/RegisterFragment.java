@@ -49,7 +49,6 @@ import com.ajman.ded.ae.screens.IntroActivity;
 import com.ajman.ded.ae.utility.MaskEditText;
 import com.ajman.ded.ae.utility.SharedTool.UserData;
 import com.ajman.ded.ae.utility.otpSms.SmsListener;
-import com.ajman.ded.ae.utility.otpSms.SmsReceiver;
 import com.ajman.ded.ae.utility.sweetDialog.SweetAlertDialog;
 import com.goodiebag.pinview.Pinview;
 import com.google.gson.Gson;
@@ -153,7 +152,7 @@ public class RegisterFragment extends Fragment implements SmsListener {
                              Bundle savedInstanceState) {
         // Inflate the layout for this fragment
         View view = inflater.inflate(R.layout.fragment_register, container, false);
-        SmsReceiver.bind(this, "AjmanDED");
+//        SmsReceiver.bind(this, "AjmanDED");
         investorSwitch = view.findViewById(R.id.cur_inverstor);
 
         unbinder = ButterKnife.bind(this, view);
@@ -395,7 +394,7 @@ public class RegisterFragment extends Fragment implements SmsListener {
         super.onDestroyView();
         unbinder.unbind();
         pDialog = null;
-        SmsReceiver.unbind();
+//        SmsReceiver.unbind();
 
     }
 

@@ -79,7 +79,7 @@ public class ApiBuilder {
                 .connectTimeout(5, TimeUnit.MINUTES)
                 .writeTimeout(5, TimeUnit.MINUTES)
                 .readTimeout(5, TimeUnit.MINUTES)
-                .authenticator(new NTLMAuthenticator("sdg_hosam", "7atsheb$out@7070"))
+                .authenticator(new NTLMAuthenticator("sdg_hosam", "7atsheb$out@8080"))
                 .build();
 
         Retrofit retrofit = new Retrofit.Builder()
