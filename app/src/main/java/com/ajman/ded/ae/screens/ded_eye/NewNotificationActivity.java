@@ -574,7 +574,6 @@ public class NewNotificationActivity extends AppCompatActivity implements EyeIma
         super.onDestroy();
     }
 
-
     private RequestBody createPartFromString(String descriptionString) {
         return RequestBody.create(okhttp3.MultipartBody.FORM, descriptionString);
     }
