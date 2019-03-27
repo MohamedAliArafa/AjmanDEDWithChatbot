@@ -32,7 +32,6 @@ import com.ajman.ded.ae.models.UserModel;
 import com.ajman.ded.ae.screens.IntroActivity;
 import com.ajman.ded.ae.screens.registeration.RegisterActivity;
 import com.ajman.ded.ae.utility.SharedTool.UserData;
-import com.ajman.ded.ae.utility.otpSms.SmsListener;
 import com.ajman.ded.ae.utility.sweetDialog.SweetAlertDialog;
 import com.goodiebag.pinview.Pinview;
 import com.google.gson.Gson;
@@ -51,7 +50,7 @@ import retrofit2.Response;
 import static com.ajman.ded.ae.utility.Helper.convertDpToPixel;
 import static com.ajman.ded.ae.utility.Helper.isValidEmail;
 
-public class LoginFragment extends Fragment implements SmsListener {
+public class LoginFragment extends Fragment {
 
     private Api api;
     private SweetAlertDialog pDialog;
@@ -209,11 +208,6 @@ public class LoginFragment extends Fragment implements SmsListener {
         });
     }
 
-    @Override
-    public void messageReceived(String messageText) {
-        pinview.setValue(messageText);
-    }
-
     private void getUserId() {
         UserData.clearUser(getActivity());
         RequestEnvelope_UserId envelope = new RequestEnvelope_UserId();
@@ -252,6 +246,5 @@ public class LoginFragment extends Fragment implements SmsListener {
     @Override
     public void onDestroyView() {
         super.onDestroyView();
-//        SmsReceiver.unbind();
     }
 }

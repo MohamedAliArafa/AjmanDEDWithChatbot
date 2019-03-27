@@ -48,7 +48,6 @@ import com.ajman.ded.ae.models.UserModel;
 import com.ajman.ded.ae.screens.IntroActivity;
 import com.ajman.ded.ae.utility.MaskEditText;
 import com.ajman.ded.ae.utility.SharedTool.UserData;
-import com.ajman.ded.ae.utility.otpSms.SmsListener;
 import com.ajman.ded.ae.utility.sweetDialog.SweetAlertDialog;
 import com.goodiebag.pinview.Pinview;
 import com.google.gson.Gson;
@@ -79,7 +78,7 @@ import static com.ajman.ded.ae.utility.Helper.isValidEmail;
 /**
  * A simple {@link Fragment} subclass.
  */
-public class RegisterFragment extends Fragment implements SmsListener {
+public class RegisterFragment extends Fragment {
     public static final int TYPE_STOCK = 0;
     public static final int TYPE_NATIONALITY = 1;
     @BindView(R.id.username_input)
@@ -529,10 +528,5 @@ public class RegisterFragment extends Fragment implements SmsListener {
 
             }
         });
-    }
-
-    @Override
-    public void messageReceived(String messageText) {
-        pinview.setValue(messageText);
     }
 }
