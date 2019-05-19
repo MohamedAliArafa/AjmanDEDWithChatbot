@@ -80,6 +80,7 @@ import androidx.core.app.ActivityCompat;
 import androidx.core.content.FileProvider;
 import androidx.recyclerview.widget.GridLayoutManager;
 import androidx.recyclerview.widget.RecyclerView;
+
 import butterknife.BindView;
 import butterknife.ButterKnife;
 import okhttp3.MediaType;
@@ -145,7 +146,8 @@ public class NewNotificationActivity extends AppCompatActivity implements EyeIma
     private GoogleMap googleMap;
     private LatLngBounds.Builder builder;
     private SpinnerAdapter typeAdapter;
-    private String tybeId = "";
+    private String typeID = "";
+    private String departmentID = "";
     private Api api;
     private String lat = "";
     private String lng = "";
@@ -229,9 +231,9 @@ public class NewNotificationActivity extends AppCompatActivity implements EyeIma
         populateType();
 
         findViewById(R.id.send).setOnClickListener(view -> {
-            if (lat.length() > 0 && lng.length() > 0 && establishmentTitle.getText().toString().length() > 0 && licenceNo.getText().toString().length() > 0 && complaint_details.getText().toString().length() > 0 && tybeId.length() > 0 && UserData.getUserObject(this) != null) {
+            if (lat.length() > 0 && lng.length() > 0 && establishmentTitle.getText().toString().length() > 0 && licenceNo.getText().toString().length() > 0 && complaint_details.getText().toString().length() > 0 && typeID.length() > 0 && UserData.getUserObject(this) != null) {
                 Call<NotificationResponse> call =
-                        api.insert_notification(UserData.getUserObject(NewNotificationActivity.this).getUserId(), date, establishmentTitle.getText().toString(), licenceNo.getText().toString(), tybeId, complaint_details.getText().toString(), lat, lng, "");
+                        api.insert_notification(UserData.getUserObject(NewNotificationActivity.this).getUserId(), date, establishmentTitle.getText().toString(), licenceNo.getText().toString(), typeID, complaint_details.getText().toString(), lat, lng, "", departmentID);
                 pDialog = new SweetAlertDialog(this, SweetAlertDialog.PROGRESS_TYPE)
                         .setTitleText(getString(R.string.loading));
                 pDialog.setCancelable(true);
@@ -333,7 +335,8 @@ public class NewNotificationActivity extends AppCompatActivity implements EyeIma
                         typeSpinner.setOnItemSelectedListener(new AdapterView.OnItemSelectedListener() {
                             public void onItemSelected(AdapterView<?> parent, View view, int pos, long id) {
                                 if (pos != 0) {
-                                    tybeId = response.body().getResponseContent().get(pos - 1).getID();
+                                    typeID = response.body().getResponseContent().get(pos - 1).getID();
+                                    departmentID = response.body().getResponseContent().get(pos - 1).getDepartmentId();
                                     tybePeriod = response.body().getResponseContent().get(pos - 1).getPeriodInDays();
                                     tybeStatus = response.body().getResponseContent().get(pos - 1).getNotificationStatusNameAR();
                                     typeSpinner.clearFocus();

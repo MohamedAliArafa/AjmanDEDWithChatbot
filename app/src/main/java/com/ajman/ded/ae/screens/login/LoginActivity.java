@@ -38,9 +38,9 @@ public class LoginActivity extends AppCompatActivity {
         setContentView(R.layout.container);
         findViewById(R.id.up).setVisibility(View.VISIBLE);
         findViewById(R.id.up).setOnClickListener(view -> onBackPressed());
-        if (Build.VERSION.SDK_INT > 23) {
-            requestContactPermission();
-        }
+//        if (Build.VERSION.SDK_INT > 23) {
+//            requestContactPermission();
+//        }
         FragmentManager fragmentManager = getSupportFragmentManager();
         FragmentTransaction fragmentTransaction = fragmentManager.beginTransaction();
         fragmentTransaction.replace(R.id.fragment_container, new LoginFragment());
@@ -67,16 +67,16 @@ public class LoginActivity extends AppCompatActivity {
         }
     }
 
-    private void requestContactPermission() {
-
-        int hasContactPermission = ActivityCompat.checkSelfPermission(this, Manifest.permission.RECEIVE_SMS);
-
-        if (hasContactPermission != PackageManager.PERMISSION_GRANTED) {
-            ActivityCompat.requestPermissions(this, new String[]{Manifest.permission.RECEIVE_SMS}, 123);
-        } else {
-
-        }
-    }
+//    private void requestContactPermission() {
+//
+//        int hasContactPermission = ActivityCompat.checkSelfPermission(this, Manifest.permission.RECEIVE_SMS);
+//
+//        if (hasContactPermission != PackageManager.PERMISSION_GRANTED) {
+//            ActivityCompat.requestPermissions(this, new String[]{Manifest.permission.RECEIVE_SMS}, 123);
+//        } else {
+//
+//        }
+//    }
 
     @Override
     public void onRequestPermissionsResult(int requestCode, @NonNull String[] permissions, @NonNull int[] grantResults) {
