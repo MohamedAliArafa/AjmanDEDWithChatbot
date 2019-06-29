@@ -285,8 +285,9 @@ public class NewNotificationActivity extends AppCompatActivity implements EyeIma
             for (ImageBundle photoUri : mAdapter.getImages())
                 parts.add(prepareFilePart(photoUri.getImageAbsolutePath(), photoUri.getImageUri()));
         }
-        if (recordingAudio != null)
-            parts.add(prepareAudioPart(recordingAudio.getFilePath()));
+        if (recordingAudio == null)
+            return;
+        parts.add(prepareAudioPart(recordingAudio.getFilePath()));
         Call<NotificationResponse> uploadCall = api.uploadMultipleFilesDynamic(createPartFromString(notificationId), parts);
         uploadCall.enqueue(new Callback<NotificationResponse>() {
             @Override
