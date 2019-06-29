@@ -231,7 +231,11 @@ public class NewNotificationActivity extends AppCompatActivity implements EyeIma
         populateType();
 
         findViewById(R.id.send).setOnClickListener(view -> {
-            if (lat.length() > 0 && lng.length() > 0 && establishmentTitle.getText().toString().length() > 0 && licenceNo.getText().toString().length() > 0 && complaint_details.getText().toString().length() > 0 && typeID.length() > 0 && UserData.getUserObject(this) != null) {
+            if (lat.length() > 0 && lng.length() > 0
+                    && establishmentTitle.getText().toString().length() > 0
+                    && typeID.length() > 0
+                    && UserData.getUserObject(this) != null) {
+
                 Call<NotificationResponse> call =
                         api.insert_notification(UserData.getUserObject(NewNotificationActivity.this).getUserId(), date, establishmentTitle.getText().toString(), licenceNo.getText().toString(), typeID, complaint_details.getText().toString(), lat, lng, "", departmentID);
                 pDialog = new SweetAlertDialog(this, SweetAlertDialog.PROGRESS_TYPE)

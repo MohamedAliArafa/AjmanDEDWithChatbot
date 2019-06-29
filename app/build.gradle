@@ -7,8 +7,8 @@ android {
         applicationId "com.ajman.ded.ae"
         minSdkVersion 21
         targetSdkVersion 28
-        versionCode 603
-        versionName "603"
+        versionCode 605
+        versionName "605                                                               "
         testInstrumentationRunner "androidx.test.runner.AndroidJUnitRunner"
         multiDexEnabled false
         android.compileOptions.sourceCompatibility 1.8
