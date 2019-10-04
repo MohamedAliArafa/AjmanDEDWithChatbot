@@ -106,8 +106,7 @@ public class LoginFragment extends Fragment {
             public void onResponse(@NonNull Call<AuthTokenModel> call, @NonNull Response<AuthTokenModel> response) {
                 if (response.isSuccessful()) {
                     assert response.body() != null;
-                    String codeResult = response.body().getAccessToken();
-                    Toast.makeText(getContext(), codeResult, Toast.LENGTH_SHORT).show();
+                    Log.d("Token:", response.body().getAccessToken());
                 } else {
                     pDialog.setTitleText(getString(R.string.went_wrong))
                             .setConfirmText(getString(R.string.ok))
@@ -118,6 +117,9 @@ public class LoginFragment extends Fragment {
             @Override
             public void onFailure(@NonNull Call<AuthTokenModel> call, @NonNull Throwable t) {
                 Log.d("PIN ERROR:", String.valueOf(t));
+                pDialog.setTitleText(getString(R.string.went_wrong))
+                        .setConfirmText(getString(R.string.ok))
+                        .changeAlertType(SweetAlertDialog.ERROR_TYPE);
             }
         });
 
