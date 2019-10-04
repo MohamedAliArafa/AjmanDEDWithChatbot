@@ -48,11 +48,9 @@
             android:theme="@style/AppTheme.NoActionBar">
             <intent-filter>
                 <action android:name="android.intent.action.VIEW" />
+                <category android:name="android.intent.category.DEFAULT" />
                 <category android:name="android.intent.category.BROWSABLE" />
-                <data
-                    android:host="ded.sdg.ae"
-                    android:path="/pass/success"
-                    android:scheme="ajmanded" />
+                <data android:scheme="ajmanded" android:host="uaepass.sdg.ae" />
             </intent-filter>
         </activity>
         <activity

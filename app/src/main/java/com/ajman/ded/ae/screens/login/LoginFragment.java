@@ -70,7 +70,7 @@ public class LoginFragment extends Fragment {
 
     private static final String UAE_PASS_CLIENT_ID = "ajm_ded_mob_stage";
     private static final String UAE_PASS_CLIENT_SECRET = "QYknfXVshPZmPlsq";
-    private static final String REDIRECT_URL = "ajmanded://ded.sdg.ae/pass/success";
+    private static final String REDIRECT_URL = "ajmanded://uaepass.sdg.ae";
     private static final String DOCUMENT_SIGNING_SCOPE = "urn:safelayer:eidas:sign:process:document";
     private static final String RESPONSE_TYPE = "code";
     private static final String SCOPE = "urn:uae:digitalid:profile";
