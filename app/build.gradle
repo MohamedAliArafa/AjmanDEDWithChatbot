@@ -8,7 +8,7 @@ android {
         minSdkVersion 21
         targetSdkVersion 28
         versionCode 605
-        versionName "605                                                               "
+        versionName "605"
         testInstrumentationRunner "androidx.test.runner.AndroidJUnitRunner"
         multiDexEnabled false
         android.compileOptions.sourceCompatibility 1.8
@@ -42,6 +42,7 @@ android {
         targetCompatibility JavaVersion.VERSION_1_8
         sourceCompatibility JavaVersion.VERSION_1_8
     }
+    buildToolsVersion = '28.0.3'
 
     android {
         packagingOptions {

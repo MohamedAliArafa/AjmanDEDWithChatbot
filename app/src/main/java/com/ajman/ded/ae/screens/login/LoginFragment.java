@@ -10,6 +10,7 @@ import android.widget.Button;
 import android.widget.EditText;
 import android.widget.FrameLayout;
 import android.widget.TextView;
+import android.widget.Toast;
 
 import com.ajman.ded.ae.MyApplication;
 import com.ajman.ded.ae.R;
@@ -29,7 +30,9 @@ import com.ajman.ded.ae.data.model.response.GetAccount.ResponseEnvelope_GetAccou
 import com.ajman.ded.ae.data.model.response.UserId.ResponseEnvelope_UserId;
 import com.ajman.ded.ae.models.UserIdResponse;
 import com.ajman.ded.ae.models.UserModel;
+import com.ajman.ded.ae.models.uaepass.AuthTokenModel;
 import com.ajman.ded.ae.screens.IntroActivity;
+import com.ajman.ded.ae.screens.ded_eye.DedEyeActivity;
 import com.ajman.ded.ae.screens.registeration.RegisterActivity;
 import com.ajman.ded.ae.utility.SharedTool.UserData;
 import com.ajman.ded.ae.utility.sweetDialog.SweetAlertDialog;
@@ -43,6 +46,7 @@ import java.util.List;
 import androidx.annotation.NonNull;
 import androidx.core.app.ActivityCompat;
 import androidx.fragment.app.Fragment;
+
 import retrofit2.Call;
 import retrofit2.Callback;
 import retrofit2.Response;
@@ -53,10 +57,21 @@ import static com.ajman.ded.ae.utility.Helper.isValidEmail;
 public class LoginFragment extends Fragment {
 
     private Api api;
+    private Api apiUaePass;
     private SweetAlertDialog pDialog;
     private EditText username;
     private EditText password;
     private Pinview pinview;
+
+    private static final String UAE_PASS_CLIENT_ID = "ajm_ded_mob_stage";
+    private static final String UAE_PASS_CLIENT_SECRET = "QYknfXVshPZmPlsq";
+    private static final String REDIRECT_URL = "ajmanded://ded.sdg.ae/pass/success";
+    private static final String DOCUMENT_SIGNING_SCOPE = "urn:safelayer:eidas:sign:process:document";
+    private static final String RESPONSE_TYPE = "code";
+    private static final String SCOPE = "urn:uae:digitalid:profile";
+    private static final String ACR_VALUES_MOBILE = "urn:digitalid:authentication:flow:mobileondevice";
+    private static final String ACR_VALUES_WEB = "urn:safelayer:tws:policies:authentication:level:low";
+    private static final String UAE_PASS_PACKAGE_ID = "ae.uaepass.mainapp";
 
     public LoginFragment() {
         // Required empty public constructor
@@ -73,6 +88,39 @@ public class LoginFragment extends Fragment {
         TextView regisrer = rootView.findViewById(R.id.signup);
         regisrer.setOnClickListener(view -> startActivity(new Intent(getActivity(), RegisterActivity.class)));
 //        SmsReceiver.bind(this, "AjmanDED");
+
+        apiUaePass = ApiBuilder.uaePassApi();
+//        https://qa-id.uaepass.ae/trustedx-authserver/oauth/main-as?
+//        redirect_uri={redirect uri as agreed}&
+//        client_id={client id}&
+//        response_type=code&
+//        state=ShNP22hyl1jUU2RGjTRkpg==&
+//        scope=urn:uae:digitalid:profile&
+//        acr_values =urn:safelayer:tws:policies:authentication:level:low&
+//        ui_locales=en
+        Call<AuthTokenModel> callAuth = apiUaePass.auth(RESPONSE_TYPE, REDIRECT_URL,
+                UAE_PASS_CLIENT_ID, SCOPE, ACR_VALUES_MOBILE, null, null);
+        callAuth.enqueue(new retrofit2.Callback<AuthTokenModel>() {
+
+            @Override
+            public void onResponse(@NonNull Call<AuthTokenModel> call, @NonNull Response<AuthTokenModel> response) {
+                if (response.isSuccessful()) {
+                    assert response.body() != null;
+                    String codeResult = response.body().getAccessToken();
+                    Toast.makeText(getContext(), codeResult, Toast.LENGTH_SHORT).show();
+                } else {
+                    pDialog.setTitleText(getString(R.string.went_wrong))
+                            .setConfirmText(getString(R.string.ok))
+                            .changeAlertType(SweetAlertDialog.ERROR_TYPE);
+                }
+            }
+
+            @Override
+            public void onFailure(@NonNull Call<AuthTokenModel> call, @NonNull Throwable t) {
+                Log.d("PIN ERROR:", String.valueOf(t));
+            }
+        });
+
         login.setOnClickListener(view -> {
             if (!isValidEmail(username.getText().toString())) {
                 username.setError(getString(R.string.email_validation));
@@ -172,7 +220,6 @@ public class LoginFragment extends Fragment {
         envelope.setBody(body);
 
         api = ApiBuilder.providesApi();
-
         Call<ResponseEnvelope_ConfirmCode> call = api.requestConfirmCodeCall("ConfirmCode", envelope);
 
         call.enqueue(new retrofit2.Callback<ResponseEnvelope_ConfirmCode>() {

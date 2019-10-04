@@ -27,6 +27,7 @@ import com.ajman.ded.ae.models.notification.NotificationStatusResponse;
 import com.ajman.ded.ae.models.notification.details.NotificationDetailsResponse;
 import com.ajman.ded.ae.models.notification.files.FilesRsponse;
 import com.ajman.ded.ae.models.notification.tybe.NotificationTypeResponse;
+import com.ajman.ded.ae.models.uaepass.AuthTokenModel;
 
 import java.util.List;
 
@@ -48,20 +49,17 @@ public interface Api {
     String NewsLink = "/_MobFiles/AjmanDED_MobService.asmx/News_Get?NumberOfItems=10";
 
     String INSERT_NOTIFICATION = "extensions/dedeye/Notification_Insert";
-
     String STATUS_NOTIFICATION = "extensions/dedeye/Notifications_GetByUserId";
-
     String TYPE_NOTIFICATION = "extensions/dedeye/NotificationTypes_Get";
-
     String DETAILS_NOTIFICATION = "extensions/dedeye/Notification_GetById";
-
     String RATE_NOTIFICATION = "extensions/dedeye/NotificationRate_Insert";
-
     String UPLAOD_NOTIFICATION = "extensions/dedeye/UploadNotificationFiles";
-
     String FILES_NOTIFICATION = "extensions/dedeye/Notification_GetFiles";
-
     String FILE_NOTIFICATION = "apis/GetFileById";
+
+    String UAE_PASS_AUTH = "trustedx-authserver/oauth/main-as";
+    String UAE_PASS_TOKEN = "trustedx-authserver/oauth/main-as/token";
+    String UAE_PASS_USER_INFO = "trustedx-resources/openid/v1/users/me";
 
     @Headers({"Content-Type: application/soap+xml; charset=utf-8"})
     @POST(BASE)
@@ -116,11 +114,20 @@ public interface Api {
                                                    @Query("EstablishmentName") String establishmentName,
                                                    @Query("LicenseNumber") String licenceNo,
                                                    @Query("NotificationTypeId") String notificationTypeId,
-                                                   @Query("NotificationDetails") String notificatoinDetails,
+                                                   @Query("NotificationDetails") String notificationDetails,
                                                    @Query("ll") String ll, @Query("lg") String lg,
                                                    @Query("AreaId") String areaId,
                                                    @Query("DepartmentId") String departmentId
     );
+
+    @GET(UAE_PASS_AUTH)
+    Call<AuthTokenModel> auth(@Query("response_type") String responseType,
+                              @Query("redirect_uri") String redirectURI,
+                              @Query("client_id") String clientID,
+                              @Query("scope") String scope,
+                              @Query("acr_values") String arcValues,
+                              @Query("ui_locales") String uiLocales,
+                              @Query("state") String state);
 
     @GET(STATUS_NOTIFICATION)
     Call<NotificationStatusResponse> status_notification(@Query("UserId") String userId, @Query("Status") String status);

@@ -25,6 +25,14 @@ public class ApiBuilder {
     public static String BASIC_BASE_URL = "http://site1.ajmanded.ae/";
     private static String NEWS_BASE_URL = "http://ded.sdg.ae/";
     private static String SITE_BASE_URL = "http://site4.ajmanded.ae";
+//    Authorization Endpoint :  https://qa-id.uaepass.ae/trustedx-authserver/oauth/main-as
+//    Token Endpoint :          https://qa-id.uaepass.ae/trustedx-authserver/oauth/main-as/token
+//    User Info Endpoint :      https://qa-id.uaepass.ae/trustedx-resources/openid/v1/users/me
+    private static String UAE_PASS_STAGE_URL = "https://qa-id.uaepass.ae";
+//    Authorization Endpoint :  https://id.uaepass.ae/trustedx-authserver/oauth/main-as
+//    Token Endpoint :          https://id.uaepass.ae/trustedx-authserver/oauth/main-as/token
+//    User Info Endpoint :      https://id.uaepass.ae/trustedx-resources/openid/v1/users/me
+    private static String UAE_PASS_PROD_URL = "https://id.uaepass.ae";
 
     public static Api providesApi() {
 
@@ -88,6 +96,32 @@ public class ApiBuilder {
                 .client(client)
                 .build();
 
+        return retrofit.create(Api.class);
+
+    }
+
+
+    public static Api uaePassApi() {
+
+        HttpLoggingInterceptor interceptor = new HttpLoggingInterceptor();
+
+        interceptor.setLevel(HttpLoggingInterceptor.Level.BODY);
+
+        GsonBuilder gsonBuilder = new GsonBuilder();
+        gsonBuilder.registerTypeAdapter(Date.class, new DateDeserializer());
+        OkHttpClient client = new OkHttpClient.Builder()
+                .addInterceptor(interceptor)
+                .connectTimeout(5, TimeUnit.MINUTES)
+                .writeTimeout(5, TimeUnit.MINUTES)
+                .readTimeout(5, TimeUnit.MINUTES)
+//                .authenticator(new NTLMAuthenticator("sdg_hosam", "7atsheb$out@8080"))
+                .build();
+
+        Retrofit retrofit = new Retrofit.Builder()
+                .addConverterFactory(GsonConverterFactory.create(gsonBuilder.create()))
+                .baseUrl(UAE_PASS_STAGE_URL)
+                .client(client)
+                .build();
         return retrofit.create(Api.class);
 
     }
