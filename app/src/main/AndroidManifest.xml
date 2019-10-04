@@ -46,10 +46,12 @@
             android:label="@string/app_name"
             android:screenOrientation="portrait"
             android:theme="@style/AppTheme.NoActionBar">
-            <data
-                android:host="ded.sdg.ae"
-                android:path="/pass/success"
-                android:scheme="ajmanded" />
+            <intent-filter>
+                <data
+                    android:host="ded.sdg.ae"
+                    android:path="/pass/success"
+                    android:scheme="ajmanded" />
+            </intent-filter>
         </activity>
         <activity
             android:name=".screens.accountSettings.AccountActivity"
