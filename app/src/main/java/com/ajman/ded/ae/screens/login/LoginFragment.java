@@ -15,6 +15,7 @@ import android.widget.Toast;
 
 import com.ajman.ded.ae.MyApplication;
 import com.ajman.ded.ae.R;
+import com.ajman.ded.ae.UAEPassRequestModels;
 import com.ajman.ded.ae.WebViewActivity;
 import com.ajman.ded.ae.data.Api;
 import com.ajman.ded.ae.data.ApiBuilder;
@@ -33,7 +34,6 @@ import com.ajman.ded.ae.data.model.response.UserId.ResponseEnvelope_UserId;
 import com.ajman.ded.ae.models.UserIdResponse;
 import com.ajman.ded.ae.models.UserModel;
 import com.ajman.ded.ae.models.uaepass.AuthTokenModel;
-import com.ajman.ded.ae.models.uaepass.ProfileModel;
 import com.ajman.ded.ae.screens.IntroActivity;
 import com.ajman.ded.ae.screens.ded_eye.DedEyeActivity;
 import com.ajman.ded.ae.screens.registeration.RegisterActivity;
@@ -52,6 +52,10 @@ import androidx.annotation.Nullable;
 import androidx.core.app.ActivityCompat;
 import androidx.fragment.app.Fragment;
 
+import ae.sdg.libraryuaepass.UAEPassController;
+import ae.sdg.libraryuaepass.UAEPassProfileCallback;
+import ae.sdg.libraryuaepass.business.profile.model.ProfileModel;
+import ae.sdg.libraryuaepass.business.profile.model.UAEPassProfileRequestModel;
 import retrofit2.Call;
 import retrofit2.Callback;
 import retrofit2.Response;
@@ -87,25 +91,46 @@ public class LoginFragment extends Fragment {
         // Required empty public constructor
     }
 
+    /**
+     * Get User Profile from UAE Pass.
+     */
+    private void getProfile() {
+        UAEPassProfileRequestModel requestModel = UAEPassRequestModels.getProfileRequestModel(getContext());
+        UAEPassController.getInstance().getUserProfile(getContext(), requestModel, new UAEPassProfileCallback() {
+
+            @Override
+            public void getProfile(ProfileModel profileModel, String error) {
+                if (error != null) {
+                    Toast.makeText(getContext(), "Error while getting access token", Toast.LENGTH_SHORT).show();
+                } else {
+                    String jsonString = new Gson().toJson(profileModel);
+                    Log.d("UAE_PASS", jsonString);
+                    Toast.makeText(getContext(), "Welcome " + profileModel.getFullnameEN(), Toast.LENGTH_SHORT).show();
+                }
+            }
+        });
+    }
+
     @Override
     public void onAttach(Context context) {
         super.onAttach(context);
-        Intent uaePass = new Intent(getContext(), WebViewActivity.class);
-        uaePass.putExtra(REDIRECT_URL_INTENT_KEY, REDIRECT_URL);
-        uaePass.putExtra(URL_INTENT_KEY, "https://qa-id.uaepass.ae/trustedx-authserver/oauth/main-as?" +
-                "redirect_uri=" + REDIRECT_URL + "&" +
-                "client_id=" + UAE_PASS_CLIENT_ID + "&" +
-                "response_type=code&" +
-                "state=ShNP22hyl1jUU2RGjTRkpg==&" +
-                "scope=urn:uae:digitalid:profile&" +
-                "acr_values =urn:safelayer:tws:policies:authentication:level:low&" +
-                "ui_locales=en");
-        Objects.requireNonNull(getActivity()).startActivityForResult(uaePass, webViewRequestCode);
+        getProfile();
+//        Intent uaePass = new Intent(getContext(), WebViewActivity.class);
+//        uaePass.putExtra(REDIRECT_URL_INTENT_KEY, REDIRECT_URL);
+//        uaePass.putExtra(URL_INTENT_KEY, "https://qa-id.uaepass.ae/trustedx-authserver/oauth/main-as?" +
+//                "redirect_uri=" + REDIRECT_URL + "&" +
+//                "client_id=" + UAE_PASS_CLIENT_ID + "&" +
+//                "response_type=code&" +
+//                "state=ShNP22hyl1jUU2RGjTRkpg==&" +
+//                "scope=urn:uae:digitalid:profile&" +
+//                "acr_values =urn:safelayer:tws:policies:authentication:level:low&" +
+//                "ui_locales=en");
+//        Objects.requireNonNull(getActivity()).startActivityForResult(uaePass, webViewRequestCode);
     }
 
     @Override
     public void onActivityResult(int requestCode, int resultCode, Intent data) {
-                super.onActivityResult(requestCode, resultCode, data);
+        super.onActivityResult(requestCode, resultCode, data);
     }
 
     @Override
@@ -113,11 +138,14 @@ public class LoginFragment extends Fragment {
                              Bundle savedInstanceState) {
         // Inflate the layout for this fragment
         View rootView = inflater.inflate(R.layout.fragment_login, container, false);
+        Button UAEPassBtn = rootView.findViewById(R.id.uae_pass_btn);
         Button login = rootView.findViewById(R.id.login_btn);
         username = rootView.findViewById(R.id.username_input);
         password = rootView.findViewById(R.id.password_input);
         TextView regisrer = rootView.findViewById(R.id.signup);
         regisrer.setOnClickListener(view -> startActivity(new Intent(getActivity(), RegisterActivity.class)));
+
+        UAEPassBtn.setOnClickListener(v -> getProfile());
 
         login.setOnClickListener(view -> {
             if (!isValidEmail(username.getText().toString())) {
