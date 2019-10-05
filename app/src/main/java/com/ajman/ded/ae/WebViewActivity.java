@@ -265,8 +265,10 @@ public class WebViewActivity extends BaseActivity {
                 URI current_uri = new URI(url);
                 if (redirect_url != null && redirect_url.length() != 0) {
                     URI redirect_uri = new URI(redirect_url);
+                    if (current_uri.getScheme().equals("uaepass")) {
+                        Log.d("UAE_PASS_URL", current_uri.toString());
+                    }
                     if (current_uri.getScheme().equals(redirect_uri.getScheme())) {
-                        Toast.makeText(WebViewActivity.this, current_uri.getQuery(), Toast.LENGTH_LONG).show();
                         Log.d("UAE_PASS_QUERY", current_uri.getQuery());
                         finish();
                     }

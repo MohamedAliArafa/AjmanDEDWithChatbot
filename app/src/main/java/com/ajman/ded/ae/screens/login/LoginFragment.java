@@ -55,6 +55,7 @@ import retrofit2.Call;
 import retrofit2.Callback;
 import retrofit2.Response;
 
+import static com.ajman.ded.ae.utility.Constants.REDIRECT_URL_INTENT_KEY;
 import static com.ajman.ded.ae.utility.Constants.URL_INTENT_KEY;
 import static com.ajman.ded.ae.utility.Helper.convertDpToPixel;
 import static com.ajman.ded.ae.utility.Helper.isValidEmail;
@@ -70,7 +71,7 @@ public class LoginFragment extends Fragment {
 
     private static final String UAE_PASS_CLIENT_ID = "ajm_ded_mob_stage";
     private static final String UAE_PASS_CLIENT_SECRET = "QYknfXVshPZmPlsq";
-    private static final String REDIRECT_URL = "ajmanded://uaepass.sdg.ae";
+    private static final String REDIRECT_URL = "ajmanded://uaepass.sdg.ae/success";
     private static final String DOCUMENT_SIGNING_SCOPE = "urn:safelayer:eidas:sign:process:document";
     private static final String RESPONSE_TYPE = "code";
     private static final String SCOPE = "urn:uae:digitalid:profile";
@@ -86,6 +87,7 @@ public class LoginFragment extends Fragment {
     public void onAttach(Context context) {
         super.onAttach(context);
         Intent uaePass = new Intent(getContext(), WebViewActivity.class);
+        uaePass.putExtra(REDIRECT_URL_INTENT_KEY, REDIRECT_URL);
         uaePass.putExtra(URL_INTENT_KEY, "https://qa-id.uaepass.ae/trustedx-authserver/oauth/main-as?" +
                 "redirect_uri="+REDIRECT_URL+"&" +
                 "client_id="+UAE_PASS_CLIENT_ID+"&" +
