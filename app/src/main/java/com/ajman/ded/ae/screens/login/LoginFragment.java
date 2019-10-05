@@ -33,6 +33,7 @@ import com.ajman.ded.ae.data.model.response.UserId.ResponseEnvelope_UserId;
 import com.ajman.ded.ae.models.UserIdResponse;
 import com.ajman.ded.ae.models.UserModel;
 import com.ajman.ded.ae.models.uaepass.AuthTokenModel;
+import com.ajman.ded.ae.models.uaepass.ProfileModel;
 import com.ajman.ded.ae.screens.IntroActivity;
 import com.ajman.ded.ae.screens.ded_eye.DedEyeActivity;
 import com.ajman.ded.ae.screens.registeration.RegisterActivity;
@@ -55,6 +56,8 @@ import retrofit2.Call;
 import retrofit2.Callback;
 import retrofit2.Response;
 
+import static android.app.Activity.RESULT_OK;
+import static com.ajman.ded.ae.utility.Constants.CODE_RESULT_KEY;
 import static com.ajman.ded.ae.utility.Constants.REDIRECT_URL_INTENT_KEY;
 import static com.ajman.ded.ae.utility.Constants.URL_INTENT_KEY;
 import static com.ajman.ded.ae.utility.Helper.convertDpToPixel;
@@ -68,6 +71,7 @@ public class LoginFragment extends Fragment {
     private EditText username;
     private EditText password;
     private Pinview pinview;
+    private Integer webViewRequestCode = 1152;
 
     private static final String UAE_PASS_CLIENT_ID = "ajm_ded_mob_stage";
     private static final String UAE_PASS_CLIENT_SECRET = "QYknfXVshPZmPlsq";
@@ -89,14 +93,60 @@ public class LoginFragment extends Fragment {
         Intent uaePass = new Intent(getContext(), WebViewActivity.class);
         uaePass.putExtra(REDIRECT_URL_INTENT_KEY, REDIRECT_URL);
         uaePass.putExtra(URL_INTENT_KEY, "https://qa-id.uaepass.ae/trustedx-authserver/oauth/main-as?" +
-                "redirect_uri="+REDIRECT_URL+"&" +
-                "client_id="+UAE_PASS_CLIENT_ID+"&" +
+                "redirect_uri=" + REDIRECT_URL + "&" +
+                "client_id=" + UAE_PASS_CLIENT_ID + "&" +
                 "response_type=code&" +
                 "state=ShNP22hyl1jUU2RGjTRkpg==&" +
                 "scope=urn:uae:digitalid:profile&" +
                 "acr_values =urn:safelayer:tws:policies:authentication:level:low&" +
                 "ui_locales=en");
-        Objects.requireNonNull(getActivity()).startActivity(uaePass);
+        Objects.requireNonNull(getActivity()).startActivityForResult(uaePass, webViewRequestCode);
+    }
+
+    @Override
+    public void onActivityResult(int requestCode, int resultCode, Intent data) {
+        super.onActivityResult(requestCode, resultCode, data);
+        if (requestCode == webViewRequestCode && resultCode == RESULT_OK) {
+            String code = data.getStringExtra(CODE_RESULT_KEY);
+            apiUaePass = ApiBuilder.uaeAuthServerApi();
+            Call<AuthTokenModel> callAuth = apiUaePass.getToken("", REDIRECT_URL, code);
+            callAuth.enqueue(new retrofit2.Callback<AuthTokenModel>() {
+                @Override
+                public void onResponse(@NonNull Call<AuthTokenModel> call, @NonNull Response<AuthTokenModel> response) {
+                    if (response.isSuccessful()) {
+                        assert response.body() != null;
+                        Log.d("Token:", response.body().getAccessToken());
+                        Api apiUaeResources = ApiBuilder.uaeResourcesApi(response.body().getAccessToken());
+                        apiUaeResources.getProfile().enqueue(new Callback<ProfileModel>() {
+                            @Override
+                            public void onResponse(Call<ProfileModel> call, Response<ProfileModel> response) {
+                                assert response.body() != null;
+                                Toast.makeText(getContext(), "Welcome, " + response.body().getFullnameEN(), Toast.LENGTH_SHORT).show();
+                            }
+
+                            @Override
+                            public void onFailure(Call<ProfileModel> call, Throwable t) {
+                                pDialog.setTitleText(getString(R.string.went_wrong))
+                                        .setConfirmText(getString(R.string.ok))
+                                        .changeAlertType(SweetAlertDialog.ERROR_TYPE);
+                            }
+                        });
+                    } else {
+                        pDialog.setTitleText(getString(R.string.went_wrong))
+                                .setConfirmText(getString(R.string.ok))
+                                .changeAlertType(SweetAlertDialog.ERROR_TYPE);
+                    }
+                }
+
+                @Override
+                public void onFailure(@NonNull Call<AuthTokenModel> call, @NonNull Throwable t) {
+                    Log.d("PIN ERROR:", String.valueOf(t));
+                    pDialog.setTitleText(getString(R.string.went_wrong))
+                            .setConfirmText(getString(R.string.ok))
+                            .changeAlertType(SweetAlertDialog.ERROR_TYPE);
+                }
+            });
+        }
     }
 
     @Override
@@ -109,33 +159,6 @@ public class LoginFragment extends Fragment {
         password = rootView.findViewById(R.id.password_input);
         TextView regisrer = rootView.findViewById(R.id.signup);
         regisrer.setOnClickListener(view -> startActivity(new Intent(getActivity(), RegisterActivity.class)));
-//        SmsReceiver.bind(this, "AjmanDED");
-
-//        apiUaePass = ApiBuilder.uaePassApi();
-//        Call<AuthTokenModel> callAuth = apiUaePass.auth(RESPONSE_TYPE, REDIRECT_URL,
-//                UAE_PASS_CLIENT_ID, SCOPE, ACR_VALUES_MOBILE, null, null);
-//        callAuth.enqueue(new retrofit2.Callback<AuthTokenModel>() {
-//
-//            @Override
-//            public void onResponse(@NonNull Call<AuthTokenModel> call, @NonNull Response<AuthTokenModel> response) {
-//                if (response.isSuccessful()) {
-//                    assert response.body() != null;
-//                    Log.d("Token:", response.body().getAccessToken());
-//                } else {
-//                    pDialog.setTitleText(getString(R.string.went_wrong))
-//                            .setConfirmText(getString(R.string.ok))
-//                            .changeAlertType(SweetAlertDialog.ERROR_TYPE);
-//                }
-//            }
-//
-//            @Override
-//            public void onFailure(@NonNull Call<AuthTokenModel> call, @NonNull Throwable t) {
-//                Log.d("PIN ERROR:", String.valueOf(t));
-//                pDialog.setTitleText(getString(R.string.went_wrong))
-//                        .setConfirmText(getString(R.string.ok))
-//                        .changeAlertType(SweetAlertDialog.ERROR_TYPE);
-//            }
-//        });
 
         login.setOnClickListener(view -> {
             if (!isValidEmail(username.getText().toString())) {

@@ -1,5 +1,6 @@
 package com.ajman.ded.ae.data;
 
+import com.ajman.ded.ae.BasicAuthInterceptor;
 import com.ajman.ded.ae.DateDeserializer;
 import com.ajman.ded.ae.NTLMAuthenticator;
 import com.google.gson.GsonBuilder;
@@ -10,10 +11,14 @@ import org.simpleframework.xml.core.Persister;
 import org.simpleframework.xml.strategy.Strategy;
 import org.simpleframework.xml.stream.Format;
 
+import java.io.IOException;
 import java.util.Date;
 import java.util.concurrent.TimeUnit;
 
+import okhttp3.Interceptor;
 import okhttp3.OkHttpClient;
+import okhttp3.Request;
+import okhttp3.Response;
 import okhttp3.logging.HttpLoggingInterceptor;
 import retrofit2.Retrofit;
 import retrofit2.converter.gson.GsonConverterFactory;
@@ -101,7 +106,7 @@ public class ApiBuilder {
     }
 
 
-    public static Api uaePassApi() {
+    public static Api uaeAuthServerApi() {
 
         HttpLoggingInterceptor interceptor = new HttpLoggingInterceptor();
 
@@ -111,10 +116,10 @@ public class ApiBuilder {
         gsonBuilder.registerTypeAdapter(Date.class, new DateDeserializer());
         OkHttpClient client = new OkHttpClient.Builder()
                 .addInterceptor(interceptor)
+                .addInterceptor(new BasicAuthInterceptor("ajm_ded_mob_stage", "QYknfXVshPZmPlsq"))
                 .connectTimeout(5, TimeUnit.MINUTES)
                 .writeTimeout(5, TimeUnit.MINUTES)
                 .readTimeout(5, TimeUnit.MINUTES)
-//                .authenticator(new NTLMAuthenticator("sdg_hosam", "7atsheb$out@8080"))
                 .build();
 
         Retrofit retrofit = new Retrofit.Builder()
@@ -122,8 +127,40 @@ public class ApiBuilder {
                 .baseUrl(UAE_PASS_STAGE_URL)
                 .client(client)
                 .build();
-        return retrofit.create(Api.class);
 
+        return retrofit.create(Api.class);
+    }
+    public static Api uaeResourcesApi(String token) {
+
+        HttpLoggingInterceptor interceptor = new HttpLoggingInterceptor();
+
+        interceptor.setLevel(HttpLoggingInterceptor.Level.BODY);
+
+        GsonBuilder gsonBuilder = new GsonBuilder();
+        gsonBuilder.registerTypeAdapter(Date.class, new DateDeserializer());
+        OkHttpClient client = new OkHttpClient.Builder()
+                .addInterceptor(interceptor)
+                .addInterceptor(new Interceptor() {
+                    @Override
+                    public Response intercept(Chain chain) throws IOException {
+                        Request newRequest  = chain.request().newBuilder()
+                                .addHeader("Authorization", "Bearer " + token)
+                                .build();
+                        return chain.proceed(newRequest);
+                    }
+                })
+                .connectTimeout(5, TimeUnit.MINUTES)
+                .writeTimeout(5, TimeUnit.MINUTES)
+                .readTimeout(5, TimeUnit.MINUTES)
+                .build();
+
+        Retrofit retrofit = new Retrofit.Builder()
+                .addConverterFactory(GsonConverterFactory.create(gsonBuilder.create()))
+                .baseUrl(UAE_PASS_STAGE_URL)
+                .client(client)
+                .build();
+
+        return retrofit.create(Api.class);
     }
 
 }

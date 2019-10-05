@@ -5,6 +5,7 @@ import android.app.Activity;
 import android.content.Intent;
 import android.graphics.Bitmap;
 import android.net.Uri;
+import android.net.UrlQuerySanitizer;
 import android.os.Build;
 import android.os.Bundle;
 import android.os.Environment;
@@ -13,12 +14,17 @@ import android.util.Log;
 import android.webkit.GeolocationPermissions;
 import android.webkit.ValueCallback;
 import android.webkit.WebChromeClient;
+import android.webkit.WebResourceError;
+import android.webkit.WebResourceRequest;
 import android.webkit.WebSettings;
 import android.webkit.WebView;
 import android.webkit.WebViewClient;
 import android.widget.Toast;
 
+import com.ajman.ded.ae.data.Api;
+import com.ajman.ded.ae.data.ApiBuilder;
 import com.ajman.ded.ae.models.UserModel;
+import com.ajman.ded.ae.models.uaepass.AuthTokenModel;
 import com.ajman.ded.ae.screens.base.BaseActivity;
 import com.ajman.ded.ae.utility.SharedTool.UserData;
 
@@ -34,6 +40,9 @@ import java.util.Map;
 import androidx.core.widget.ContentLoadingProgressBar;
 import androidx.swiperefreshlayout.widget.SwipeRefreshLayout;
 
+import retrofit2.Call;
+
+import static com.ajman.ded.ae.utility.Constants.CODE_RESULT_KEY;
 import static com.ajman.ded.ae.utility.Constants.REDIRECT_URL_INTENT_KEY;
 import static com.ajman.ded.ae.utility.Constants.URL_INTENT_KEY;
 
@@ -257,6 +266,16 @@ public class WebViewActivity extends BaseActivity {
 
     public class Callback extends WebViewClient {
 
+
+        @Override
+        public void onReceivedError(WebView view, WebResourceRequest request,
+                                    WebResourceError error) {
+            super.onReceivedError(view, request, error);
+            // Do something
+            Toast.makeText(WebViewActivity.this, "Error", Toast.LENGTH_SHORT).show();
+            finish();
+        }
+
         @SuppressWarnings("deprecation")
         @Override
         public boolean shouldOverrideUrlLoading(WebView view, String url) {
@@ -265,11 +284,19 @@ public class WebViewActivity extends BaseActivity {
                 URI current_uri = new URI(url);
                 if (redirect_url != null && redirect_url.length() != 0) {
                     URI redirect_uri = new URI(redirect_url);
+//                    D/UAE_PASS_QUERY: code=b931ab5130372c50fc9d043175e6928577fb027a1fa63fd0b2738530e7d81de5&state=ShNP22hyl1jUU2RGjTRkpg==
                     if (current_uri.getScheme().equals("uaepass")) {
                         Log.d("UAE_PASS_URL", current_uri.toString());
                     }
                     if (current_uri.getScheme().equals(redirect_uri.getScheme())) {
                         Log.d("UAE_PASS_QUERY", current_uri.getQuery());
+                        if (current_uri.getPath().equals(redirect_uri.getPath())) {
+                            UrlQuerySanitizer sanitizer = new UrlQuerySanitizer(current_uri.toString());
+                            String code = sanitizer.getValue("code");
+                            Intent intent = new Intent();
+                            intent.putExtra(CODE_RESULT_KEY, code);
+                            setResult(RESULT_OK, intent);
+                        }
                         finish();
                     }
                 }
@@ -282,19 +309,6 @@ public class WebViewActivity extends BaseActivity {
         @Override
         public void onPageStarted(WebView view, String url, Bitmap favicon) {
             mProgressBar.show();
-//            try {
-//                URI current_uri = new URI(url);
-//                if (redirect_url != null && redirect_url.length() != 0) {
-//                    URI redirect_uri = new URI(redirect_url);
-//                    if (current_uri.getScheme().equals(redirect_uri.getScheme())) {
-//                        Toast.makeText(WebViewActivity.this, current_uri.getQuery(), Toast.LENGTH_LONG).show();
-//                        Log.d("UAE_PASS_QUERY", current_uri.getQuery());
-//                        finish();
-//                    }
-//                }
-//            } catch (URISyntaxException e) {
-//                e.printStackTrace();
-//            }
             super.onPageStarted(view, url, favicon);
         }
 

@@ -28,6 +28,7 @@ import com.ajman.ded.ae.models.notification.details.NotificationDetailsResponse;
 import com.ajman.ded.ae.models.notification.files.FilesRsponse;
 import com.ajman.ded.ae.models.notification.tybe.NotificationTypeResponse;
 import com.ajman.ded.ae.models.uaepass.AuthTokenModel;
+import com.ajman.ded.ae.models.uaepass.ProfileModel;
 
 import java.util.List;
 
@@ -36,6 +37,7 @@ import okhttp3.RequestBody;
 import okhttp3.ResponseBody;
 import retrofit2.Call;
 import retrofit2.http.Body;
+import retrofit2.http.Field;
 import retrofit2.http.GET;
 import retrofit2.http.Headers;
 import retrofit2.http.Multipart;
@@ -128,6 +130,14 @@ public interface Api {
                               @Query("acr_values") String arcValues,
                               @Query("ui_locales") String uiLocales,
                               @Query("state") String state);
+
+    @GET(UAE_PASS_USER_INFO)
+    Call<ProfileModel> getProfile();
+
+    @POST(UAE_PASS_TOKEN)
+    Call<AuthTokenModel> getToken(@Query("grant_type") String grantType,
+                                  @Query("redirect_uri") String redirectUri,
+                                  @Query("code") String code);
 
     @GET(STATUS_NOTIFICATION)
     Call<NotificationStatusResponse> status_notification(@Query("UserId") String userId, @Query("Status") String status);
