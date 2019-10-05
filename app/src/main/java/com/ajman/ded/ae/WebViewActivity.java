@@ -261,17 +261,11 @@ public class WebViewActivity extends BaseActivity {
         @Override
         public boolean shouldOverrideUrlLoading(WebView view, String url) {
             view.loadUrl(url, getHeaders());
-            return true;
-        }
-
-        @Override
-        public void onPageStarted(WebView view, String url, Bitmap favicon) {
-            mProgressBar.show();
             try {
                 URI current_uri = new URI(url);
                 if (redirect_url != null && redirect_url.length() != 0) {
                     URI redirect_uri = new URI(redirect_url);
-                    if (current_uri.getHost().equals(redirect_uri.getHost())) {
+                    if (current_uri.getScheme().equals(redirect_uri.getScheme())) {
                         Toast.makeText(WebViewActivity.this, current_uri.getQuery(), Toast.LENGTH_LONG).show();
                         Log.d("UAE_PASS_QUERY", current_uri.getQuery());
                         finish();
@@ -280,6 +274,25 @@ public class WebViewActivity extends BaseActivity {
             } catch (URISyntaxException e) {
                 e.printStackTrace();
             }
+            return true;
+        }
+
+        @Override
+        public void onPageStarted(WebView view, String url, Bitmap favicon) {
+            mProgressBar.show();
+//            try {
+//                URI current_uri = new URI(url);
+//                if (redirect_url != null && redirect_url.length() != 0) {
+//                    URI redirect_uri = new URI(redirect_url);
+//                    if (current_uri.getScheme().equals(redirect_uri.getScheme())) {
+//                        Toast.makeText(WebViewActivity.this, current_uri.getQuery(), Toast.LENGTH_LONG).show();
+//                        Log.d("UAE_PASS_QUERY", current_uri.getQuery());
+//                        finish();
+//                    }
+//                }
+//            } catch (URISyntaxException e) {
+//                e.printStackTrace();
+//            }
             super.onPageStarted(view, url, favicon);
         }
 
