@@ -16,6 +16,7 @@ import android.webkit.WebChromeClient;
 import android.webkit.WebSettings;
 import android.webkit.WebView;
 import android.webkit.WebViewClient;
+import android.widget.Toast;
 
 import com.ajman.ded.ae.models.UserModel;
 import com.ajman.ded.ae.screens.base.BaseActivity;
@@ -23,6 +24,8 @@ import com.ajman.ded.ae.utility.SharedTool.UserData;
 
 import java.io.File;
 import java.io.IOException;
+import java.net.URI;
+import java.net.URISyntaxException;
 import java.text.SimpleDateFormat;
 import java.util.Date;
 import java.util.HashMap;
@@ -31,6 +34,7 @@ import java.util.Map;
 import androidx.core.widget.ContentLoadingProgressBar;
 import androidx.swiperefreshlayout.widget.SwipeRefreshLayout;
 
+import static com.ajman.ded.ae.utility.Constants.REDIRECT_URL_INTENT_KEY;
 import static com.ajman.ded.ae.utility.Constants.URL_INTENT_KEY;
 
 public class WebViewActivity extends BaseActivity {
@@ -42,6 +46,7 @@ public class WebViewActivity extends BaseActivity {
     private ValueCallback<Uri> mUM;
     private ValueCallback<Uri[]> mUMA;
     private SwipeRefreshLayout swipeContainer;
+    String redirect_url = "";
 
     @Override
     protected int getLayoutResource() {
@@ -79,6 +84,7 @@ public class WebViewActivity extends BaseActivity {
         webSettings.setAllowFileAccess(true);
         webSettings.setGeolocationEnabled(true);
         String url = getIntent().getStringExtra(URL_INTENT_KEY);
+        redirect_url = getIntent().getStringExtra(REDIRECT_URL_INTENT_KEY);
         mWebView.loadUrl(url, getHeaders());
         mWebView.setWebViewClient(new Callback());
         mWebView.setWebChromeClient(new WebChromeClient() {
@@ -261,6 +267,19 @@ public class WebViewActivity extends BaseActivity {
         @Override
         public void onPageStarted(WebView view, String url, Bitmap favicon) {
             mProgressBar.show();
+            try {
+                URI current_uri = new URI(url);
+                if (redirect_url != null && redirect_url.length() != 0) {
+                    URI redirect_uri = new URI(redirect_url);
+                    if (current_uri.getHost().equals(redirect_uri.getHost())) {
+                        Toast.makeText(WebViewActivity.this, current_uri.getQuery(), Toast.LENGTH_LONG).show();
+                        Log.d("UAE_PASS_QUERY", current_uri.getQuery());
+                        finish();
+                    }
+                }
+            } catch (URISyntaxException e) {
+                e.printStackTrace();
+            }
             super.onPageStarted(view, url, favicon);
         }
 

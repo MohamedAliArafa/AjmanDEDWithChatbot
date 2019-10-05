@@ -10,6 +10,7 @@ public interface Constants {
     String REGISTER_FRAGMENT_KEY = "register_fragment_key";
 
     String URL_INTENT_KEY = "url_intent_key";
+    String REDIRECT_URL_INTENT_KEY = "redirect_url_intent_key";
 
     interface links {
         String DOMAIN_EN = "Https://eservices.ajmanded.ae/en/";
