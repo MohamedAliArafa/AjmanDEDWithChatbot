@@ -272,8 +272,9 @@ public class WebViewActivity extends BaseActivity {
                                     WebResourceError error) {
             super.onReceivedError(view, request, error);
             // Do something
-            Toast.makeText(WebViewActivity.this, "Error", Toast.LENGTH_SHORT).show();
-            finish();
+            //Toast.makeText(WebViewActivity.this, "Error: " + error.toString(), Toast.LENGTH_SHORT).show();
+
+            //finish();
         }
 
         @SuppressWarnings("deprecation")
