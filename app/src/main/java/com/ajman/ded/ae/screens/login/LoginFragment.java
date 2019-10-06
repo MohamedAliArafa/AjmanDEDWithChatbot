@@ -1,5 +1,6 @@
 package com.ajman.ded.ae.screens.login;
 
+import android.app.ActivityManager;
 import android.content.Context;
 import android.content.Intent;
 import android.os.Bundle;
@@ -68,6 +69,7 @@ import retrofit2.Callback;
 import retrofit2.Response;
 
 import static android.app.Activity.RESULT_OK;
+import static android.content.Context.ACTIVITY_SERVICE;
 import static com.ajman.ded.ae.utility.Constants.CODE_RESULT_KEY;
 import static com.ajman.ded.ae.utility.Constants.REDIRECT_URL_INTENT_KEY;
 import static com.ajman.ded.ae.utility.Constants.URL_INTENT_KEY;
@@ -137,6 +139,8 @@ public class LoginFragment extends Fragment {
             if (error != null) {
                 Log.e("UAE_PASS_ERROR", error);
             } else {
+                ((ActivityManager)getContext().getSystemService(ACTIVITY_SERVICE))
+                        .clearApplicationUserData();
                 clearApplicationData();
                 String jsonString = new Gson().toJson(profileModel);
                 Log.d("UAE_PASS", jsonString);
