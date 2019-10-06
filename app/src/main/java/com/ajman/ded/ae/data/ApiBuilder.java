@@ -28,6 +28,7 @@ public class ApiBuilder {
 
     public static String NEWS_IMAGE_BASE_URL = "http://ded.sdg.ae/Ufiles/News/";
     public static String BASIC_BASE_URL = "http://site1.ajmanded.ae/";
+    public static String BASIC_TWO_BASE_URL = "http://site9.ajmanded.ae/";
     private static String NEWS_BASE_URL = "http://ded.sdg.ae/";
     private static String SITE_BASE_URL = "http://site4.ajmanded.ae";
 //    Authorization Endpoint :  https://qa-id.uaepass.ae/trustedx-authserver/oauth/main-as
@@ -53,6 +54,25 @@ public class ApiBuilder {
         Retrofit retrofit = new Retrofit.Builder()
                 .addConverterFactory(SimpleXmlConverterFactory.create(serializer))
                 .baseUrl(SITE_BASE_URL)
+                .build();
+
+        return retrofit.create(Api.class);
+
+    }
+    public static Api testBsMeshTestAwyApi() {
+
+        HttpLoggingInterceptor interceptor = new HttpLoggingInterceptor();
+
+        interceptor.setLevel(HttpLoggingInterceptor.Level.BODY);
+
+        Strategy strategy = new AnnotationStrategy();
+
+        Serializer serializer = new Persister(new Format("<?xml version=\"1.0\" encoding=\"utf-8\" ?>"));
+
+
+        Retrofit retrofit = new Retrofit.Builder()
+                .addConverterFactory(SimpleXmlConverterFactory.create(serializer))
+                .baseUrl(BASIC_TWO_BASE_URL)
                 .build();
 
         return retrofit.create(Api.class);

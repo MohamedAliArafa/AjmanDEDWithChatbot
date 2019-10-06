@@ -4,7 +4,7 @@ import org.simpleframework.xml.Element;
 import org.simpleframework.xml.Root;
 
 
-@Root(name = "soap12:Body", strict = false)
+@Root(name = "soap:Body", strict = false)
 public class RequestBody_OnlineUaePass {
 
     @Element(name = "OnlineUseUAEPAssInsertUpdate_json", required = false)

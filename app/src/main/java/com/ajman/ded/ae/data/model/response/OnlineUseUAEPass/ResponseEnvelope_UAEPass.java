@@ -7,15 +7,15 @@ import org.simpleframework.xml.NamespaceList;
 import org.simpleframework.xml.Root;
 
 
-@Root(name = "soap12:Envelope")
+@Root(name = "soap:Envelope")
 @NamespaceList({
         @Namespace(prefix = "xsi", reference = "http://www.w3.org/2001/XMLSchema-instance"),
         @Namespace(prefix = "xsd", reference = "http://www.w3.org/2001/XMLSchema"),
-        @Namespace(prefix = "soap12", reference = "http://www.w3.org/2003/05/soap-envelope")
+        @Namespace(prefix = "soap", reference = "http://schemas.xmlsoap.org/soap/envelope/")
 })
 public class ResponseEnvelope_UAEPass {
 
-    @Element(required = false, name = "soap12:Body")
+    @Element(required = false, name = "soap:Body")
     private ResponseBody_UAEPass body;
 
     public ResponseBody_UAEPass getBody() {

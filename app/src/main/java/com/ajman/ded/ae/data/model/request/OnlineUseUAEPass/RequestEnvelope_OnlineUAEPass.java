@@ -6,16 +6,16 @@ import org.simpleframework.xml.NamespaceList;
 import org.simpleframework.xml.Root;
 
 
-@Root(name = "soap12:Envelope")
+@Root(name = "soap:Envelope")
 @NamespaceList({
         @Namespace(prefix = "xsi", reference = "http://www.w3.org/2001/XMLSchema-instance"),
         @Namespace(prefix = "xsd", reference = "http://www.w3.org/2001/XMLSchema"),
-        @Namespace(prefix = "soap", reference = "http://www.w3.org/2003/05/soap-envelope")
+        @Namespace(prefix = "soap", reference = "http://schemas.xmlsoap.org/soap/envelope/")
 })
 
 public class RequestEnvelope_OnlineUAEPass {
 
-    @Element(name = "soap12:Body")
+    @Element(name = "soap:Body")
     private RequestBody_OnlineUaePass body;
 
     public RequestBody_OnlineUaePass getBody() {

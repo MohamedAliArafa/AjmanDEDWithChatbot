@@ -111,7 +111,7 @@ public class LoginFragment extends Fragment {
                     Toast.makeText(getContext(), "Sorry you need to register first", Toast.LENGTH_SHORT).show();
                 } else {
                     Toast.makeText(getContext(), "Welcome " + profileModel.getFullnameEN(), Toast.LENGTH_SHORT).show();
-                    api = ApiBuilder.providesApi();
+                    api = ApiBuilder.testBsMeshTestAwyApi();
                     RequestEnvelope_OnlineUAEPass envelope = new RequestEnvelope_OnlineUAEPass();
                     RequestBody_OnlineUaePass body = new RequestBody_OnlineUaePass();
                     RequestData_OnlineUaePass data = new RequestData_OnlineUaePass();
@@ -134,9 +134,7 @@ public class LoginFragment extends Fragment {
                                 Log.d("AccountResult:", String.valueOf(codeResult));
                                 Toast.makeText(getContext(), codeResult, Toast.LENGTH_SHORT).show();
                             } else {
-                                pDialog.setTitleText(getString(R.string.went_wrong))
-                                        .setConfirmText(getString(R.string.ok))
-                                        .changeAlertType(SweetAlertDialog.ERROR_TYPE);
+                                Toast.makeText(getContext(), "Error", Toast.LENGTH_SHORT);
                             }
                         }
 
