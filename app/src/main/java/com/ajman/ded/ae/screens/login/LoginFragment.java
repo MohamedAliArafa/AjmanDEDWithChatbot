@@ -11,6 +11,7 @@ import android.widget.Button;
 import android.widget.EditText;
 import android.widget.FrameLayout;
 import android.widget.TextView;
+import android.widget.TimePicker;
 import android.widget.Toast;
 
 import com.ajman.ded.ae.MyApplication;
@@ -25,11 +26,15 @@ import com.ajman.ded.ae.data.model.request.ConfirmCode.RequestEnvelope_ConfirmCo
 import com.ajman.ded.ae.data.model.request.GetAccount.RequestBody_GetAccount;
 import com.ajman.ded.ae.data.model.request.GetAccount.RequestData_GetAccount;
 import com.ajman.ded.ae.data.model.request.GetAccount.RequestEnvelope_GetAccount;
+import com.ajman.ded.ae.data.model.request.OnlineUseUAEPass.RequestBody_OnlineUaePass;
+import com.ajman.ded.ae.data.model.request.OnlineUseUAEPass.RequestData_OnlineUaePass;
+import com.ajman.ded.ae.data.model.request.OnlineUseUAEPass.RequestEnvelope_OnlineUAEPass;
 import com.ajman.ded.ae.data.model.request.UserId.RequestBody_UserId;
 import com.ajman.ded.ae.data.model.request.UserId.RequestData_UserId;
 import com.ajman.ded.ae.data.model.request.UserId.RequestEnvelope_UserId;
 import com.ajman.ded.ae.data.model.response.ConfirmCode.ResponseEnvelope_ConfirmCode;
 import com.ajman.ded.ae.data.model.response.GetAccount.ResponseEnvelope_GetAccount;
+import com.ajman.ded.ae.data.model.response.OnlineUseUAEPass.ResponseEnvelope_UAEPass;
 import com.ajman.ded.ae.data.model.response.UserId.ResponseEnvelope_UserId;
 import com.ajman.ded.ae.models.UserIdResponse;
 import com.ajman.ded.ae.models.UserModel;
@@ -96,16 +101,50 @@ public class LoginFragment extends Fragment {
      */
     private void getProfile() {
         UAEPassProfileRequestModel requestModel = UAEPassRequestModels.getProfileRequestModel(getContext());
-        UAEPassController.getInstance().getUserProfile(getContext(), requestModel, new UAEPassProfileCallback() {
-
-            @Override
-            public void getProfile(ProfileModel profileModel, String error) {
-                if (error != null) {
-                    Toast.makeText(getContext(), "Error while getting access token", Toast.LENGTH_SHORT).show();
+        UAEPassController.getInstance().getUserProfile(getContext(), requestModel, (profileModel, error) -> {
+            if (error != null) {
+                Toast.makeText(getContext(), "Error while getting access token", Toast.LENGTH_SHORT).show();
+            } else {
+                String jsonString = new Gson().toJson(profileModel);
+                Log.d("UAE_PASS", jsonString);
+                if (profileModel.getUserType().equals("SOP1")) {
+                    Toast.makeText(getContext(), "Sorry you need to register first", Toast.LENGTH_SHORT).show();
                 } else {
-                    String jsonString = new Gson().toJson(profileModel);
-                    Log.d("UAE_PASS", jsonString);
                     Toast.makeText(getContext(), "Welcome " + profileModel.getFullnameEN(), Toast.LENGTH_SHORT).show();
+                    api = ApiBuilder.providesApi();
+                    RequestEnvelope_OnlineUAEPass envelope = new RequestEnvelope_OnlineUAEPass();
+                    RequestBody_OnlineUaePass body = new RequestBody_OnlineUaePass();
+                    RequestData_OnlineUaePass data = new RequestData_OnlineUaePass();
+                    data.setMobile(profileModel.getMobile());
+                    data.setEmail(profileModel.getEmail());
+                    data.setIdn(profileModel.getIdn());
+                    data.setFullnameAR(profileModel.getFullnameAR());
+                    data.setFullnameEN(profileModel.getFullnameEN());
+                    data.setPassportNumber(profileModel.getPassportNumber());
+                    data.setUuid(profileModel.getSub());
+                    body.setRequestData(data);
+                    envelope.setBody(body);
+                    Call<ResponseEnvelope_UAEPass> call = api.registerUAEPassProfile(envelope);
+                    call.enqueue(new retrofit2.Callback<ResponseEnvelope_UAEPass>() {
+
+                        @Override
+                        public void onResponse(@NonNull Call<ResponseEnvelope_UAEPass> call, @NonNull Response<ResponseEnvelope_UAEPass> response) {
+                            if (response.isSuccessful()) {
+                                String codeResult = response.body().getBody().getData().getAccountResult();
+                                Log.d("AccountResult:", String.valueOf(codeResult));
+                                Toast.makeText(getContext(), codeResult, Toast.LENGTH_SHORT).show();
+                            } else {
+                                pDialog.setTitleText(getString(R.string.went_wrong))
+                                        .setConfirmText(getString(R.string.ok))
+                                        .changeAlertType(SweetAlertDialog.ERROR_TYPE);
+                            }
+                        }
+
+                        @Override
+                        public void onFailure(@NonNull Call<ResponseEnvelope_UAEPass> call, @NonNull Throwable t) {
+                            Log.d("PIN ERROR:", String.valueOf(t));
+                        }
+                    });
                 }
             }
         });
@@ -114,23 +153,6 @@ public class LoginFragment extends Fragment {
     @Override
     public void onAttach(Context context) {
         super.onAttach(context);
-        getProfile();
-//        Intent uaePass = new Intent(getContext(), WebViewActivity.class);
-//        uaePass.putExtra(REDIRECT_URL_INTENT_KEY, REDIRECT_URL);
-//        uaePass.putExtra(URL_INTENT_KEY, "https://qa-id.uaepass.ae/trustedx-authserver/oauth/main-as?" +
-//                "redirect_uri=" + REDIRECT_URL + "&" +
-//                "client_id=" + UAE_PASS_CLIENT_ID + "&" +
-//                "response_type=code&" +
-//                "state=ShNP22hyl1jUU2RGjTRkpg==&" +
-//                "scope=urn:uae:digitalid:profile&" +
-//                "acr_values =urn:safelayer:tws:policies:authentication:level:low&" +
-//                "ui_locales=en");
-//        Objects.requireNonNull(getActivity()).startActivityForResult(uaePass, webViewRequestCode);
-    }
-
-    @Override
-    public void onActivityResult(int requestCode, int resultCode, Intent data) {
-        super.onActivityResult(requestCode, resultCode, data);
     }
 
     @Override
