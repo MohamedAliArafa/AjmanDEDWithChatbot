@@ -132,9 +132,17 @@ public class LoginFragment extends Fragment {
                             if (response.isSuccessful()) {
                                 String codeResult = response.body().getBody().getData().getAccountResult();
                                 Log.d("AccountResult:", String.valueOf(codeResult));
-                                Toast.makeText(getContext(), codeResult, Toast.LENGTH_SHORT).show();
+                                Gson gson = new Gson();
+                                UserIdResponse[] list = gson.fromJson(codeResult, UserIdResponse[].class);
+                                List<UserIdResponse> models = new ArrayList<>();
+                                models.addAll(Arrays.asList(list));
+                                ActivityCompat.finishAffinity(getActivity());
+                                MyApplication.get(getActivity()).addUser(username.getText().toString(), password.getText().toString());
+                                UserModel model = new UserModel(profileModel.getEmail(), "", models.get(0).getId(), profileModel.getFullnameAR(), profileModel.getFullnameEN());
+                                UserData.saveUserObject(getActivity(), model, true);
+                                startActivity(new Intent(getActivity(), IntroActivity.class).addFlags(Intent.FLAG_ACTIVITY_NO_HISTORY));
                             } else {
-                                Toast.makeText(getContext(), "Error", Toast.LENGTH_SHORT);
+                                Toast.makeText(getContext(), "Error", Toast.LENGTH_SHORT).show();
                             }
                         }
 
