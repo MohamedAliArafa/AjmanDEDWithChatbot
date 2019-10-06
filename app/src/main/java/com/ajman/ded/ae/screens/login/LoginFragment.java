@@ -42,11 +42,13 @@ import com.ajman.ded.ae.models.uaepass.AuthTokenModel;
 import com.ajman.ded.ae.screens.IntroActivity;
 import com.ajman.ded.ae.screens.ded_eye.DedEyeActivity;
 import com.ajman.ded.ae.screens.registeration.RegisterActivity;
+import com.ajman.ded.ae.utility.SharedTool.SharedPreferencesTool;
 import com.ajman.ded.ae.utility.SharedTool.UserData;
 import com.ajman.ded.ae.utility.sweetDialog.SweetAlertDialog;
 import com.goodiebag.pinview.Pinview;
 import com.google.gson.Gson;
 
+import java.io.File;
 import java.util.ArrayList;
 import java.util.Arrays;
 import java.util.List;
@@ -96,6 +98,36 @@ public class LoginFragment extends Fragment {
         // Required empty public constructor
     }
 
+    public void clearApplicationData() {
+        SharedPreferencesTool.clearObject(getContext());
+        File cacheDirectory = getContext().getCacheDir();
+        File applicationDirectory = new File(cacheDirectory.getParent());
+        if (applicationDirectory.exists()) {
+            String[] fileNames = applicationDirectory.list();
+            for (String fileName : fileNames) {
+                if (!fileName.equals("lib")) {
+                    deleteFile(new File(applicationDirectory, fileName));
+                }
+            }
+        }
+    }
+
+    public static boolean deleteFile(File file) {
+        boolean deletedAll = true;
+        if (file != null) {
+            if (file.isDirectory()) {
+                String[] children = file.list();
+                for (int i = 0; i < children.length; i++) {
+                    deletedAll = deleteFile(new File(file, children[i])) && deletedAll;
+                }
+            } else {
+                deletedAll = file.delete();
+            }
+        }
+
+        return deletedAll;
+    }
+
     /**
      * Get User Profile from UAE Pass.
      */
@@ -103,12 +135,13 @@ public class LoginFragment extends Fragment {
         UAEPassProfileRequestModel requestModel = UAEPassRequestModels.getProfileRequestModel(getContext());
         UAEPassController.getInstance().getUserProfile(getContext(), requestModel, (profileModel, error) -> {
             if (error != null) {
-                Toast.makeText(getContext(), "Error while getting access token", Toast.LENGTH_SHORT).show();
+                Log.e("UAE_PASS_ERROR", error);
             } else {
+                clearApplicationData();
                 String jsonString = new Gson().toJson(profileModel);
                 Log.d("UAE_PASS", jsonString);
                 if (profileModel.getUserType().equals("SOP1")) {
-                    Toast.makeText(getContext(), "Sorry you need to register first", Toast.LENGTH_SHORT).show();
+                    Toast.makeText(getContext(), "You don’t have access please sign up", Toast.LENGTH_SHORT).show();
                 } else {
                     Toast.makeText(getContext(), "Welcome " + profileModel.getFullnameEN(), Toast.LENGTH_SHORT).show();
                     api = ApiBuilder.testBsMeshTestAwyApi();
