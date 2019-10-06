@@ -138,10 +138,11 @@ public class LoginFragment extends Fragment {
         UAEPassController.getInstance().getUserProfile(getContext(), requestModel, (profileModel, error) -> {
             if (error != null) {
                 Log.e("UAE_PASS_ERROR", error);
+                Toast.makeText(getContext(), "Failed to login", Toast.LENGTH_SHORT).show();
             } else {
-                ((ActivityManager)getContext().getSystemService(ACTIVITY_SERVICE))
-                        .clearApplicationUserData();
-                clearApplicationData();
+//                ((ActivityManager)getContext().getSystemService(ACTIVITY_SERVICE))
+//                        .clearApplicationUserData();
+//                clearApplicationData();
                 String jsonString = new Gson().toJson(profileModel);
                 Log.d("UAE_PASS", jsonString);
                 if (profileModel.getUserType().equals("SOP1")) {
