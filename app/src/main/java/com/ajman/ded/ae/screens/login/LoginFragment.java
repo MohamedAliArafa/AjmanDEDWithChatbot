@@ -3,11 +3,14 @@ package com.ajman.ded.ae.screens.login;
 import android.app.ActivityManager;
 import android.content.Context;
 import android.content.Intent;
+import android.os.Build;
 import android.os.Bundle;
 import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
+import android.webkit.CookieManager;
+import android.webkit.CookieSyncManager;
 import android.widget.Button;
 import android.widget.EditText;
 import android.widget.FrameLayout;
@@ -100,6 +103,23 @@ public class LoginFragment extends Fragment {
         // Required empty public constructor
     }
 
+    @SuppressWarnings("deprecation")
+    public void clearCookies(Context context) {
+        if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.LOLLIPOP_MR1) {
+            CookieManager.getInstance().removeAllCookies(null);
+            CookieManager.getInstance().flush();
+        } else {
+            CookieSyncManager cookieSyncMngr= CookieSyncManager.createInstance(context);
+            cookieSyncMngr.startSync();
+            CookieManager cookieManager= CookieManager.getInstance();
+            cookieManager.removeAllCookie();
+            cookieManager.removeSessionCookie();
+            cookieSyncMngr.stopSync();
+            cookieSyncMngr.sync();
+        }
+    }
+
+
     public void clearApplicationData() {
         SharedPreferencesTool.clearObject(getContext());
         File cacheDirectory = getContext().getCacheDir();
@@ -142,7 +162,8 @@ public class LoginFragment extends Fragment {
             } else {
 //                ((ActivityManager)getContext().getSystemService(ACTIVITY_SERVICE))
 //                        .clearApplicationUserData();
-//                clearApplicationData();
+                clearApplicationData();
+                clearCookies(getContext());
                 String jsonString = new Gson().toJson(profileModel);
                 Log.d("UAE_PASS", jsonString);
                 if (profileModel.getUserType().equals("SOP1")) {
