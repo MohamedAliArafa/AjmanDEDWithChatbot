@@ -17,16 +17,16 @@ import ae.sdg.libraryuaepass.business.profile.model.UAEPassProfileRequestModel;
  */
 public class UAEPassRequestModels {
 
-    private static final String UAE_PASS_CLIENT_ID = "ajm_ded_mob_stage";
-    private static final String UAE_PASS_CLIENT_SECRET = "QYknfXVshPZmPlsq";
-    private static final String REDIRECT_URL = "ajmanded://ded.sdg.ae/pass/success";
+    private static final String UAE_PASS_CLIENT_ID = "ajm_ded_mobile_prod";
+    private static final String UAE_PASS_CLIENT_SECRET = "PbT810O0liLqDYc";
+    private static final String REDIRECT_URL = "ajmanded://ajmanded.sdg.ae/success";
     private static final String DOCUMENT_SIGNING_SCOPE = "urn:safelayer:eidas:sign:process:document";
     private static final String RESPONSE_TYPE = "code";
     private static final String SCOPE = "urn:uae:digitalid:profile";
     private static final String ACR_VALUES_MOBILE = "urn:digitalid:authentication:flow:mobileondevice";
     private static final String ACR_VALUES_WEB = "urn:safelayer:tws:policies:authentication:level:low";
     private static final String UAE_PASS_PACKAGE_ID = "ae.uaepass.mainapp";
-    private static final Environment UAE_PASS_ENVIRONMENT = Environment.STAGING;
+    private static final Environment UAE_PASS_ENVIRONMENT = Environment.PRODUCTION;
 
 
     private static boolean isPackageInstalled(String packageName, PackageManager packageManager) {
