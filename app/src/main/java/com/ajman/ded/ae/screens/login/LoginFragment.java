@@ -63,8 +63,10 @@ import androidx.annotation.Nullable;
 import androidx.core.app.ActivityCompat;
 import androidx.fragment.app.Fragment;
 
+import ae.sdg.libraryuaepass.UAEPassAccessTokenCallback;
 import ae.sdg.libraryuaepass.UAEPassController;
 import ae.sdg.libraryuaepass.UAEPassProfileCallback;
+import ae.sdg.libraryuaepass.business.authentication.model.UAEPassAccessTokenRequestModel;
 import ae.sdg.libraryuaepass.business.profile.model.ProfileModel;
 import ae.sdg.libraryuaepass.business.profile.model.UAEPassProfileRequestModel;
 import retrofit2.Call;
@@ -154,63 +156,69 @@ public class LoginFragment extends Fragment {
      * Get User Profile from UAE Pass.
      */
     private void getProfile() {
-        UAEPassProfileRequestModel requestModel = UAEPassRequestModels.getProfileRequestModel(getContext());
-        UAEPassController.getInstance().getUserProfile(getContext(), requestModel, (profileModel, error) -> {
+        UAEPassAccessTokenRequestModel requestModel = UAEPassRequestModels.getAuthenticationRequestModel(getContext());
+        UAEPassController.getInstance().getAccessToken(getContext(), requestModel, (accessToken, error) -> {
             if (error != null) {
-                Log.e("UAE_PASS_ERROR", error);
-                Toast.makeText(getContext(), "Failed to login", Toast.LENGTH_SHORT).show();
+                Toast.makeText(getContext(), error, Toast.LENGTH_SHORT).show();
             } else {
-//                ((ActivityManager)getContext().getSystemService(ACTIVITY_SERVICE))
-//                        .clearApplicationUserData();
-                clearApplicationData();
-                clearCookies(getContext());
-                String jsonString = new Gson().toJson(profileModel);
-                Log.d("UAE_PASS", jsonString);
-                if (profileModel.getUserType().equals("SOP1")) {
-                    Toast.makeText(getContext(), "You don’t have access please sign up", Toast.LENGTH_SHORT).show();
-                } else {
-                    Toast.makeText(getContext(), "Welcome " + profileModel.getFullnameEN(), Toast.LENGTH_SHORT).show();
-                    api = ApiBuilder.testBsMeshTestAwyApi();
-                    RequestEnvelope_OnlineUAEPass envelope = new RequestEnvelope_OnlineUAEPass();
-                    RequestBody_OnlineUaePass body = new RequestBody_OnlineUaePass();
-                    RequestData_OnlineUaePass data = new RequestData_OnlineUaePass();
-                    data.setMobile(profileModel.getMobile());
-                    data.setEmail(profileModel.getEmail());
-                    data.setIdn(profileModel.getIdn());
-                    data.setFullnameAR(profileModel.getFullnameAR());
-                    data.setFullnameEN(profileModel.getFullnameEN());
-                    data.setPassportNumber(profileModel.getPassportNumber());
-                    data.setUuid(profileModel.getSub());
-                    body.setRequestData(data);
-                    envelope.setBody(body);
-                    Call<ResponseEnvelope_UAEPass> call = api.registerUAEPassProfile(envelope);
-                    call.enqueue(new retrofit2.Callback<ResponseEnvelope_UAEPass>() {
+//                Toast.makeText(getContext(), "Access Token Received", Toast.LENGTH_SHORT).show();
+                UAEPassProfileRequestModel profileRequestModel = UAEPassRequestModels.getProfileRequestModel(getContext());
+                UAEPassController.getInstance().getUserProfile(getContext(), profileRequestModel, (profileModel, profileError) -> {
+                    if (profileError != null) {
+                        Log.e("UAE_PASS_ERROR", profileError);
+                        Toast.makeText(getContext(), "Failed to login", Toast.LENGTH_SHORT).show();
+                    } else {
+                        clearApplicationData();
+                        clearCookies(getContext());
+                        String jsonString = new Gson().toJson(profileModel);
+                        Log.d("UAE_PASS", jsonString);
+                        if (profileModel.getUserType().equals("SOP1")) {
+                            Toast.makeText(getContext(), "You don’t have access please sign up", Toast.LENGTH_SHORT).show();
+                        } else {
+                            Toast.makeText(getContext(), "Welcome " + profileModel.getFullnameEN(), Toast.LENGTH_SHORT).show();
+                            api = ApiBuilder.testBsMeshTestAwyApi();
+                            RequestEnvelope_OnlineUAEPass envelope = new RequestEnvelope_OnlineUAEPass();
+                            RequestBody_OnlineUaePass body = new RequestBody_OnlineUaePass();
+                            RequestData_OnlineUaePass data = new RequestData_OnlineUaePass();
+                            data.setMobile(profileModel.getMobile());
+                            data.setEmail(profileModel.getEmail());
+                            data.setIdn(profileModel.getIdn());
+                            data.setFullnameAR(profileModel.getFullnameAR());
+                            data.setFullnameEN(profileModel.getFullnameEN());
+                            data.setPassportNumber(profileModel.getPassportNumber());
+                            data.setUuid(profileModel.getSub());
+                            body.setRequestData(data);
+                            envelope.setBody(body);
+                            Call<ResponseEnvelope_UAEPass> call = api.registerUAEPassProfile(envelope);
+                            call.enqueue(new retrofit2.Callback<ResponseEnvelope_UAEPass>() {
 
-                        @Override
-                        public void onResponse(@NonNull Call<ResponseEnvelope_UAEPass> call, @NonNull Response<ResponseEnvelope_UAEPass> response) {
-                            if (response.isSuccessful()) {
-                                String codeResult = response.body().getBody().getData().getAccountResult();
-                                Log.d("AccountResult:", String.valueOf(codeResult));
-                                Gson gson = new Gson();
-                                UserIdResponse[] list = gson.fromJson(codeResult, UserIdResponse[].class);
-                                List<UserIdResponse> models = new ArrayList<>();
-                                models.addAll(Arrays.asList(list));
-                                ActivityCompat.finishAffinity(getActivity());
-                                MyApplication.get(getActivity()).addUser(username.getText().toString(), password.getText().toString());
-                                UserModel model = new UserModel(profileModel.getEmail(), "", models.get(0).getId(), profileModel.getFullnameAR(), profileModel.getFullnameEN());
-                                UserData.saveUserObject(getActivity(), model, true);
-                                startActivity(new Intent(getActivity(), IntroActivity.class).addFlags(Intent.FLAG_ACTIVITY_NO_HISTORY));
-                            } else {
-                                Toast.makeText(getContext(), "Error", Toast.LENGTH_SHORT).show();
-                            }
-                        }
+                                @Override
+                                public void onResponse(@NonNull Call<ResponseEnvelope_UAEPass> call, @NonNull Response<ResponseEnvelope_UAEPass> response) {
+                                    if (response.isSuccessful()) {
+                                        String codeResult = response.body().getBody().getData().getAccountResult();
+                                        Log.d("AccountResult:", String.valueOf(codeResult));
+                                        Gson gson = new Gson();
+                                        UserIdResponse[] list = gson.fromJson(codeResult, UserIdResponse[].class);
+                                        List<UserIdResponse> models = new ArrayList<>();
+                                        models.addAll(Arrays.asList(list));
+                                        ActivityCompat.finishAffinity(getActivity());
+                                        MyApplication.get(getActivity()).addUser(username.getText().toString(), password.getText().toString());
+                                        UserModel model = new UserModel(profileModel.getEmail(), "", models.get(0).getId(), profileModel.getFullnameAR(), profileModel.getFullnameEN());
+                                        UserData.saveUserObject(getActivity(), model, true);
+                                        startActivity(new Intent(getActivity(), IntroActivity.class).addFlags(Intent.FLAG_ACTIVITY_NO_HISTORY));
+                                    } else {
+                                        Toast.makeText(getContext(), "Error", Toast.LENGTH_SHORT).show();
+                                    }
+                                }
 
-                        @Override
-                        public void onFailure(@NonNull Call<ResponseEnvelope_UAEPass> call, @NonNull Throwable t) {
-                            Log.d("PIN ERROR:", String.valueOf(t));
+                                @Override
+                                public void onFailure(@NonNull Call<ResponseEnvelope_UAEPass> call, @NonNull Throwable t) {
+                                    Log.d("PIN ERROR:", String.valueOf(t));
+                                }
+                            });
                         }
-                    });
-                }
+                    }
+                });
             }
         });
     }
