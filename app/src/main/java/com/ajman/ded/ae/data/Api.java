@@ -105,7 +105,7 @@ public interface Api {
     @POST(BASE)
     Call<ResponseEnvelope_ConfirmCode> requestConfirmCodeCall(@Query("op") String param, @Body RequestEnvelope_ConfirmCode body);
 
-    @Headers({"Content-Type: application/soap+xml; charset=utf-8"})
+    @Headers({"Content-Type: text/xml; charset=utf-8"})
     @POST(BASE)
     Call<ResponseEnvelope_UAEPass> registerUAEPassProfile(@Body RequestEnvelope_OnlineUAEPass body);
 

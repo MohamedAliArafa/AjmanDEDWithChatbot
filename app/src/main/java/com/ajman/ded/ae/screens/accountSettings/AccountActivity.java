@@ -1,12 +1,16 @@
 package com.ajman.ded.ae.screens.accountSettings;
 
 
+import android.content.Context;
 import android.content.Intent;
+import android.os.Build;
 import android.os.Bundle;
 import android.view.Menu;
 import android.view.MenuInflater;
 import android.view.MenuItem;
 import android.view.View;
+import android.webkit.CookieManager;
+import android.webkit.CookieSyncManager;
 import android.widget.TextView;
 
 import com.ajman.ded.ae.FaqActivity;
@@ -17,6 +21,7 @@ import com.ajman.ded.ae.screens.language.LangFragment;
 import com.ajman.ded.ae.screens.login.LoginFragment;
 import com.ajman.ded.ae.screens.loginMenu.LoginMenuFragment;
 import com.ajman.ded.ae.screens.main.MainContract;
+import com.ajman.ded.ae.utility.SharedTool.SharedPreferencesTool;
 import com.ajman.ded.ae.utility.SharedTool.UserData;
 
 import androidx.annotation.Nullable;
@@ -24,6 +29,8 @@ import androidx.core.app.ActivityCompat;
 import androidx.fragment.app.Fragment;
 import androidx.fragment.app.FragmentManager;
 import androidx.fragment.app.FragmentTransaction;
+
+import java.io.File;
 
 /**
  * A simple {@link Fragment} subclass.
@@ -34,6 +41,53 @@ public class AccountActivity extends BaseActivity implements MainContract.ModelV
 
     public AccountActivity() {
         // Required empty public constructor
+    }
+
+    @SuppressWarnings("deprecation")
+    public void clearCookies(Context context) {
+        if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.LOLLIPOP_MR1) {
+            CookieManager.getInstance().removeAllCookies(null);
+            CookieManager.getInstance().flush();
+        } else {
+            CookieSyncManager cookieSyncMngr= CookieSyncManager.createInstance(context);
+            cookieSyncMngr.startSync();
+            CookieManager cookieManager= CookieManager.getInstance();
+            cookieManager.removeAllCookie();
+            cookieManager.removeSessionCookie();
+            cookieSyncMngr.stopSync();
+            cookieSyncMngr.sync();
+        }
+    }
+
+
+    public void clearApplicationData() {
+        SharedPreferencesTool.clearObject(this);
+        File cacheDirectory = getCacheDir();
+        File applicationDirectory = new File(cacheDirectory.getParent());
+        if (applicationDirectory.exists()) {
+            String[] fileNames = applicationDirectory.list();
+            for (String fileName : fileNames) {
+                if (!fileName.equals("lib")) {
+                    deleteFile(new File(applicationDirectory, fileName));
+                }
+            }
+        }
+    }
+
+    public static boolean deleteFile(File file) {
+        boolean deletedAll = true;
+        if (file != null) {
+            if (file.isDirectory()) {
+                String[] children = file.list();
+                for (int i = 0; i < children.length; i++) {
+                    deletedAll = deleteFile(new File(file, children[i])) && deletedAll;
+                }
+            } else {
+                deletedAll = file.delete();
+            }
+        }
+
+        return deletedAll;
     }
 
     @Override
@@ -53,6 +107,8 @@ public class AccountActivity extends BaseActivity implements MainContract.ModelV
             logout = findViewById(R.id.logout);
             logout.setOnClickListener(view13 -> {
                 UserData.clearUser(this);
+                clearApplicationData();
+                clearCookies(this);
                 ActivityCompat.finishAffinity(this);
                 startActivity(new Intent(this, HomeActivity.class));
             });

@@ -338,6 +338,9 @@
     <string name="you_can_shake_phone_to_open_a_new_notification">You can Shake Phone to open a new Notification</string>
     <string name="please_login_first_to_use_the_new_service">Please Login First to use the new service</string>
     <string name="sendrate">Send Rate</string>
+    <string name="user_cancel_login_error_msg">Login was unsuccessful!</string>
+    <string name="sop1_Unverified_user_error_msg">Authorization Error!</string>
+    <string name="login_success">Login successfully</string>
 
 
 </resources>

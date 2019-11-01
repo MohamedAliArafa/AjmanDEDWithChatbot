@@ -159,7 +159,9 @@ public class LoginFragment extends Fragment {
         UAEPassAccessTokenRequestModel requestModel = UAEPassRequestModels.getAuthenticationRequestModel(getContext());
         UAEPassController.getInstance().getAccessToken(getContext(), requestModel, (accessToken, error) -> {
             if (error != null) {
-                Toast.makeText(getContext(), error, Toast.LENGTH_SHORT).show();
+                if (!error.equals("No Intent available to handle action")){
+                    Toast.makeText(getContext(), R.string.user_cancel_login_error_msg , Toast.LENGTH_SHORT).show();
+                }
             } else {
 //                Toast.makeText(getContext(), "Access Token Received", Toast.LENGTH_SHORT).show();
                 UAEPassProfileRequestModel profileRequestModel = UAEPassRequestModels.getProfileRequestModel(getContext());
@@ -173,9 +175,9 @@ public class LoginFragment extends Fragment {
                         String jsonString = new Gson().toJson(profileModel);
                         Log.d("UAE_PASS", jsonString);
                         if (profileModel.getUserType().equals("SOP1")) {
-                            Toast.makeText(getContext(), "You don’t have access please sign up", Toast.LENGTH_SHORT).show();
+                            Toast.makeText(getContext(), R.string.sop1_Unverified_user_error_msg, Toast.LENGTH_SHORT).show();
                         } else {
-                            Toast.makeText(getContext(), "Welcome " + profileModel.getFullnameEN(), Toast.LENGTH_SHORT).show();
+                            Toast.makeText(getContext(), R.string.login_success , Toast.LENGTH_SHORT).show();
                             api = ApiBuilder.providesApi();
                             RequestEnvelope_OnlineUAEPass envelope = new RequestEnvelope_OnlineUAEPass();
                             RequestBody_OnlineUaePass body = new RequestBody_OnlineUaePass();

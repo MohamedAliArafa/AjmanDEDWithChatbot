@@ -294,5 +294,8 @@
     <string name="please_login_first_to_use_the_new_service">الرجاء تسجبل الدخول أولا لإستخدام خدمة عين الدائرة</string>
     <string name="be_an_ded_eye_by_reporting_any_violations_or_abuse">كن عينا للدائرة  بالإبلاغ عن أي تجاوز أو مخالفة</string>
     <string name="sendrate">إرسال التقييم</string>
+    <string name="user_cancel_login_error_msg">لم يتم تسجيل الدخول بنجاح</string>
+    <string name="sop1_Unverified_user_error_msg">خطأ – حسابك غير مصرح له بالدخول</string>
+    <string name="login_success">تم تسجيل الدخول بنجاح</string>
 
 </resources>

@@ -15,7 +15,7 @@ import org.simpleframework.xml.Root;
 })
 public class ResponseEnvelope_UAEPass {
 
-    @Element(required = false, name = "soap:Body")
+    @Element(required = false, name = "Body")
     private ResponseBody_UAEPass body;
 
     public ResponseBody_UAEPass getBody() {
