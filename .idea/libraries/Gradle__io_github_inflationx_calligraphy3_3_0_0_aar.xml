@@ -1,8 +1,8 @@
 <component name="libraryTable">
   <library name="Gradle: io.github.inflationx:calligraphy3:3.0.0@aar">
     <CLASSES>
-      <root url="file://$USER_HOME$/.gradle/caches/transforms-2/files-2.1/00a8e6c565eadc616d0405a9ee75a415/res" />
-      <root url="jar://$USER_HOME$/.gradle/caches/transforms-2/files-2.1/00a8e6c565eadc616d0405a9ee75a415/jars/classes.jar!/" />
+      <root url="jar://$USER_HOME$/.gradle/caches/transforms-2/files-2.1/80beba81f96e75290d11bd1e6b5a81b9/jars/classes.jar!/" />
+      <root url="file://$USER_HOME$/.gradle/caches/transforms-2/files-2.1/80beba81f96e75290d11bd1e6b5a81b9/res" />
     </CLASSES>
     <JAVADOC />
     <SOURCES>

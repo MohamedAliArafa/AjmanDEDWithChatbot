@@ -45,6 +45,7 @@ import com.ajman.ded.ae.models.UserModel;
 import com.ajman.ded.ae.models.uaepass.AuthTokenModel;
 import com.ajman.ded.ae.screens.IntroActivity;
 import com.ajman.ded.ae.screens.ded_eye.DedEyeActivity;
+import com.ajman.ded.ae.screens.home.HomeActivity;
 import com.ajman.ded.ae.screens.registeration.RegisterActivity;
 import com.ajman.ded.ae.utility.SharedTool.SharedPreferencesTool;
 import com.ajman.ded.ae.utility.SharedTool.UserData;
@@ -111,9 +112,9 @@ public class LoginFragment extends Fragment {
             CookieManager.getInstance().removeAllCookies(null);
             CookieManager.getInstance().flush();
         } else {
-            CookieSyncManager cookieSyncMngr= CookieSyncManager.createInstance(context);
+            CookieSyncManager cookieSyncMngr = CookieSyncManager.createInstance(context);
             cookieSyncMngr.startSync();
-            CookieManager cookieManager= CookieManager.getInstance();
+            CookieManager cookieManager = CookieManager.getInstance();
             cookieManager.removeAllCookie();
             cookieManager.removeSessionCookie();
             cookieSyncMngr.stopSync();
@@ -174,6 +175,16 @@ public class LoginFragment extends Fragment {
                         Log.d("UAE_PASS", jsonString);
                         if (profileModel.getUserType().equals("SOP1")) {
                             Toast.makeText(getContext(), "You don’t have access please sign up", Toast.LENGTH_SHORT).show();
+                            new SweetAlertDialog(getContext(), SweetAlertDialog.WARNING_TYPE)
+                                    .setTitleText(getString(R.string.sop1_dialog_title))
+                                    .setContentText(getString(R.string.sop1_dialog_content))
+                                    .setConfirmText(getString(R.string.sop1_dialog_button))
+                                    .setConfirmClickListener(sDialog -> {
+                                        sDialog.dismissWithAnimation();
+                                        startActivity(new Intent(getActivity(), HomeActivity.class)
+                                                .addFlags(Intent.FLAG_ACTIVITY_NO_HISTORY));
+                                    })
+                                    .show();
                         } else {
                             Toast.makeText(getContext(), "Welcome " + profileModel.getFullnameEN(), Toast.LENGTH_SHORT).show();
                             api = ApiBuilder.providesApi();

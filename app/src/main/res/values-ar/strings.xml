@@ -294,5 +294,8 @@
     <string name="please_login_first_to_use_the_new_service">الرجاء تسجبل الدخول أولا لإستخدام خدمة عين الدائرة</string>
     <string name="be_an_ded_eye_by_reporting_any_violations_or_abuse">كن عينا للدائرة  بالإبلاغ عن أي تجاوز أو مخالفة</string>
     <string name="sendrate">إرسال التقييم</string>
+    <string name="sop1_dialog_button">الذهاب للرئيسية</string>
+    <string name="sop1_dialog_content">حسابك لايحتوي علي مستوي توقيع معتمد, الرجاء زيارة أقرب منفذ خدمة لترقية حسابك في الهوية الرقمية</string>
+    <string name="sop1_dialog_title">تحذير</string>
 
 </resources>
