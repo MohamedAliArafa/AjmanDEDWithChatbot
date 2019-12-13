@@ -344,6 +344,4 @@
     <string name="user_cancel_login_error_msg">Login was unsuccessful!</string>
     <string name="sop1_Unverified_user_error_msg">Authorization Error!</string>
     <string name="login_success">Login successfully</string>
-
-
 </resources>
