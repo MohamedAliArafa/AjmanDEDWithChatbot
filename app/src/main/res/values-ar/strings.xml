@@ -297,5 +297,8 @@
     <string name="sop1_dialog_button">الذهاب للرئيسية</string>
     <string name="sop1_dialog_content">حسابك لايحتوي علي مستوي توقيع معتمد, الرجاء زيارة أقرب منفذ خدمة لترقية حسابك في الهوية الرقمية</string>
     <string name="sop1_dialog_title">تحذير</string>
+    <string name="user_cancel_login_error_msg">لم يتم تسجيل الدخول بنجاح</string>
+    <string name="sop1_Unverified_user_error_msg">خطأ – حسابك غير مصرح له بالدخول</string>
+    <string name="login_success">تم تسجيل الدخول بنجاح</string>
 
 </resources>

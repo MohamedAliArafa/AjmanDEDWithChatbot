@@ -3,7 +3,7 @@ package com.ajman.ded.ae.data.model.response.OnlineUseUAEPass;
 import org.simpleframework.xml.Element;
 import org.simpleframework.xml.Root;
 
-@Root(name = "soap12:Body", strict = false)
+@Root(name = "Body", strict = false)
 public class ResponseBody_UAEPass {
 
     @Element(name = "OnlineUseUAEPAssInsertUpdate_jsonResponse", required = false)
