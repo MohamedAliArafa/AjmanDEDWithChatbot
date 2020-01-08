@@ -284,27 +284,20 @@
                         android:layout_height="wrap_content"
                         android:orientation="horizontal">
 
-                        <ImageView
-                            android:layout_width="0dp"
-                            android:layout_height="100dp"
-                            android:layout_weight="1"
-                            android:layout_margin="16dp"
-                            android:src="@drawable/ic_ded_eye" />
-
                         <LinearLayout
                             android:layout_width="0dp"
-                            android:layout_weight="2"
                             android:layout_height="wrap_content"
                             android:layout_gravity="center"
                             android:layout_margin="16dp"
+                            android:layout_weight="2"
                             android:orientation="vertical">
 
                             <TextView
+                                style="@style/TextStyle.Title.Bold"
                                 android:layout_width="wrap_content"
                                 android:layout_height="wrap_content"
                                 android:layout_gravity="start"
                                 android:layout_marginStart="5dp"
-                                style="@style/TextStyle.Title.Bold"
                                 android:text="@string/ded_eye"
                                 android:textColor="@color/bg_light_red" />
 
@@ -313,10 +306,17 @@
                                 android:layout_height="wrap_content"
                                 android:layout_gravity="start"
                                 android:layout_marginStart="5dp"
-                                android:text="@string/be_an_ded_eye_by_reporting_any_violations_or_abuse"
+                                android:text="@string/to_report_violation"
                                 android:textColor="@color/bg_light_beige" />
 
                         </LinearLayout>
+
+                        <ImageView
+                            android:layout_width="0dp"
+                            android:layout_height="100dp"
+                            android:layout_margin="16dp"
+                            android:layout_weight="2"
+                            android:src="@drawable/ic_ded_eye" />
 
                     </LinearLayout>
 
