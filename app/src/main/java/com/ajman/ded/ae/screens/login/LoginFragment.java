@@ -1,6 +1,5 @@
 package com.ajman.ded.ae.screens.login;
 
-import android.app.ActivityManager;
 import android.content.Context;
 import android.content.Intent;
 import android.os.Build;
@@ -15,13 +14,15 @@ import android.widget.Button;
 import android.widget.EditText;
 import android.widget.FrameLayout;
 import android.widget.TextView;
-import android.widget.TimePicker;
 import android.widget.Toast;
+
+import androidx.annotation.NonNull;
+import androidx.core.app.ActivityCompat;
+import androidx.fragment.app.Fragment;
 
 import com.ajman.ded.ae.MyApplication;
 import com.ajman.ded.ae.R;
 import com.ajman.ded.ae.UAEPassRequestModels;
-import com.ajman.ded.ae.WebViewActivity;
 import com.ajman.ded.ae.data.Api;
 import com.ajman.ded.ae.data.ApiBuilder;
 import com.ajman.ded.ae.data.model.request.ConfirmCode.RequestBody_ConfirmCode;
@@ -42,9 +43,7 @@ import com.ajman.ded.ae.data.model.response.OnlineUseUAEPass.ResponseEnvelope_UA
 import com.ajman.ded.ae.data.model.response.UserId.ResponseEnvelope_UserId;
 import com.ajman.ded.ae.models.UserIdResponse;
 import com.ajman.ded.ae.models.UserModel;
-import com.ajman.ded.ae.models.uaepass.AuthTokenModel;
 import com.ajman.ded.ae.screens.IntroActivity;
-import com.ajman.ded.ae.screens.ded_eye.DedEyeActivity;
 import com.ajman.ded.ae.screens.home.HomeActivity;
 import com.ajman.ded.ae.screens.registeration.RegisterActivity;
 import com.ajman.ded.ae.utility.SharedTool.SharedPreferencesTool;
@@ -57,28 +56,14 @@ import java.io.File;
 import java.util.ArrayList;
 import java.util.Arrays;
 import java.util.List;
-import java.util.Objects;
 
-import androidx.annotation.NonNull;
-import androidx.annotation.Nullable;
-import androidx.core.app.ActivityCompat;
-import androidx.fragment.app.Fragment;
-
-import ae.sdg.libraryuaepass.UAEPassAccessTokenCallback;
 import ae.sdg.libraryuaepass.UAEPassController;
-import ae.sdg.libraryuaepass.UAEPassProfileCallback;
 import ae.sdg.libraryuaepass.business.authentication.model.UAEPassAccessTokenRequestModel;
-import ae.sdg.libraryuaepass.business.profile.model.ProfileModel;
 import ae.sdg.libraryuaepass.business.profile.model.UAEPassProfileRequestModel;
 import retrofit2.Call;
 import retrofit2.Callback;
 import retrofit2.Response;
 
-import static android.app.Activity.RESULT_OK;
-import static android.content.Context.ACTIVITY_SERVICE;
-import static com.ajman.ded.ae.utility.Constants.CODE_RESULT_KEY;
-import static com.ajman.ded.ae.utility.Constants.REDIRECT_URL_INTENT_KEY;
-import static com.ajman.ded.ae.utility.Constants.URL_INTENT_KEY;
 import static com.ajman.ded.ae.utility.Helper.convertDpToPixel;
 import static com.ajman.ded.ae.utility.Helper.isValidEmail;
 

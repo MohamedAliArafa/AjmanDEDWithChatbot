@@ -344,4 +344,6 @@
     <string name="user_cancel_login_error_msg">Login was unsuccessful!</string>
     <string name="sop1_Unverified_user_error_msg">Your account is unverified, please visit the nearest UAE PASS Kiosk. For more information, kindly contact 80070 </string>
     <string name="login_success">Login successfully</string>
+    <string name="ded_eye">DED Eye</string>
+    <string name="to_report_violation">To Report Violation</string>
 </resources>

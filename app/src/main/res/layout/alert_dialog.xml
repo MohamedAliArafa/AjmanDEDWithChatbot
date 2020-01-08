@@ -1,6 +1,7 @@
 <?xml version="1.0" encoding="utf-8"?>
 
-<FrameLayout xmlns:android="http://schemas.android.com/apk/res/android"
+<FrameLayout
+    xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="wrap_content"
     android:layout_height="match_parent"
@@ -10,7 +11,7 @@
 
         android:id="@+id/loading"
         android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
+        android:layout_height="match_parent"
         android:layout_gravity="center"
         android:gravity="center"
         android:minWidth="@dimen/alert_width"
@@ -143,19 +144,16 @@
 
         <TextView
             android:id="@+id/content_text"
-            android:layout_width="match_parent"
+            android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:layout_marginTop="10dp"
             android:gravity="center"
-            android:maxLines="1000"
             android:paddingLeft="10dp"
             android:paddingRight="10dp"
             android:textAlignment="center"
-            android:textColor="?attr/sweet_alert_content_text_color"
-            android:textSize="16sp"
+            android:textSize="18sp"
             android:visibility="gone"
-            tools:text="message \n message \n message
-        "
+            tools:text="@string/sop1_Unverified_user_error_msg"
             tools:visibility="visible" />
 
         <FrameLayout

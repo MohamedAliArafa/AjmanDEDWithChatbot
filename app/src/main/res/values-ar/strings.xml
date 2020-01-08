@@ -301,5 +301,7 @@
     <string name="sop1_Unverified_user_error_msg">حسابك غير معرف، الرجاء زيارة أقرب منفذ خدمة لترقية حسابك في الهوية الرقمية
 للمزيد من المعلومات، يرجى الاتصال على ٨٠٠٧٠</string>
     <string name="login_success">تم تسجيل الدخول بنجاح</string>
+    <string name="ded_eye">عين الدائرة</string>
+    <string name="to_report_violation">لللإبلاغ عن مخالفة أو تجاوز</string>
 
 </resources>

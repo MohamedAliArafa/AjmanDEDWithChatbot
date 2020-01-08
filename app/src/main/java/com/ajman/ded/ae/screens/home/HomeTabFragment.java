@@ -2,7 +2,9 @@ package com.ajman.ded.ae.screens.home;
 
 
 import android.app.Dialog;
+import android.content.Context;
 import android.content.Intent;
+import android.net.Uri;
 import android.os.Bundle;
 import android.text.TextUtils;
 import android.view.LayoutInflater;
@@ -19,6 +21,7 @@ import com.ajman.ded.ae.WebViewActivity;
 import com.ajman.ded.ae.libs.AnimatedFragment;
 import com.ajman.ded.ae.libs.LocaleManager;
 import com.ajman.ded.ae.models.ServiceCenter;
+import com.ajman.ded.ae.screens.ded_eye.DedEyeActivity;
 import com.ajman.ded.ae.screens.login.LoginActivity;
 import com.ajman.ded.ae.utility.AppPreferenceManager;
 import com.ajman.ded.ae.utility.SharedTool.UserData;
@@ -59,6 +62,7 @@ public class HomeTabFragment extends AnimatedFragment {
     CardView cardView2;
     CardView cardView3;
     CardView cardView5;
+    CardView cardDEDeye;
     EditText applicationNo;
     Button checkStatus;
     private LatLngBounds.Builder builder;
@@ -111,7 +115,6 @@ public class HomeTabFragment extends AnimatedFragment {
 
         tradeName.setOnClickListener(view1 -> {
             if (UserData.getUserObject(getActivity()) != null) {
-
                 if (Objects.equals(LocaleManager.getLanguage(getContext()), LANGUAGE_ARABIC))
                     intent.putExtra(URL_INTENT_KEY, DOMAIN_AR + TRADE_NAME_RESERVATION);
                 else
@@ -180,11 +183,22 @@ public class HomeTabFragment extends AnimatedFragment {
         cardView2 = view.findViewById(R.id.card2);
         cardView3 = view.findViewById(R.id.card3);
         cardView5 = view.findViewById(R.id.card5);
+        cardDEDeye = view.findViewById(R.id.cardDEDeye);
 
         cardView1.setVisibility(View.INVISIBLE);
+        cardDEDeye.setVisibility(View.INVISIBLE);
         cardView2.setVisibility(View.INVISIBLE);
         cardView3.setVisibility(View.INVISIBLE);
         cardView5.setVisibility(View.INVISIBLE);
+
+        cardDEDeye.setOnClickListener(v -> {
+            if (UserData.getUserObject(getActivity()) != null) {
+                Intent eye = new Intent(getContext(), DedEyeActivity.class);
+                this.startActivity(eye);
+            } else {
+                dialog =  new ViewDialog().showNewFeatureDialog(getActivity());
+            }
+        });
 
         checkStatus.setOnClickListener(view12 -> {
             if (TextUtils.isEmpty(applicationNo.getText().toString())) {
@@ -204,6 +218,18 @@ public class HomeTabFragment extends AnimatedFragment {
         return view;
     }
 
+
+    public void startApplicationByPackage(Context context, String packageName) {
+        Intent intent = context.getPackageManager().getLaunchIntentForPackage(packageName);
+        if (intent == null) {
+            // Bring user to the market or let them choose an app?
+            intent = new Intent(Intent.ACTION_VIEW);
+            intent.setData(Uri.parse("market://details?id=" + packageName));
+        }
+        intent.addFlags(Intent.FLAG_ACTIVITY_NEW_TASK);
+        context.startActivity(intent);
+    }
+
     @Override
     public void onViewCreated(View view, @Nullable Bundle savedInstanceState) {
         super.onViewCreated(view, savedInstanceState);
@@ -212,7 +238,7 @@ public class HomeTabFragment extends AnimatedFragment {
 
     @Override
     public void startAnimation() {
-        new AnimatedFragment.animate(new View[]{cardView1, cardView2, cardView3, cardView5}).execute();
+        new AnimatedFragment.animate(new View[]{cardView1, cardDEDeye, cardView2, cardView3, cardView5}).execute();
     }
 
     @Override
