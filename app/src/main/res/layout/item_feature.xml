@@ -21,11 +21,11 @@
 
     <ImageView
         android:id="@+id/imageView3"
-        android:layout_width="100dp"
+        android:layout_width="150dp"
         android:layout_height="100dp"
         android:layout_marginStart="8dp"
         android:layout_marginTop="8dp"
-        android:src="@drawable/ic_shake"
+        android:src="@drawable/ic_ded_eye"
         app:layout_constraintEnd_toEndOf="@+id/text_title"
         app:layout_constraintStart_toStartOf="@+id/text_title"
         app:layout_constraintTop_toBottomOf="@+id/text_title2" />

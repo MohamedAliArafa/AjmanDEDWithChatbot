@@ -27,7 +27,7 @@ import retrofit2.converter.simplexml.SimpleXmlConverterFactory;
 public class ApiBuilder {
 
     public static String NEWS_IMAGE_BASE_URL = "http://ded.sdg.ae/Ufiles/News/";
-    private static String BASIC_BASE_URL = "http://site1.ajmanded.ae/";
+    private static String BASIC_BASE_URL = "https://inspection.ajmanded.ae/";
     private static String NEWS_BASE_URL = "http://ded.sdg.ae/";
     private static String SITE_BASE_URL = "http://site4.ajmanded.ae";
 //    Authorization Endpoint :  https://qa-id.uaepass.ae/trustedx-authserver/oauth/main-as

@@ -179,7 +179,7 @@ public class LoginFragment extends Fragment {
                             Toast.makeText(getContext(), R.string.sop1_Unverified_user_error_msg, Toast.LENGTH_SHORT).show();
                             new SweetAlertDialog(getContext(), SweetAlertDialog.WARNING_TYPE)
                                     .setTitleText(getString(R.string.sop1_dialog_title))
-                                    .setContentText(getString(R.string.sop1_dialog_content))
+                                    .setContentText(getString(R.string.sop1_Unverified_user_error_msg))
                                     .setConfirmText(getString(R.string.sop1_dialog_button))
                                     .setConfirmClickListener(sDialog -> {
                                         sDialog.dismissWithAnimation();

@@ -99,7 +99,7 @@ public class NotificationDetailsActivity extends AppCompatActivity implements Ey
     TextView toolbarTitle;
     @BindView(R.id.map)
     CustomMapView map;
-    private String BASE_URL = "http://site1.ajmanded.ae/apis/GetFileById?id=";
+    private String BASE_URL = "https://inspection.ajmanded.ae/apis/GetFileById?id=";
     private Api api;
     private EyeDetailsImagesAdapter mAdapter;
     private SimpleDateFormat simpleDateFormat;
