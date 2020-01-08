@@ -124,7 +124,7 @@ public class ApiBuilder {
 
         Retrofit retrofit = new Retrofit.Builder()
                 .addConverterFactory(GsonConverterFactory.create(gsonBuilder.create()))
-                .baseUrl(UAE_PASS_STAGE_URL)
+                .baseUrl(UAE_PASS_PROD_URL)
                 .client(client)
                 .build();
 
@@ -156,7 +156,7 @@ public class ApiBuilder {
 
         Retrofit retrofit = new Retrofit.Builder()
                 .addConverterFactory(GsonConverterFactory.create(gsonBuilder.create()))
-                .baseUrl(UAE_PASS_STAGE_URL)
+                .baseUrl(UAE_PASS_PROD_URL)
                 .client(client)
                 .build();
 
