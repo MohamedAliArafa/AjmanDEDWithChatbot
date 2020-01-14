@@ -174,7 +174,6 @@ public class LoginFragment extends Fragment {
                                     })
                                     .show();
                         } else {
-                            Toast.makeText(getContext(), R.string.login_success, Toast.LENGTH_SHORT).show();
                             api = ApiBuilder.providesApi();
                             RequestEnvelope_OnlineUAEPass envelope = new RequestEnvelope_OnlineUAEPass();
                             RequestBody_OnlineUaePass body = new RequestBody_OnlineUaePass();
@@ -197,12 +196,17 @@ public class LoginFragment extends Fragment {
                                         String codeResult;
                                         if (response.body() != null) {
                                             codeResult = response.body().getBody().getData().getAccountResult();
-                                            if (codeResult.equals("0")) {
+
+                                            Log.d("AccountResult:", codeResult);
+                                            Gson gson = new Gson();
+                                            UserIdResponse[] list = gson.fromJson(codeResult, UserIdResponse[].class);
+                                            List<UserIdResponse> models = new ArrayList<>(Arrays.asList(list));
+                                            if (models.get(0).getId().equals("0")) {
                                                 new SweetAlertDialog(getContext(), SweetAlertDialog.WARNING_TYPE)
                                                         .setTitleText(getString(R.string.sop1_dialog_title))
                                                         .setContentText(getString(R.string.sop1_Unregistered_user_error_msg))
                                                         .setConfirmText(getString(R.string.sop1_dialog_create_button))
-                                                        .setCancelButton(R.string.sop1_dialog_create_button, SweetAlertDialog::dismissWithAnimation)
+                                                        .setCancelButton(R.string.cancel, SweetAlertDialog::dismissWithAnimation)
                                                         .setConfirmClickListener(sDialog -> {
                                                             data.setStepNo("2");
                                                             body.setRequestData(data);
@@ -213,6 +217,7 @@ public class LoginFragment extends Fragment {
                                                                 public void onResponse(@NonNull Call<ResponseEnvelope_UAEPass> call, @NonNull Response<ResponseEnvelope_UAEPass> response) {
                                                                     if (response.isSuccessful()) {
                                                                         if (response.body() != null) {
+                                                                            Toast.makeText(getContext(), R.string.login_success, Toast.LENGTH_SHORT).show();
                                                                             String codeResult = response.body().getBody().getData().getAccountResult();
                                                                             Log.d("AccountResult:", codeResult);
                                                                             Gson gson = new Gson();
@@ -238,12 +243,9 @@ public class LoginFragment extends Fragment {
                                                         })
                                                         .show();
                                             } else {
-                                                Log.d("AccountResult:", codeResult);
-                                                Gson gson = new Gson();
-                                                UserIdResponse[] list = gson.fromJson(codeResult, UserIdResponse[].class);
-                                                List<UserIdResponse> models = new ArrayList<>(Arrays.asList(list));
+                                                Toast.makeText(getContext(), R.string.login_success, Toast.LENGTH_SHORT).show();
                                                 ActivityCompat.finishAffinity(Objects.requireNonNull(getActivity()));
-                                                MyApplication.get(getActivity()).addUser(username.getText().toString(), password.getText().toString());
+                                                MyApplication.get(Objects.requireNonNull(getActivity())).addUser(username.getText().toString(), password.getText().toString());
                                                 UserModel model = new UserModel(profileModel.getEmail(), "", models.get(0).getId(), profileModel.getFullnameAR(), profileModel.getFullnameEN());
                                                 UserData.saveUserObject(getActivity(), model, true);
                                                 startActivity(new Intent(getActivity(), IntroActivity.class).addFlags(Intent.FLAG_ACTIVITY_NO_HISTORY));
