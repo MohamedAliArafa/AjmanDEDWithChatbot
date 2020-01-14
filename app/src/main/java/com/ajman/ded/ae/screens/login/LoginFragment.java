@@ -226,7 +226,7 @@ public class LoginFragment extends Fragment {
 
                                                                         }
                                                                     } else {
-                                                                        Toast.makeText(getContext(), "Error", Toast.LENGTH_SHORT).show();
+                                                                        Toast.makeText(getContext(), "ErrorCode: SOP502", Toast.LENGTH_SHORT).show();
                                                                     }
                                                                 }
 
@@ -252,7 +252,7 @@ public class LoginFragment extends Fragment {
                                         }
 
                                     } else {
-                                        Toast.makeText(getContext(), "Error", Toast.LENGTH_SHORT).show();
+                                        Toast.makeText(getContext(), "ErrorCode: SOP501", Toast.LENGTH_SHORT).show();
                                     }
                                 }
 
