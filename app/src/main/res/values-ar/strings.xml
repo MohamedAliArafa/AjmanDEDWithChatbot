@@ -303,5 +303,13 @@
     <string name="login_success">تم تسجيل الدخول بنجاح</string>
     <string name="ded_eye">عيــن الدائـــرة</string>
     <string name="to_report_violation">لللإبلاغ عن مخالفة أو تجاوز</string>
+    <string name="sop1_Unregistered_user_error_msg">اذا لم يكن لديك حساب يرجى الضغط على زر
+        \n
+        <b>إنشاء حساب جديد</b>
+        \n
+        أما إذا كان لديك حساب فيرجى الضغط على زر
+        \n
+        <b>إلغاء والتوجه إلى أقرب مركز خدمة لتحديث بياناتك</b></string>
+    <string name="sop1_dialog_create_button">إنشاء حساب  جديد</string>
 
 </resources>

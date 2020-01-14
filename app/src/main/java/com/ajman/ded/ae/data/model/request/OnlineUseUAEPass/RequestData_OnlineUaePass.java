@@ -36,6 +36,17 @@ public class RequestData_OnlineUaePass {
     @Element(name = "uuid", required = false)
     private String uuid;
 
+    @Element(name = "stepNo", required = false)
+    private String stepNo;
+
+    public String getStepNo() {
+        return stepNo;
+    }
+
+    public void setStepNo(String stepNo) {
+        this.stepNo = stepNo;
+    }
+
     public String getMobile() {
         return mobile;
     }

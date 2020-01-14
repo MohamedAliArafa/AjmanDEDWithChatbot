@@ -341,8 +341,10 @@
     <string name="sop1_dialog_title">Warning</string>
     <string name="sop1_dialog_content">Your account don\'t have verified signature, please visit the nearest service agent to upgrade your Pass ID</string>
     <string name="sop1_dialog_button">Go to HomePage</string>
+    <string name="sop1_dialog_create_button">Create Account</string>
     <string name="user_cancel_login_error_msg">Login was unsuccessful!</string>
     <string name="sop1_Unverified_user_error_msg">Your account is unverified, please visit the nearest UAE PASS Kiosk. For more information, kindly contact 80070 </string>
+    <string name="sop1_Unregistered_user_error_msg">"  If you don’t have an account please click \n <b> Create Account </b> button. If you are current user, please click \n <b>Cancel and visit nearest customer service center to update your information</b> </string>
     <string name="login_success">Login successfully</string>
     <string name="ded_eye">DED Eye</string>
     <string name="to_report_violation">For Reporting Violation or abuse</string>

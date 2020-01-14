@@ -56,6 +56,7 @@ import java.io.File;
 import java.util.ArrayList;
 import java.util.Arrays;
 import java.util.List;
+import java.util.Objects;
 
 import ae.sdg.libraryuaepass.UAEPassController;
 import ae.sdg.libraryuaepass.business.authentication.model.UAEPassAccessTokenRequestModel;
@@ -145,8 +146,8 @@ public class LoginFragment extends Fragment {
         UAEPassAccessTokenRequestModel requestModel = UAEPassRequestModels.getAuthenticationRequestModel(getContext());
         UAEPassController.getInstance().getAccessToken(getContext(), requestModel, (accessToken, error) -> {
             if (error != null) {
-                if (!error.equals("No Intent available to handle action")){
-                    Toast.makeText(getContext(), R.string.user_cancel_login_error_msg , Toast.LENGTH_SHORT).show();
+                if (!error.equals("No Intent available to handle action")) {
+                    Toast.makeText(getContext(), R.string.user_cancel_login_error_msg, Toast.LENGTH_SHORT).show();
                 }
             } else {
 //                Toast.makeText(getContext(), "Access Token Received", Toast.LENGTH_SHORT).show();
@@ -173,7 +174,7 @@ public class LoginFragment extends Fragment {
                                     })
                                     .show();
                         } else {
-                            Toast.makeText(getContext(), R.string.login_success , Toast.LENGTH_SHORT).show();
+                            Toast.makeText(getContext(), R.string.login_success, Toast.LENGTH_SHORT).show();
                             api = ApiBuilder.providesApi();
                             RequestEnvelope_OnlineUAEPass envelope = new RequestEnvelope_OnlineUAEPass();
                             RequestBody_OnlineUaePass body = new RequestBody_OnlineUaePass();
@@ -185,25 +186,71 @@ public class LoginFragment extends Fragment {
                             data.setFullnameEN(profileModel.getFullnameEN());
                             data.setPassportNumber(profileModel.getPassportNumber());
                             data.setUuid(profileModel.getSub());
+                            data.setStepNo("1");
                             body.setRequestData(data);
                             envelope.setBody(body);
                             Call<ResponseEnvelope_UAEPass> call = api.registerUAEPassProfile(envelope);
                             call.enqueue(new retrofit2.Callback<ResponseEnvelope_UAEPass>() {
-
                                 @Override
                                 public void onResponse(@NonNull Call<ResponseEnvelope_UAEPass> call, @NonNull Response<ResponseEnvelope_UAEPass> response) {
                                     if (response.isSuccessful()) {
-                                        String codeResult = response.body().getBody().getData().getAccountResult();
-                                        Log.d("AccountResult:", String.valueOf(codeResult));
-                                        Gson gson = new Gson();
-                                        UserIdResponse[] list = gson.fromJson(codeResult, UserIdResponse[].class);
-                                        List<UserIdResponse> models = new ArrayList<>();
-                                        models.addAll(Arrays.asList(list));
-                                        ActivityCompat.finishAffinity(getActivity());
-                                        MyApplication.get(getActivity()).addUser(username.getText().toString(), password.getText().toString());
-                                        UserModel model = new UserModel(profileModel.getEmail(), "", models.get(0).getId(), profileModel.getFullnameAR(), profileModel.getFullnameEN());
-                                        UserData.saveUserObject(getActivity(), model, true);
-                                        startActivity(new Intent(getActivity(), IntroActivity.class).addFlags(Intent.FLAG_ACTIVITY_NO_HISTORY));
+                                        String codeResult;
+                                        if (response.body() != null) {
+                                            codeResult = response.body().getBody().getData().getAccountResult();
+                                            if (codeResult.equals("0")) {
+                                                new SweetAlertDialog(getContext(), SweetAlertDialog.WARNING_TYPE)
+                                                        .setTitleText(getString(R.string.sop1_dialog_title))
+                                                        .setContentText(getString(R.string.sop1_Unregistered_user_error_msg))
+                                                        .setConfirmText(getString(R.string.sop1_dialog_create_button))
+                                                        .setCancelButton(R.string.sop1_dialog_create_button, SweetAlertDialog::dismissWithAnimation)
+                                                        .setConfirmClickListener(sDialog -> {
+                                                            data.setStepNo("2");
+                                                            body.setRequestData(data);
+                                                            envelope.setBody(body);
+                                                            Call<ResponseEnvelope_UAEPass> call2 = api.registerUAEPassProfile(envelope);
+                                                            call2.enqueue(new retrofit2.Callback<ResponseEnvelope_UAEPass>() {
+                                                                @Override
+                                                                public void onResponse(@NonNull Call<ResponseEnvelope_UAEPass> call, @NonNull Response<ResponseEnvelope_UAEPass> response) {
+                                                                    if (response.isSuccessful()) {
+                                                                        if (response.body() != null) {
+                                                                            String codeResult = response.body().getBody().getData().getAccountResult();
+                                                                            Log.d("AccountResult:", codeResult);
+                                                                            Gson gson = new Gson();
+                                                                            UserIdResponse[] list = gson.fromJson(codeResult, UserIdResponse[].class);
+                                                                            List<UserIdResponse> models = new ArrayList<>(Arrays.asList(list));
+                                                                            ActivityCompat.finishAffinity(Objects.requireNonNull(getActivity()));
+                                                                            MyApplication.get(getActivity()).addUser(username.getText().toString(), password.getText().toString());
+                                                                            UserModel model = new UserModel(profileModel.getEmail(), "", models.get(0).getId(), profileModel.getFullnameAR(), profileModel.getFullnameEN());
+                                                                            UserData.saveUserObject(getActivity(), model, true);
+                                                                            startActivity(new Intent(getActivity(), IntroActivity.class).addFlags(Intent.FLAG_ACTIVITY_NO_HISTORY));
+
+                                                                        }
+                                                                    } else {
+                                                                        Toast.makeText(getContext(), "Error", Toast.LENGTH_SHORT).show();
+                                                                    }
+                                                                }
+
+                                                                @Override
+                                                                public void onFailure(Call<ResponseEnvelope_UAEPass> call, Throwable t) {
+                                                                    Log.d("PIN ERROR:", String.valueOf(t));
+                                                                }
+                                                            });
+                                                        })
+                                                        .show();
+                                            } else {
+                                                Log.d("AccountResult:", codeResult);
+                                                Gson gson = new Gson();
+                                                UserIdResponse[] list = gson.fromJson(codeResult, UserIdResponse[].class);
+                                                List<UserIdResponse> models = new ArrayList<>(Arrays.asList(list));
+                                                ActivityCompat.finishAffinity(Objects.requireNonNull(getActivity()));
+                                                MyApplication.get(getActivity()).addUser(username.getText().toString(), password.getText().toString());
+                                                UserModel model = new UserModel(profileModel.getEmail(), "", models.get(0).getId(), profileModel.getFullnameAR(), profileModel.getFullnameEN());
+                                                UserData.saveUserObject(getActivity(), model, true);
+                                                startActivity(new Intent(getActivity(), IntroActivity.class).addFlags(Intent.FLAG_ACTIVITY_NO_HISTORY));
+
+                                            }
+                                        }
+
                                     } else {
                                         Toast.makeText(getContext(), "Error", Toast.LENGTH_SHORT).show();
                                     }
