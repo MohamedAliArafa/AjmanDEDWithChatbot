@@ -299,6 +299,7 @@
                                 android:layout_gravity="start"
                                 android:layout_marginStart="5dp"
                                 android:text="@string/ded_eye"
+                                android:textSize="23sp"
                                 android:textColor="@color/bg_light_red" />
 
                             <TextView
