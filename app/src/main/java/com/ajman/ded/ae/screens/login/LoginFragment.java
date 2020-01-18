@@ -206,7 +206,10 @@ public class LoginFragment extends Fragment {
                                                         .setTitleText(getString(R.string.sop1_dialog_title))
                                                         .setContentText(getString(R.string.sop1_Unregistered_user_error_msg))
                                                         .setConfirmText(getString(R.string.sop1_dialog_create_button))
-                                                        .setCancelButton(R.string.cancel, SweetAlertDialog::dismissWithAnimation)
+                                                        .setCancelButton(R.string.cancel, sweetAlertDialog -> {
+                                                            startActivity(new Intent(getActivity(), HomeActivity.class).addFlags(Intent.FLAG_ACTIVITY_NO_HISTORY));
+                                                            sweetAlertDialog.dismissWithAnimation();
+                                                        })
                                                         .setConfirmClickListener(sDialog -> {
                                                             data.setStepNo("2");
                                                             body.setRequestData(data);
