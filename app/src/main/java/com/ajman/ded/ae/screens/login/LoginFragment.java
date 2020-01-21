@@ -245,7 +245,19 @@ public class LoginFragment extends Fragment {
                                                             });
                                                         })
                                                         .show();
-                                            } else {
+                                            } else if (models.get(0).getId().equals("1")){
+
+                                                new SweetAlertDialog(getContext(), SweetAlertDialog.WARNING_TYPE)
+                                                        .hideConfirmButton()
+                                                        .setTitleText(getString(R.string.sop1_dialog_title))
+                                                        .setContentText(getString(R.string.sop1_Unregistered_user_error_msg_2))
+                                                        .setCancelButton(R.string.cancel, sweetAlertDialog -> {
+                                                            startActivity(new Intent(getActivity(), HomeActivity.class).addFlags(Intent.FLAG_ACTIVITY_NO_HISTORY));
+                                                            sweetAlertDialog.dismissWithAnimation();
+                                                        })
+                                                        .show();
+                                            }
+                                            else {
                                                 Toast.makeText(getContext(), R.string.login_success, Toast.LENGTH_SHORT).show();
                                                 ActivityCompat.finishAffinity(Objects.requireNonNull(getActivity()));
                                                 MyApplication.get(Objects.requireNonNull(getActivity())).addUser(username.getText().toString(), password.getText().toString());
