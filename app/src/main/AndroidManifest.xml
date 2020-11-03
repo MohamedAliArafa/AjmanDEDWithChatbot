@@ -1,5 +1,6 @@
 <?xml version="1.0" encoding="utf-8"?>
 <manifest xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:tools="http://schemas.android.com/tools"
     package="com.ajman.ded.ae">
 
     <uses-feature
@@ -46,19 +47,13 @@
             android:label="@string/app_name"
             android:screenOrientation="portrait"
             android:theme="@style/AppTheme.NoActionBar">
-            <intent-filter>
-                <action android:name="android.intent.action.VIEW" />
-                <category android:name="android.intent.category.DEFAULT" />
-                <category android:name="android.intent.category.BROWSABLE" />
-                <data android:scheme="ajmanded" android:host="uaepass.sdg.ae" />
-            </intent-filter>
         </activity>
         <activity
             android:name=".screens.accountSettings.AccountActivity"
             android:label="@string/account_settings"
             android:screenOrientation="portrait"
             android:windowSoftInputMode="adjustResize" />
-        <activity android:name=".FaqActivity" />
+        <activity android:name=".faetures.chatbot.FaqActivity" />
 
         <meta-data
             android:name="com.google.android.gms.version"
@@ -81,10 +76,21 @@
             android:name=".screens.login.LoginActivity"
             android:windowSoftInputMode="adjustResize" />
         <activity
+            android:name=".faetures.chatbot.ChatActivity"
+            android:windowSoftInputMode="adjustResize" />
+        <activity
             android:name=".WebViewActivity"
             android:largeHeap="true"
             android:parentActivityName=".screens.home.HomeActivity"
-            android:screenOrientation="portrait" />
+            android:screenOrientation="portrait" >
+
+            <intent-filter>
+                <action android:name="android.intent.action.VIEW" />
+                <category android:name="android.intent.category.DEFAULT" />
+                <category android:name="android.intent.category.BROWSABLE" />
+                <data android:scheme="ajmanded" android:host="uaepass.sdg.ae" />
+            </intent-filter>
+        </activity>
         <activity
             android:name=".screens.dashboard.DashBoardActivity"
             android:parentActivityName=".screens.home.HomeActivity"
@@ -171,8 +177,10 @@
             android:name="androidx.core.content.FileProvider"
             android:authorities="com.ajman.ded.ae.provider"
             android:exported="false"
-            android:grantUriPermissions="true">
+            android:grantUriPermissions="true"
+            tools:replace="android:authorities">
             <meta-data
+                tools:replace="android:resource"
                 android:name="android.support.FILE_PROVIDER_PATHS"
                 android:resource="@xml/file_paths" />
         </provider>

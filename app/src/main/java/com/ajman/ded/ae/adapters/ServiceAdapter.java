@@ -101,14 +101,14 @@ public class ServiceAdapter extends RecyclerView.Adapter<ServiceAdapter.MyViewHo
             e.printStackTrace();
         }
 
-        holder.itemView.setOnClickListener(view -> {
-            Intent in = new Intent(mContext, WebViewActivity.class);
-            if (Objects.equals(LocaleManager.getLanguage(mContext), LANGUAGE_ARABIC))
-                in.putExtra(URL_INTENT_KEY, DOMAIN_AR + model.getLink());
-            else
-                in.putExtra(URL_INTENT_KEY, DOMAIN_EN + model.getLink());
-            mContext.startActivity(in);
-        });
+//        holder.itemView.setOnClickListener(view -> {
+//            Intent in = new Intent(mContext, WebViewActivity.class);
+//            if (Objects.equals(LocaleManager.getLanguage(mContext), LANGUAGE_ARABIC))
+//                in.putExtra(URL_INTENT_KEY, DOMAIN_AR + model.getLink());
+//            else
+//                in.putExtra(URL_INTENT_KEY, DOMAIN_EN + model.getLink());
+//            mContext.startActivity(in);
+//        });
     }
 
     @Override

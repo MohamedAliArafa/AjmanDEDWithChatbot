@@ -49,27 +49,27 @@ public class ServiceNestedAdapter extends RecyclerView.Adapter<ServiceNestedAdap
 
     @Override
     public void onBindViewHolder(MyViewHolder holder, int position) {
-        if (UserData.getUserObject(mContext) != null) {
-            ServiceModuleModel model = mList.get(position);
-            ServiceAdapter adapter = new ServiceAdapter(mContext, model.getList(), R.layout.list_item_service_child);
-            int spanCount = Helper.calculateNoOfColumns(mContext, 75);
-            holder.mRecycler.setLayoutManager(new GridLayoutManager(mContext, spanCount));
-            holder.mRecycler.setAdapter(adapter);
-            if (Objects.equals(LocaleManager.getLanguage(mContext), LANGUAGE_ARABIC))
-                holder.mTitle.setText(model.getNameAr());
-            else
-                holder.mTitle.setText(model.getName());
-        } else {
-            ServiceModuleModel model = mList.get(4);
-            ServiceAdapter adapter = new ServiceAdapter(mContext, model.getList(), R.layout.list_item_service_child);
-            int spanCount = Helper.calculateNoOfColumns(mContext, 75);
-            holder.mRecycler.setLayoutManager(new GridLayoutManager(mContext, spanCount));
-            holder.mRecycler.setAdapter(adapter);
-            if (Objects.equals(LocaleManager.getLanguage(mContext), LANGUAGE_ARABIC))
-                holder.mTitle.setText(model.getNameAr());
-            else
-                holder.mTitle.setText(model.getName());
-        }
+//        if (UserData.getUserObject(mContext) != null) {
+//            ServiceModuleModel model = mList.get(position);
+//            ServiceAdapter adapter = new ServiceAdapter(mContext, model.getList(), R.layout.list_item_service_child);
+//            int spanCount = Helper.calculateNoOfColumns(mContext, 75);
+//            holder.mRecycler.setLayoutManager(new GridLayoutManager(mContext, spanCount));
+//            holder.mRecycler.setAdapter(adapter);
+//            if (Objects.equals(LocaleManager.getLanguage(mContext), LANGUAGE_ARABIC))
+//                holder.mTitle.setText(model.getNameAr());
+//            else
+//                holder.mTitle.setText(model.getName());
+//        } else {
+//            ServiceModuleModel model = mList.get(4);
+//            ServiceAdapter adapter = new ServiceAdapter(mContext, model.getList(), R.layout.list_item_service_child);
+//            int spanCount = Helper.calculateNoOfColumns(mContext, 75);
+//            holder.mRecycler.setLayoutManager(new GridLayoutManager(mContext, spanCount));
+//            holder.mRecycler.setAdapter(adapter);
+//            if (Objects.equals(LocaleManager.getLanguage(mContext), LANGUAGE_ARABIC))
+//                holder.mTitle.setText(model.getNameAr());
+//            else
+//                holder.mTitle.setText(model.getName());
+//        }
 
     }
 

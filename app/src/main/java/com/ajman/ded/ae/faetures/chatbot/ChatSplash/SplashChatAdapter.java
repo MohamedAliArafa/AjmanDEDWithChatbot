@@ -1,5 +1,7 @@
-package com.ajman.ded.ae.libs.ChatSplash;
+package com.ajman.ded.ae.faetures.chatbot.ChatSplash;
 
+import android.text.Html;
+import android.text.method.LinkMovementMethod;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
@@ -60,7 +62,9 @@ public class SplashChatAdapter extends RecyclerView.Adapter<SplashChatAdapter.My
 
     @Override
     public void onBindViewHolder(MyViewHolder holder, int position) {
-        holder.title.setText(chatArrayList.get(position).getBody());
+        holder.title.setText(Html.fromHtml(chatArrayList.get(position).getBody()));
+        holder.title.setMovementMethod(LinkMovementMethod.getInstance());
+
         try {
             holder.image.setImageResource(chatArrayList.get(position).getDrawable());
         } catch (Exception e) {

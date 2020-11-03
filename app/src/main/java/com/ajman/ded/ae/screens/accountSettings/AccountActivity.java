@@ -13,7 +13,7 @@ import android.webkit.CookieManager;
 import android.webkit.CookieSyncManager;
 import android.widget.TextView;
 
-import com.ajman.ded.ae.FaqActivity;
+import com.ajman.ded.ae.faetures.chatbot.FaqActivity;
 import com.ajman.ded.ae.R;
 import com.ajman.ded.ae.screens.base.BaseActivity;
 import com.ajman.ded.ae.screens.home.HomeActivity;

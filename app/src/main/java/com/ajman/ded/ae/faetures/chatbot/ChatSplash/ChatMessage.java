@@ -1,4 +1,4 @@
-package com.ajman.ded.ae.libs.ChatSplash;
+package com.ajman.ded.ae.faetures.chatbot.ChatSplash;
 
 /**
  * Created by root on 8/31/17.

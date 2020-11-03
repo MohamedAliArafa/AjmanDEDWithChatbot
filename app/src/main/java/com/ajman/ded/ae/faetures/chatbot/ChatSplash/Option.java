@@ -1,4 +1,4 @@
-package com.ajman.ded.ae.libs.ChatSplash;
+package com.ajman.ded.ae.faetures.chatbot.ChatSplash;
 
 import com.google.gson.annotations.Expose;
 import com.google.gson.annotations.SerializedName;

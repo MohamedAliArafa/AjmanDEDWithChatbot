@@ -18,7 +18,7 @@
         app:alignItems="center"
         app:flexWrap="wrap"
         app:justifyContent="center"
-        app:layout_constraintBottom_toTopOf="@+id/bottomBar"
+        app:layout_constraintBottom_toTopOf="@+id/editTextView3"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent" />
 
@@ -39,7 +39,6 @@
         android:id="@+id/recycler_view"
         android:layout_width="0dp"
         android:layout_height="0dp"
-        android:layout_marginBottom="0dp"
         app:layout_constraintBottom_toTopOf="@+id/option_container"
         app:layout_constraintHorizontal_bias="0.0"
         app:layout_constraintLeft_toLeftOf="parent"
@@ -63,6 +62,17 @@
         app:layout_constraintRight_toRightOf="parent"
         app:layout_constraintTop_toTopOf="parent" />
 
+    <EditText
+        android:id="@+id/editTextView3"
+        android:layout_width="0dp"
+        android:layout_height="wrap_content"
+        android:textColor="@color/colorPrimaryDark"
+        android:textSize="18sp"
+        android:textStyle="bold"
+        app:layout_constraintBottom_toTopOf="@+id/bottomBar"
+        app:layout_constraintEnd_toStartOf="@+id/send_btn"
+        app:layout_constraintStart_toStartOf="parent" />
+
     <com.google.android.material.bottomnavigation.BottomNavigationView
         android:id="@+id/bottomBar"
         android:layout_width="0dp"
@@ -77,5 +87,16 @@
         app:layout_constraintRight_toRightOf="parent"
         app:layout_constraintStart_toStartOf="parent"
         app:menu="@menu/navigation" />
+
+    <ImageButton
+        android:id="@+id/send_btn"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:background="@color/colorPrimary"
+        android:padding="8dp"
+        app:layout_constraintBottom_toBottomOf="@+id/editTextView3"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintTop_toTopOf="@+id/editTextView3"
+        app:srcCompat="@android:drawable/ic_menu_send" />
 
 </androidx.constraintlayout.widget.ConstraintLayout>

@@ -5,7 +5,7 @@ import android.os.Bundle;
 import android.view.Menu;
 import android.view.MenuItem;
 
-import com.ajman.ded.ae.FaqActivity;
+import com.ajman.ded.ae.faetures.chatbot.FaqActivity;
 import com.ajman.ded.ae.R;
 import com.ajman.ded.ae.screens.base.BaseActivity;
 

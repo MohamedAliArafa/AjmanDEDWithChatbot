@@ -88,54 +88,54 @@ public class HomeTabFragment extends AnimatedFragment {
         checkStatus = view.findViewById(R.id.check_status);
         Intent intent = new Intent(getActivity(), WebViewActivity.class);
 
-        newLicence.setOnClickListener(view1 -> {
-            if (UserData.getUserObject(getActivity()) != null) {
-                if (Objects.equals(LocaleManager.getLanguage(getContext()), LANGUAGE_ARABIC))
-                    intent.putExtra(URL_INTENT_KEY, DOMAIN_AR + ISSUE_TRADE_LICENSE);
-                else
-                    intent.putExtra(URL_INTENT_KEY, DOMAIN_EN + ISSUE_TRADE_LICENSE);
-                startActivity(intent);
-            } else {
-                startActivity(new Intent(getActivity(), LoginActivity.class));
-            }
-        });
-
-        renewLicence.setOnClickListener(view1 -> {
-            if (UserData.getUserObject(getActivity()) != null) {
-
-                if (Objects.equals(LocaleManager.getLanguage(getContext()), LANGUAGE_ARABIC))
-                    intent.putExtra(URL_INTENT_KEY, DOMAIN_AR + RENEW_TRADE_LICENSE);
-                else
-                    intent.putExtra(URL_INTENT_KEY, DOMAIN_EN + RENEW_TRADE_LICENSE);
-                startActivity(intent);
-            } else {
-                startActivity(new Intent(getActivity(), LoginActivity.class));
-            }
-        });
-
-        tradeName.setOnClickListener(view1 -> {
-            if (UserData.getUserObject(getActivity()) != null) {
-                if (Objects.equals(LocaleManager.getLanguage(getContext()), LANGUAGE_ARABIC))
-                    intent.putExtra(URL_INTENT_KEY, DOMAIN_AR + TRADE_NAME_RESERVATION);
-                else
-                    intent.putExtra(URL_INTENT_KEY, DOMAIN_EN + TRADE_NAME_RESERVATION);
-                startActivity(intent);
-            } else {
-                startActivity(new Intent(getActivity(), LoginActivity.class));
-            }
-        });
-
-        newPermit.setOnClickListener(view1 -> {
-            if (UserData.getUserObject(getActivity()) != null) {
-                if (Objects.equals(LocaleManager.getLanguage(getContext()), LANGUAGE_ARABIC))
-                    intent.putExtra(URL_INTENT_KEY, DOMAIN_AR + ISSUE_NEW_PERMIT);
-                else
-                    intent.putExtra(URL_INTENT_KEY, DOMAIN_EN + ISSUE_NEW_PERMIT);
-                startActivity(intent);
-            } else {
-                startActivity(new Intent(getActivity(), LoginActivity.class));
-            }
-        });
+//        newLicence.setOnClickListener(view1 -> {
+//            if (UserData.getUserObject(getActivity()) != null) {
+//                if (Objects.equals(LocaleManager.getLanguage(getContext()), LANGUAGE_ARABIC))
+//                    intent.putExtra(URL_INTENT_KEY, DOMAIN_AR + ISSUE_TRADE_LICENSE);
+//                else
+//                    intent.putExtra(URL_INTENT_KEY, DOMAIN_EN + ISSUE_TRADE_LICENSE);
+//                startActivity(intent);
+//            } else {
+//                startActivity(new Intent(getActivity(), LoginActivity.class));
+//            }
+//        });
+//
+//        renewLicence.setOnClickListener(view1 -> {
+//            if (UserData.getUserObject(getActivity()) != null) {
+//
+//                if (Objects.equals(LocaleManager.getLanguage(getContext()), LANGUAGE_ARABIC))
+//                    intent.putExtra(URL_INTENT_KEY, DOMAIN_AR + RENEW_TRADE_LICENSE);
+//                else
+//                    intent.putExtra(URL_INTENT_KEY, DOMAIN_EN + RENEW_TRADE_LICENSE);
+//                startActivity(intent);
+//            } else {
+//                startActivity(new Intent(getActivity(), LoginActivity.class));
+//            }
+//        });
+//
+//        tradeName.setOnClickListener(view1 -> {
+//            if (UserData.getUserObject(getActivity()) != null) {
+//                if (Objects.equals(LocaleManager.getLanguage(getContext()), LANGUAGE_ARABIC))
+//                    intent.putExtra(URL_INTENT_KEY, DOMAIN_AR + TRADE_NAME_RESERVATION);
+//                else
+//                    intent.putExtra(URL_INTENT_KEY, DOMAIN_EN + TRADE_NAME_RESERVATION);
+//                startActivity(intent);
+//            } else {
+//                startActivity(new Intent(getActivity(), LoginActivity.class));
+//            }
+//        });
+//
+//        newPermit.setOnClickListener(view1 -> {
+//            if (UserData.getUserObject(getActivity()) != null) {
+//                if (Objects.equals(LocaleManager.getLanguage(getContext()), LANGUAGE_ARABIC))
+//                    intent.putExtra(URL_INTENT_KEY, DOMAIN_AR + ISSUE_NEW_PERMIT);
+//                else
+//                    intent.putExtra(URL_INTENT_KEY, DOMAIN_EN + ISSUE_NEW_PERMIT);
+//                startActivity(intent);
+//            } else {
+//                startActivity(new Intent(getActivity(), LoginActivity.class));
+//            }
+//        });
 
         InputStream raw = getActivity().getResources().openRawResource(R.raw.service_centers);
         Reader rd = new BufferedReader(new InputStreamReader(raw));
@@ -191,23 +191,23 @@ public class HomeTabFragment extends AnimatedFragment {
         cardView3.setVisibility(View.INVISIBLE);
         cardView5.setVisibility(View.INVISIBLE);
 
-        cardDEDeye.setOnClickListener(v -> {
-            if (UserData.getUserObject(getActivity()) != null) {
-                Intent eye = new Intent(getContext(), DedEyeActivity.class);
-                this.startActivity(eye);
-            } else {
-                dialog =  new ViewDialog().showNewFeatureDialog(getActivity());
-            }
-        });
-
-        checkStatus.setOnClickListener(view12 -> {
-            if (TextUtils.isEmpty(applicationNo.getText().toString())) {
-                applicationNo.setError(getString(R.string.required_field));
-                applicationNo.requestFocus();
-            } else {
-                getActivity().startActivity(new Intent(getActivity(), StatusActivity.class).putExtra("appNo", applicationNo.getText().toString()));
-            }
-        });
+//        cardDEDeye.setOnClickListener(v -> {
+//            if (UserData.getUserObject(getActivity()) != null) {
+//                Intent eye = new Intent(getContext(), DedEyeActivity.class);
+//                this.startActivity(eye);
+//            } else {
+//                dialog =  new ViewDialog().showNewFeatureDialog(getActivity());
+//            }
+//        });
+//
+//        checkStatus.setOnClickListener(view12 -> {
+//            if (TextUtils.isEmpty(applicationNo.getText().toString())) {
+//                applicationNo.setError(getString(R.string.required_field));
+//                applicationNo.requestFocus();
+//            } else {
+//                getActivity().startActivity(new Intent(getActivity(), StatusActivity.class).putExtra("appNo", applicationNo.getText().toString()));
+//            }
+//        });
 
         if (UserData.getUserObject(getContext()) == null) {
             if (!AppPreferenceManager.getBool(getContext(), AppPreferenceManager.KEY_IS_FIRST_SHAKE_GUEST, false)) {

@@ -4,17 +4,15 @@ import android.app.Dialog;
 import android.content.Context;
 import android.content.Intent;
 import android.content.pm.PackageManager;
-import android.graphics.drawable.ColorDrawable;
 import android.net.Uri;
 import android.os.Bundle;
 import android.view.View;
-import android.widget.Button;
 import android.widget.ExpandableListAdapter;
 import android.widget.ExpandableListView;
 import android.widget.ImageView;
 import android.widget.TextView;
 
-import com.ajman.ded.ae.FaqActivity;
+import com.ajman.ded.ae.faetures.chatbot.FaqActivity;
 import com.ajman.ded.ae.R;
 import com.ajman.ded.ae.ServiceCentersActivity;
 import com.ajman.ded.ae.ViewDialog;
@@ -31,7 +29,6 @@ import com.ajman.ded.ae.libs.LocaleManager;
 import com.ajman.ded.ae.models.ServiceModuleModel;
 import com.ajman.ded.ae.models.UserModel;
 import com.ajman.ded.ae.screens.IntroActivity;
-import com.ajman.ded.ae.screens.InvestorGuide;
 import com.ajman.ded.ae.screens.accountSettings.AccountActivity;
 import com.ajman.ded.ae.screens.dashboard.DashBoardActivity;
 import com.ajman.ded.ae.screens.ded_eye.DedEyeActivity;
@@ -125,8 +122,8 @@ public abstract class BaseActivity extends AppCompatActivity implements View.OnC
         setContentView(getLayoutResource());
         internetDisposable = new CompositeDisposable();
         mToolbar = findViewById(R.id.toolbar);
-        setSupportActionBar(mToolbar);
-        getSupportActionBar().setDisplayShowTitleEnabled(false);
+//        setSupportActionBar(mToolbar);
+//        getSupportActionBar().setDisplayShowTitleEnabled(false);
 
         if (UserData.getUserObject(this) != null) {
             mBus = TinyBus.from(this);
@@ -137,43 +134,43 @@ public abstract class BaseActivity extends AppCompatActivity implements View.OnC
         if (!(this instanceof SearchActivity || this instanceof DedEyeActivity)) {
             mBottomBar = findViewById(R.id.bottomBar);
 
-            mBottomBar.setOnNavigationItemSelectedListener(item -> {
-                int id = item.getItemId();
-                switch (id) {
-                    case R.id.tab_chat:
-                        if (!(BaseActivity.this instanceof FaqActivity))
-                            startActivity(new Intent(BaseActivity.this, FaqActivity.class));
-                        break;
-                    case R.id.tab_search:
-                        startActivity(new Intent(BaseActivity.this, SearchActivity.class));
-                        break;
-                    case R.id.tab_rate:
-                        dialog = new Dialog(BaseActivity.this);
-                        dialog.setContentView(R.layout.dialog_meter);
-                        dialog.getWindow().setBackgroundDrawable(new ColorDrawable(android.graphics.Color.TRANSPARENT));
-                        sad = dialog.findViewById(R.id.happy);
-                        meh = dialog.findViewById(R.id.meh);
-                        happy = dialog.findViewById(R.id.sad);
-                        sad.setOnClickListener(BaseActivity.this);
-                        meh.setOnClickListener(BaseActivity.this);
-                        happy.setOnClickListener(BaseActivity.this);
-                        dialog.show();
-                        break;
-                    case R.id.tab_call:
-                        final Dialog call = new Dialog(BaseActivity.this);
-                        call.setContentView(R.layout.dialog_call);
-                        call.getWindow().setBackgroundDrawable(new ColorDrawable(android.graphics.Color.TRANSPARENT));
-                        Button callButton = call.findViewById(R.id.call);
-                        callButton.setOnClickListener(view -> {
-                            dialPhoneNumber("80070");
-                            call.dismiss();
-                        });
-
-                        call.show();
-                        break;
-                }
-                return true;
-            });
+//            mBottomBar.setOnNavigationItemSelectedListener(item -> {
+//                int id = item.getItemId();
+//                switch (id) {
+//                    case R.id.tab_chat:
+//                        if (!(BaseActivity.this instanceof FaqActivity))
+//                            startActivity(new Intent(BaseActivity.this, FaqActivity.class));
+//                        break;
+//                    case R.id.tab_search:
+//                        startActivity(new Intent(BaseActivity.this, SearchActivity.class));
+//                        break;
+//                    case R.id.tab_rate:
+//                        dialog = new Dialog(BaseActivity.this);
+//                        dialog.setContentView(R.layout.dialog_meter);
+//                        dialog.getWindow().setBackgroundDrawable(new ColorDrawable(android.graphics.Color.TRANSPARENT));
+//                        sad = dialog.findViewById(R.id.happy);
+//                        meh = dialog.findViewById(R.id.meh);
+//                        happy = dialog.findViewById(R.id.sad);
+//                        sad.setOnClickListener(BaseActivity.this);
+//                        meh.setOnClickListener(BaseActivity.this);
+//                        happy.setOnClickListener(BaseActivity.this);
+//                        dialog.show();
+//                        break;
+//                    case R.id.tab_call:
+//                        final Dialog call = new Dialog(BaseActivity.this);
+//                        call.setContentView(R.layout.dialog_call);
+//                        call.getWindow().setBackgroundDrawable(new ColorDrawable(android.graphics.Color.TRANSPARENT));
+//                        Button callButton = call.findViewById(R.id.call);
+//                        callButton.setOnClickListener(view -> {
+//                            dialPhoneNumber("80070");
+//                            call.dismiss();
+//                        });
+//
+//                        call.show();
+//                        break;
+//                }
+//                return true;
+//            });
         }
 
         if (Objects.equals(LocaleManager.getLanguage(this), LANGUAGE_ENGLISH)) {
@@ -206,147 +203,147 @@ public abstract class BaseActivity extends AppCompatActivity implements View.OnC
             listHeaderView.findViewById(R.id.dash_btn).setVisibility(View.VISIBLE);
             listHeaderView.findViewById(R.id.setting_btn).setVisibility(View.VISIBLE);
             listFooterView.findViewById(R.id.register_text).setVisibility(View.GONE);
-            listHeaderView.findViewById(R.id.dash_btn).setOnClickListener(view -> {
-                action = "DashBoard";
-                mSlidingRootNav.closeMenu(true);
-            });
-            listHeaderView.findViewById(R.id.setting_btn).setOnClickListener(view -> {
-                action = "AccountSettings";
-                mSlidingRootNav.closeMenu(true);
-            });
+//            listHeaderView.findViewById(R.id.dash_btn).setOnClickListener(view -> {
+//                action = "DashBoard";
+//                mSlidingRootNav.closeMenu(true);
+//            });
+//            listHeaderView.findViewById(R.id.setting_btn).setOnClickListener(view -> {
+//                action = "AccountSettings";
+//                mSlidingRootNav.closeMenu(true);
+//            });
         } else {
             listHeaderView.findViewById(R.id.dash_btn).setVisibility(View.GONE);
             listHeaderView.findViewById(R.id.setting_btn).setVisibility(View.GONE);
             listFooterView.findViewById(R.id.register_text).setVisibility(View.VISIBLE);
-            listFooterView.findViewById(R.id.register_text).setOnClickListener(view -> {
-                action = "Register";
-                mSlidingRootNav.closeMenu(true);
-            });
+//            listFooterView.findViewById(R.id.register_text).setOnClickListener(view -> {
+//                action = "Register";
+//                mSlidingRootNav.closeMenu(true);
+//            });
         }
 
-        listFooterView.findViewById(R.id.guide_text).setOnClickListener(v -> {
-            if (!(BaseActivity.this instanceof InvestorGuide))
-                startActivity(new Intent(BaseActivity.this, InvestorGuide.class));
-            else
-                mSlidingRootNav.closeMenu(true);
+//        listFooterView.findViewById(R.id.guide_text).setOnClickListener(v -> {
+//            if (!(BaseActivity.this instanceof InvestorGuide))
+//                startActivity(new Intent(BaseActivity.this, InvestorGuide.class));
+//            else
+//                mSlidingRootNav.closeMenu(true);
+//
+//        });
 
-        });
+//        listFooterView.findViewById(R.id.share_btn).setOnClickListener(v -> {
+//            Intent sharingIntent = new Intent(Intent.ACTION_SEND);
+//            sharingIntent.setType("text/plain");
+//            sharingIntent.putExtra(Intent.EXTRA_TEXT, "http://play.google.com/store/apps/details?id=" + appPackageName);
+//            startActivity(Intent.createChooser(sharingIntent, "Share via"));
+//        });
 
-        listFooterView.findViewById(R.id.share_btn).setOnClickListener(v -> {
-            Intent sharingIntent = new Intent(Intent.ACTION_SEND);
-            sharingIntent.setType("text/plain");
-            sharingIntent.putExtra(Intent.EXTRA_TEXT, "http://play.google.com/store/apps/details?id=" + appPackageName);
-            startActivity(Intent.createChooser(sharingIntent, "Share via"));
-        });
+//        listFooterView.findViewById(R.id.fb).setOnClickListener(v -> {
+//            action = "FB";
+//            mSlidingRootNav.closeMenu(true);
+//
+//        });
 
-        listFooterView.findViewById(R.id.fb).setOnClickListener(v -> {
-            action = "FB";
-            mSlidingRootNav.closeMenu(true);
-
-        });
-
-        listFooterView.findViewById(R.id.help_btn).setOnClickListener(v -> {
-            action = "HELP";
-            mSlidingRootNav.closeMenu(true);
-
-        });
-
-        listFooterView.findViewById(R.id.job_text).setOnClickListener(v -> {
-            action = "JOB";
-            mSlidingRootNav.closeMenu(true);
-
-        });
-
-        listFooterView.findViewById(R.id.invest_text).setOnClickListener(v -> {
-            action = "INVEST";
-            mSlidingRootNav.closeMenu(true);
-
-        });
-
-        listFooterView.findViewById(R.id.faq_text).setOnClickListener(v -> {
-            action = "FAQ";
-            mSlidingRootNav.closeMenu(true);
-
-        });
-
-        listFooterView.findViewById(R.id.pledge_text).setOnClickListener(v -> {
-            action = "PLEDGE";
-            mSlidingRootNav.closeMenu(true);
-
-        });
-
-        listFooterView.findViewById(R.id.business_text).setOnClickListener(v -> {
-            action = "BUSINESS";
-            mSlidingRootNav.closeMenu(true);
-
-        });
-
-        listFooterView.findViewById(R.id.news_text).setOnClickListener(v -> {
-            action = "NEWS";
-            mSlidingRootNav.closeMenu(true);
-
-        });
-
-        listFooterView.findViewById(R.id.twitter).setOnClickListener(v -> {
-            action = "Twitter";
-            mSlidingRootNav.closeMenu(true);
-        });
-
-
-        listFooterView.findViewById(R.id.instagram).setOnClickListener(v -> {
-            action = "Instagram";
-            mSlidingRootNav.closeMenu(true);
-        });
-
-
-        listHeaderView.findViewById(R.id.home_btn).setOnClickListener(view -> {
-            action = "HomeScreen";
-            mSlidingRootNav.closeMenu(true);
-        });
-
+//        listFooterView.findViewById(R.id.help_btn).setOnClickListener(v -> {
+//            action = "HELP";
+//            mSlidingRootNav.closeMenu(true);
+//
+//        });
+//
+//        listFooterView.findViewById(R.id.job_text).setOnClickListener(v -> {
+//            action = "JOB";
+//            mSlidingRootNav.closeMenu(true);
+//
+//        });
+//
+//        listFooterView.findViewById(R.id.invest_text).setOnClickListener(v -> {
+//            action = "INVEST";
+//            mSlidingRootNav.closeMenu(true);
+//
+//        });
+//
+//        listFooterView.findViewById(R.id.faq_text).setOnClickListener(v -> {
+//            action = "FAQ";
+//            mSlidingRootNav.closeMenu(true);
+//
+//        });
+//
+//        listFooterView.findViewById(R.id.pledge_text).setOnClickListener(v -> {
+//            action = "PLEDGE";
+//            mSlidingRootNav.closeMenu(true);
+//
+//        });
+//
+//        listFooterView.findViewById(R.id.business_text).setOnClickListener(v -> {
+//            action = "BUSINESS";
+//            mSlidingRootNav.closeMenu(true);
+//
+//        });
+//
+//        listFooterView.findViewById(R.id.news_text).setOnClickListener(v -> {
+//            action = "NEWS";
+//            mSlidingRootNav.closeMenu(true);
+//
+//        });
+//
+//        listFooterView.findViewById(R.id.twitter).setOnClickListener(v -> {
+//            action = "Twitter";
+//            mSlidingRootNav.closeMenu(true);
+//        });
+//
+//
+//        listFooterView.findViewById(R.id.instagram).setOnClickListener(v -> {
+//            action = "Instagram";
+//            mSlidingRootNav.closeMenu(true);
+//        });
+//
+//
+//        listHeaderView.findViewById(R.id.home_btn).setOnClickListener(view -> {
+//            action = "HomeScreen";
+//            mSlidingRootNav.closeMenu(true);
+//        });
+//
         listFooterView.findViewById(R.id.lang_text).setOnClickListener(view -> {
             action = "Language";
             mSlidingRootNav.closeMenu(true);
         });
 
         listFooterView.findViewById(R.id.eye_text).setVisibility(View.VISIBLE);
-        listFooterView.findViewById(R.id.eye_text).setOnClickListener(view -> {
-            action = "DEDEYE";
-            mSlidingRootNav.closeMenu(true);
-
-        });
-
-
-        listFooterView.findViewById(R.id.services_text).setOnClickListener(view -> {
-            action = "Services";
-            mSlidingRootNav.closeMenu(true);
-
-        });
-
-        listFooterView.findViewById(R.id.suggestions_text).setOnClickListener(view -> {
-            action = "Suggestions";
-            mSlidingRootNav.closeMenu(true);
-
-        });
-
-        listFooterView.findViewById(R.id.complains_text).setOnClickListener(view -> {
-            action = "Complains";
-            mSlidingRootNav.closeMenu(true);
-        });
-
-        if (UserData.getUserObject(this) == null) {
-            logout.setText(getString(R.string.login));
-            listFooterView.findViewById(R.id.logout_text).setOnClickListener(view -> {
-                action = "Login";
-                mSlidingRootNav.closeMenu(true);
-            });
-        } else {
-            logout.setText(getString(R.string.logout));
-            listFooterView.findViewById(R.id.logout_text).setOnClickListener(view -> {
-                action = "Logout";
-                mSlidingRootNav.closeMenu(true);
-            });
-        }
+//        listFooterView.findViewById(R.id.eye_text).setOnClickListener(view -> {
+//            action = "DEDEYE";
+//            mSlidingRootNav.closeMenu(true);
+//
+//        });
+//
+//
+//        listFooterView.findViewById(R.id.services_text).setOnClickListener(view -> {
+//            action = "Services";
+//            mSlidingRootNav.closeMenu(true);
+//
+//        });
+//
+//        listFooterView.findViewById(R.id.suggestions_text).setOnClickListener(view -> {
+//            action = "Suggestions";
+//            mSlidingRootNav.closeMenu(true);
+//
+//        });
+//
+//        listFooterView.findViewById(R.id.complains_text).setOnClickListener(view -> {
+//            action = "Complains";
+//            mSlidingRootNav.closeMenu(true);
+//        });
+//
+//        if (UserData.getUserObject(this) == null) {
+//            logout.setText(getString(R.string.login));
+//            listFooterView.findViewById(R.id.logout_text).setOnClickListener(view -> {
+//                action = "Login";
+//                mSlidingRootNav.closeMenu(true);
+//            });
+//        } else {
+//            logout.setText(getString(R.string.logout));
+//            listFooterView.findViewById(R.id.logout_text).setOnClickListener(view -> {
+//                action = "Logout";
+//                mSlidingRootNav.closeMenu(true);
+//            });
+//        }
 
         mExpandableListView.addHeaderView(listHeaderView);
         mExpandableListView.addFooterView(listFooterView);

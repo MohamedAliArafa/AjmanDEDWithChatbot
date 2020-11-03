@@ -58,6 +58,8 @@ public class SplashFragment extends Fragment implements SplashContract.ModelView
         super.onViewCreated(view, savedInstanceState);
         imageView = view.findViewById(R.id.imageView);
         splashPresenter = new SplashPresenter(this, getContext(), getLifecycle());
+
+        onGifFinished();
     }
 
     public boolean isFirstLaunch() {
@@ -66,40 +68,40 @@ public class SplashFragment extends Fragment implements SplashContract.ModelView
 
     @Override
     public void startTimer() {
-        if (SplashAnimation) {
-            Glide.with(this).asGif().load(R.drawable.ic_splash)
-                    .apply(RequestOptions.diskCacheStrategyOf(DiskCacheStrategy.NONE)).listener(new RequestListener<GifDrawable>() {
-                @Override
-                public boolean onLoadFailed(@Nullable GlideException e, Object model, Target<GifDrawable> target, boolean isFirstResource) {
-                    onGifFinished();
-                    return false;
-                }
-
-                @Override
-                public boolean onResourceReady(final GifDrawable resource, Object model, Target<GifDrawable> target, DataSource dataSource, boolean isFirstResource) {
-                    resource.setLoopCount(1);
-                    new Thread(new Runnable() {
-                        @Override
-                        public void run() {
-                            try {
-                                Thread.sleep(200);
-                            } catch (InterruptedException e) {
-                                e.printStackTrace();
-                            }
-                            while (true) {
-                                if (!resource.isRunning()) {
-                                    onGifFinished();
-                                    break;
-                                }
-                            }
-                        }
-                    }).start();
-                    return false;
-                }
-            }).into(imageView);
-        } else {
-            onGifFinished();
-        }
+//        if (SplashAnimation) {
+//            Glide.with(this).asGif().load(R.drawable.ic_splash)
+//                    .apply(RequestOptions.diskCacheStrategyOf(DiskCacheStrategy.NONE)).listener(new RequestListener<GifDrawable>() {
+//                @Override
+//                public boolean onLoadFailed(@Nullable GlideException e, Object model, Target<GifDrawable> target, boolean isFirstResource) {
+//                    onGifFinished();
+//                    return false;
+//                }
+//
+//                @Override
+//                public boolean onResourceReady(final GifDrawable resource, Object model, Target<GifDrawable> target, DataSource dataSource, boolean isFirstResource) {
+//                    resource.setLoopCount(1);
+//                    new Thread(new Runnable() {
+//                        @Override
+//                        public void run() {
+//                            try {
+//                                Thread.sleep(200);
+//                            } catch (InterruptedException e) {
+//                                e.printStackTrace();
+//                            }
+//                            while (true) {
+//                                if (!resource.isRunning()) {
+//                                    onGifFinished();
+//                                    break;
+//                                }
+//                            }
+//                        }
+//                    }).start();
+//                    return false;
+//                }
+//            }).into(imageView);
+//        } else {
+//            onGifFinished();
+//        }
     }
 
     private void onGifFinished() {

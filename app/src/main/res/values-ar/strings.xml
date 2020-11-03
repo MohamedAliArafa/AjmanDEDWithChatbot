@@ -315,5 +315,6 @@
         \n
         <b>إلغاء والتوجه إلى أقرب مركز خدمة لتحديث بياناتك</b></string>
     <string name="sop1_dialog_create_button">إنشاء حساب  جديد</string>
+    <string name="assistant_welcome_message">مرحبا, أنا سعود كيف يمكنني مساعدتك؟</string>
 
 </resources>

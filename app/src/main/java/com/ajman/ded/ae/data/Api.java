@@ -46,11 +46,14 @@ import retrofit2.http.Multipart;
 import retrofit2.http.POST;
 import retrofit2.http.Part;
 import retrofit2.http.Query;
+import retrofit2.http.Streaming;
 
 public interface Api {
     String BASE = "/WS_MobileApp/WebService_MobileApp.asmx";
 
     String NewsLink = "/_MobFiles/AjmanDED_MobService.asmx/News_Get?NumberOfItems=10";
+
+    String ARAFA_TTS = "/tts";
 
     String INSERT_NOTIFICATION = "extensions/dedeye/Notification_Insert";
     String STATUS_NOTIFICATION = "extensions/dedeye/Notifications_GetByUserId";
@@ -159,6 +162,10 @@ public interface Api {
 
     @GET(FILE_NOTIFICATION)
     Call<ResponseBody> file_notification(@Query("id") String id);
+
+    @GET(ARAFA_TTS)
+    @Streaming
+    Call<ResponseBody> getSoundFile(@Query("lang") String lang, @Query("text") String text);
 
     @GET(RATE_NOTIFICATION)
     Call<ResponseBody> rate_notification(@Query("UserId") String userId, @Query("notificationId") String notificationId, @Query("Satisfied") String satisfied, @Query("Notes") String note);

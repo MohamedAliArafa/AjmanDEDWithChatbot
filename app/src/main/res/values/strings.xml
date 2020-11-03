@@ -349,4 +349,5 @@
     <string name="login_success">Login successfully</string>
     <string name="ded_eye">DED Eye</string>
     <string name="to_report_violation">For Reporting Violation or abuse</string>
+    <string name="assistant_welcome_message">Hi, I\'m Fatima. How can i help you?</string>
 </resources>

@@ -1,4 +1,4 @@
-package com.ajman.ded.ae;
+package com.ajman.ded.ae.faetures.chatbot;
 
 import android.content.Intent;
 import android.os.Bundle;
@@ -11,10 +11,11 @@ import android.view.animation.Animation;
 import android.view.animation.AnimationUtils;
 import android.widget.TextView;
 
-import com.ajman.ded.ae.libs.ChatSplash.Message;
-import com.ajman.ded.ae.libs.ChatSplash.Option;
-import com.ajman.ded.ae.libs.ChatSplash.ResultModel;
-import com.ajman.ded.ae.libs.ChatSplash.SplashChatAdapter;
+import com.ajman.ded.ae.R;
+import com.ajman.ded.ae.faetures.chatbot.ChatSplash.Message;
+import com.ajman.ded.ae.faetures.chatbot.ChatSplash.Option;
+import com.ajman.ded.ae.faetures.chatbot.ChatSplash.ResultModel;
+import com.ajman.ded.ae.faetures.chatbot.ChatSplash.SplashChatAdapter;
 import com.ajman.ded.ae.libs.LocaleManager;
 import com.ajman.ded.ae.screens.base.BaseActivity;
 import com.ajman.ded.ae.screens.home.HomeActivity;
