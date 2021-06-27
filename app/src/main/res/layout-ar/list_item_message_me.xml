@@ -12,7 +12,7 @@
         android:layout_height="60dp"
         android:elevation="4dp"
         android:layout_gravity="center_vertical"
-        android:src="@drawable/ic_malek" />
+        android:src="@drawable/ic_avatar_cs" />
 
     <androidx.constraintlayout.widget.ConstraintLayout
         android:layout_width="wrap_content"

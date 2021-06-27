@@ -362,9 +362,9 @@ public class ChatActivity extends BaseActivity {
                                 flexboxLayout.removeAllViews();
                                 if (myTask != null && myTask.getStatus() != Status.FINISHED) {
                                     myTask.cancel(true);
-                                    if (mSynthesizeTask != null && mSynthesizeTask.getStatus() != Status.FINISHED) {
-                                        mSynthesizeTask.cancel(true);
-                                    }
+                                }
+                                if (mSynthesizeTask != null && mSynthesizeTask.getStatus() != Status.FINISHED) {
+                                    mSynthesizeTask.cancel(true);
                                 }
                                 myTask = new GetResponseTask();
                                 myTask.execute(res.options().get(finalI).getValue().getInput().text());
@@ -428,7 +428,11 @@ public class ChatActivity extends BaseActivity {
                 }
             }
             for (InputStream inputStream : responseAudioStream)
-                streamPlayer.playStream(inputStream);
+                try {
+                    streamPlayer.playStream(inputStream);
+                } catch (Exception e) {
+                    e.printStackTrace();
+                }
             return null;
         }
     }

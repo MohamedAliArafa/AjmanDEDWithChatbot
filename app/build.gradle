@@ -32,9 +32,11 @@ android {
 
     buildTypes {
         release {
+            applicationIdSuffix '.chatbot.release'
             proguardFiles getDefaultProguardFile('proguard-android.txt'), 'proguard-rules.pro'
         }
         debug {
+            applicationIdSuffix '.chatbot.debug'
             proguardFiles getDefaultProguardFile('proguard-android.txt'), 'proguard-rules.pro'
         }
     }

@@ -15,7 +15,7 @@
         android:id="@+id/assistant_image"
         android:layout_width="76dp"
         android:layout_height="76dp"
-        android:src="@drawable/ic_malek"
+        android:src="@drawable/ic_avatar_cs"
         android:layout_marginStart="25dp"
         android:layout_marginBottom="75dp"
         android:elevation="6dp"
